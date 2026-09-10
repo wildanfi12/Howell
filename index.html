@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOWELL — Independent Cable & Connectivity Studio</title>
+  <meta name="description" content="HOWELL (PT Howell Niaga Indonesia) delivers high-performance certified cabling, 8K video adapters, server power distribution, and enterprise connectivity systems — bold ideas, shipped with quiet precision." />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Minimalist Modern Sans-Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind CSS CDN & Custom Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       LUMORA DESIGN SYSTEM TOKENS & RESET FOR HOWELL STUDIO
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #ffffff;
+      --foreground: #111111;
+      --ink: #0a0a0a;
+      --muted: #8d8d8d;
+      --subtle: #b6b6b6;
+      --line: #e6e5e2;
+      --surface: #f1f0ee;
+      --surface-2: #e3e2df;
+      --accent: #0a0a0a;
+      --accent-from: #222222;
+      --accent-to: #000000;
+      --hero-from: #ecebe9;
+      --hero-to: #c9c9c9;
+
+      --radius-pill: 9999px;
+      --radius-card: 2rem;
+      --radius-card-sm: 1.25rem;
+      --radius-control: 0.875rem;
+      --container-shell: 88rem;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      letter-spacing: -0.015em;
+    }
+
+    /* REM-based Adaptive Grid for proportional viewport scaling */
+    @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+    @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+    @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+    @media (max-width: 640px)  { html { font-size: 4.444444vw; } }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+    ul { list-style: none; }
+    img, video { display: block; max-width: 100%; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* Outer Shell Container */
+    .shell {
+      max-width: var(--container-shell);
+      margin-inline: auto;
+      width: 100%;
+      padding-inline: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .shell { padding-inline: 2rem; }
+    }
+
+    /* Lumora Component Recipes */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(17, 17, 17, 0.7);
+    }
+    .eyebrow::before {
+      content: '';
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 9999px;
+      background: rgba(17, 17, 17, 0.5);
+    }
+    .eyebrow.light {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .eyebrow.light::before {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Lumora Pill Button Styling */
+    .btn-pill {
+      display: inline-block;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .btn-pill:hover {
+      transform: scale(1.04);
+    }
+    .btn-pill-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.875rem 1.75rem;
+      transition: all 0.3s ease;
+    }
+    .btn-pill-inner.has-arrow {
+      padding: 0.375rem 0.375rem 0.375rem 1.5rem;
+    }
+    .btn-pill-dark { background: var(--ink); color: #ffffff; }
+    .btn-pill-light { background: var(--surface); color: var(--foreground); }
+    .btn-pill-outline { border: 1px solid var(--line); background: transparent; color: var(--foreground); }
+    
+    .btn-pill-badge {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-pill);
+      font-size: 1rem;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .btn-pill-dark .btn-pill-badge { background: #ffffff; color: var(--ink); }
+    .btn-pill-light .btn-pill-badge, .btn-pill-outline .btn-pill-badge { background: var(--ink); color: #ffffff; }
+    .btn-pill:hover .btn-pill-badge {
+      transform: translate(3px, 0);
+    }
+    .btn-pill:hover .btn-pill-badge.up-right {
+      transform: translate(2px, -2px);
+    }
+
+    /* Hover Spring Animations */
+    .hover-lift {
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Lumora Service Row Hover Fill Effect */
+    .service-row-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 1.25rem;
+      padding-block: 1.5rem;
+      padding-inline: 1.5rem;
+      background: rgba(241, 240, 238, 0);
+      transition: all 0.35s cubic-bezier(0.24, 1, 0.32, 1);
+      cursor: pointer;
+    }
+    .service-row-item:hover {
+      background: rgba(241, 240, 238, 1);
+      padding-left: 2rem;
+      padding-right: 1.25rem;
+    }
+    .service-row-item .badge-arrow {
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .service-row-item:hover .badge-arrow {
+      transform: translateX(5px);
+    }
+
+    /* Staggered Line & Word Reveal Overflow Containers */
+    .reveal-line {
+      overflow: hidden;
+      display: block;
+    }
+    .reveal-line-inner {
+      display: block;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    .revealed .reveal-line-inner {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    .word-reveal-span {
+      display: inline-block;
+      transform: translateY(24px);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .revealed .word-reveal-span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Smooth Scrollbar & Selection */
+    ::selection { background: #ffffff; color: #000000; }
+  </style>
+</head>
+<body class="selection:bg-white selection:text-black">
+
+  <!-- Skip to content for Accessibility -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:text-white">
+    Skip to content
+  </a>
+
+  <!-- Toast Notification System Anchor -->
+  <div id="toast-container" class="fixed top-28 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+
+
+
+  <!-- ==================== HEADER (Fixed Overlay Navigation) ==================== -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-500 opacity-0 -translate-y-4">
+    <div class="shell flex items-center justify-between gap-2 sm:gap-6 py-3 sm:py-5 min-h-[4.5rem] sm:min-h-[6.5rem]">
+      
+      <!-- Left: Howell Brand Logo Button -->
+      <button onclick="scrollToId('home')" class="hover-lift flex items-center gap-2 text-lg font-semibold tracking-tight text-white group py-1">
+        <img src="assets/howell-logo-white.png" alt="HOWELL Logo" class="h-10 sm:h-16 md:h-20 max-h-20 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-md">
+      </button>
+
+      <!-- Center Primary Navigation -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs sm:text-sm font-medium text-white/80">
+        <button onclick="scrollToId('home')" data-i18n="nav_home" class="hover:-translate-y-0.5 hover:text-white transition-all">Home</button>
+        <button onclick="scrollToId('marketplace')" data-i18n="nav_marketplace" class="hover:-translate-y-0.5 hover:text-white transition-all">Marketplace</button>
+        <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="hover:-translate-y-0.5 hover:text-white transition-all">Products</button>
+        <button onclick="scrollToId('services')" class="hover:-translate-y-0.5 hover:text-white transition-all flex items-center gap-1">
+          <span data-i18n="nav_categories">Categories</span>
+          <span class="text-[0.75rem] opacity-60">▾</span>
+        </button>
+        <button onclick="scrollToId('collaboration-section')" data-i18n="nav_b2b" class="hover:-translate-y-0.5 hover:text-white transition-all">B2B Supply</button>
+        <button onclick="openSupportModal()" data-i18n="nav_contact" class="hover:-translate-y-0.5 hover:text-white transition-all">Contact</button>
+      </nav>
+
+      <!-- Right Controls: Header Search Input Column, Language Selector & Menu Button -->
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        
+        <!-- Header Search Bar -->
+        <form onsubmit="onHeaderSearchSubmit(event)" class="relative flex items-center">
+          <input type="text" id="header-search-input" data-i18n-ph="search_placeholder" oninput="handleSearchInput(this.value)" onfocus="if(window.scrollY < 400) scrollToId('catalog-section');" placeholder="Search product..." class="w-28 sm:w-52 md:w-60 pl-8 sm:pl-9 pr-2.5 sm:pr-4 py-1.5 sm:py-2 rounded-2xl border border-white/20 bg-black/40 backdrop-blur-md text-[11px] sm:text-xs font-medium text-white placeholder-white/50 focus:outline-none focus:border-white/60 focus:bg-black/80 transition-all shadow-sm">
+          <i data-lucide="search" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60 absolute left-2.5 sm:left-3 pointer-events-none"></i>
+        </form>
+
+        <!-- Top Right Language Selector Dropdown -->
+        <div class="relative">
+          <button id="lang-selector-btn" onclick="toggleLangDropdown(event)" class="border border-white/20 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-2xl px-2.5 sm:px-3 py-2 text-xs font-medium text-white shadow-sm hover-lift flex items-center gap-1.5" title="Pilih Bahasa / Select Language">
+            <span id="current-lang-flag" class="flex items-center">
+              <svg class="w-4 h-3 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="300" fill="#E70011"/><rect y="300" width="900" height="300" fill="#FFFFFF"/></svg>
+            </span>
+            <span id="current-lang-label" class="hidden sm:inline font-mono uppercase text-[11px] tracking-wider">ID</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 opacity-70"></i>
+          </button>
+
+          <!-- Language Dropdown Popover Menu -->
+          <div id="lang-dropdown-menu" class="absolute right-0 top-full mt-2 w-48 rounded-2xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-[120] hidden flex-col gap-1 text-xs">
+            <div class="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-white/40 border-b border-white/10 mb-1">
+              Select Language
+            </div>
+            <button onclick="setLanguage('id')" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 text-white transition-all font-medium" data-lang="id">
+              <span class="flex items-center gap-2.5">
+                <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="300" fill="#E70011"/><rect y="300" width="900" height="300" fill="#FFFFFF"/></svg>
+                <span>Bahasa Indonesia</span>
+              </span>
+              <span id="check-id" class="lang-check text-emerald-400 font-bold hidden">✓</span>
+            </button>
+            <button onclick="setLanguage('en')" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 text-white transition-all font-medium" data-lang="en">
+              <span class="flex items-center gap-2.5">
+                <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 60 30"><clipPath id="uk-clip"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="uk-diag"><path d="M30,15 h30 v15 z M30,15 h-30 v-15 z M30,15 h-30 v15 z M30,15 h30 v-15 z"/></clipPath><g clip-path="url(#uk-clip)"><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="4" clip-path="url(#uk-diag)"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/></g></svg>
+                <span>English</span>
+              </span>
+              <span id="check-en" class="lang-check text-emerald-400 font-bold hidden">✓</span>
+            </button>
+            <button onclick="setLanguage('zh')" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 text-white transition-all font-medium" data-lang="zh">
+              <span class="flex items-center gap-2.5">
+                <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="600" fill="#EE1C25"/><polygon points="150,60 185,170 290,170 205,235 235,340 150,275 65,340 95,235 10,170 115,170" fill="#FFDE00"/><polygon points="300,60 310,90 340,90 315,110 325,140 300,120 275,140 285,110 260,90 290,90" fill="#FFDE00"/><polygon points="360,120 370,150 400,150 375,170 385,200 360,180 335,200 345,170 320,150 350,150" fill="#FFDE00"/><polygon points="360,210 370,240 400,240 375,260 385,290 360,270 335,290 345,260 320,240 350,240" fill="#FFDE00"/><polygon points="300,270 310,300 340,300 315,320 325,350 300,330 275,350 285,320 260,300 290,300" fill="#FFDE00"/></svg>
+                <span>简体中文</span>
+              </span>
+              <span id="check-zh" class="lang-check text-emerald-400 font-bold hidden">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Drawer Toggle -->
+        <button onclick="toggleNavMenu(true)" class="border border-white/20 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-2xl px-3.5 sm:px-4 py-2 text-[0.75rem] font-medium uppercase tracking-wider text-white shadow-sm hover-lift flex items-center gap-2">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+          <span class="hidden sm:inline" data-i18n="menu_label">Menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="main">
+
+    <!-- ==================== 1. HERO SECTION (Liquid Reveal Canvas Background) ==================== -->
+    <section id="home" class="relative isolate overflow-hidden rounded-b-[2rem] bg-[#0a0a0a] text-white min-h-screen flex flex-col justify-between">
+      
+      <!-- Video Background Container -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 w-full h-full">
+          <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
+            <source src="assets/motion-header.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- Legibility Gradient Vignette Overlay (Dark Black Vignette) -->
+      <div class="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/80 via-black/30 to-black/90"></div>
+
+      <!-- Content Grid -->
+      <div class="shell relative z-20 flex flex-col gap-8 pt-28 sm:pt-36 pb-20 lg:grid lg:min-h-screen lg:grid-cols-12 lg:gap-10 lg:pt-36 lg:pb-28">
+        
+        <!-- Left Column -->
+        <div class="lg:col-span-7 flex flex-col gap-7 justify-center">
+
+          <!-- Headline (Line Reveal) -->
+          <h1 id="hero-title" class="max-w-[18ch] text-4xl sm:text-6xl md:text-7xl font-semibold leading-[0.98] tracking-tight text-white">
+            <span class="reveal-line"><span class="reveal-line-inner">Connected to</span></span>
+            <span class="reveal-line"><span class="reveal-line-inner">the Future.</span></span>
+          </h1>
+
+          <!-- Rating & Trust Row -->
+          <div id="hero-rating" class="flex items-center gap-3 transition-all duration-700 opacity-0 translate-y-3">
+            <div class="flex items-center gap-1 text-amber-400">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-xs sm:text-sm font-medium text-white/90" data-i18n="hero_clients">200+ Corporate B2B Clients & Distributors</span>
+          </div>
+
+          <!-- Action CTA Row -->
+          <div id="hero-cta" class="flex flex-wrap items-center gap-3 pt-2 transition-all duration-700 opacity-0 translate-y-3">
+            
+            <!-- Button 1: B2B Form Modal -->
+            <button onclick="openB2BModal()" class="btn-pill">
+              <span class="btn-pill-inner bg-white text-black has-arrow">
+                <span data-i18n="hero_b2b_btn">Ajukan Kerjasama B2B</span>
+                <span class="btn-pill-badge bg-black text-white up-right">→</span>
+              </span>
+            </button>
+
+            <!-- Button 2: View Catalog -->
+            <button onclick="scrollToId('catalog-section')" class="btn-pill">
+              <span class="btn-pill-inner border border-white/30 text-white hover:bg-white/10">
+                <span data-i18n="hero_catalog_btn">Jelajahi Katalog</span>
+              </span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Hero Card Carousel & Partners -->
+        <div class="lg:col-span-5 flex flex-col items-start lg:items-end justify-center gap-8">
+          
+          <div class="w-full max-w-sm sm:max-w-md flex flex-col gap-5">
+            
+            <!-- Hero Interactive Carousel Card -->
+            <div id="hero-card" class="w-full rounded-2xl bg-[#0a0a0a]/80 p-2 shadow-2xl ring-1 ring-white/15 backdrop-blur-xl transition-all duration-700 opacity-0 translate-y-4 scale-95">
+              <div onclick="cycleHeroCard(1)" class="flex gap-3 cursor-pointer rounded-xl p-2 hover:bg-white/5 transition-colors">
+                
+                <!-- Left Tile with Product Photo -->
+                <div class="aspect-square w-24 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 p-2 overflow-hidden">
+                  <img id="hero-card-img" src="assets/Produk/Produk Batch 1/1. Patch Cable/N8B03 - N8B08.png" alt="Howell Product" class="w-full h-full object-contain transform transition-all duration-300">
+                </div>
+
+                <!-- Right Detail Panel -->
+                <div class="flex-1 rounded-xl bg-white/5 border border-white/10 p-3 flex flex-col justify-between">
+                  <div id="hero-card-slot" class="min-h-[3.25rem] transition-all duration-300">
+                    <span id="hero-card-caption" class="text-[0.65rem] font-medium uppercase tracking-wider text-white/70">Flagship Hardware</span>
+                    <h4 id="hero-card-title" class="max-w-[12rem] text-xs sm:text-sm font-semibold text-white leading-snug mt-0.5">Cat8 SFTP 40Gbps Patch Cable</h4>
+                  </div>
+
+                  <!-- Pagination Dots & Controls -->
+                  <div class="flex items-center justify-between pt-2">
+                    <div id="hero-card-dots" class="flex items-center gap-1">
+                      <span class="h-1 rounded-full bg-white w-4 transition-all"></span>
+                      <span class="h-1 rounded-full bg-white/30 w-1.5 transition-all"></span>
+                      <span class="h-1 rounded-full bg-white/30 w-1.5 transition-all"></span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <button onclick="event.stopPropagation(); cycleHeroCard(-1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">←</button>
+                      <button onclick="event.stopPropagation(); cycleHeroCard(1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">→</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Official Partners & Marketplace Badges (Grid Equal Width) -->
+            <div id="hero-partners" class="w-full transition-all duration-700 opacity-0 translate-y-4">
+              <span class="block text-xs font-medium text-white/60 mb-2 text-center">Official E-Commerce Stores & B2B:</span>
+              <div class="grid grid-cols-3 gap-2">
+                <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="hover-lift flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-white/10 border border-white/20 text-[11px] sm:text-xs font-medium text-white hover:bg-white/20 whitespace-nowrap shadow-sm text-center">
+                  <img src="assets/shopee-logo.webp" alt="Shopee" class="w-3.5 h-3.5 object-contain shrink-0">
+                  <span class="truncate">Shopee</span>
+                </a>
+                <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="hover-lift flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-white/10 border border-white/20 text-[11px] sm:text-xs font-medium text-white hover:bg-white/20 whitespace-nowrap shadow-sm text-center">
+                  <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-3.5 h-3.5 object-contain shrink-0">
+                  <span class="truncate">Tokopedia</span>
+                </a>
+                <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="hover-lift flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-white/10 border border-white/20 text-[11px] sm:text-xs font-medium text-white hover:bg-white/20 whitespace-nowrap shadow-sm text-center">
+                  <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-3.5 h-3.5 object-contain rounded-sm shrink-0">
+                  <span class="truncate">TikTok</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Status Bar -->
+      <div id="hero-status" class="relative z-20 border-t border-white/10 py-5 transition-all duration-700 opacity-0">
+        <div class="shell flex items-center justify-between text-xs font-medium uppercase tracking-wider text-white/70">
+          <span>Est. 2009 — PT Howell Niaga Indonesia</span>
+          <span class="hidden sm:inline">Jakarta & Nationwide Distribution</span>
+          <button onclick="scrollToId('marketplace')" class="flex items-center gap-1 hover:text-white">
+            <span>Scroll to explore</span>
+            <span>↓</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+
+    <!-- ==================== 4. OFFICIAL MARKETPLACE STORES (Lumora Dark Cards) ==================== -->
+    <section id="marketplace" class="bg-white py-16 lg:py-24">
+      <div class="shell">
+        
+        <div class="rounded-[2rem] bg-[#0a0a0a] p-8 sm:p-12 text-white relative overflow-hidden">
+          
+          <!-- Header -->
+          <div class="max-w-2xl mb-12">
+            <span class="eyebrow light mb-3 block">Official Online Stores</span>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Marketplace Resmi HOWELL Indonesia.</h2>
+            <p class="text-xs sm:text-sm text-white/60 mt-2 leading-relaxed">
+              Dapatkan produk original Howell dengan jaminan kualitas 100%, garansi resmi 12 bulan, dan pengiriman cepat ke seluruh Indonesia melalui official store kami.
+            </p>
+          </div>
+
+          <!-- Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Shopee Card -->
+            <div class="hover-lift rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col justify-between hover:border-orange-500/80 transition-all duration-300 group">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/shopee-logo.webp" alt="Shopee Logo" class="w-full h-full object-contain">
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-xs font-semibold">Shopee Mall</span>
+                </div>
+                <h3 class="text-xl font-semibold text-white group-hover:text-orange-400 transition-colors">Shopee Official Store</h3>
+                <p class="text-xs text-white/60 mt-2 leading-relaxed">
+                  Belanja produk kabel & adapter Howell di Shopee Mall dengan garansi resmi dan bebas ongkir.
+                </p>
+              </div>
+
+              <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span class="text-xs font-mono text-orange-400 font-semibold">@howellcable</span>
+                <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-orange-600 transition-all">
+                  ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- Tokopedia Card -->
+            <div class="hover-lift rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col justify-between hover:border-emerald-500/80 transition-all duration-300 group">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/tokopedia-logo.png" alt="Tokopedia Logo" class="w-full h-full object-contain">
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold">Tokopedia Official</span>
+                </div>
+                <h3 class="text-xl font-semibold text-white group-hover:text-emerald-400 transition-colors">Tokopedia Official</h3>
+                <p class="text-xs text-white/60 mt-2 leading-relaxed">
+                  Dapatkan promo Cashback GoPay dan gratis ongkir di Tokopedia Official Store Howell.
+                </p>
+              </div>
+
+              <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span class="text-xs font-mono text-emerald-400 font-semibold">Howell Official</span>
+                <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-emerald-600 transition-all">
+                  ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- TikTok Shop Card -->
+            <div class="hover-lift rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col justify-between hover:border-slate-400 transition-all duration-300 group">
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/tiktok-logo.avif" alt="TikTok Logo" class="w-full h-full object-contain rounded-md">
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold">TikTok Shop</span>
+                </div>
+                <h3 class="text-xl font-semibold text-white group-hover:text-slate-300 transition-colors">TikTok Official Store</h3>
+                <p class="text-xs text-white/60 mt-2 leading-relaxed">
+                  Tonton video review produk, live shopping interaktif, dan dapatkan promo harga spesial.
+                </p>
+              </div>
+
+              <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span class="text-xs font-mono text-slate-300 font-semibold">@howell_official</span>
+                <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                  ↗
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== CATEGORY BANNERS AUTOMATIC SHOWCASE ==================== -->
+    <section id="category-banners-section" class="bg-white py-12 lg:py-16">
+      <div class="shell">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="eyebrow mb-2">Category Showcase</div>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Explore By Category Banner.</h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">Click any category banner to jump directly to official products in our catalog.</p>
+          </div>
+
+          <!-- Category Banner Tabs -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none max-w-full">
+            <button onclick="switchCategoryBanner('hdmi-video')" id="banner-tab-hdmi-video" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#0a0a0a] text-white">HDMI 8K</button>
+            <button onclick="switchCategoryBanner('patch-cable')" id="banner-tab-patch-cable" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">LAN & Patch Cable</button>
+            <button onclick="switchCategoryBanner('displayport')" id="banner-tab-displayport" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">DisplayPort</button>
+            <button onclick="switchCategoryBanner('power-cable')" id="banner-tab-power-cable" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">Power & PDU</button>
+            <button onclick="switchCategoryBanner('usb-charging')" id="banner-tab-usb-charging" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">USB & Data</button>
+            <button onclick="switchCategoryBanner('audio')" id="banner-tab-audio" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">Audio Solutions</button>
+            <button onclick="switchCategoryBanner('adapter')" id="banner-tab-adapter" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">Adapters</button>
+            <button onclick="switchCategoryBanner('earphone-tws')" id="banner-tab-earphone-tws" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">TWS & Audio</button>
+            <button onclick="switchCategoryBanner('dvi-vga')" id="banner-tab-dvi-vga" class="banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]">DVI & VGA</button>
+          </div>
+        </div>
+
+        <!-- Banner Slider Display Container -->
+        <div id="category-banner-slider-box" onmouseenter="pauseBannerAutoplay()" onmouseleave="resumeBannerAutoplay()" class="relative rounded-[2rem] bg-[#0a0a0a] border border-white/10 p-3 sm:p-4 shadow-2xl overflow-hidden group">
+          
+          <!-- Clickable Active Banner Image Holder (16:9 Aspect Ratio) -->
+          <div onclick="onCategoryBannerClick()" class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black/50 cursor-pointer">
+            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/2.png" alt="Category Banner" class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-[1.02]">
+            
+            <!-- Hover Action Overlay Pill -->
+            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-10 flex items-center gap-3 bg-black/80 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-full text-white text-xs sm:text-sm font-semibold shadow-lg group-hover:bg-white group-hover:text-black transition-all">
+              <span id="active-banner-label">HDMI 8K & Video Cables</span>
+              <span class="text-xs opacity-80 font-mono">Click to view catalog →</span>
+            </div>
+          </div>
+
+          <!-- Controls: Prev / Next Buttons & Pagination Dots -->
+          <div class="flex items-center justify-between pt-4 px-2">
+            <div id="banner-pagination-dots" class="flex items-center gap-1.5">
+              <!-- Dots rendered by JS -->
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="stepCategoryBanner(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">←</button>
+              <button onclick="stepCategoryBanner(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">→</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== STORE SHOWCASE & OFFICIAL GUARANTEE SECTION ==================== -->
+    <section id="store-showcase-section" class="bg-[#0a0a0a] text-white py-16 lg:py-24 border-t border-b border-white/10 relative overflow-hidden">
+      <div class="shell">
+        
+        <!-- Header -->
+        <div class="max-w-3xl mb-12">
+          <span class="eyebrow light mb-3 block">Official Store & Service Guarantee</span>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Store Showcase & Garansi Resmi HOWELL.</h2>
+          <p class="text-xs sm:text-sm text-white/70 mt-2 leading-relaxed">
+            Semua produk Howell didukung garansi resmi 12 bulan replacement, jaminan 100% Original, serta dukungan saluran QR & Layanan Pelanggan B2B terpercaya.
+          </p>
+        </div>
+
+        <!-- Store Showcase Slider -->
+        <div id="store-showcase-slider-box" onmouseenter="pauseStoreAutoplay()" onmouseleave="resumeStoreAutoplay()" class="relative rounded-[2rem] bg-white/5 border border-white/10 p-3 sm:p-4 shadow-2xl overflow-hidden group">
+          
+          <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black">
+            <img id="active-store-showcase-img" src="assets/Banner/0. BANNER TOKO/0.png" alt="Store Showcase Banner" class="w-full h-full object-cover transform transition-all duration-700">
+            
+            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-10 flex items-center gap-3 bg-black/80 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-white text-xs sm:text-sm font-semibold shadow-lg">
+              <span id="store-showcase-label">HOWELL Official Store Showcase & Guarantee</span>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center justify-between pt-4 px-2">
+            <div id="store-pagination-dots" class="flex items-center gap-1.5">
+              <!-- Dots rendered by JS -->
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="stepStoreShowcase(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">←</button>
+              <button onclick="stepStoreShowcase(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">→</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== 5. PRODUCTS CATALOG (Lumora Portfolio Cards) ==================== -->
+    <!-- ==================== 5. PRODUCTS CATALOG (Minimalist iOS White Glassmorphism) ==================== -->
+    <section id="catalog-section" class="bg-[#f8f9fa] py-16 lg:py-24">
+      <div class="shell">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <div class="eyebrow mb-2">Product Portfolio</div>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Explore Howell Catalog.</h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">High-demand hardware designed for maximum reliability and performance.</p>
+          </div>
+
+          <!-- Controls: Category Dropdown & Search (iOS Light Glassmorphism) -->
+          <div class="flex flex-wrap items-center gap-3">
+            
+            <!-- Category Filter Dropdown -->
+            <select id="category-filter-select" onchange="filterByCategory(this.value)" class="px-4 py-2.5 rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur-md text-xs font-semibold text-slate-900 focus:outline-none focus:border-slate-400 shadow-sm">
+              <option value="all">All Categories</option>
+              <option value="patch-cable">Patch Cable & Networking</option>
+              <option value="hdmi-video">HDMI & Video Cables</option>
+              <option value="displayport">DisplayPort 8K/16K</option>
+              <option value="dvi-vga">DVI & VGA Cables</option>
+              <option value="audio">Audio Solutions</option>
+              <option value="power-cable">Power & PDU Cables</option>
+              <option value="usb-charging">USB & Data Cables</option>
+              <option value="adapter">Adapters & Converters</option>
+              <option value="computer-acc">Chargers & Mobile Acc</option>
+              <option value="earphone-tws">Audio & Earphones</option>
+            </select>
+
+            <!-- Live Search Field -->
+            <div class="relative">
+              <input type="text" id="catalog-search-input" oninput="handleSearchInput(this.value)" placeholder="Search SKU or name..." class="px-4 py-2.5 pl-9 rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur-md text-xs font-semibold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 w-48 sm:w-64 shadow-sm">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3 pointer-events-none"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Count Indicator & Reset -->
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200/80 mb-8 text-xs font-medium text-slate-500">
+          <span id="catalog-count">Loading catalog...</span>
+          <button onclick="resetFilters()" class="text-slate-800 font-semibold hover:underline">Reset Filters</button>
+        </div>
+
+        <!-- Dynamic Product Catalog Grid -->
+        <div id="product-catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+        <!-- Load More / See More Button Container -->
+        <div id="catalog-load-more-box" class="mt-12 text-center flex flex-col items-center justify-center gap-3">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== 6. CATEGORIES LIST (Lumora Services Hover-Fill Rows) ==================== -->
+    <section id="services" class="bg-white py-16 lg:py-24">
+      <div class="shell">
+        
+        <div class="eyebrow mb-2">Category Ecosystem</div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md">What we produce best.</h2>
+
+        <!-- Hover Fill Rows List -->
+        <ul class="border-t border-[#e6e5e2]">
+          
+          <li onclick="filterByCategory('patch-cable')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">01</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Patch Cable & Networking</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+          <li onclick="filterByCategory('hdmi-video')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">02</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">HDMI 8K & DisplayPort</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+          <li onclick="filterByCategory('power-cable')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">03</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Heavy Duty Power & PDU</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+          <li onclick="filterByCategory('usb-charging')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">04</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">USB & High-Speed Data</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Active Optic Extension, USB Type-C & High-Amp Charging.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+          <li onclick="filterByCategory('audio')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">05</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Audio Solutions & AUX</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+          <li onclick="filterByCategory('adapter')" class="service-row-item border-b border-[#e6e5e2]">
+            <span class="w-8 text-xs font-medium text-slate-400 font-mono">06</span>
+            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Adapters & Converters</h3>
+            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Multi-port Display Converters, Audio Splitters & Signal Hubs.</p>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== 7. STATS PANEL (Scroll Driven Count-Up) ==================== -->
+    <section class="bg-white py-16 lg:py-24">
+      <div class="shell">
+        <div class="rounded-[2rem] bg-[#0a0a0a] p-8 sm:p-14 text-white">
+          
+          <span class="eyebrow light mb-3 block">By the numbers</span>
+          <h2 class="text-2xl sm:text-3xl font-medium tracking-tight text-white max-w-md">Proof in the work, not the words.</h2>
+
+          <div class="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div class="stat-item">
+              <div class="text-4xl sm:text-6xl font-semibold tracking-tight text-white font-mono">
+                <span class="stat-count" data-target="500">0</span>+
+              </div>
+              <p class="mt-3 text-xs sm:text-sm text-white/60">Products delivered</p>
+            </div>
+
+            <div class="stat-item">
+              <div class="text-4xl sm:text-6xl font-semibold tracking-tight text-white font-mono">
+                <span class="stat-count" data-target="100">0</span>%
+              </div>
+              <p class="mt-3 text-xs sm:text-sm text-white/60">Original guarantee</p>
+            </div>
+
+            <div class="stat-item">
+              <div class="text-4xl sm:text-6xl font-semibold tracking-tight text-white font-mono">
+                <span class="stat-count" data-target="15">0</span>
+              </div>
+              <p class="mt-3 text-xs sm:text-sm text-white/60">Years of craft (Est. 2009)</p>
+            </div>
+
+            <div class="stat-item">
+              <div class="text-4xl sm:text-6xl font-semibold tracking-tight text-white font-mono">
+                <span class="stat-count" data-target="1000">0</span>+
+              </div>
+              <p class="mt-3 text-xs sm:text-sm text-white/60">Corporate B2B clients</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== 8. B2B & ENTERPRISE PARTNERSHIPS ==================== -->
+    <section id="collaboration-section" class="bg-white py-16 lg:py-24">
+      <div class="shell">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <div class="eyebrow mb-2 justify-center">Enterprise & Partnerships</div>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Partner with HOWELL.</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2">Official support for B2B procurement, corporate projects, wholesale distributors, and retail partners.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          
+          <!-- Card 1: B2B Form Trigger -->
+          <div onclick="toggleInlineB2BForm(true, 'Penawaran Wholesale')" class="hover-lift p-8 rounded-2xl bg-[#f1f0ee] border border-[#e6e5e2] cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-slate-900 mb-6 shadow-sm">
+              <i data-lucide="file-text" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-black transition-colors">Isi Form Kerjasama B2B</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Ajukan permintaan harga khusus grosir, penawaran proyek korporat, dan pengadaan instansi.
+            </p>
+            <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
+              <span>Buka Formulir</span>
+              <span>→</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Authorized Resellers WhatsApp Direct -->
+          <div onclick="window.open('https://wa.me/6281188031976?text=Halo%20Howell,%20saya%20tertarik%20menjadi%20Authorized%20Reseller%20Toko%20Retail', '_blank')" class="hover-lift p-8 rounded-2xl bg-[#f1f0ee] border border-[#e6e5e2] cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-slate-900 mb-6 shadow-sm">
+              <i data-lucide="store" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-black transition-colors">Authorized Resellers</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Daftarkan toko komputer / elektronik Anda menjadi mitra penjualan resmi Howell di kota Anda.
+            </p>
+            <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
+              <span>Hubungi WA 081188031976</span>
+              <span>→</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Marketplace Stores -->
+          <div onclick="scrollToId('marketplace')" class="hover-lift p-8 rounded-2xl bg-[#f1f0ee] border border-[#e6e5e2] cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-slate-900 mb-6 shadow-sm">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-black transition-colors">Official E-Commerce</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Dapatkan produk eceran original garansi resmi melalui Shopee Mall, Tokopedia & TikTok Shop.
+            </p>
+            <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
+              <span>Lihat Store Official</span>
+              <span>→</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Inline B2B Form Card (Hidden by default, unhides when clicked) -->
+        <div id="kerjasama-form-card" class="hidden rounded-2xl bg-[#0a0a0a] p-8 sm:p-12 text-white relative transition-all duration-300">
+          <button onclick="toggleInlineB2BForm(false)" class="absolute top-6 right-6 text-white/50 hover:text-white text-xl">✕</button>
+          
+          <div class="max-w-xl mb-8">
+            <span class="eyebrow light mb-2 block">Direct WhatsApp Inquiry</span>
+            <h3 class="text-2xl font-semibold text-white">Formulir Kerjasama B2B Howell</h3>
+            <p class="text-xs text-white/60 mt-1">Isi data di bawah ini untuk terhubung langsung dengan tim B2B Howell via WhatsApp (081188031976).</p>
+          </div>
+
+          <form onsubmit="handleB2BSubmit(event, 'inline')" class="space-y-4 max-w-3xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Nama Perusahaan / Toko *</label>
+                <input type="text" id="b2b-inline-perusahaan" required placeholder="PT / CV / Toko Anda" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">PIC / Penanggung Jawab *</label>
+                <input type="text" id="b2b-inline-pic" required placeholder="Nama Lengkap" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Kota *</label>
+                <input type="text" id="b2b-inline-kota" required placeholder="Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Provinsi *</label>
+                <input type="text" id="b2b-inline-provinsi" required placeholder="DKI Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Kode Pos</label>
+                <input type="text" id="b2b-inline-kodepos" placeholder="14440" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Nomor Telp. / WhatsApp *</label>
+                <input type="tel" id="b2b-inline-telp" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Email Perusahaan *</label>
+                <input type="email" id="b2b-inline-email" required placeholder="perusahaan@domain.com" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-white/70 uppercase mb-1">Catatan Kebutuhan Proyek (Opsional)</label>
+              <textarea id="b2b-inline-catatan" rows="2" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-white/60"></textarea>
+            </div>
+
+            <button type="submit" class="btn-pill mt-2">
+              <span class="btn-pill-inner bg-emerald-600 text-white has-arrow">
+                <span>Kirim Form via WhatsApp</span>
+                <span class="btn-pill-badge bg-white text-emerald-700">💬</span>
+              </span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==================== FOOTER (Lumora Black Footer with Watermark) ==================== -->
+  <footer class="relative overflow-hidden rounded-t-[2rem] bg-[#0a0a0a] text-white">
+    <div class="shell relative z-10 pt-20 pb-10">
+      
+      <!-- CTA Row -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-16">
+        <h2 class="max-w-[16ch] text-3xl sm:text-5xl font-semibold tracking-tight text-white">
+          Have a project in mind? Let's get to work.
+        </h2>
+
+        <button onclick="openB2BModal()" class="btn-pill">
+          <span class="btn-pill-inner btn-pill-light has-arrow">
+            <span>Start a B2B Project</span>
+            <span class="btn-pill-badge up-right">→</span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Links Grid Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16">
+        
+        <!-- Brand Col -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-2 font-semibold text-lg text-white">
+            <img src="assets/howell-logo-white.png" alt="Howell Logo" class="h-16 sm:h-20 max-h-20 w-auto object-contain">
+          </div>
+          <p class="max-w-xs text-xs text-white/55 leading-relaxed">
+            PT Howell Niaga Indonesia — Premier supplier of certified cables, adapters, and server connectivity hardware.
+          </p>
+        </div>
+
+        <!-- Company Col -->
+        <div>
+          <span class="block text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">Company</span>
+          <ul class="space-y-3 text-xs text-white/70">
+            <li><button onclick="openSupportModal()" class="hover:text-white transition-colors">Headquarters & Support</button></li>
+            <li><button onclick="scrollToId('marketplace')" class="hover:text-white transition-colors">Marketplace Stores</button></li>
+            <li><button onclick="scrollToId('catalog-section')" class="hover:text-white transition-colors">Products Catalog</button></li>
+            <li><button onclick="openSupportModal()" class="hover:text-white transition-colors">Headquarters & Support</button></li>
+          </ul>
+        </div>
+
+        <!-- Categories Col -->
+        <div>
+          <span class="block text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">Categories</span>
+          <ul class="space-y-3 text-xs text-white/70">
+            <li><button onclick="filterByCategory('patch-cable')" class="hover:text-white transition-colors">Patch Cable & Networking</button></li>
+            <li><button onclick="filterByCategory('hdmi-video')" class="hover:text-white transition-colors">HDMI 8K & DisplayPort</button></li>
+            <li><button onclick="filterByCategory('power-cable')" class="hover:text-white transition-colors">Power & PDU Cables</button></li>
+            <li><button onclick="filterByCategory('usb-charging')" class="hover:text-white transition-colors">USB & Fast Data</button></li>
+          </ul>
+        </div>
+
+        <!-- Official Stores Col -->
+        <div>
+          <span class="block text-xs uppercase tracking-wider text-white/40 mb-4 font-mono">Official Channels</span>
+          <ul class="space-y-3 text-xs text-white/70">
+            <li><a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Shopee Official Store</a></li>
+            <li><a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Tokopedia Official</a></li>
+            <li><a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">TikTok Shop</a></li>
+            <li><a href="https://wa.me/6281188031976" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp 081188031976</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Legal Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/45">
+        <span>© 2026 PT Howell Niaga Indonesia. All rights reserved.</span>
+        <div class="flex items-center gap-6">
+          <button onclick="openSupportModal()" class="hover:text-white transition-colors">Privacy Policy</button>
+          <button onclick="openSupportModal()" class="hover:text-white transition-colors">Terms of Service</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Giant Footer Watermark -->
+    <div class="pointer-events-none absolute inset-x-0 -bottom-6 z-0 text-center select-none font-bold leading-none text-[13rem] text-white/5 tracking-tight">
+      HOWELL
+    </div>
+  </footer>
+
+
+  <!-- ==================== 9. NAV MENU OVERLAY (Lumora Full-Screen Dark Overlay) ==================== -->
+  <div id="nav-menu-overlay" class="fixed inset-0 z-[115] flex flex-col bg-[#0a0a0a] text-white transition-opacity duration-300 opacity-0 pointer-events-none">
+    
+    <!-- Top Bar -->
+    <div class="shell flex items-center justify-between py-6">
+      <div class="flex items-center gap-2 font-semibold text-lg">
+        <img src="assets/howell-logo-white.png" alt="Howell Logo" class="h-12 sm:h-16 max-h-16 w-auto object-contain">
+      </div>
+      <button onclick="toggleNavMenu(false)" class="border border-white/15 rounded-2xl px-4 py-2 text-xs uppercase tracking-wider text-white/70 hover:border-white/40 hover:text-white flex items-center gap-2">
+        <i data-lucide="x" class="w-4 h-4"></i>
+        <span>Close</span>
+      </button>
+    </div>
+
+    <!-- Links List -->
+    <div class="shell flex-1 flex flex-col justify-center">
+      <ul class="space-y-3">
+        <li>
+          <button onclick="scrollToId('home'); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">01</span>
+            <span data-i18n="nav_home">Home</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="scrollToId('marketplace'); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">02</span>
+            <span data-i18n="nav_marketplace">Marketplace</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="scrollToId('catalog-section'); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">03</span>
+            <span data-i18n="nav_products">Products</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="scrollToId('services'); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">04</span>
+            <span data-i18n="nav_categories">Categories</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="scrollToId('collaboration-section'); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">05</span>
+            <span data-i18n="nav_b2b">B2B Supply</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="openSupportModal(); toggleNavMenu(false);" class="w-full text-left py-2 text-4xl sm:text-6xl font-semibold tracking-tight text-white/70 hover:text-white transition-colors flex items-center gap-4 group">
+            <span class="text-sm font-mono text-white/30 group-hover:text-white">06</span>
+            <span data-i18n="nav_contact">Contact</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="shell border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-white/60">Language:</span>
+        <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-1">
+          <button onclick="setLanguage('id')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Bahasa Indonesia">🇮🇩 ID</button>
+          <button onclick="setLanguage('en')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="English">🇬🇧 EN</button>
+          <button onclick="setLanguage('zh')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Simplified Chinese">🇨🇳 中文</button>
+        </div>
+      </div>
+      <button onclick="toggleNavMenu(false); openB2BModal();" class="hover:text-white transition-colors" data-i18n="hero_b2b_btn">Start a project →</button>
+    </div>
+
+  </div>
+
+
+  <!-- ==================== 10. REQUEST MODAL (B2B Kerjasama Modal Dialog) ==================== -->
+  <div id="b2b-kerjasama-modal" class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none" role="dialog" aria-modal="true">
+    <div onclick="event.stopPropagation()" class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 transition-all duration-300 transform translate-y-6">
+      
+      <!-- Close Button -->
+      <button onclick="closeB2BModal()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Form View -->
+      <div id="b2b-modal-form-view">
+        <div class="mb-6">
+          <div class="eyebrow mb-1">Formulir B2B</div>
+          <h3 id="b2b-modal-title" class="text-2xl font-semibold tracking-tight text-slate-900">Tell us what you're building.</h3>
+        </div>
+
+        <form onsubmit="handleB2BSubmit(event, 'modal')" class="space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Nama Perusahaan / Toko *</label>
+            <input type="text" id="b2b-modal-perusahaan" required placeholder="PT / CV / Toko Anda" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Kota *</label>
+              <input type="text" id="b2b-modal-kota" required placeholder="Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Provinsi *</label>
+              <input type="text" id="b2b-modal-provinsi" required placeholder="DKI Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Kode Pos</label>
+              <input type="text" id="b2b-modal-kodepos" placeholder="14440" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">PIC / Penanggung Jawab *</label>
+              <input type="text" id="b2b-modal-pic" required placeholder="Nama Lengkap" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Nomor Telp. / WhatsApp *</label>
+              <input type="tel" id="b2b-modal-telp" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Email Perusahaan *</label>
+            <input type="email" id="b2b-modal-email" required placeholder="you@company.com" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Catatan Kebutuhan / Detail SKU</label>
+            <textarea id="b2b-modal-catatan" rows="3" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400 resize-none"></textarea>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-[0.75rem] text-slate-400">Direct response via WhatsApp.</span>
+            <button type="submit" class="btn-pill">
+              <span class="btn-pill-inner btn-pill-dark has-arrow">
+                <span>Send via WhatsApp</span>
+                <span class="btn-pill-badge up-right">→</span>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ==================== 11. PRODUCT DETAIL MODAL ==================== -->
+  <div id="product-detail-modal" onclick="closeModal('product-detail-modal')" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-slate-900/40 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none">
+    <div onclick="event.stopPropagation()" class="relative w-full max-w-4xl rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-200/80 p-6 sm:p-8 shadow-2xl text-slate-900 max-h-[92vh] overflow-y-auto">
+      
+      <button onclick="closeModal('product-detail-modal')" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100/80 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all z-10 border border-slate-200/80" title="Tutup Modal (ESC)">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div id="product-modal-content">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== 12. HEADQUARTERS & SUPPORT MODAL ==================== -->
+  <div id="support-howell-modal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md hidden">
+    <div onclick="event.stopPropagation()" class="relative w-full max-w-2xl rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 max-h-[90vh] overflow-y-auto">
+      
+      <button onclick="closeModal('support-howell-modal')" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-6">
+        <div class="eyebrow mb-1" data-i18n="contact_modal_eyebrow">Official Contact & Channels</div>
+        <h3 class="text-2xl font-semibold text-slate-900" data-i18n="contact_modal_title">Hubungi HOWELL Indonesia</h3>
+        <p class="text-xs text-slate-500 mt-1" data-i18n="contact_modal_desc">Layanan pelanggan resmi, kantor pusat, dan kanal komunikasi terverifikasi.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- Address Card -->
+        <div class="p-4 rounded-xl bg-[#f1f0ee] border border-[#e6e5e2] text-xs">
+          <div class="flex items-center gap-2 font-semibold uppercase text-slate-500 mb-1">
+            <i data-lucide="map-pin" class="w-4 h-4 text-slate-900"></i>
+            <span data-i18n="address_label">Alamat Kantor Pusat</span>
+          </div>
+          <p class="font-semibold text-slate-900 leading-relaxed">
+            Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Kecamatan Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14440
+          </p>
+        </div>
+
+        <!-- WhatsApp & Email Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#f1f0ee] border border-[#e6e5e2] text-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 font-semibold uppercase text-slate-500 mb-1">
+                <i data-lucide="phone" class="w-4 h-4 text-emerald-600"></i>
+                <span data-i18n="wa_label">WhatsApp Official</span>
+              </div>
+              <p class="font-semibold text-slate-900 text-sm">+6281188031976</p>
+            </div>
+            <a href="https://wa.me/6281188031976" target="_blank" class="mt-3 inline-flex items-center gap-1.5 font-semibold text-white bg-[#0a0a0a] px-4 py-2 rounded-xl text-xs hover:bg-slate-800 transition-all w-fit">
+              <span data-i18n="wa_btn">Chat WhatsApp</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#f1f0ee] border border-[#e6e5e2] text-xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 font-semibold uppercase text-slate-500 mb-1">
+                <i data-lucide="mail" class="w-4 h-4 text-slate-900"></i>
+                <span data-i18n="email_label">Email Customer Service</span>
+              </div>
+              <p class="font-semibold text-slate-900 text-sm">customerservice@howellcable.com</p>
+            </div>
+            <a href="mailto:customerservice@howellcable.com" class="mt-3 inline-flex items-center gap-1.5 font-semibold text-slate-900 border border-slate-300 bg-white px-4 py-2 rounded-xl text-xs hover:bg-slate-100 transition-all w-fit">
+              <span data-i18n="email_btn">Kirim Email</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Media Sosial Howell Grid -->
+        <div class="p-4 rounded-xl bg-[#f1f0ee] border border-[#e6e5e2] text-xs">
+          <span class="block font-semibold uppercase text-slate-500 mb-3">Media Sosial Resmi</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            
+            <!-- Instagram Card -->
+            <a href="https://www.instagram.com/howell.indonesia/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white border border-[#e6e5e2] flex items-center gap-3 hover:border-slate-400 hover:shadow-md transition-all group">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-gradient-to-tr from-[#fdf497] via-[#fd5949] to-[#d6249f] p-1 text-white shadow-sm">
+                <svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="block font-semibold text-slate-900 truncate text-xs group-hover:text-black">Instagram</span>
+                <span class="block text-[11px] text-slate-500 truncate">@howell.indonesia</span>
+              </div>
+            </a>
+
+            <!-- Facebook Card -->
+            <a href="https://www.facebook.com/profile.php?id=61591270633006" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white border border-[#e6e5e2] flex items-center gap-3 hover:border-slate-400 hover:shadow-md transition-all group">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-[#1877F2] text-white shadow-sm">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="block font-semibold text-slate-900 truncate text-xs group-hover:text-black">Facebook</span>
+                <span class="block text-[11px] text-slate-500 truncate">Howell Indonesia</span>
+              </div>
+            </a>
+
+            <!-- TikTok Card -->
+            <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white border border-[#e6e5e2] flex items-center gap-3 hover:border-slate-400 hover:shadow-md transition-all group">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-black text-white shadow-sm">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-2.901 2.846 2.894 2.894 0 0 1-2.891-2.9 2.893 2.893 0 0 1 2.891-2.892c.328 0 .64.053.93.15V9.407a6.31 6.31 0 0 0-.93-.07 6.334 6.334 0 0 0-6.334 6.334 6.334 6.334 0 0 0 6.334 6.334 6.334 6.334 0 0 0 6.334-6.334V9.062a8.214 8.214 0 0 0 4.764 1.498v-3.48a4.815 4.815 0 0 1-1.042-.394z"/>
+                </svg>
+              </div>
+              <div class="overflow-hidden">
+                <span class="block font-semibold text-slate-900 truncate text-xs group-hover:text-black">TikTok</span>
+                <span class="block text-[11px] text-slate-500 truncate">@howell_official</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Google Maps Frame -->
+        <div class="w-full rounded-xl overflow-hidden border border-[#e6e5e2] bg-[#f1f0ee]">
+          <div class="w-full h-52">
+            <iframe 
+              src="https://maps.google.com/maps?q=-6.1281288,106.8016257+(PT+Howell+Niaga+Indonesia)&t=&z=17&ie=UTF8&iwloc=&output=embed" 
+              class="w-full h-full border-0" 
+              allowfullscreen="" 
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="p-3 flex items-center justify-between gap-3 border-t border-[#e6e5e2] bg-white">
+            <div class="flex items-center gap-2 text-xs font-semibold text-slate-800 truncate">
+              <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span class="truncate">PT Howell Niaga Indonesia</span>
+            </div>
+            <a href="https://maps.app.goo.gl/XBGRqLqeEwBs6iHa8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-semibold text-white bg-[#0a0a0a] px-3.5 py-1.5 rounded-xl text-xs hover:bg-slate-800 transition-all shrink-0">
+              <span data-i18n="directions_btn">Buka Petunjuk Arah</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== 13. IMAGE LIGHTBOX ZOOM MODAL ==================== -->
+  <div id="image-zoom-modal" onclick="closeModal('image-zoom-modal')" class="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-xl hidden transition-opacity duration-300 opacity-0 select-none">
+    
+    <!-- Close Button -->
+    <button onclick="closeModal('image-zoom-modal')" class="absolute top-6 right-6 text-white text-xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center transition-all z-50 border border-white/20 shadow-2xl" title="Tutup (ESC)">
+      ✕
+    </button>
+
+    <!-- Content Box -->
+    <div onclick="event.stopPropagation()" class="max-w-6xl max-h-[90vh] p-2 sm:p-4 flex flex-col items-center justify-center relative">
+      <div class="relative overflow-hidden rounded-2xl border border-white/20 bg-black/80 shadow-2xl p-3 max-h-[80vh] flex items-center justify-center">
+        <img id="zoom-modal-img" src="" alt="Zoom Photo" onclick="toggleZoomScale(this)" class="max-w-full max-h-[75vh] object-contain rounded-xl transition-transform duration-300 cursor-zoom-in" title="Klik foto untuk perbesar 2x / Zoom In">
+      </div>
+      <div class="flex items-center gap-3 mt-4">
+        <span id="zoom-modal-title" class="text-center text-xs sm:text-sm font-semibold text-white/90 font-mono bg-white/10 px-4 py-1.5 rounded-full border border-white/10"></span>
+        <span class="text-[11px] text-white/60 font-mono">💡 Klik foto untuk Zoom In / Out</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Master Products Dataset Bundle -->
+  <script src="js/products.js"></script>
+
+  <!-- ES MODULE CDN IMPORTMAP FOR LENIS SMOOTH SCROLL -->
+  <script type="importmap">
+  {
+    "imports": {
+      "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"
+    }
+  }
+  </script>
+
+  <!-- MAIN MODULE APPLICATION SCRIPT -->
+  <script type="module">
+    import Lenis from 'lenis';
+
+    /* ==========================================================================
+       1. GLOBAL STATE & LENIS SMOOTH SCROLL INITIALIZATION
+       ========================================================================== */
+    window.scrollTo(0, 0);
+    const lenis = new Lenis({ smoothWheel: true });
+
+    function raf(t) {
+      lenis.raf(t);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    let scrollEnabled = true;
+    window.stopScroll = function() {
+      scrollEnabled = false;
+      lenis.stop();
+      document.documentElement.style.position = 'relative';
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.height = '100%';
+    };
+
+    window.startScroll = function() {
+      scrollEnabled = true;
+      lenis.start();
+      document.documentElement.style.removeProperty('position');
+      document.documentElement.style.removeProperty('overflow');
+      document.documentElement.style.removeProperty('height');
+    };
+
+    window.scrollToId = function(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      stopScroll();
+      setTimeout(() => {
+        const top = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top, behavior: 'smooth' });
+        setTimeout(startScroll, 100);
+      }, 50);
+    };
+
+    /* ==========================================================================
+       2. REM-BASED ADAPTIVE GRID SCALE-UP ENGINE ABOVE 1920PX
+       ========================================================================== */
+    function applyAdaptiveGrid() {
+      const FONT_BASE = 16, baseWidth = 1920, coef = 0.6666;
+      const w = window.innerWidth;
+      const widthReduction = ((baseWidth - w) / baseWidth) * 100;
+      const size = FONT_BASE - (FONT_BASE * (widthReduction * coef)) / 100;
+      if (size > FONT_BASE) document.documentElement.style.fontSize = size + 'px';
+      else document.documentElement.style.removeProperty('font-size');
+    }
+    applyAdaptiveGrid();
+    window.addEventListener('resize', applyAdaptiveGrid);
+
+
+    /* ==========================================================================
+       3. INTRO PAGE REVEAL ENGINE (DIRECT IMMEDIATE LOAD)
+       ========================================================================== */
+    let isReady = true;
+
+    function runIntroLoader() {
+      const loaderEl = document.getElementById('page-loader');
+      if (loaderEl) loaderEl.remove();
+      isReady = true;
+      startScroll();
+      triggerHeroReveals();
+    }
+
+    function triggerHeroReveals() {
+      // Header entrance
+      const header = document.getElementById('site-header');
+      if (header) {
+        header.classList.remove('opacity-0', '-translate-y-4');
+      }
+
+      // Hero Elements (Immediate reveal)
+      document.getElementById('hero-eyebrow')?.classList.remove('opacity-0', 'translate-y-3');
+      document.getElementById('hero-title')?.classList.add('revealed');
+      document.getElementById('hero-card')?.classList.remove('opacity-0', 'translate-y-4', 'scale-95');
+      document.getElementById('hero-partners')?.classList.remove('opacity-0', 'translate-y-4');
+      document.getElementById('hero-rating')?.classList.remove('opacity-0', 'translate-y-3');
+      document.getElementById('hero-cta')?.classList.remove('opacity-0', 'translate-y-3');
+      document.getElementById('hero-status')?.classList.remove('opacity-0');
+    }
+
+
+    /* ==========================================================================
+       4. LIQUID CANVAS CURSOR TRAIL REVEAL ENGINE
+       ========================================================================== */
+    function initLiquidCanvas() {
+      const container = document.getElementById('liquid-canvas-container');
+      const canvas = document.getElementById('liquid-brush-canvas');
+      if (!container || !canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const brushRadius = 143;
+      const decay = 0.016;
+
+      let rect = container.getBoundingClientRect();
+      let width = rect.width * dpr;
+      let height = rect.height * dpr;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Offscreen cover image canvas layer
+      const coverCanvas = document.createElement('canvas');
+      const coverCtx = coverCanvas.getContext('2d');
+      coverCanvas.width = width;
+      coverCanvas.height = height;
+
+      const afterImage = new Image();
+      afterImage.src = 'assets/howell-logo.png';
+      afterImage.onload = () => {
+        const imgRatio = afterImage.width / afterImage.height;
+        const containerRatio = width / height;
+        let dw, dh, dx, dy;
+
+        if (containerRatio > imgRatio) {
+          dw = width;
+          dh = width / imgRatio;
+          dx = 0;
+          dy = (height - dh) / 2;
+        } else {
+          dh = height;
+          dw = height * imgRatio;
+          dx = (width - dw) / 2;
+          dy = 0;
+        }
+        coverCtx.drawImage(afterImage, dx, dy, dw, dh);
+      };
+
+      // Offscreen brush canvas
+      const radius = brushRadius * dpr;
+      const diam = Math.ceil(radius * 2);
+      const brushCanvas = document.createElement('canvas');
+      brushCanvas.width = diam;
+      brushCanvas.height = diam;
+      const brushCtx = brushCanvas.getContext('2d');
+
+      let points = [];
+      let lastPoint = null;
+      let idle = 0;
+
+      function onPointerMove(e) {
+        rect = container.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * dpr;
+        const y = (e.clientY - rect.top) * dpr;
+
+        if (lastPoint) {
+          const dist = Math.hypot(x - lastPoint.x, y - lastPoint.y);
+          const step = Math.max(radius * 0.3, 1);
+          const steps = Math.min(Math.ceil(dist / step), 60);
+
+          for (let i = 0; i < steps; i++) {
+            const t = i / steps;
+            points.push({
+              x: lastPoint.x + (x - lastPoint.x) * t,
+              y: lastPoint.y + (y - lastPoint.y) * t
+            });
+          }
+        } else {
+          points.push({ x, y });
+        }
+
+        lastPoint = { x, y };
+        idle = 0;
+      }
+
+      window.addEventListener('pointermove', onPointerMove);
+
+      function renderCanvas() {
+        if (points.length === 0) {
+          idle++;
+        } else {
+          idle = 0;
+        }
+
+        if (idle < 120) {
+          // Fade existing trail
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.fillStyle = `rgba(0,0,0,${decay})`;
+          ctx.fillRect(0, 0, width, height);
+
+          // Draw queued points
+          if (points.length > 0) {
+            points.forEach(pt => {
+              brushCtx.clearRect(0, 0, diam, diam);
+
+              // Radial gradient brush
+              const grad = brushCtx.createRadialGradient(radius, radius, 0, radius, radius, radius);
+              grad.addColorStop(0, 'rgba(255,255,255,1)');
+              grad.addColorStop(0.55, 'rgba(255,255,255,0.82)');
+              grad.addColorStop(1, 'rgba(255,255,255,0)');
+
+              brushCtx.globalCompositeOperation = 'source-over';
+              brushCtx.fillStyle = grad;
+              brushCtx.beginPath();
+              brushCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+              brushCtx.fill();
+
+              // Source-in cover pixels
+              brushCtx.globalCompositeOperation = 'source-in';
+              brushCtx.drawImage(coverCanvas, pt.x - radius, pt.y - radius, diam, diam, 0, 0, diam, diam);
+
+              // Draw stamped brush onto main canvas
+              ctx.globalCompositeOperation = 'source-over';
+              ctx.drawImage(brushCanvas, pt.x - radius, pt.y - radius);
+            });
+
+            points = [];
+          }
+        } else if (idle === 120) {
+          ctx.clearRect(0, 0, width, height);
+        }
+
+        requestAnimationFrame(renderCanvas);
+      }
+
+      requestAnimationFrame(renderCanvas);
+    }
+
+
+    /* ==========================================================================
+       5. LIVE LOCAL CLOCK & HERO CAROUSEL ENGINE
+       ========================================================================== */
+    function initLiveClock() {
+      const timeEl = document.getElementById('header-live-time');
+      const dateEl = document.getElementById('header-live-date');
+      const navTimeEl = document.getElementById('nav-overlay-time');
+
+      function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12 || 12;
+
+        const timeStr = `${hours}:${minutes}${ampm}`;
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const dateStr = `${now.getDate()} ${months[now.getMonth()]}, ${now.getFullYear()}`;
+
+        if (timeEl) timeEl.textContent = timeStr;
+        if (dateEl) dateEl.textContent = dateStr;
+        if (navTimeEl) navTimeEl.textContent = timeStr;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    const HERO_CARD_ITEMS = [
+      { caption: "Flagship Hardware", title: "Cat8 SFTP 40Gbps Patch Cable", image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8B03 - N8B08.png" },
+      { caption: "8K Ultra Video", title: "HDMI 2.1 Ultra Gold Cable", image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0103 - H0110.png" },
+      { caption: "Server Power", title: "Cat8 Flat FTP Yellow Cable", image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8A02 - N8A08.png" },
+      { caption: "Optic Fiber", title: "Active Optic Fiber Cable", image: "assets/Produk/Produk Batch 1/2. HDMI Cable/CH0101.png" }
+    ];
+    let heroCardIndex = 0;
+
+    window.cycleHeroCard = function(step = 1) {
+      heroCardIndex = (heroCardIndex + step + HERO_CARD_ITEMS.length) % HERO_CARD_ITEMS.length;
+      const item = HERO_CARD_ITEMS[heroCardIndex];
+
+      const captionEl = document.getElementById('hero-card-caption');
+      const titleEl = document.getElementById('hero-card-title');
+      const imgEl = document.getElementById('hero-card-img');
+      const dotsEl = document.getElementById('hero-card-dots');
+
+      if (captionEl) captionEl.textContent = item.caption;
+      if (titleEl) titleEl.textContent = item.title;
+      if (imgEl && item.image) imgEl.src = encodeURI(item.image);
+
+      if (dotsEl) {
+        dotsEl.innerHTML = HERO_CARD_ITEMS.map((_, i) => `
+          <span class="h-1 rounded-full transition-all ${i === heroCardIndex ? 'bg-white w-4' : 'bg-white/30 w-1.5'}"></span>
+        `).join('');
+      }
+    };
+
+
+    /* ==========================================================================
+       6. INTERSECTION OBSERVER REVEALS & STATS COUNT-UP
+       ========================================================================== */
+    function initScrollReveals() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.15 });
+
+
+
+      // Stats Count Up Observer
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const countEls = entry.target.querySelectorAll('.stat-count');
+            countEls.forEach(el => {
+              const target = parseInt(el.getAttribute('data-target'), 10);
+              let current = 0;
+              const step = Math.max(1, Math.ceil(target / 40));
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                  el.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  el.textContent = current;
+                }
+              }, 30);
+            });
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.stat-item').forEach(el => statsObserver.observe(el));
+    }
+
+
+    /* ==========================================================================
+       CATEGORY BANNERS SHOWCASE ENGINE (AUTO-PLAY SLIDER & DIRECT CATALOG JUMP)
+       ========================================================================== */
+    const CATEGORY_BANNERS = {
+      'hdmi-video': {
+        name: "HDMI 8K & Video Cables",
+        catId: "hdmi-video",
+        images: [
+          "assets/Banner/9. HDMI/Landscape/2.png",
+          "assets/Banner/9. HDMI/Landscape/3.png",
+          "assets/Banner/9. HDMI/Landscape/4.png",
+          "assets/Banner/9. HDMI/Landscape/5.png",
+          "assets/Banner/9. HDMI/Landscape/6.png",
+          "assets/Banner/9. HDMI/Landscape/7.png",
+          "assets/Banner/9. HDMI/Landscape/8.png",
+          "assets/Banner/9. HDMI/Landscape/9.png",
+          "assets/Banner/9. HDMI/Landscape/10.png",
+          "assets/Banner/9. HDMI/Landscape/11.png"
+        ]
+      },
+      'patch-cable': {
+        name: "Patch Cable & LAN Networking",
+        catId: "patch-cable",
+        images: [
+          "assets/Banner/10. LAN/Landscape/13.png",
+          "assets/Banner/10. LAN/Landscape/14.png",
+          "assets/Banner/10. LAN/Landscape/15.png",
+          "assets/Banner/10. LAN/Landscape/16.png",
+          "assets/Banner/10. LAN/Landscape/17.png",
+          "assets/Banner/10. LAN/Landscape/18.png",
+          "assets/Banner/10. LAN/Landscape/19.png",
+          "assets/Banner/10. LAN/Landscape/20.png"
+        ]
+      },
+      'displayport': {
+        name: "DisplayPort 8K / 16K Optic Fiber",
+        catId: "displayport",
+        images: [
+          "assets/Banner/2. DP/Landscape/80.png",
+          "assets/Banner/2. DP/Landscape/81.png",
+          "assets/Banner/2. DP/Landscape/82.png",
+          "assets/Banner/2. DP/Landscape/83.png",
+          "assets/Banner/2. DP/Landscape/84.png",
+          "assets/Banner/2. DP/Landscape/85.png",
+          "assets/Banner/2. DP/Landscape/86.png"
+        ]
+      },
+      'power-cable': {
+        name: "Heavy Duty Power & PDU Cables",
+        catId: "power-cable",
+        images: [
+          "assets/Banner/7. POWER/Landscape/48.png",
+          "assets/Banner/7. POWER/Landscape/49.png",
+          "assets/Banner/7. POWER/Landscape/50.png",
+          "assets/Banner/7. POWER/Landscape/51.png",
+          "assets/Banner/7. POWER/Landscape/52.png",
+          "assets/Banner/7. POWER/Landscape/53.png"
+        ]
+      },
+      'usb-charging': {
+        name: "USB Data & Active Optic Extension",
+        catId: "usb-charging",
+        images: [
+          "assets/Banner/6. ACC & USB/Landscape/39.png",
+          "assets/Banner/6. ACC & USB/Landscape/40.png",
+          "assets/Banner/6. ACC & USB/Landscape/41.png",
+          "assets/Banner/6. ACC & USB/Landscape/42.png",
+          "assets/Banner/6. ACC & USB/Landscape/43.png",
+          "assets/Banner/6. ACC & USB/Landscape/44.png",
+          "assets/Banner/6. ACC & USB/Landscape/45.png"
+        ]
+      },
+      'audio': {
+        name: "Audio Solutions & AUX Cables",
+        catId: "audio",
+        images: [
+          "assets/Banner/1. AUDIO/Landscape/73.png",
+          "assets/Banner/1. AUDIO/Landscape/74.png",
+          "assets/Banner/1. AUDIO/Landscape/75.png",
+          "assets/Banner/1. AUDIO/Landscape/76.png",
+          "assets/Banner/1. AUDIO/Landscape/77.png",
+          "assets/Banner/1. AUDIO/Landscape/78.png",
+          "assets/Banner/1. AUDIO/Landscape/79.png"
+        ]
+      },
+      'adapter': {
+        name: "Adapters & Multi-Port Converters",
+        catId: "adapter",
+        images: [
+          "assets/Banner/8. ADAPTER/Landscape/54.png",
+          "assets/Banner/8. ADAPTER/Landscape/55.png",
+          "assets/Banner/8. ADAPTER/Landscape/56.png",
+          "assets/Banner/8. ADAPTER/Landscape/57.png",
+          "assets/Banner/8. ADAPTER/Landscape/58.png",
+          "assets/Banner/8. ADAPTER/Landscape/59.png",
+          "assets/Banner/8. ADAPTER/Landscape/60.png"
+        ]
+      },
+      'earphone-tws': {
+        name: "Audio & Wireless TWS Earphones",
+        catId: "earphone-tws",
+        images: [
+          "assets/Banner/4. TWS/Landscape/65.png",
+          "assets/Banner/4. TWS/Landscape/66.png",
+          "assets/Banner/4. TWS/Landscape/67.png",
+          "assets/Banner/4. TWS/Landscape/68.png",
+          "assets/Banner/4. TWS/Landscape/69.png",
+          "assets/Banner/4. TWS/Landscape/70.png"
+        ]
+      },
+      'dvi-vga': {
+        name: "DVI & Heavy Duty VGA Cables",
+        catId: "dvi-vga",
+        images: [
+          "assets/Banner/3. DVI/Landscape/87.png",
+          "assets/Banner/3. DVI/Landscape/88.png",
+          "assets/Banner/3. DVI/Landscape/89.png",
+          "assets/Banner/5. VGA/Landscape/93.png",
+          "assets/Banner/5. VGA/Landscape/94.png",
+          "assets/Banner/5. VGA/Landscape/95.png"
+        ]
+      }
+    };
+
+    /* ==========================================================================
+       STORE SHOWCASE SLIDER CONTROLLER
+       ========================================================================== */
+    const STORE_BANNERS = [
+      "assets/Banner/0. BANNER TOKO/0.png",
+      "assets/Banner/0. BANNER TOKO/1.png",
+      "assets/Banner/0. BANNER TOKO/2.png",
+      "assets/Banner/0. BANNER TOKO/3.png",
+      "assets/Banner/0. BANNER TOKO/4.png"
+    ];
+
+    let activeStoreIndex = 0;
+    let storeAutoplayTimer = null;
+    let isStoreAutoplayPaused = false;
+
+    window.stepStoreShowcase = function(step = 1) {
+      activeStoreIndex = (activeStoreIndex + step + STORE_BANNERS.length) % STORE_BANNERS.length;
+      updateStoreShowcaseDisplay();
+    };
+
+    window.setStoreShowcaseSlide = function(idx) {
+      activeStoreIndex = idx;
+      updateStoreShowcaseDisplay();
+    };
+
+    function updateStoreShowcaseDisplay() {
+      const imgEl = document.getElementById('active-store-showcase-img');
+      const dotsEl = document.getElementById('store-pagination-dots');
+
+      if (imgEl && STORE_BANNERS[activeStoreIndex]) {
+        imgEl.style.opacity = '0.4';
+        setTimeout(() => {
+          imgEl.src = encodeURI(STORE_BANNERS[activeStoreIndex]);
+          imgEl.style.opacity = '1';
+        }, 150);
+      }
+
+      if (dotsEl) {
+        dotsEl.innerHTML = STORE_BANNERS.map((_, i) => `
+          <button onclick="setStoreShowcaseSlide(${i})" class="h-1.5 rounded-full transition-all ${i === activeStoreIndex ? 'bg-white w-6' : 'bg-white/30 w-2 hover:bg-white/50'}"></button>
+        `).join('');
+      }
+    }
+
+    function startStoreAutoplay() {
+      if (storeAutoplayTimer) clearInterval(storeAutoplayTimer);
+      storeAutoplayTimer = setInterval(() => {
+        if (!isStoreAutoplayPaused) {
+          stepStoreShowcase(1);
+        }
+      }, 4000);
+    }
+
+    window.pauseStoreAutoplay = function() { isStoreAutoplayPaused = true; };
+    window.resumeStoreAutoplay = function() { isStoreAutoplayPaused = false; };
+
+    let activeBannerCategory = 'hdmi-video';
+    let activeBannerSlideIndex = 0;
+    let bannerAutoplayTimer = null;
+    let isBannerAutoplayPaused = false;
+
+    window.switchCategoryBanner = function(key) {
+      if (!CATEGORY_BANNERS[key]) return;
+      activeBannerCategory = key;
+      activeBannerSlideIndex = 0;
+      updateBannerSliderDisplay();
+      updateBannerTabStyles();
+    };
+
+    window.stepCategoryBanner = function(step = 1) {
+      const bannerData = CATEGORY_BANNERS[activeBannerCategory];
+      if (!bannerData || !bannerData.images || !bannerData.images.length) return;
+      activeBannerSlideIndex = (activeBannerSlideIndex + step + bannerData.images.length) % bannerData.images.length;
+      updateBannerSliderDisplay();
+    };
+
+    window.setCategoryBannerSlide = function(idx) {
+      activeBannerSlideIndex = idx;
+      updateBannerSliderDisplay();
+    };
+
+    function updateBannerSliderDisplay() {
+      const bannerData = CATEGORY_BANNERS[activeBannerCategory];
+      if (!bannerData) return;
+
+      const imgEl = document.getElementById('active-category-banner-img');
+      const labelEl = document.getElementById('active-banner-label');
+      const dotsEl = document.getElementById('banner-pagination-dots');
+
+      if (imgEl && bannerData.images[activeBannerSlideIndex]) {
+        imgEl.style.opacity = '0.4';
+        setTimeout(() => {
+          imgEl.src = encodeURI(bannerData.images[activeBannerSlideIndex]);
+          imgEl.style.opacity = '1';
+        }, 150);
+      }
+
+      if (labelEl) {
+        labelEl.textContent = bannerData.name;
+      }
+
+      if (dotsEl) {
+        dotsEl.innerHTML = bannerData.images.map((_, i) => `
+          <button onclick="event.stopPropagation(); setCategoryBannerSlide(${i});" class="h-1.5 rounded-full transition-all ${i === activeBannerSlideIndex ? 'bg-white w-6' : 'bg-white/30 w-2 hover:bg-white/50'}"></button>
+        `).join('');
+      }
+    }
+
+    function updateBannerTabStyles() {
+      document.querySelectorAll('.banner-tab-btn').forEach(btn => {
+        btn.className = 'banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#f1f0ee] text-slate-800 hover:bg-[#e3e2df]';
+      });
+      const activeTab = document.getElementById(`banner-tab-${activeBannerCategory}`);
+      if (activeTab) {
+        activeTab.className = 'banner-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-[#0a0a0a] text-white shadow-md';
+      }
+    }
+
+    window.onCategoryBannerClick = function() {
+      const bannerData = CATEGORY_BANNERS[activeBannerCategory];
+      if (!bannerData) return;
+      filterByCategory(bannerData.catId);
+      scrollToId('catalog-section');
+      showToast(`Showing ${bannerData.name} in master catalog`, "HOWELL Catalog", "shopping-bag");
+    };
+
+    function startBannerAutoplay() {
+      if (bannerAutoplayTimer) clearInterval(bannerAutoplayTimer);
+      bannerAutoplayTimer = setInterval(() => {
+        if (!isBannerAutoplayPaused) {
+          stepCategoryBanner(1);
+        }
+      }, 3500);
+    }
+
+    window.pauseBannerAutoplay = function() {
+      isBannerAutoplayPaused = true;
+    };
+
+    window.resumeBannerAutoplay = function() {
+      isBannerAutoplayPaused = false;
+    };
+
+    /* ==========================================================================
+       7. HOWELL CATALOG RENDERER & INTERACTION CONTROLLER (MINIMALIST IOS WHITE GLASSMORPHISM)
+       ========================================================================== */
+    let catalogState = {
+      category: 'all',
+      search: '',
+      isExpanded: false,
+      initialLimit: 6
+    };
+
+    window.filterByCategory = function(catId) {
+      catalogState.category = catId;
+      catalogState.isExpanded = false;
+      const selectEl = document.getElementById('category-filter-select');
+      if (selectEl) selectEl.value = catId;
+      if (CATEGORY_BANNERS[catId]) {
+        switchCategoryBanner(catId);
+      }
+      renderCatalogGrid();
+      scrollToId('catalog-section');
+    };
+
+    window.handleSearchInput = function(query) {
+      catalogState.search = query;
+      catalogState.isExpanded = false;
+      const catInput = document.getElementById('catalog-search-input');
+      const headInput = document.getElementById('header-search-input');
+      if (catInput && catInput !== document.activeElement) catInput.value = query;
+      if (headInput && headInput !== document.activeElement) headInput.value = query;
+      renderCatalogGrid();
+    };
+
+    window.onHeaderSearchSubmit = function(e) {
+      if (e) e.preventDefault();
+      const headInput = document.getElementById('header-search-input');
+      if (headInput) {
+        handleSearchInput(headInput.value);
+        scrollToId('catalog-section');
+      }
+    };
+
+    window.resetFilters = function() {
+      catalogState.category = 'all';
+      catalogState.search = '';
+      catalogState.isExpanded = false;
+      const selectEl = document.getElementById('category-filter-select');
+      const searchEl = document.getElementById('catalog-search-input');
+      const headInput = document.getElementById('header-search-input');
+      if (selectEl) selectEl.value = 'all';
+      if (searchEl) searchEl.value = '';
+      if (headInput) headInput.value = '';
+      renderCatalogGrid();
+    };
+
+    window.expandCatalog = function() {
+      catalogState.isExpanded = true;
+      renderCatalogGrid();
+    };
+
+    window.collapseCatalog = function() {
+      catalogState.isExpanded = false;
+      renderCatalogGrid();
+      scrollToId('catalog-section');
+    };
+
+    function renderCatalogGrid() {
+      const grid = document.getElementById('product-catalog-grid');
+      const countEl = document.getElementById('catalog-count');
+      const loadMoreBox = document.getElementById('catalog-load-more-box');
+      if (!grid || typeof HOWELL_PRODUCTS === 'undefined') return;
+
+      let filtered = [...HOWELL_PRODUCTS];
+
+      if (catalogState.category !== 'all') {
+        filtered = filtered.filter(p => p.category === catalogState.category);
+      }
+
+      if (catalogState.search.trim() !== '') {
+        const q = catalogState.search.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.name.toLowerCase().includes(q) || 
+          p.summary.toLowerCase().includes(q) || 
+          (p.sku && p.sku.toLowerCase().includes(q))
+        );
+      }
+
+      const totalCount = filtered.length;
+      const visibleProducts = catalogState.isExpanded ? filtered : filtered.slice(0, catalogState.initialLimit);
+      const t = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS[window.currentLanguage || 'id']) ? TRANSLATIONS[window.currentLanguage || 'id'] : {
+        showing_products: "Showing",
+        of_products: "of",
+        products_label: "Products Available",
+        btn_see_more: "See More Products",
+        btn_show_less: "Show Less Products"
+      };
+
+      if (countEl) {
+        if (totalCount <= catalogState.initialLimit || catalogState.isExpanded) {
+          countEl.textContent = `${totalCount} ${t.products_label}`;
+        } else {
+          countEl.textContent = `${t.showing_products} ${visibleProducts.length} ${t.of_products} ${totalCount} ${t.products_label}`;
+        }
+      }
+
+      if (totalCount === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center rounded-2xl bg-white/80 border border-slate-200/80 p-8 backdrop-blur-md shadow-sm">
+            <h3 class="text-lg font-semibold text-slate-900">No Matching Products Found</h3>
+            <p class="text-xs text-slate-500 mt-1">Try adjusting category filters or search keywords.</p>
+            <button onclick="resetFilters()" class="mt-4 btn-pill">
+              <span class="btn-pill-inner btn-pill-outline text-xs text-slate-900 border-slate-300">Reset Filters</span>
+            </button>
+          </div>
+        `;
+        if (loadMoreBox) loadMoreBox.innerHTML = '';
+        return;
+      }
+
+      grid.innerHTML = visibleProducts.map(product => {
+        const escapedName = product.name.replace(/'/g, "\\'");
+        const imageSrc = product.image ? encodeURI(product.image) : '';
+        const imgContent = imageSrc ? `
+          <img src="${imageSrc}" alt="${product.name}" class="w-full h-full object-contain group-hover/img:scale-105 transition-transform duration-300">
+        ` : (product.svgRender || `<div class="text-xs text-slate-400 font-mono">HOWELL PRODUCT</div>`);
+
+        return `
+          <div onclick="openProductDetail('${product.id}')" class="hover-lift rounded-2xl bg-white/80 backdrop-blur-xl border border-slate-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-2xl hover:shadow-slate-300/60 hover:bg-white hover:border-slate-300 transition-all duration-300 cursor-pointer group relative overflow-hidden text-slate-900 flex flex-col justify-between">
+            
+            <div>
+              <!-- Top Badge Row -->
+              <div class="flex items-center justify-between text-xs text-slate-500 mb-3 font-mono">
+                <span class="px-3 py-1 rounded-full bg-slate-100/90 text-slate-700 font-semibold text-[11px] border border-slate-200/80 backdrop-blur-md uppercase tracking-wider">${product.badge || product.categoryName}</span>
+                <span class="w-8 h-8 rounded-full bg-slate-100/80 border border-slate-200/80 flex items-center justify-center text-slate-700 group-hover:bg-slate-900 group-hover:text-white transition-all text-xs font-bold" title="Lihat Detail & Spesifikasi">↗</span>
+              </div>
+
+              <!-- Product Image Frame: 1:1 Aspect Ratio Canvas -->
+              <div onclick="event.stopPropagation(); openImageZoomModal('${imageSrc}', '${escapedName}');" class="aspect-square w-full rounded-xl bg-[#f1f3f5] border border-slate-200/60 p-4 flex items-center justify-center overflow-hidden relative cursor-pointer group/img mb-4 transition-all duration-300 group-hover/img:bg-[#e9ecef]" title="Klik foto untuk perbesar / zoom">
+                ${imgContent}
+                
+                <!-- Hover Zoom Hint Badge -->
+                <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold gap-1.5 backdrop-blur-md">
+                  <span>🔍 Zoom Foto</span>
+                </div>
+              </div>
+
+              <!-- Product Name & Short SKU -->
+              ${product.sku ? `<span class="block text-[0.68rem] font-mono text-slate-400 mb-1 tracking-wider uppercase">SKU: ${product.sku}</span>` : ''}
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-black transition-colors line-clamp-2">${product.name}</h3>
+            </div>
+
+            <!-- Actions Footer -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-800 flex items-center gap-1.5 group-hover:text-black transition-colors">
+                <span>Spesifikasi & Detail</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </span>
+              <span class="text-emerald-700 font-bold text-[11px] bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full backdrop-blur-md">• Ready Stock</span>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+
+      if (loadMoreBox) {
+        if (totalCount > catalogState.initialLimit && !catalogState.isExpanded) {
+          loadMoreBox.innerHTML = `
+            <button onclick="expandCatalog()" class="btn-pill hover-lift">
+              <span class="btn-pill-inner btn-pill-dark px-8 py-3 text-xs font-semibold has-arrow">
+                <span>${t.btn_see_more} (${totalCount - catalogState.initialLimit} ${t.of_products})</span>
+                <span class="btn-pill-badge bg-white text-black font-bold">↓</span>
+              </span>
+            </button>
+          `;
+        } else if (totalCount > catalogState.initialLimit && catalogState.isExpanded) {
+          loadMoreBox.innerHTML = `
+            <button onclick="collapseCatalog()" class="btn-pill hover-lift">
+              <span class="btn-pill-inner btn-pill-outline px-6 py-2.5 text-xs font-semibold has-arrow">
+                <span>${t.btn_show_less}</span>
+                <span class="btn-pill-badge bg-slate-900 text-white font-bold">↑</span>
+              </span>
+            </button>
+          `;
+        } else {
+          loadMoreBox.innerHTML = '';
+        }
+      }
+    }
+
+    /* ==========================================================================
+       8. MODALS & OVERLAYS CONTROLLER
+       ========================================================================== */
+    window.toggleNavMenu = function(open) {
+      const menu = document.getElementById('nav-menu-overlay');
+      if (!menu) return;
+      if (open) {
+        stopScroll();
+        menu.classList.remove('pointer-events-none', 'opacity-0');
+        menu.classList.add('opacity-100');
+      } else {
+        startScroll();
+        menu.classList.add('pointer-events-none', 'opacity-0');
+        menu.classList.remove('opacity-100');
+      }
+    };
+
+    window.openB2BModal = function(productName = '') {
+      const modal = document.getElementById('b2b-kerjasama-modal');
+      if (!modal) return;
+      stopScroll();
+      modal.classList.remove('pointer-events-none', 'opacity-0');
+      modal.classList.add('opacity-100');
+
+      if (productName) {
+        const notes = document.getElementById('b2b-modal-catatan');
+        if (notes) notes.value = `Inquiry untuk produk: ${productName}`;
+      }
+    };
+
+    window.closeB2BModal = function() {
+      const modal = document.getElementById('b2b-kerjasama-modal');
+      if (!modal) return;
+      startScroll();
+      modal.classList.add('pointer-events-none', 'opacity-0');
+      modal.classList.remove('opacity-100');
+    };
+
+    window.toggleInlineB2BForm = function(show, title = '') {
+      const card = document.getElementById('kerjasama-form-card');
+      if (!card) return;
+      if (show) {
+        card.classList.remove('hidden');
+        scrollToId('kerjasama-form-card');
+      } else {
+        card.classList.add('hidden');
+      }
+    };
+
+    window.handleB2BSubmit = function(e, type) {
+      e.preventDefault();
+      const prefix = type === 'inline' ? 'b2b-inline-' : 'b2b-modal-';
+
+      const perusahaan = document.getElementById(prefix + 'perusahaan')?.value || '';
+      const pic = document.getElementById(prefix + 'pic')?.value || '';
+      const kota = document.getElementById(prefix + 'kota')?.value || '';
+      const provinsi = document.getElementById(prefix + 'provinsi')?.value || '';
+      const kodepos = document.getElementById(prefix + 'kodepos')?.value || '';
+      const telp = document.getElementById(prefix + 'telp')?.value || '';
+      const email = document.getElementById(prefix + 'email')?.value || '';
+      const catatan = document.getElementById(prefix + 'catatan')?.value || '';
+
+      const text = `Halo Howell B2B Specialist,\nSaya ingin mengajukan Formulir Kerjasama B2B:\n\n` +
+                   `🏢 *Perusahaan/Toko:* ${perusahaan}\n` +
+                   `👤 *PIC:* ${pic}\n` +
+                   `📍 *Lokasi:* ${kota}, ${provinsi} ${kodepos}\n` +
+                   `📞 *Telp/WA:* ${telp}\n` +
+                   `✉️ *Email:* ${email}\n` +
+                   `📝 *Catatan:* ${catatan || '-'}\n\n` +
+                   `Mohon informasi penawaran harga & prosedur B2B. Terima kasih!`;
+
+      const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
+
+      if (type === 'modal') closeB2BModal();
+      showToast('Form B2B terkirim ke WhatsApp Specialist!', 'HOWELL B2B', 'message-square');
+    };
+
+    window.openProductDetail = function(productId) {
+      if (typeof HOWELL_PRODUCTS === 'undefined') return;
+      const product = HOWELL_PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      const modal = document.getElementById('product-detail-modal');
+      const content = document.getElementById('product-modal-content');
+      if (!modal || !content) return;
+
+      const specsHtml = product.specs ? `
+        <div class="mt-4 p-4 rounded-xl bg-[#f8f9fa] border border-slate-200/60">
+          <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 mb-2 font-mono">Spesifikasi Teknis Produk:</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+            ${Object.entries(product.specs).map(([key, val]) => `
+              <div class="flex flex-col py-1 border-b border-slate-200/60 last:border-0">
+                <span class="text-[10px] text-slate-400">${key}</span>
+                <span class="font-bold text-slate-900">${val}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      const variantsHtml = (product.variants && (product.variants.lengths || product.variants.colors)) ? `
+        <div class="mt-3 flex flex-wrap gap-2 text-xs font-mono">
+          ${product.variants.lengths ? product.variants.lengths.map(l => `<span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">${l}</span>`).join('') : ''}
+          ${product.variants.colors ? product.variants.colors.map(c => `<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px]">${c}</span>`).join('') : ''}
+        </div>
+      ` : '';
+
+      content.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch text-slate-900">
+          
+          <!-- Left Column: 1:1 Image Box & Highlights -->
+          <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+            
+            <div onclick="openImageZoomModal('${encodeURI(product.image)}', '${product.name.replace(/'/g, "\\'")}');" class="aspect-square w-full rounded-2xl bg-[#f1f3f5] border border-slate-200/80 p-5 flex items-center justify-center relative group cursor-pointer overflow-hidden shadow-sm" title="Klik foto untuk perbesar / zoom">
+              ${product.image ? `
+                <img src="${encodeURI(product.image)}" alt="${product.name}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+              ` : (product.svgRender || `<div class="text-xs font-mono text-slate-400">HOWELL PRODUCT</div>`)}
+              
+              <div class="absolute inset-0 bg-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-semibold gap-2 backdrop-blur-md">
+                <span class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg">🔍</span>
+                <span>Klik untuk Zoom Fullscreen</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#f8f9fa] border border-slate-200/60 space-y-2.5 text-xs text-slate-700 flex-1 flex flex-col justify-center">
+              <div class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">🛡️</span>
+                <span class="font-medium text-slate-800">Garansi Resmi 12 Bulan Howell</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">⚡</span>
+                <span class="font-medium text-slate-800">Sertifikasi Standar ISO & CE</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">🚚</span>
+                <span class="font-medium text-slate-800">Ready Stock & Pengiriman Jakarta</span>
+              </div>
+              <button onclick="openImageZoomModal('${encodeURI(product.image)}', '${product.name.replace(/'/g, "\\'")}');" class="mt-1 w-full py-2 rounded-xl bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                <span>🔍 Zoom Foto Produk</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Specs & Purchase Options -->
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-[10px] font-bold tracking-wider text-slate-700 uppercase font-mono px-3 py-1 rounded-full bg-slate-100 border border-slate-200">${product.badge || product.categoryName}</span>
+                ${product.sku ? `<span class="text-[11px] font-mono text-slate-400">SKU: ${product.sku}</span>` : ''}
+              </div>
+
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug tracking-tight">${product.name}</h2>
+              ${product.tagline ? `<p class="text-xs font-bold text-emerald-700 mt-1 font-mono">${product.tagline}</p>` : ''}
+              
+              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">${product.summary}</p>
+              ${product.description ? `<p class="text-xs text-slate-500 mt-1.5 leading-relaxed italic">${product.description}</p>` : ''}
+
+              ${variantsHtml}
+              ${specsHtml}
+            </div>
+
+            <!-- E-Commerce & Actions -->
+            <div class="pt-4 border-t border-slate-200/80 space-y-3">
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">Beli di E-Commerce Resmi Howell:</span>
+              <div class="grid grid-cols-3 gap-2">
+                <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-100 border border-slate-200/80 text-slate-900 text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white transition-all">
+                  <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
+                  <span>Shopee</span>
+                </a>
+                <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-100 border border-slate-200/80 text-slate-900 text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white transition-all">
+                  <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain">
+                  <span>Tokopedia</span>
+                </a>
+                <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-900 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all">
+                  <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-sm">
+                  <span>TikTok</span>
+                </a>
+              </div>
+
+              <div class="flex items-center gap-3 pt-1">
+                <button onclick="closeModal('product-detail-modal'); openB2BModal('${product.name.replace(/'/g, "\\'")}');" class="btn-pill flex-1">
+                  <span class="btn-pill-inner bg-slate-900 text-white w-full justify-center text-xs font-bold">Request B2B Quote</span>
+                </button>
+                <button onclick="window.open('https://wa.me/6281188031976', '_blank')" class="btn-pill">
+                  <span class="btn-pill-inner btn-pill-outline text-xs text-slate-900 border-slate-300">WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      stopScroll();
+      modal.classList.remove('pointer-events-none', 'opacity-0');
+      modal.classList.add('opacity-100');
+      if (window.lucide) lucide.createIcons();
+    };
+
+    window.openImageZoomModal = function(imgSrc, title = '') {
+      if (!imgSrc) return;
+      const modal = document.getElementById('image-zoom-modal');
+      const imgEl = document.getElementById('zoom-modal-img');
+      const titleEl = document.getElementById('zoom-modal-title');
+      if (!modal || !imgEl) return;
+
+      imgEl.src = imgSrc;
+      imgEl.classList.remove('scale-150', 'cursor-zoom-out');
+      imgEl.classList.add('cursor-zoom-in');
+      if (titleEl) titleEl.textContent = title;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+      }, 10);
+      stopScroll();
+    };
+
+    window.toggleZoomScale = function(imgEl) {
+      if (!imgEl) return;
+      if (imgEl.classList.contains('scale-150')) {
+        imgEl.classList.remove('scale-150', 'cursor-zoom-out');
+        imgEl.classList.add('cursor-zoom-in');
+      } else {
+        imgEl.classList.add('scale-150', 'cursor-zoom-out');
+        imgEl.classList.remove('cursor-zoom-in');
+      }
+    };
+
+    window.closeModal = function(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      if (modalId === 'image-zoom-modal') {
+        const imgEl = document.getElementById('zoom-modal-img');
+        if (imgEl) imgEl.classList.remove('scale-150', 'cursor-zoom-out');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      } else {
+        modal.classList.add('pointer-events-none', 'opacity-0');
+        modal.classList.remove('opacity-100');
+        if (modalId === 'support-howell-modal') {
+          modal.classList.add('hidden');
+        }
+      }
+
+      const otherOpen = document.querySelector('#product-detail-modal:not(.opacity-0), #b2b-kerjasama-modal:not(.opacity-0), #support-howell-modal:not(.hidden)');
+      if (!otherOpen) {
+        startScroll();
+      }
+    };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal('image-zoom-modal');
+        closeModal('product-detail-modal');
+        closeModal('b2b-kerjasama-modal');
+        closeModal('support-howell-modal');
+      }
+    });
+
+    window.openSupportModal = function() {
+      const modal = document.getElementById('support-howell-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
+      }
+    };
+
+    window.showToast = function(message, title = "HOWELL Catalog", icon = "check-circle") {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'p-4 rounded-2xl bg-[#0a0a0a] text-white border border-white/10 shadow-2xl flex items-center gap-3 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto min-w-[280px] max-w-md';
+      toast.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0 font-bold">✓</div>
+        <div class="flex-1">
+          <h4 class="text-xs font-semibold text-white/90 uppercase">${title}</h4>
+          <p class="text-xs text-white/80 mt-0.5">${message}</p>
+        </div>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => toast.classList.remove('translate-y-4', 'opacity-0'), 10);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    };
+
+
+    /* ==========================================================================
+       9. LANGUAGE / I18N SYSTEM (ID, EN, ZH)
+       ========================================================================== */
+    const TRANSLATIONS = {
+      id: {
+        nav_home: "Home",
+        nav_marketplace: "Marketplace",
+        nav_products: "Katalog Produk",
+        nav_categories: "Kategori",
+        nav_b2b: "B2B Supply",
+        nav_contact: "Kontak",
+        menu_label: "Menu",
+        search_placeholder: "Cari produk atau SKU...",
+        hero_tagline: "Connected to the Future",
+        hero_subtitle: "Independent Cable & Connectivity Studio — Menghadirkan kabel bersertifikasi tinggi, adaptor video 8K, dan sistem konektivitas enterprise.",
+        hero_clients: "200+ Klien B2B & Distributor Resmi",
+        hero_b2b_btn: "Ajukan Kerjasama B2B",
+        hero_catalog_btn: "Jelajahi Katalog",
+        sec_marketplace_eyebrow: "Store Showcase",
+        sec_marketplace_title: "Official Marketplace Howell",
+        sec_marketplace_desc: "Beli langsung produk original bersertifikasi di marketplace pilihan Anda.",
+        sec_categories_eyebrow: "Produk Unggulan",
+        sec_categories_title: "Kategori Kabel & Adapter Utama",
+        sec_catalog_eyebrow: "Official Product Catalog",
+        sec_catalog_title: "Katalog Kabel & Konektivitas Resmi",
+        sec_catalog_desc: "Daftar produk bersertifikasi Howell siap kirim untuk kebutuhan ritel dan proyek skala besar.",
+        sec_b2b_eyebrow: "Pengadaan & Grosir",
+        sec_b2b_title: "Howell B2B Supply & Procurement",
+        sec_b2b_desc: "Solusi pasokan kabel pabrikan resmi, sertifikasi ISO/CE, garansi resmi, dan pengiriman prioritas ke seluruh Indonesia.",
+        btn_see_more: "Lihat Produk Lainnya",
+        btn_show_less: "Tampilkan Lebih Sedikit",
+        showing_products: "Menampilkan",
+        of_products: "dari",
+        products_label: "Produk Tersedia",
+        contact_modal_eyebrow: "Official Contact & Channels",
+        contact_modal_title: "Hubungi HOWELL Indonesia",
+        contact_modal_desc: "Layanan pelanggan resmi, kantor pusat, dan kanal komunikasi terverifikasi.",
+        address_label: "Alamat Kantor Pusat",
+        wa_label: "WhatsApp Official",
+        wa_btn: "Chat WhatsApp",
+        email_label: "Email Customer Service",
+        email_btn: "Kirim Email",
+        medsos_label: "Media Sosial Resmi",
+        directions_btn: "Buka Petunjuk Arah"
+      },
+      en: {
+        nav_home: "Home",
+        nav_marketplace: "Marketplace",
+        nav_products: "Products Catalog",
+        nav_categories: "Categories",
+        nav_b2b: "B2B Supply",
+        nav_contact: "Contact Us",
+        menu_label: "Menu",
+        search_placeholder: "Search product or SKU...",
+        hero_tagline: "Connected to the Future",
+        hero_subtitle: "Independent Cable & Connectivity Studio — Delivering high-performance certified cabling, 8K video adapters, and enterprise connectivity systems.",
+        hero_clients: "200+ Corporate B2B Clients & Distributors",
+        hero_b2b_btn: "Start B2B Supply",
+        hero_catalog_btn: "Browse Catalog",
+        sec_marketplace_eyebrow: "Store Showcase",
+        sec_marketplace_title: "Howell Official Marketplace",
+        sec_marketplace_desc: "Purchase original certified products directly from your preferred marketplace.",
+        sec_categories_eyebrow: "Featured Products",
+        sec_categories_title: "Primary Cables & Adapter Categories",
+        sec_catalog_eyebrow: "Official Product Catalog",
+        sec_catalog_title: "Certified Cables & Connectivity Catalog",
+        sec_catalog_desc: "Certified Howell product line ready for immediate retail delivery and enterprise projects.",
+        sec_b2b_eyebrow: "Procurement & Wholesale",
+        sec_b2b_title: "Howell B2B Supply & Procurement",
+        sec_b2b_desc: "Official factory cable supply solution, ISO/CE certified, official warranty, and priority delivery across Indonesia.",
+        btn_see_more: "See More Products",
+        btn_show_less: "Show Less Products",
+        showing_products: "Showing",
+        of_products: "of",
+        products_label: "Products Available",
+        contact_modal_eyebrow: "Official Contact & Channels",
+        contact_modal_title: "Contact HOWELL Indonesia",
+        contact_modal_desc: "Official customer service, headquarters address, and verified communication channels.",
+        address_label: "Headquarters Address",
+        wa_label: "Official WhatsApp",
+        wa_btn: "Chat WhatsApp",
+        email_label: "Customer Service Email",
+        email_btn: "Send Email",
+        medsos_label: "Official Social Media",
+        directions_btn: "Get Directions"
+      },
+      zh: {
+        nav_home: "首页",
+        nav_marketplace: "官方商城",
+        nav_products: "产品目录",
+        nav_categories: "产品分类",
+        nav_b2b: "B2B 采购",
+        nav_contact: "联系我们",
+        menu_label: "菜单",
+        search_placeholder: "搜索产品或 SKU...",
+        hero_tagline: "Connected to the Future",
+        hero_subtitle: "独立线缆与连接技术工作室 — 提供高性能认证线缆、8K 视频转接器及企业级服务器连接系统。",
+        hero_clients: "200+ 企业采购客户与官方分销商",
+        hero_b2b_btn: "申请 B2B 采购",
+        hero_catalog_btn: "浏览完整目录",
+        sec_marketplace_eyebrow: "官方旗舰店展示",
+        sec_marketplace_title: "Howell 官方在线商城",
+        sec_marketplace_desc: "在您首选的电商平台直接购买官方认证原装正品。",
+        sec_categories_eyebrow: "核心产品系列",
+        sec_categories_title: "主营线缆与转接器分类",
+        sec_catalog_eyebrow: "官方产品目录",
+        sec_catalog_title: "认证线缆与连接器产品目录",
+        sec_catalog_desc: "Howell 现货认证产品，支持零售快捷发货与大型工程采购。",
+        sec_b2b_eyebrow: "企业采购与批发",
+        sec_b2b_title: "Howell B2B 供应链与大宗采购",
+        sec_b2b_desc: "官方工厂直供线缆解决方案，ISO/CE 双重认证，官方质保，全印尼优先配送。",
+        btn_see_more: "查看更多产品",
+        btn_show_less: "收起产品列表",
+        showing_products: "显示",
+        of_products: "共",
+        products_label: "件现货产品",
+        contact_modal_eyebrow: "官方联系方式与渠道",
+        contact_modal_title: "联系 HOWELL 印尼总部",
+        contact_modal_desc: "官方客户服务、总部地址及认证沟通渠道。",
+        address_label: "总部地址",
+        wa_label: "官方 WhatsApp",
+        wa_btn: "WhatsApp 在线咨询",
+        email_label: "客服电子邮箱",
+        email_btn: "发送电子邮件",
+        medsos_label: "官方社交媒体",
+        directions_btn: "打开地图导航"
+      }
+    };
+
+    window.currentLanguage = localStorage.getItem('howell_lang') || 'id';
+
+    window.toggleLangDropdown = function(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('lang-dropdown-menu');
+      if (menu) {
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden');
+          menu.classList.add('flex');
+        } else {
+          menu.classList.add('hidden');
+          menu.classList.remove('flex');
+        }
+      }
+    };
+
+    document.addEventListener('click', function(e) {
+      const btn = document.getElementById('lang-selector-btn');
+      const menu = document.getElementById('lang-dropdown-menu');
+      if (menu && !menu.classList.contains('hidden') && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+      }
+    });
+
+    window.setLanguage = function(lang) {
+      if (!TRANSLATIONS[lang]) return;
+      window.currentLanguage = lang;
+      localStorage.setItem('howell_lang', lang);
+
+      const flagsSvg = {
+        id: `<svg class="w-4 h-3 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="300" fill="#E70011"/><rect y="300" width="900" height="300" fill="#FFFFFF"/></svg>`,
+        en: `<svg class="w-4 h-3 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 60 30"><clipPath id="uk-clip-hdr"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="uk-diag-hdr"><path d="M30,15 h30 v15 z M30,15 h-30 v-15 z M30,15 h-30 v15 z M30,15 h30 v-15 z"/></clipPath><g clip-path="url(#uk-clip-hdr)"><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="4" clip-path="url(#uk-diag-hdr)"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/></g></svg>`,
+        zh: `<svg class="w-4 h-3 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="600" fill="#EE1C25"/><polygon points="150,60 185,170 290,170 205,235 235,340 150,275 65,340 95,235 10,170 115,170" fill="#FFDE00"/><polygon points="300,60 310,90 340,90 315,110 325,140 300,120 275,140 285,110 260,90 290,90" fill="#FFDE00"/><polygon points="360,120 370,150 400,150 375,170 385,200 360,180 335,200 345,170 320,150 350,150" fill="#FFDE00"/><polygon points="360,210 370,240 400,240 375,260 385,290 360,270 335,290 345,260 320,240 350,240" fill="#FFDE00"/><polygon points="300,270 310,300 340,300 315,320 325,350 300,330 275,350 285,320 260,300 290,300" fill="#FFDE00"/></svg>`
+      };
+      const labels = { id: 'ID', en: 'EN', zh: 'ZH' };
+      
+      const flagEl = document.getElementById('current-lang-flag');
+      const labelEl = document.getElementById('current-lang-label');
+      if (flagEl) flagEl.innerHTML = flagsSvg[lang];
+      if (labelEl) labelEl.textContent = labels[lang];
+
+      ['id', 'en', 'zh'].forEach(l => {
+        const chk = document.getElementById(`check-${l}`);
+        if (chk) {
+          if (l === lang) chk.classList.remove('hidden');
+          else chk.classList.add('hidden');
+        }
+      });
+
+      const menu = document.getElementById('lang-dropdown-menu');
+      if (menu) {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (TRANSLATIONS[lang][key]) {
+          el.textContent = TRANSLATIONS[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (TRANSLATIONS[lang][key]) {
+          el.placeholder = TRANSLATIONS[lang][key];
+        }
+      });
+
+      if (typeof renderCatalogGrid === 'function') {
+        renderCatalogGrid();
+      }
+    };
+
+    /* ==========================================================================
+       10. INITIALIZATION ENTRY POINT & GLOBAL EVENT LISTENERS
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      runIntroLoader();
+      initLiveClock();
+      initScrollReveals();
+      setLanguage(window.currentLanguage);
+      renderCatalogGrid();
+      updateBannerSliderDisplay();
+      startBannerAutoplay();
+      updateStoreShowcaseDisplay();
+      startStoreAutoplay();
+      if (window.lucide) lucide.createIcons();
+
+      // Keyboard ESC shortcut to close any open modal cleanly
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal('image-zoom-modal');
+          closeModal('product-detail-modal');
+          closeB2BModal();
+          closeModal('support-howell-modal');
+          toggleNavMenu(false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
