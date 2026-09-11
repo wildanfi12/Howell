@@ -7,6 +7,7 @@
 // Global Application State
 const state = {
   wishlist: [],
+  cart: JSON.parse(localStorage.getItem('howell_cart') || '[]'),
   activeCategory: 'all',
   sortBy: 'featured',
   searchQuery: '',
@@ -14,7 +15,7 @@ const state = {
   activeDetailTab: 'desc',
   activeLength: null,
   activeColor: null,
-  theme: 'light' // Locked to 100% full bright light mode
+  theme: 'light'
 };
 
 // Theme Controller (Locked Permanent Light Mode)
@@ -91,6 +92,330 @@ const wishlistSystem = {
     renderFeaturedProducts();
   }
 };
+
+/* ==========================================================================
+   SHOPPING CART ENGINE & LOCALSTORAGE PERSISTENCE
+   ========================================================================== */
+function saveCart() {
+  localStorage.setItem('howell_cart', JSON.stringify(state.cart));
+  updateCartBadge();
+  renderCartDrawer();
+}
+
+function getCartSubtotal() {
+  return state.cart.reduce((sum, item) => sum + ((item.price || 0) * item.quantity), 0);
+}
+
+function updateCartBadge() {
+  const totalCount = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalRp = getCartSubtotal();
+
+  document.querySelectorAll('.cart-badge-count').forEach(el => {
+    el.textContent = totalCount;
+    if (totalCount > 0) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
+
+  const floatBtn = document.getElementById('floating-cart-btn');
+  const floatCountEl = document.getElementById('floating-cart-count');
+  const floatTotalEl = document.getElementById('floating-cart-total');
+
+  if (floatBtn) {
+    if (totalCount > 0) {
+      floatBtn.classList.remove('hidden');
+    } else {
+      floatBtn.classList.add('hidden');
+    }
+  }
+
+  if (floatCountEl) floatCountEl.textContent = `${totalCount} Items`;
+  if (floatTotalEl) floatTotalEl.textContent = formatRupiah(totalRp);
+}
+
+function addToCart(productId, length = null, color = null, qty = 1) {
+  const product = HOWELL_PRODUCTS.find(p => p.id === productId);
+  if (!product) return;
+
+  const selLength = length || state.activeLength || (product.variants?.lengths?.[0]) || 'Standard';
+  const selColor = color || state.activeColor || (product.variants?.colors?.[0]) || 'Standard';
+
+  let itemPrice = product.price || 0;
+  if (product.variantPrices && product.variantPrices[selLength]) {
+    itemPrice = product.variantPrices[selLength];
+  }
+
+  const existingIdx = state.cart.findIndex(i => i.id === productId && i.length === selLength && i.color === selColor);
+
+  if (existingIdx > -1) {
+    state.cart[existingIdx].quantity += qty;
+  } else {
+    state.cart.push({
+      id: productId,
+      name: product.name,
+      categoryName: product.categoryName,
+      sku: product.sku,
+      image: product.image,
+      price: itemPrice,
+      length: selLength,
+      color: selColor,
+      quantity: qty
+    });
+  }
+
+  saveCart();
+  showToast(`"${product.name}" (${selLength}) ditambahkan ke keranjang`, "Keranjang Belanja", "shopping-cart");
+}
+
+function updateCartQty(index, delta) {
+  if (state.cart[index]) {
+    state.cart[index].quantity += delta;
+    if (state.cart[index].quantity <= 0) {
+      state.cart.splice(index, 1);
+    }
+    saveCart();
+  }
+}
+
+function removeFromCart(index) {
+  if (state.cart[index]) {
+    state.cart.splice(index, 1);
+    saveCart();
+    showToast("Item berhasil dihapus dari keranjang", "Keranjang Belanja", "trash-2");
+  }
+}
+
+function clearCart() {
+  state.cart = [];
+  saveCart();
+}
+
+function toggleCartDrawer(open) {
+  const backdrop = document.getElementById('cart-drawer-backdrop');
+  const drawer = document.getElementById('cart-drawer');
+
+  if (!backdrop || !drawer) return;
+
+  if (open) {
+    renderCartDrawer();
+    backdrop.classList.remove('pointer-events-none', 'opacity-0');
+    backdrop.classList.add('opacity-100');
+    drawer.classList.remove('translate-x-full');
+  } else {
+    backdrop.classList.add('pointer-events-none', 'opacity-0');
+    backdrop.classList.remove('opacity-100');
+    drawer.classList.add('translate-x-full');
+  }
+}
+
+function renderCartDrawer() {
+  const container = document.getElementById('cart-drawer-items');
+  const subtotalEl = document.getElementById('cart-drawer-subtotal');
+  const checkoutBtn = document.getElementById('cart-checkout-btn');
+
+  if (!container) return;
+
+  const subtotal = getCartSubtotal();
+  if (subtotalEl) subtotalEl.textContent = formatRupiah(subtotal);
+
+  if (state.cart.length === 0) {
+    container.innerHTML = `
+      <div class="py-16 text-center text-slate-400">
+        <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400">
+          <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+        </div>
+        <h4 class="text-sm font-bold text-slate-800">Keranjang Belanja Kosong</h4>
+        <p class="text-xs text-slate-500 mt-1">Pilih produk berkualitas HOWELL dan tambahkan ke keranjang.</p>
+      </div>
+    `;
+    if (checkoutBtn) checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
+    if (window.lucide) lucide.createIcons();
+    return;
+  }
+
+  if (checkoutBtn) checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
+
+  container.innerHTML = state.cart.map((item, idx) => `
+    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3 group relative">
+      <div class="w-16 h-16 rounded-xl bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0">
+        <img src="${encodeURI(item.image)}" alt="${item.name}" class="w-full h-full object-contain">
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-bold text-amber-700 uppercase tracking-wider">${item.categoryName}</span>
+          <button onclick="removeFromCart(${idx})" class="text-slate-400 hover:text-red-500 text-xs transition-colors p-1" title="Hapus Item">✕</button>
+        </div>
+        <h4 class="text-xs font-bold text-slate-900 truncate leading-snug">${item.name}</h4>
+        <div class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-2">
+          <span class="bg-slate-200 px-1.5 py-0.2 rounded font-semibold text-slate-700">${item.length}</span>
+          <span class="font-extrabold text-emerald-600">${formatRupiah(item.price)}</span>
+        </div>
+        <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-slate-200/60">
+          <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-lg px-2 py-0.5">
+            <button onclick="updateCartQty(${idx}, -1)" class="text-xs font-bold text-slate-600 hover:text-slate-900">-</button>
+            <span class="text-xs font-extrabold text-slate-900 px-1.5">${item.quantity}</span>
+            <button onclick="updateCartQty(${idx}, 1)" class="text-xs font-bold text-slate-600 hover:text-slate-900">+</button>
+          </div>
+          <span class="text-xs font-extrabold text-slate-900">${formatRupiah(item.price * item.quantity)}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  if (window.lucide) lucide.createIcons();
+}
+
+/* ==========================================================================
+   QRIS PAYMENT GATEWAY & CHECKOUT CONTROLLER
+   ========================================================================== */
+function openCheckoutModal() {
+  if (state.cart.length === 0) {
+    showToast("Keranjang Anda masih kosong", "Checkout Error", "alert-circle");
+    return;
+  }
+
+  toggleCartDrawer(false);
+
+  const modal = document.getElementById('qris-checkout-modal');
+  const stepForm = document.getElementById('qris-step-form');
+  const stepDisplay = document.getElementById('qris-step-display');
+  const itemCountEl = document.getElementById('qris-order-item-count');
+  const itemsListEl = document.getElementById('qris-order-items-list');
+  const totalPriceEl = document.getElementById('qris-order-total-price');
+
+  if (!modal) return;
+
+  const totalCount = state.cart.reduce((sum, i) => sum + i.quantity, 0);
+  const totalRp = getCartSubtotal();
+
+  if (itemCountEl) itemCountEl.textContent = `${totalCount} Items`;
+  if (totalPriceEl) totalPriceEl.textContent = formatRupiah(totalRp);
+
+  if (itemsListEl) {
+    itemsListEl.innerHTML = state.cart.map(i => `
+      <div class="flex justify-between items-center py-1 border-b border-slate-100 text-xs">
+        <span class="truncate max-w-[240px] text-slate-800 font-medium">${i.name} (${i.length}) x${i.quantity}</span>
+        <span class="font-bold text-slate-900 shrink-0">${formatRupiah(i.price * i.quantity)}</span>
+      </div>
+    `).join('');
+  }
+
+  if (stepForm) stepForm.classList.remove('hidden');
+  if (stepDisplay) stepDisplay.classList.add('hidden');
+
+  modal.classList.remove('pointer-events-none', 'opacity-0');
+  modal.classList.add('opacity-100');
+  if (window.lucide) lucide.createIcons();
+}
+
+function submitQrisCheckout(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('qris-cust-name')?.value || 'Pelanggan Howell';
+  const phone = document.getElementById('qris-cust-phone')?.value || '-';
+  const address = document.getElementById('qris-cust-address')?.value || '-';
+
+  const stepForm = document.getElementById('qris-step-form');
+  const stepDisplay = document.getElementById('qris-step-display');
+  const totalRp = getCartSubtotal();
+
+  if (!stepForm || !stepDisplay) return;
+
+  stepForm.classList.add('hidden');
+  stepDisplay.classList.remove('hidden');
+
+  stepDisplay.innerHTML = `
+    <div class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-4 py-1.5 rounded-full text-emerald-700 text-xs font-bold">
+        <span>✓</span> Standard QRIS Pembayaran Nasional
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900">Scan Barcode QRIS Resmi</h3>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto">Gunakan aplikasi e-Wallet atau m-Banking Anda untuk melakukan pembacaan Kode QRIS di bawah ini.</p>
+
+      <div class="max-w-xs mx-auto p-5 rounded-3xl bg-white border-2 border-slate-900 shadow-2xl space-y-3 relative text-left">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+          <div class="flex items-center gap-1">
+            <span class="font-extrabold text-red-600 text-lg tracking-tighter">QRIS</span>
+            <span class="text-[9px] font-mono text-slate-500 uppercase tracking-widest block leading-tight">GPN</span>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase">PT HOWELL NIAGA</span>
+        </div>
+
+        <div class="text-center py-1">
+          <span class="block text-[11px] font-bold text-slate-500 uppercase">NAMA MERCHANT:</span>
+          <h4 class="text-sm font-extrabold text-slate-900">PT HOWELL NIAGA INDONESIA</h4>
+          <span class="block text-[10px] text-slate-400 font-mono">NMID: ID1024883019274</span>
+        </div>
+
+        <div class="w-56 h-56 mx-auto bg-white p-2 border-2 border-black rounded-2xl flex items-center justify-center shadow-inner relative">
+          <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="white"/>
+            <rect x="10" y="10" width="50" height="50" rx="6" fill="black"/>
+            <rect x="20" y="20" width="30" height="30" rx="3" fill="white"/>
+            <rect x="27" y="27" width="16" height="16" rx="2" fill="black"/>
+            <rect x="140" y="10" width="50" height="50" rx="6" fill="black"/>
+            <rect x="150" y="20" width="30" height="30" rx="3" fill="white"/>
+            <rect x="157" y="27" width="16" height="16" rx="2" fill="black"/>
+            <rect x="10" y="140" width="50" height="50" rx="6" fill="black"/>
+            <rect x="20" y="150" width="30" height="30" rx="3" fill="white"/>
+            <rect x="27" y="157" width="16" height="16" rx="2" fill="black"/>
+            <path d="M70 10h10v10H70zM90 10h20v10H90zM120 10h10v10h-10zM70 30h30v10H70zM110 30h20v10h-20zM70 50h10v10H70zM90 50h10v10H90zM110 50h20v10h-20zM10 70h60v10H10zM80 70h10v10H80zM100 70h20v10h-20zM130 70h60v10h-60zM10 90h20v10H10zM40 90h20v10H40zM70 90h30v10H70zM110 90h10v10h-10zM130 90h30v10h-30zM170 90h20v10h-20zM20 110h30v10H20zM60 110h20v10H60zM90 110h20v10H90zM120 110h20v10h-20zM150 110h30v10h-30zM70 130h20v10H70zM100 130h20v10h-20zM130 130h30v10h-30zM70 150h30v10H70zM110 150h20v10h-20zM140 150h20v10h-20zM170 150h20v10h-20zM70 170h10v10H70zM90 170h20v10H90zM120 170h30v10h-30zM160 170h20v10h-20z" fill="black"/>
+            <rect x="75" y="75" width="50" height="50" rx="10" fill="white" stroke="black" stroke-width="3"/>
+            <text x="100" y="105" font-size="14" font-weight="bold" fill="black" text-anchor="middle" font-family="sans-serif">HW</text>
+          </svg>
+        </div>
+
+        <div class="text-center pt-2 border-t border-slate-200">
+          <span class="text-[10px] font-bold text-slate-400 uppercase">TOTAL DIBAYARKAN:</span>
+          <div class="text-xl font-extrabold text-emerald-600 font-mono">${formatRupiah(totalRp)}</div>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-slate-100 text-xs text-slate-600 space-y-1 max-w-sm mx-auto">
+        <span class="block font-bold text-slate-800 text-[11px]">Dukungan Pembayaran QRIS:</span>
+        <p class="text-[10px] leading-relaxed">BCA Mobile, Mandiri Livin, BRImo, BNI Mobile, GoPay, OVO, DANA, ShopeePay, LinkAja & Seluruh m-Banking GPN.</p>
+      </div>
+
+      <div class="pt-2 flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
+        <button onclick="confirmQrisPayment('${name.replace(/'/g, "\\'")}', '${phone}', '${address.replace(/'/g, "\\'")}')" class="flex-1 btn-pill">
+          <span class="btn-pill-inner bg-emerald-600 text-white w-full justify-center has-arrow py-3.5">
+            <span>Saya Sudah Bayar (Konfirmasi WA)</span>
+            <span class="btn-pill-badge bg-white text-emerald-700">💬</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function confirmQrisPayment(name, phone, address) {
+  const totalRp = getCartSubtotal();
+  const itemsText = state.cart.map(i => `• ${i.name} (${i.length}) x${i.quantity} = ${formatRupiah(i.price * i.quantity)}`).join('\n');
+
+  let waMsg = `Halo *HOWELL Indonesia*, saya telah melakukan pembayaran via *QRIS Standar Nasional* dengan detail pesanan berikut:\n\n` +
+    `*STRUK PESANAN KERANJANG HOWELL*\n` +
+    `---------------------------------------\n` +
+    `• *Nama Pembeli:* ${name}\n` +
+    `• *No. WhatsApp:* ${phone}\n` +
+    `• *Alamat Pengiriman:* ${address}\n\n` +
+    `*ITEM PRODUK DIBELI:*\n${itemsText}\n\n` +
+    `---------------------------------------\n` +
+    `*TOTAL PEMBAYARAN QRIS:* ${formatRupiah(totalRp)}\n` +
+    `*Status Pembayaran:* QRIS Success / Menunggu Pengiriman\n\n` +
+    `Mohon segera memproses pengiriman pesanan saya. Terima kasih!`;
+
+  const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
+  window.open(waUrl, '_blank');
+
+  clearCart();
+  closeModal('qris-checkout-modal');
+  showToast("Pesanan berhasil dikonfirmasi! Bukti pesanan dikirim via WhatsApp CS Howell.", "Pembayaran QRIS", "check-circle-2");
+}
+
+
 
 // Product Visual Renderer Helper (Handles PNG photos and SVG graphics with click-to-zoom lightbox)
 function renderProductVisual(product, isLarge = false) {

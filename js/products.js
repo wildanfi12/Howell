@@ -1,3 +1,10 @@
+﻿/**
+ * Format numerical price to Indonesian Rupiah (Rp)
+ */
+function formatRupiah(amount) {
+  if (!amount && amount !== 0) return 'Rp 0';
+  return 'Rp ' + Math.round(amount).toLocaleString('id-ID');
+}
 /**
  * HOWELL Official Master Product Catalog Data Store
  * Brand: HOWELL (PT Howell Niaga Indonesia) - Est. 2009
@@ -23,6 +30,8 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-patch-cat6-utp",
+    price: 26368,
+    variantPrices: { "1M": 26368, "1.5M": 31151, "2M": 34290, "3M": 44005, "5M": 58204, "10M": 91086, "15M": 123969, "20M": 155356, "25M": 180765, "30M": 224110 },
     name: "HOWELL Cat6 UTP Networking Patch Cable",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -30,7 +39,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 284,
     badge: "CAT6 Gigabit",
     sku: "N6A02 - N6A11",
-    tagline: "1000Mbps • 250MHz • 26AWG CCA • Gold Plated RJ45",
+    tagline: "1000Mbps â€¢ 250MHz â€¢ 26AWG CCA â€¢ Gold Plated RJ45",
     summary: "High-performance Cat6 UTP network patch cable delivering up to 1000Mbps Gigabit bandwidth. Features 26AWG CCA conductor and 24K gold-plated RJ45 connectors.",
     variants: { lengths: ["1M", "1.5M", "2M", "3M", "5M", "10M", "15M", "20M", "25M", "30M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "N6A02 to N6A11", "Barcodes": "8994465680063 - 8994465680155", "Conductor": "CCA 26AWG Solid Core", "OD": "5.8mm", "Bandwidth": "1000Mbps / 250MHz", "Warranty": "12-Month Warranty" },
@@ -39,6 +48,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-patch-cat8-flat-yellow",
+    price: 86602,
+    variantPrices: { "1M": 86602, "1.5M": 98560, "2M": 110517, "3M": 123969, "5M": 161335, "10M": 267455, "15M": 409091 },
     name: "HOWELL Flat FTP Cat8 High-Speed Cable (Yellow)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -46,7 +57,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 195,
     badge: "CAT8 40Gbps",
     sku: "N8A02 - N8A08",
-    tagline: "40Gbps • 2GHz (2000MHz) • Pure Copper 30AWG • Flat Ribbon",
+    tagline: "40Gbps â€¢ 2GHz (2000MHz) â€¢ Pure Copper 30AWG â€¢ Flat Ribbon",
     summary: "Ultra-fast Cat8 FTP flat network cable supporting up to 40Gbps and 2GHz bandwidth frequency.",
     variants: { lengths: ["1M", "1.5M", "2M", "3M", "5M", "10M", "15M"], colors: ["High-Vis Yellow"] },
     specs: { "SKU Series": "N8A02 to N8A08", "Barcodes": "8994465680162 - 8994465680223", "Conductor": "Pure Copper 30AWG", "Speed": "40 Gbps / 2GHz", "Warranty": "12-Month Warranty" },
@@ -55,6 +66,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-patch-cat8-flat-n8c04",
+    price: 123969,
+    variantPrices: { "3M": 123969 },
     name: "HOWELL Flat FTP Cat8 Cable 3M (N8C04)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -62,7 +75,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 88,
     badge: "CAT8 3M Flat",
     sku: "N8C04",
-    tagline: "3 Meters • 40Gbps • 2GHz • Flat Ribbon • Pure Copper",
+    tagline: "3 Meters â€¢ 40Gbps â€¢ 2GHz â€¢ Flat Ribbon â€¢ Pure Copper",
     summary: "Specialized 3-meter Cat8 FTP flat network cable with 30AWG pure copper core.",
     variants: { lengths: ["3M"], colors: ["Yellow PVC"] },
     specs: { "SKU Code": "N8C04", "Barcode": "8994465681497", "Speed": "40 Gbps / 2GHz", "Warranty": "12-Month Warranty" },
@@ -71,6 +84,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-patch-cat8-flat-n8d04",
+    price: 123969,
+    variantPrices: { "3M": 123969 },
     name: "HOWELL Flat FTP Cat8 Cable 3M (N8D04)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -78,7 +93,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 76,
     badge: "CAT8 3M Flat",
     sku: "N8D04",
-    tagline: "3 Meters • 40Gbps • 2GHz Bandwidth • Ultra-Durable",
+    tagline: "3 Meters â€¢ 40Gbps â€¢ 2GHz Bandwidth â€¢ Ultra-Durable",
     summary: "Professional 3M Cat8 FTP flat Ethernet patch cable engineered with 30AWG copper conductors.",
     variants: { lengths: ["3M"], colors: ["Yellow PVC"] },
     specs: { "SKU Code": "N8D04", "Barcode": "8994465681503", "Speed": "40 Gbps / 2GHz", "Warranty": "12-Month Warranty" },
@@ -87,6 +102,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-patch-cat8-sftp-black",
+    price: 86602,
+    variantPrices: { "1.5M": 86602, "2M": 98560, "3M": 117990, "5M": 152367, "10M": 261476 },
     name: "HOWELL Heavy-Duty SFTP Cat8 Patch Cable (Black)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -94,7 +111,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 162,
     badge: "SFTP Shielded",
     sku: "N8B03 - N8B08",
-    tagline: "40Gbps • 2GHz • SFTP Double Shielded • 6.0mm OD",
+    tagline: "40Gbps â€¢ 2GHz â€¢ SFTP Double Shielded â€¢ 6.0mm OD",
     summary: "Heavy-duty Cat8 SFTP double-shielded network cable supporting 40Gbps transmission speeds.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Matte Black PVC"] },
     specs: { "SKU Series": "N8B03 to N8B08", "Barcodes": "8994465681220 - 8994465681268", "Shielding": "SFTP Double Foil+Braid", "Warranty": "12-Month Warranty" },
@@ -103,6 +120,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-roll-cat6-utp",
+    price: 898377,
     name: "HOWELL Bulk Roll Cable UTP Cat6 (305M - Blue)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -110,7 +128,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 114,
     badge: "305M Roll",
     sku: "N6101",
-    tagline: "305M Roll • 1000Mbps • 250MHz • 22AWG CCA • Blue",
+    tagline: "305M Roll â€¢ 1000Mbps â€¢ 250MHz â€¢ 22AWG CCA â€¢ Blue",
     summary: "305-meter bulk pull box of Cat6 UTP network cable for interior infrastructure cabling.",
     variants: { lengths: ["305 Meters"], colors: ["Industrial Blue"] },
     specs: { "SKU Code": "N6101", "Barcode": "8994465680018", "Conductor": "CCA 22AWG", "Warranty": "12-Month Warranty" },
@@ -119,6 +137,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-roll-cat6-ftp",
+    price: 1098604,
     name: "HOWELL Bulk Roll Cable FTP Cat6 Shielded (305M - Black)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -126,7 +145,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 96,
     badge: "305M FTP Roll",
     sku: "N6201",
-    tagline: "305M Roll • Shielded FTP • 1000Mbps • 250MHz • Black",
+    tagline: "305M Roll â€¢ Shielded FTP â€¢ 1000Mbps â€¢ 250MHz â€¢ Black",
     summary: "305-meter bulk pull box of FTP shielded Cat6 cable designed for high-EMI installations.",
     variants: { lengths: ["305 Meters"], colors: ["Black"] },
     specs: { "SKU Code": "N6201", "Barcode": "8994465680025", "Shielding": "FTP Foil Shielded", "Warranty": "12-Month Warranty" },
@@ -135,6 +154,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-conn-cat6-utp",
+    price: 79629,
     name: "HOWELL RJ45 Cat6 UTP Modular Plug (50pcs)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -142,7 +162,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 205,
     badge: "50pcs Pack",
     sku: "RC01",
-    tagline: "50 Pack • Gold Plated Contacts • Transparent Crystal Shell",
+    tagline: "50 Pack â€¢ Gold Plated Contacts â€¢ Transparent Crystal Shell",
     summary: "Pack of 50 high-precision RJ45 modular plug connectors for Cat6 UTP cabling.",
     variants: { lengths: ["50 Pack"], colors: ["Transparent"] },
     specs: { "SKU Code": "RC01", "Barcode": "8994465684245", "Material": "3-Prong Gold-Plated Pins", "Warranty": "12-Month Warranty" },
@@ -151,6 +171,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-conn-cat6-ftp",
+    price: 119126,
     name: "HOWELL RJ45 Cat6 FTP Metal Shielded Plug (50pcs)",
     category: "patch-cable",
     categoryName: "Patch Cable & Networking",
@@ -158,7 +179,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 178,
     badge: "Metal Shielded",
     sku: "RC02",
-    tagline: "50 Pack • Metal Casing • Gold Plated Pins • Grounding Tab",
+    tagline: "50 Pack â€¢ Metal Casing â€¢ Gold Plated Pins â€¢ Grounding Tab",
     summary: "Pack of 50 STP/FTP metal shielded RJ45 modular connectors with metal casing.",
     variants: { lengths: ["50 Pack"], colors: ["Silver Metal"] },
     specs: { "SKU Code": "RC02", "Barcode": "8994465684238", "Shielding": "Full Nickel Metal Casing", "Warranty": "12-Month Warranty" },
@@ -171,6 +192,8 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-hdmi-4k-gold-h0103",
+    price: 38923,
+    variantPrices: { "1.5M": 38923, "2M": 45499, "3M": 57905, "5M": 82866, "10M": 129947, "15M": 215142, "20M": 318273 },
     name: "HOWELL HDMI 4K Premium Cable (H0103 - H0110)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -178,7 +201,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 540,
     badge: "HDMI 4K 18Gbps",
     sku: "H0103 - H0110",
-    tagline: "18 Gbps • 4K 60Hz • HDR 3D • Gold Plated Plugs",
+    tagline: "18 Gbps â€¢ 4K 60Hz â€¢ HDR 3D â€¢ Gold Plated Plugs",
     summary: "HDMI 2.0 high-speed cable supporting 4K 60Hz, HDR, 3D video, and Audio Return Channel (ARC).",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "H0103 to H0110", "Barcodes": "8994465680247 - 8994465680308", "Resolution": "4K 60Hz / 18Gbps", "Warranty": "12-Month Warranty" },
@@ -187,6 +210,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-4k-gold-h0203",
+    price: 59699,
+    variantPrices: { "1.5M": 59699, "2M": 67172, "3M": 89592, "5M": 120979, "10M": 192723, "15M": 298095, "20M": 379480 },
     name: "HOWELL HDMI 4K Gold Premium Shell (H0203 - H0210)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -194,7 +219,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 420,
     badge: "HDMI 4K Premium",
     sku: "H0203 - H0210",
-    tagline: "18 Gbps • Gold Metal Head • 4K 60Hz HDR",
+    tagline: "18 Gbps â€¢ Gold Metal Head â€¢ 4K 60Hz HDR",
     summary: "Premium aluminum gold casing HDMI 2.0 cable for high-end home theaters.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Gold Casing"] },
     specs: { "SKU Series": "H0203 to H0210", "Barcodes": "8994465680315 - 8994465680377", "Resolution": "4K 60Hz / 18Gbps", "Warranty": "12-Month Warranty" },
@@ -203,6 +228,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-4k-core-h0303",
+    price: 79876,
+    variantPrices: { "1.5M": 79876, "2M": 89592, "3M": 109769, "5M": 182260, "10M": 331725, "15M": 444342, "20M": 716481 },
     name: "HOWELL HDMI 4K Pure Copper Core (H0303 - H0310)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -210,7 +237,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 310,
     badge: "Pure Copper Core",
     sku: "H0303 - H0310",
-    tagline: "18 Gbps • 30AWG/28AWG Pure Copper • 4K 60Hz",
+    tagline: "18 Gbps â€¢ 30AWG/28AWG Pure Copper â€¢ 4K 60Hz",
     summary: "High-grade pure copper conductor HDMI cable for zero distortion 4K signal delivery.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "H0303 to H0310", "Barcodes": "8994465680384 - 8994465680445", "Conductor": "Pure Copper Core", "Warranty": "12-Month Warranty" },
@@ -219,6 +246,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-8k-gold-h0403",
+    price: 105285,
+    variantPrices: { "1.5M": 105285, "2M": 120979, "3M": 141157, "5M": 186744, "10M": 397810 },
     name: "HOWELL HDMI 8K 60Hz Ultra Gold (H0403 - H0408)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -226,7 +255,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 380,
     badge: "HDMI 8K 48Gbps",
     sku: "H0403 - H0408",
-    tagline: "48 Gbps Bandwidth • 8K 60Hz / 4K 120Hz • Dynamic HDR • eARC",
+    tagline: "48 Gbps Bandwidth â€¢ 8K 60Hz / 4K 120Hz â€¢ Dynamic HDR â€¢ eARC",
     summary: "HDMI 2.1 ultra-high-speed certified cable delivering 48Gbps throughput for 8K 60Hz and 4K 120Hz console gaming.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Ultra Gold Casing"] },
     specs: { "SKU Series": "H0403 to H0408", "Barcodes": "8994465680452 - 8994465680490", "Speed": "48 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
@@ -235,6 +264,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-8k-core-h0503",
+    price: 116495,
+    variantPrices: { "1.5M": 116495, "2M": 128453, "3M": 153862, "5M": 246530, "10M": 613548 },
     name: "HOWELL HDMI 8K 60Hz Ultra Core (H0503 - H0507)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -242,7 +273,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 290,
     badge: "8K 48Gbps Core",
     sku: "H0503 - H0507",
-    tagline: "48 Gbps • 30AWG Copper Core • 8K 60Hz / 4K 120Hz",
+    tagline: "48 Gbps â€¢ 30AWG Copper Core â€¢ 8K 60Hz / 4K 120Hz",
     summary: "Pure copper core HDMI 2.1 cable supporting uncompressed 8K 60Hz video streaming.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "H0503 to H0507", "Barcodes": "8994465680506 - 8994465680544", "Speed": "48 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
@@ -251,6 +282,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-fo-8k-h0601",
+    price: 665720,
+    variantPrices: { "10M": 665720, "15M": 729172, "20M": 785574, "25M": 841976, "30M": 898377, "40M": 1018232, "50M": 1138086, "60M": 1314342, "80M": 1554050, "100M": 2322526, "150M": 5899348, "200M": 8221780 },
     name: "HOWELL Active Optical Fiber HDMI 8K (H0601 - H0612)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -258,7 +291,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 210,
     badge: "Optic 200M 8K",
     sku: "H0601 - H0612",
-    tagline: "Active Fiber Optic • 48Gbps • 8K 60Hz • 10M to 200M",
+    tagline: "Active Fiber Optic â€¢ 48Gbps â€¢ 8K 60Hz â€¢ 10M to 200M",
     summary: "Hybrid fiber-optic HDMI 2.1 cable supporting 48Gbps uncompressed 8K video up to 200 meters without repeaters.",
     variants: { lengths: ["10M", "15M", "20M", "25M", "30M", "50M", "100M", "200M"], colors: ["Aluminum Gold"] },
     specs: { "SKU Series": "H0601 to H0612", "Barcodes": "8994465680551 - 8994465680667", "Core": "Active Optical Fiber Hybrid", "Warranty": "12-Month Warranty" },
@@ -267,6 +300,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-4k-slim-h0703",
+    price: 59699,
     name: "HOWELL HDMI 4K Slim Cable 2M (H0703)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -274,7 +308,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 140,
     badge: "Slim 4K 2M",
     sku: "H0703",
-    tagline: "Ultra-Slim 3.8mm OD • 4K 60Hz • Flexible Wire",
+    tagline: "Ultra-Slim 3.8mm OD â€¢ 4K 60Hz â€¢ Flexible Wire",
     summary: "Ultra-thin 3.8mm diameter HDMI cable designed for compact travel bags and camera gimbals.",
     variants: { lengths: ["2M"], colors: ["Black PVC"] },
     specs: { "SKU Code": "H0703", "Barcode": "8994465681329", "OD": "3.8mm Ultra Slim", "Warranty": "12-Month Warranty" },
@@ -283,6 +317,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-4k-90d-h0803",
+    price: 59699,
     name: "HOWELL HDMI 4K 90-Degree Angle Cable 2M (H0803)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -290,7 +325,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 165,
     badge: "90D Right Angle",
     sku: "H0803",
-    tagline: "90-Degree Elbow Plug • 4K 60Hz • Flush Wall Mount",
+    tagline: "90-Degree Elbow Plug â€¢ 4K 60Hz â€¢ Flush Wall Mount",
     summary: "Right-angle HDMI plug preventing cable bend stress behind wall-mounted flat TVs.",
     variants: { lengths: ["2M"], colors: ["Black PVC"] },
     specs: { "SKU Code": "H0803", "Barcode": "8994465681343", "Angle": "90-Degree Right Angle", "Warranty": "12-Month Warranty" },
@@ -299,6 +334,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-micro-dh0103",
+    price: 53720,
     name: "HOWELL Micro HDMI to HDMI 4K Slim Cable (DH0103)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -306,7 +342,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 155,
     badge: "Micro HDMI 4K",
     sku: "DH0103",
-    tagline: "Micro HDMI (Type-D) to HDMI • 4K 60Hz • Slim Wire",
+    tagline: "Micro HDMI (Type-D) to HDMI â€¢ 4K 60Hz â€¢ Slim Wire",
     summary: "Compact Micro HDMI to HDMI cable for action cameras, DSLRs, and Raspberry Pi 4.",
     variants: { lengths: ["2M"], colors: ["Aluminum Head"] },
     specs: { "SKU Code": "DH0103", "Barcode": "8994465681992", "Resolution": "4K 60Hz / 18Gbps", "Warranty": "12-Month Warranty" },
@@ -315,6 +351,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-micro-nylon-dh0203",
+    price: 58204,
     name: "HOWELL Micro HDMI to HDMI 4K Nylon Cable (DH0203)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
@@ -322,7 +359,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 120,
     badge: "Micro HDMI Nylon",
     sku: "DH0203",
-    tagline: "Micro HDMI Type-D to HDMI • Nylon Braided • 4K 60Hz",
+    tagline: "Micro HDMI Type-D to HDMI â€¢ Nylon Braided â€¢ 4K 60Hz",
     summary: "Nylon braided Micro HDMI cable providing extra tensile strength for field photography.",
     variants: { lengths: ["2M"], colors: ["Nylon Braided"] },
     specs: { "SKU Code": "DH0203", "Barcode": "8994465681336", "Jacket": "Nylon Braided", "Warranty": "12-Month Warranty" },
@@ -335,6 +372,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-audio-635-xlr-f-au0103",
+    price: 153862,
     name: "HOWELL 6.35mm to XLR Female Microphone Cable (AU0103)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -342,7 +380,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 240,
     badge: "XLR Female",
     sku: "AU0103",
-    tagline: "6.35mm Jack to XLR Female • Grey Cotton Braided • 2M",
+    tagline: "6.35mm Jack to XLR Female â€¢ Grey Cotton Braided â€¢ 2M",
     summary: "Balanced microphone and instrument cable featuring 6.35mm jack and XLR Female plug.",
     variants: { lengths: ["2M"], colors: ["Grey Cotton Braided"] },
     specs: { "SKU Code": "AU0103", "Barcode": "8994465681848", "Conductor": "Copper 28AWG / OD 4.5mm", "Warranty": "12-Month Warranty" },
@@ -351,6 +389,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-635-xlr-m-au0203",
+    price: 153862,
     name: "HOWELL 6.35mm to XLR Male Audio Cable (AU0203)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -358,7 +397,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 210,
     badge: "XLR Male",
     sku: "AU0203",
-    tagline: "6.35mm Jack to XLR Male • Grey Cotton Braided • 2M",
+    tagline: "6.35mm Jack to XLR Male â€¢ Grey Cotton Braided â€¢ 2M",
     summary: "Audio interconnect cable connecting 6.35mm jack outputs to XLR Male inputs.",
     variants: { lengths: ["2M"], colors: ["Grey Cotton Braided"] },
     specs: { "SKU Code": "AU0203", "Barcode": "8994465681855", "Conductor": "Copper 28AWG / OD 4.5mm", "Warranty": "12-Month Warranty" },
@@ -367,6 +406,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-35-635-au0303",
+    price: 67172,
     name: "HOWELL 3.5mm to 6.35mm Audio Cable 2M (AU0303)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -374,7 +414,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 195,
     badge: "3.5mm - 6.35mm",
     sku: "AU0303",
-    tagline: "3.5mm AUX to 6.35mm Jack • Red Cotton Braided • 2M",
+    tagline: "3.5mm AUX to 6.35mm Jack â€¢ Red Cotton Braided â€¢ 2M",
     summary: "Audio cable adapting 3.5mm phone/PC outputs to 6.35mm amp inputs.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0303", "Barcode": "8994465681862", "Conductor": "Copper 28AWG / OD 3.5mm", "Warranty": "12-Month Warranty" },
@@ -383,6 +423,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-635-635-au0403",
+    price: 92581,
     name: "HOWELL 6.35mm to 6.35mm Stereo Cable 2M (AU0403)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -390,7 +431,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 290,
     badge: "6.35mm Stereo",
     sku: "AU0403",
-    tagline: "6.35mm TRS Male to Male • Red Cotton Braided • 2M",
+    tagline: "6.35mm TRS Male to Male â€¢ Red Cotton Braided â€¢ 2M",
     summary: "Heavy-duty 1/4 inch TRS stereo patch cable for keyboards and audio interfaces.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0403", "Barcode": "8994465681879", "Conductor": "Copper 28AWG / OD 4.5mm", "Warranty": "12-Month Warranty" },
@@ -399,6 +440,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-635-2rca-au0503",
+    price: 78382,
     name: "HOWELL 6.35mm to 2RCA Audio Cable 2M (AU0503)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -406,7 +448,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 165,
     badge: "6.35mm to 2RCA",
     sku: "AU0503",
-    tagline: "6.35mm Jack to Dual RCA Male • Red Cotton Braided • 2M",
+    tagline: "6.35mm Jack to Dual RCA Male â€¢ Red Cotton Braided â€¢ 2M",
     summary: "Audio splitter converting 6.35mm output into dual RCA stereo channels.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0503", "Barcode": "8994465681886", "Conductor": "Copper 28AWG / OD 3.5mm", "Warranty": "12-Month Warranty" },
@@ -415,6 +457,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-35f-635-au0603",
+    price: 78382,
     name: "HOWELL 3.5mm Female to 6.35mm Cable 2M (AU0603)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -422,7 +465,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 140,
     badge: "3.5mm Female",
     sku: "AU0603",
-    tagline: "3.5mm Female Socket to 6.35mm Male • Red Braided • 2M",
+    tagline: "3.5mm Female Socket to 6.35mm Male â€¢ Red Braided â€¢ 2M",
     summary: "Adapter extension line for connecting 3.5mm headphones to 6.35mm audio jacks.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0603", "Barcode": "8994465681893", "Conductor": "Copper 28AWG / OD 3.5mm", "Warranty": "12-Month Warranty" },
@@ -431,6 +474,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-35-2x635-au0703",
+    price: 86602,
     name: "HOWELL 3.5mm to Dual 6.35mm Splitter 2M (AU0703)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -438,7 +482,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 185,
     badge: "Dual 6.35mm",
     sku: "AU0703",
-    tagline: "3.5mm to 2x 6.35mm Jack • Red Cotton Braided • 2M",
+    tagline: "3.5mm to 2x 6.35mm Jack â€¢ Red Cotton Braided â€¢ 2M",
     summary: "Y-splitter cable connecting 3.5mm output to dual 6.35mm mixer inputs.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0703", "Barcode": "8994465681909", "Conductor": "Copper 28AWG / OD 3.5mm", "Warranty": "12-Month Warranty" },
@@ -447,6 +491,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-35-2rca-au0803",
+    price: 72403,
     name: "HOWELL 3.5mm AUX to 2RCA Cable 2M (AU0803)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -454,7 +499,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 310,
     badge: "Red Braided",
     sku: "AU0803",
-    tagline: "3.5mm Jack to Dual RCA • Red Cotton Braided • 2M",
+    tagline: "3.5mm Jack to Dual RCA â€¢ Red Cotton Braided â€¢ 2M",
     summary: "High-fidelity 3.5mm AUX to 2RCA stereo audio cable with red cotton braided jacket.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0803", "Barcode": "8994465681916", "Conductor": "Copper 30AWG / OD 2.8mm", "Warranty": "12-Month Warranty" },
@@ -463,6 +508,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-rca-au0903",
+    price: 72403,
     name: "HOWELL RCA Mono Audio Cable 2M (AU0903)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -470,7 +516,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 115,
     badge: "RCA Mono 2M",
     sku: "AU0903",
-    tagline: "RCA Male to Male • Red Cotton Braided • 2M",
+    tagline: "RCA Male to Male â€¢ Red Cotton Braided â€¢ 2M",
     summary: "Single RCA mono audio cable with 26AWG copper core and gold-plated plugs.",
     variants: { lengths: ["2M"], colors: ["Red Cotton Braided"] },
     specs: { "SKU Code": "AU0903", "Barcode": "8994465681923", "Conductor": "Copper 26AWG / OD 5.0mm", "Warranty": "12-Month Warranty" },
@@ -479,6 +525,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-xlr-mf-au1003",
+    price: 115897,
     name: "HOWELL XLR Male to Female Mic Cable 2M (AU1003)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -486,7 +533,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 310,
     badge: "XLR Nickel",
     sku: "AU1003",
-    tagline: "XLR Male to Female • Nickel Metal Casing • 2M",
+    tagline: "XLR Male to Female â€¢ Nickel Metal Casing â€¢ 2M",
     summary: "Professional 3-pin XLR microphone cable with sleek nickel metal shell.",
     variants: { lengths: ["2M"], colors: ["Nickel Metal Shell"] },
     specs: { "SKU Code": "AU1003", "Barcode": "8994465681930", "Conductor": "Copper 28AWG / OD 5.0mm", "Warranty": "12-Month Warranty" },
@@ -495,6 +542,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-audio-xlr-nylon-au1103",
+    price: 115897,
     name: "HOWELL XLR Nylon Male to Female Cable 2M (AU1103)",
     category: "audio",
     categoryName: "Audio & Instrument Cables",
@@ -502,7 +550,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 280,
     badge: "XLR Nylon",
     sku: "AU1103",
-    tagline: "XLR Male to Female • Grey Cotton Braided • 2M",
+    tagline: "XLR Male to Female â€¢ Grey Cotton Braided â€¢ 2M",
     summary: "Heavy-duty grey cotton braided XLR microphone extension cable.",
     variants: { lengths: ["2M"], colors: ["Grey Cotton Braided"] },
     specs: { "SKU Code": "AU1103", "Barcode": "8994465681947", "Conductor": "Copper 28AWG / OD 4.5mm", "Warranty": "12-Month Warranty" },
@@ -515,6 +563,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-charger-gan-65w",
+    price: 122474,
     name: "HOWELL 65W GaN Dual Type-C + USB Fast Charger (AC01)",
     category: "computer-acc",
     categoryName: "Chargers & Mobile Acc",
@@ -522,7 +571,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 315,
     badge: "65W GaN Fast",
     sku: "AC01",
-    tagline: "GaN III Tech • Dual USB-C + USB-A • 65W Power Delivery",
+    tagline: "GaN III Tech â€¢ Dual USB-C + USB-A â€¢ 65W Power Delivery",
     summary: "Ultra-compact 65W GaN fast charger capable of charging laptops, MacBooks, and smartphones simultaneously.",
     variants: { lengths: ["Wall Plug"], colors: ["Pure White", "Matte Black"] },
     specs: { "SKU Code": "AC01", "Max Power": "65W Max GaN III", "Ports": "2x Type-C + 1x USB-A", "Warranty": "12-Month Warranty" },
@@ -531,6 +580,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-charger-pd-30w",
+    price: 44005,
     name: "HOWELL 30W USB-C PD Fast Wall Charger (AC02)",
     category: "computer-acc",
     categoryName: "Chargers & Mobile Acc",
@@ -538,7 +588,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 240,
     badge: "30W PD Fast",
     sku: "AC02",
-    tagline: "30W Power Delivery • PPS Support • Fast Charge iPhone / Android",
+    tagline: "30W Power Delivery â€¢ PPS Support â€¢ Fast Charge iPhone / Android",
     summary: "30W Type-C fast wall charger supporting PPS fast charging protocol.",
     variants: { lengths: ["Wall Plug"], colors: ["Pure White"] },
     specs: { "SKU Code": "AC02", "Power": "30W PD 3.0 / PPS", "Port": "1x USB Type-C", "Warranty": "12-Month Warranty" },
@@ -547,6 +597,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-car-charger-48w",
+    price: 45499,
     name: "HOWELL 48W Metal Dual Port Car Charger (CC01)",
     category: "computer-acc",
     categoryName: "Chargers & Mobile Acc",
@@ -554,7 +605,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 185,
     badge: "48W Car Charger",
     sku: "CC01",
-    tagline: "48W Max • Type-C PD 30W + USB QC3.0 18W • Full Alloy Body",
+    tagline: "48W Max â€¢ Type-C PD 30W + USB QC3.0 18W â€¢ Full Alloy Body",
     summary: "Compact aluminum alloy car charger with dual fast charge outputs.",
     variants: { lengths: ["Car Plug"], colors: ["Gunmetal Alloy"] },
     specs: { "SKU Code": "CC01", "Total Output": "48W Dual Port", "Material": "Zinc Alloy Shell", "Warranty": "12-Month Warranty" },
@@ -563,6 +614,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-cable-typec-100w",
+    price: 59699,
     name: "HOWELL 100W E-Mark Type-C to Type-C Braided Cable (HW-C01)",
     category: "computer-acc",
     categoryName: "Chargers & Mobile Acc",
@@ -570,7 +622,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 290,
     badge: "100W PD Cable",
     sku: "HW-C01",
-    tagline: "100W 20V/5A Power Delivery • Smart E-Marker Chip • 480Mbps",
+    tagline: "100W 20V/5A Power Delivery â€¢ Smart E-Marker Chip â€¢ 480Mbps",
     summary: "Heavy-duty 100W Type-C fast charging cable equipped with E-Marker smart chip for laptops.",
     variants: { lengths: ["1M", "2M"], colors: ["Black Nylon Braided"] },
     specs: { "SKU Code": "HW-C01", "Power": "100W (20V/5A)", "Chip": "E-Marker Smart Power IC", "Warranty": "12-Month Warranty" },
@@ -583,6 +635,8 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-pow-c5-batch1",
+    price: 28012,
+    variantPrices: { "1.2M": 28012, "1.8M": 32795 },
     name: "HOWELL AC Power Adaptor Cable C5 (POW-101 - POW-102)",
     category: "power-cable",
     categoryName: "Power & PDU Cables",
@@ -590,7 +644,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 230,
     badge: "Mickey Mouse C5",
     sku: "POW-101 - POW-102",
-    tagline: "10A 220V • 3x0.75mm² CCS • CEE 7/7 to IEC C5",
+    tagline: "10A 220V â€¢ 3x0.75mmÂ² CCS â€¢ CEE 7/7 to IEC C5",
     summary: "3-prong IEC C5 Mickey Mouse power cable for laptop adapters and mini PCs.",
     variants: { lengths: ["1.2M", "1.8M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "POW-101, POW-102", "Barcodes": "8994465681206, 8994465680780", "Rating": "10A 220V", "Warranty": "12-Month Warranty" },
@@ -599,6 +653,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-pow-c13-90d-batch1",
+    price: 54617,
+    variantPrices: { "1.8M": 54617, "3M": 89293 },
     name: "HOWELL CPU Power Cable C13 90D Angle (POW-201 - POW-202)",
     category: "power-cable",
     categoryName: "Power & PDU Cables",
@@ -606,7 +662,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 160,
     badge: "C13 90D Angle",
     sku: "POW-201 - POW-202",
-    tagline: "10A 220V • 90-Degree Elbow C13 • CEE 7/7 to C13 90D",
+    tagline: "10A 220V â€¢ 90-Degree Elbow C13 â€¢ CEE 7/7 to C13 90D",
     summary: "Right-angle elbow C13 power cord allowing tight wall clearance behind monitors and wall PCs.",
     variants: { lengths: ["1.8M", "3M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "POW-201, POW-202", "Barcodes": "8994465680797, 8994465681183", "Angle": "90D Right Angle", "Warranty": "12-Month Warranty" },
@@ -615,6 +671,8 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-pow-c13-cpu-batch1",
+    price: 28012,
+    variantPrices: { "1.2M": 28012, "1.8M": 32795 },
     name: "HOWELL CPU Power Cable C13 (POW-301 - POW-302)",
     category: "power-cable",
     categoryName: "Power & PDU Cables",
@@ -622,7 +680,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 450,
     badge: "CPU Power C13",
     sku: "POW-301 - POW-302",
-    tagline: "10A 220V • 3x0.75mm² CCA • CEE 7/7 Schuko to C13",
+    tagline: "10A 220V â€¢ 3x0.75mmÂ² CCA â€¢ CEE 7/7 Schuko to C13",
     summary: "Industrial AC power cable equipped with European CEE 7/7 Schuko wall plug and IEC C13 socket.",
     variants: { lengths: ["1.2M", "1.8M"], colors: ["Black PVC"] },
     specs: { "SKU Series": "POW-301, POW-302", "Barcodes": "8994465681190, 8994465680803", "Rating": "10A 220V", "Warranty": "12-Month Warranty" },
@@ -635,6 +693,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-tws-pro-anc-hw01",
+    price: 395836,
     name: "HOWELL Pro ANC Wireless TWS Earphones (HW01)",
     category: "earphone-tws",
     categoryName: "Audio & Earphones",
@@ -642,7 +701,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 220,
     badge: "ANC TWS",
     sku: "HW01",
-    tagline: "Active Noise Cancellation • 35dB ANC • Bluetooth 5.3 • 32H Battery",
+    tagline: "Active Noise Cancellation â€¢ 35dB ANC â€¢ Bluetooth 5.3 â€¢ 32H Battery",
     summary: "True wireless stereo earbuds with -35dB Active Noise Cancellation and quad-mic ENC.",
     variants: { lengths: ["Wireless Case"], colors: ["Matte Black"] },
     specs: { "SKU Code": "HW01", "ANC": "-35dB Hybrid ANC", "Bluetooth": "v5.3", "Battery": "32 Hours Total", "Warranty": "12-Month Warranty" },
@@ -651,6 +710,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-tws-pro-hw02b",
+    price: 202139,
     name: "HOWELL Wireless TWS Earphones Black (HW02-B)",
     category: "earphone-tws",
     categoryName: "Audio & Earphones",
@@ -658,7 +718,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 180,
     badge: "TWS Black",
     sku: "HW02-B",
-    tagline: "Bluetooth 5.3 • Low Latency 40ms • Ergonomic In-Ear",
+    tagline: "Bluetooth 5.3 â€¢ Low Latency 40ms â€¢ Ergonomic In-Ear",
     summary: "Sleek matte black wireless TWS earbuds with low latency gaming mode.",
     variants: { lengths: ["Wireless Case"], colors: ["Matte Black"] },
     specs: { "SKU Code": "HW02-B", "Bluetooth": "v5.3 Low Latency", "Warranty": "12-Month Warranty" },
@@ -667,6 +727,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-tws-pro-hw02w",
+    price: 202139,
     name: "HOWELL Wireless TWS Earphones White (HW02-W)",
     category: "earphone-tws",
     categoryName: "Audio & Earphones",
@@ -674,7 +735,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 195,
     badge: "TWS White",
     sku: "HW02-W",
-    tagline: "Bluetooth 5.3 • Crystal Sound • Pure White Finish",
+    tagline: "Bluetooth 5.3 â€¢ Crystal Sound â€¢ Pure White Finish",
     summary: "Glossy white wireless TWS earbuds featuring touch controls and IPX5 waterproofing.",
     variants: { lengths: ["Wireless Case"], colors: ["Crystal White"] },
     specs: { "SKU Code": "HW02-W", "Bluetooth": "v5.3", "Warranty": "12-Month Warranty" },
@@ -683,6 +744,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-earbud-hifi-hw04",
+    price: 52225,
     name: "HOWELL In-Ear Hi-Fi Studio Monitor Earphones (HW04)",
     category: "earphone-tws",
     categoryName: "Audio & Earphones",
@@ -690,7 +752,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 260,
     badge: "Hi-Fi Studio",
     sku: "HW04",
-    tagline: "10mm Titanium Driver • Oxygen-Free Braided Cable • HD Mic",
+    tagline: "10mm Titanium Driver â€¢ Oxygen-Free Braided Cable â€¢ HD Mic",
     summary: "Precision-tuned in-ear monitor earphones featuring zinc alloy acoustic chamber and 10mm titanium driver.",
     variants: { lengths: ["1.2M Cable"], colors: ["Gunmetal Silver"] },
     specs: { "SKU Code": "HW04", "Driver": "10mm Titanium Diaphragm", "Hi-Res Audio": "Certified 20Hz-40kHz", "Warranty": "12-Month Warranty" },
@@ -703,6 +765,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-adapter-adp001",
+    price: 32795,
     name: "HOWELL HDMI Female to Mini HDMI Male Adapter (ADP001)",
     category: "adapter",
     categoryName: "Adapters & Converters",
@@ -710,7 +773,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 130,
     badge: "HDMI Adapter",
     sku: "ADP001",
-    tagline: "HDMI Female to Mini HDMI Male • 4K 60Hz Support • Gold Plated",
+    tagline: "HDMI Female to Mini HDMI Male â€¢ 4K 60Hz Support â€¢ Gold Plated",
     summary: "Compact adapter plug converting standard HDMI cables into Mini HDMI connectors.",
     variants: { lengths: ["Compact Plug"], colors: ["Black Gold Plated"] },
     specs: { "SKU Code": "ADP001", "Barcode": "8994465682012", "Resolution": "4K 60Hz", "Warranty": "12-Month Warranty" },
@@ -719,6 +782,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-adapter-adp002-013",
+    price: 17101,
     name: "HOWELL Display & Video Adapters Series (ADP002 - ADP013)",
     category: "adapter",
     categoryName: "Adapters & Converters",
@@ -726,7 +790,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 310,
     badge: "Display Adapters",
     sku: "ADP002 - ADP013",
-    tagline: "HDMI / DisplayPort / DVI / VGA Signal Converters • Gold Plated",
+    tagline: "HDMI / DisplayPort / DVI / VGA Signal Converters â€¢ Gold Plated",
     summary: "Comprehensive lineup of display signal converters for connecting legacy and modern monitors.",
     variants: { lengths: ["Compact Adapter"], colors: ["Black ABS", "Gold Plated"] },
     specs: { "SKU Series": "ADP002 to ADP013", "Barcodes": "8994465682029 - 8994465682135", "Warranty": "12-Month Warranty" },
@@ -735,6 +799,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-adapter-adp027",
+    price: 23827,
     name: "HOWELL RJ45 Cat6 Keystone Jack Adapter (ADP027)",
     category: "adapter",
     categoryName: "Adapters & Converters",
@@ -742,7 +807,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 145,
     badge: "RJ45 Keystone",
     sku: "ADP027",
-    tagline: "RJ45 Female to Female • Cat6 Support • Plastic Clip",
+    tagline: "RJ45 Female to Female â€¢ Cat6 Support â€¢ Plastic Clip",
     summary: "Keystone jack inline module for patch panels and wall plates.",
     variants: { lengths: ["Keystone Module"], colors: ["White Plastic Clip"] },
     specs: { "SKU Code": "ADP027", "Barcode": "8994465682272", "Standard": "Cat6 UTP / FTP", "Warranty": "12-Month Warranty" },
@@ -751,6 +816,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-adapter-adp029",
+    price: 23827,
     name: "HOWELL RJ45 Coupler Female to Female ABS (ADP029)",
     category: "adapter",
     categoryName: "Adapters & Converters",
@@ -758,7 +824,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 160,
     badge: "RJ45 Coupler",
     sku: "ADP029",
-    tagline: "RJ45 8P8C Female to Female • ABS Shell • Gigabit Support",
+    tagline: "RJ45 8P8C Female to Female â€¢ ABS Shell â€¢ Gigabit Support",
     summary: "Network cable extender coupler joining two RJ45 patch cords together.",
     variants: { lengths: ["Inline Coupler"], colors: ["Black ABS"] },
     specs: { "SKU Code": "ADP029", "Barcode": "8994465682296", "Standard": "Cat6 / Cat5e", "Warranty": "12-Month Warranty" },
@@ -771,6 +837,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-dp-0203",
+    price: 1032332,
     name: "HOWELL DisplayPort Active Fiber Optic 8K 20M (DP0203)",
     category: "displayport",
     categoryName: "DisplayPort 8K / 16K",
@@ -778,7 +845,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 125,
     badge: "DP Optic 20M",
     sku: "DP0203",
-    tagline: "Active Fiber Optic • 32 Gbps • 8K 60Hz Display Head • 20M",
+    tagline: "Active Fiber Optic â€¢ 32 Gbps â€¢ 8K 60Hz Display Head â€¢ 20M",
     summary: "Display head side of 20-meter active optical DisplayPort 1.4 cable.",
     variants: { lengths: ["20M"], colors: ["Aluminum Gold"] },
     specs: { "SKU Code": "DP0203", "Barcode": "8994465681657", "Speed": "32.4 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
@@ -787,6 +854,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-dp-0303",
+    price: 98560,
     name: "HOWELL DisplayPort 8K 60Hz Cable 2M (DP0303)",
     category: "displayport",
     categoryName: "DisplayPort 8K / 16K",
@@ -794,7 +862,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 310,
     badge: "DP 8K 60Hz",
     sku: "DP0303",
-    tagline: "32.4 Gbps • 8K 60Hz / 4K 144Hz • 30AWG CCS • 2M",
+    tagline: "32.4 Gbps â€¢ 8K 60Hz / 4K 144Hz â€¢ 30AWG CCS â€¢ 2M",
     summary: "DisplayPort 1.4 cable supporting 8K 60Hz and 4K 144Hz high refresh rate gaming monitors.",
     variants: { lengths: ["2M"], colors: ["Black Metal Head"] },
     specs: { "SKU Code": "DP0303", "Barcode": "8994465681756", "Speed": "32.4 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
@@ -803,6 +871,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-dp-0903",
+    price: 113506,
     name: "HOWELL DisplayPort 16K 60Hz Cable 2M (DP0903)",
     category: "displayport",
     categoryName: "DisplayPort 8K / 16K",
@@ -810,7 +879,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 142,
     badge: "DP 16K 40Gbps",
     sku: "DP0903",
-    tagline: "40 Gbps Bandwidth • 16K 30Hz / 4K 240Hz • DisplayPort 2.1",
+    tagline: "40 Gbps Bandwidth â€¢ 16K 30Hz / 4K 240Hz â€¢ DisplayPort 2.1",
     summary: "Next-gen DisplayPort 2.1 cable boasting 40Gbps bandwidth for extreme 16K and 240Hz refresh rates.",
     variants: { lengths: ["2M"], colors: ["Space Grey Metal"] },
     specs: { "SKU Code": "DP0903", "Barcode": "8994465681800", "Speed": "40 Gbps / 16K", "Warranty": "12-Month Warranty" },
@@ -823,6 +892,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-dvi-0103",
+    price: 1138086,
     name: "HOWELL DVI-D Active Fiber Optic Cable 20M (DVI0103)",
     category: "dvi-vga",
     categoryName: "DVI & VGA Cables",
@@ -830,7 +900,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 88,
     badge: "DVI Optic 20M",
     sku: "DVI0103",
-    tagline: "DVI-D Dual Link 24+1 • Active Fiber Optic • Source Head • 20M",
+    tagline: "DVI-D Dual Link 24+1 â€¢ Active Fiber Optic â€¢ Source Head â€¢ 20M",
     summary: "Active optical DVI-D cable delivering 3840x2400 resolution across 20 meters.",
     variants: { lengths: ["20M"], colors: ["Aluminum Gold Head"] },
     specs: { "SKU Code": "DVI0103", "Barcode": "8994465681664", "Resolution": "3840 x 2400 @ 60Hz", "Warranty": "12-Month Warranty" },
@@ -839,6 +909,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-dvi-0601",
+    price: 74645,
     name: "HOWELL DVI-D Dual Link 24+1 Digital Cable 2M (DVI0601)",
     category: "dvi-vga",
     categoryName: "DVI & VGA Cables",
@@ -846,7 +917,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 190,
     badge: "DVI Dual Link",
     sku: "DVI0601",
-    tagline: "DVI-D 24+1 Pins • 3840x2400 Resolution • Gold Plated • 2M",
+    tagline: "DVI-D 24+1 Pins â€¢ 3840x2400 Resolution â€¢ Gold Plated â€¢ 2M",
     summary: "DVI-D Dual Link 24+1 digital monitor cable for high-resolution desktop displays.",
     variants: { lengths: ["2M"], colors: ["Black PVC Molded"] },
     specs: { "SKU Code": "DVI0601", "Barcode": "8994465681985", "Resolution": "3840 x 2400 @ 60Hz", "Warranty": "12-Month Warranty" },
@@ -855,6 +926,7 @@ const HOWELL_PRODUCTS = [
   },
   {
     id: "hw-hdmi-dvi-hd0102",
+    price: 49236,
     name: "HOWELL HDMI Male to DVI-D Dual Link Cable 2M (HD0102)",
     category: "dvi-vga",
     categoryName: "DVI & VGA Cables",
@@ -862,7 +934,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 175,
     badge: "HDMI to DVI",
     sku: "HD0102",
-    tagline: "HDMI Male to DVI-D Dual Link 24+1 • Full HD 1080P • 2M",
+    tagline: "HDMI Male to DVI-D Dual Link 24+1 â€¢ Full HD 1080P â€¢ 2M",
     summary: "Bi-directional HDMI to DVI cable connecting DVI monitors to HDMI ports.",
     variants: { lengths: ["2M"], colors: ["Black PVC Molded"] },
     specs: { "SKU Code": "HD0102", "Barcode": "8994465681473", "Resolution": "Full HD 1080P", "Warranty": "12-Month Warranty" },
@@ -875,6 +947,7 @@ const HOWELL_PRODUCTS = [
   // =========================================================================
   {
     id: "hw-vga-vga0106",
+    price: 185249,
     name: "HOWELL Heavy-Duty VGA to VGA 3+6 Cable 10M (VGA0106)",
     category: "dvi-vga",
     categoryName: "DVI & VGA Cables",
@@ -882,7 +955,7 @@ const HOWELL_PRODUCTS = [
     reviewsCount: 220,
     badge: "VGA 3+6 10M",
     sku: "VGA0106",
-    tagline: "3+6 Coaxial Wires • Dual Ferrite Cores • 1920x1200 WUXGA • 10M",
+    tagline: "3+6 Coaxial Wires â€¢ Dual Ferrite Cores â€¢ 1920x1200 WUXGA â€¢ 10M",
     summary: "Heavy-duty 15-pin VGA cable constructed with 3 coaxial + 6 wire structure and dual ferrite beads.",
     variants: { lengths: ["10M"], colors: ["Black PVC"] },
     specs: { "SKU Code": "VGA0106", "Barcode": "8994465681954", "Wire": "3+6 Real Coaxial Core", "Warranty": "12-Month Warranty" },
@@ -892,3 +965,4 @@ const HOWELL_PRODUCTS = [
 ];
 
 const HOWELL_ARTICLES = [];
+
