@@ -711,8 +711,8 @@ function renderCatalog() {
       `;
     }).join('');
   } else {
-    // Grid View — Clean CableTime style: Photo, Name, and Price only
-    catalogGrid.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 w-full';
+    // Grid View — Clean CableTime style: Photo, Name, and Price only (Full width 2 to 6 columns)
+    catalogGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-10 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
       const formattedPrice = formatRupiah(product.price);
       const encodedSrc = encodeURI(product.image);
@@ -1087,8 +1087,8 @@ function renderFeaturedProducts() {
   const featuredGrid = document.getElementById('featured-products-grid');
   if (!featuredGrid) return;
 
-  const featuredList = HOWELL_PRODUCTS.slice(0, 8);
-  featuredGrid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full';
+  const featuredList = HOWELL_PRODUCTS.slice(0, 12);
+  featuredGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 w-full';
   featuredGrid.innerHTML = featuredList.map(product => {
     const formattedPrice = formatRupiah(product.price);
     const originalPrice = Math.round(product.price * 1.35);
