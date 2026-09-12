@@ -700,16 +700,9 @@ function renderCatalog() {
           </div>
           <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
             <div>
-              <div class="flex items-center gap-2 flex-wrap text-[11px] mb-1">
-                <span class="uppercase font-bold text-slate-400 tracking-wider">${product.categoryName}</span>
-                <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">SKU: ${product.sku || '-'}</span>
-                <span class="text-emerald-700 bg-emerald-50 font-semibold px-1.5 py-0.5 rounded border border-emerald-200/60">✓ Garansi 12 Bulan</span>
-              </div>
               <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-[#c4301c] transition-colors line-clamp-2 leading-snug">${product.name}</h3>
-              <p class="text-xs text-slate-600 font-medium mt-1">${product.tagline || ''}</p>
-              <p class="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">${product.summary || product.description || ''}</p>
             </div>
-            <div class="mt-3 pt-2 flex items-center justify-between">
+            <div class="mt-4 pt-2 flex items-center justify-between">
               <span class="text-[17px] font-bold text-[#c4301c]">${formattedPrice}</span>
               <span class="text-xs font-semibold text-slate-700 hover:text-black transition-colors flex items-center gap-1">Lihat Detail &amp; Spesifikasi →</span>
             </div>
@@ -718,7 +711,7 @@ function renderCatalog() {
       `;
     }).join('');
   } else {
-    // Grid View — CableTime style with SKU, Specs & Warranty badges on every card
+    // Grid View — Clean CableTime style: Photo, Name, and Price only
     catalogGrid.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
       const formattedPrice = formatRupiah(product.price);
@@ -737,23 +730,9 @@ function renderCatalog() {
             </div>
           </div>
 
-          <!-- Product Details Under Image: Name, SKU, Warranty & Specs -->
+          <!-- Product Info: Name and Price ONLY -->
           <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
-            <div>
-              <!-- Product Title -->
-              <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-[#c4301c] transition-colors mb-1.5">${product.name}</h3>
-
-              <!-- SKU & Warranty Badges -->
-              <div class="flex items-center gap-1.5 flex-wrap text-[10.5px] mb-1.5">
-                <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">SKU: ${product.sku || '-'}</span>
-                <span class="text-emerald-700 bg-emerald-50 font-semibold px-1.5 py-0.5 rounded border border-emerald-200/60">✓ Garansi 12 Bulan</span>
-              </div>
-
-              <!-- Key Specs Snippet from SKU specs / tagline -->
-              <p class="text-[11px] text-slate-500 line-clamp-1 leading-tight mb-2 font-medium" title="${product.tagline || ''}">${product.tagline || 'Original HOWELL High-Grade'}</p>
-            </div>
-
-            <!-- Single Red Price -->
+            <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-[#c4301c] transition-colors mb-1.5">${product.name}</h3>
             <div class="text-[15px] sm:text-[16px] font-bold text-[#c4301c] mt-auto">${formattedPrice}</div>
           </div>
         </div>
