@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOWELL â€” Independent Cable & Connectivity Studio</title>
-  <meta name="description" content="HOWELL (PT Howell Niaga Indonesia) delivers high-performance certified cabling, 8K video adapters, server power distribution, and enterprise connectivity systems â€” bold ideas, shipped with quiet precision." />
+  <title>HOWELL — Independent Cable & Connectivity Studio</title>
+  <meta name="description" content="HOWELL (PT Howell Niaga Indonesia) delivers high-performance certified cabling, 8K video adapters, server power distribution, and enterprise connectivity systems — bold ideas, shipped with quiet precision." />
   <meta name="theme-color" content="#0a0a0a" />
 
   <!-- Google Fonts: Plus Jakarta Sans (Minimalist Modern Sans-Serif) -->
@@ -85,7 +85,26 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      caret-color: transparent;
+    }
+    nav button, header button, .btn-pill, .nav-btn {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      caret-color: transparent !important;
+      cursor: pointer !important;
+    }
+    nav button:focus, nav button:focus-visible, header button:focus, header button:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
     ul { list-style: none; }
     img, video { display: block; max-width: 100%; }
 
@@ -219,8 +238,8 @@
     }
     .reveal-line-inner {
       display: block;
-      transform: translateY(100%);
-      opacity: 0;
+      transform: translateY(0%);
+      opacity: 1;
       transition: transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     .revealed .reveal-line-inner {
@@ -241,6 +260,38 @@
 
     /* Smooth Scrollbar & Selection */
     ::selection { background: #ffffff; color: #000000; }
+
+    /* ==========================================================================
+       OFFICIAL HOWELL PDF CATALOG PRINT STYLES
+       ========================================================================== */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printable-catalog-container,
+      #printable-catalog-container * {
+        visibility: visible !important;
+      }
+      #printable-catalog-container {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        display: block !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 1.5cm 1cm;
+      }
+      .page-break-inside-avoid {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
   </style>
 </head>
 <body class="selection:bg-white selection:text-black">
@@ -257,25 +308,26 @@
 
 
   <!-- ==================== HEADER (Fixed Overlay Navigation) ==================== -->
-  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-500 opacity-0 -translate-y-4">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-500 bg-slate-950/80 backdrop-blur-md border-b border-white/10 shadow-lg">
     <div class="shell flex items-center justify-between gap-2 sm:gap-6 py-3 sm:py-5 min-h-[4.5rem] sm:min-h-[6.5rem]">
       
       <!-- Left: Howell Brand Logo Button -->
-      <button onclick="scrollToId('home')" class="hover-lift flex items-center gap-2 text-lg font-semibold tracking-tight text-white group py-1">
+      <button onclick="scrollToId('home')" class="hover-lift flex flex-col items-start gap-0.5 text-lg font-semibold tracking-tight text-white group py-1">
         <img src="assets/howell-logo-white.png" alt="HOWELL Logo" class="h-10 sm:h-16 md:h-20 max-h-20 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-md">
+        <span class="text-[0.5rem] sm:text-[0.6rem] font-medium tracking-[0.18em] uppercase text-white/60 pl-0.5" data-i18n="hero_tagline">Connected to the Future</span>
       </button>
 
       <!-- Center Primary Navigation -->
-      <nav class="hidden lg:flex items-center gap-8 text-xs sm:text-sm font-medium text-white/80">
-        <button onclick="scrollToId('home')" data-i18n="nav_home" class="hover:-translate-y-0.5 hover:text-white transition-all">Home</button>
-        <button onclick="scrollToId('marketplace')" data-i18n="nav_marketplace" class="hover:-translate-y-0.5 hover:text-white transition-all">Marketplace</button>
-        <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="hover:-translate-y-0.5 hover:text-white transition-all">Products</button>
-        <button onclick="scrollToId('services')" class="hover:-translate-y-0.5 hover:text-white transition-all flex items-center gap-1">
+      <nav class="hidden lg:flex items-center gap-8 text-xs sm:text-sm font-medium text-white/80 select-none">
+        <button onclick="scrollToId('home')" data-i18n="nav_home" class="hover:-translate-y-0.5 hover:text-white transition-all select-none cursor-pointer focus:outline-none focus:ring-0">Home</button>
+        <button onclick="scrollToId('marketplace')" data-i18n="nav_marketplace" class="hover:-translate-y-0.5 hover:text-white transition-all select-none cursor-pointer focus:outline-none focus:ring-0">Marketplace</button>
+        <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="hover:-translate-y-0.5 hover:text-white transition-all select-none cursor-pointer focus:outline-none focus:ring-0">Products</button>
+        <button onclick="scrollToId('services')" class="hover:-translate-y-0.5 hover:text-white transition-all flex items-center gap-1 select-none cursor-pointer focus:outline-none focus:ring-0">
           <span data-i18n="nav_categories">Categories</span>
-          <span class="text-[0.75rem] opacity-60">â–¾</span>
+          <span class="text-[0.75rem] opacity-60">▾</span>
         </button>
-        <button onclick="scrollToId('collaboration-section')" data-i18n="nav_b2b" class="hover:-translate-y-0.5 hover:text-white transition-all">B2B Supply</button>
-        <button onclick="openSupportModal()" data-i18n="nav_contact" class="hover:-translate-y-0.5 hover:text-white transition-all">Contact</button>
+        <button onclick="scrollToId('collaboration-section')" data-i18n="nav_b2b" class="hover:-translate-y-0.5 hover:text-white transition-all select-none cursor-pointer focus:outline-none focus:ring-0">B2B Supply</button>
+        <button onclick="openSupportModal()" data-i18n="nav_contact" class="hover:-translate-y-0.5 hover:text-white transition-all select-none cursor-pointer focus:outline-none focus:ring-0">Contact</button>
       </nav>
 
       <!-- Right Controls: Header Search Input Column, Language Selector & Menu Button -->
@@ -307,31 +359,25 @@
                 <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="300" fill="#E70011"/><rect y="300" width="900" height="300" fill="#FFFFFF"/></svg>
                 <span>Bahasa Indonesia</span>
               </span>
-              <span id="check-id" class="lang-check text-emerald-400 font-bold hidden">âœ“</span>
+              <span id="check-id" class="lang-check text-emerald-400 font-bold hidden">✓</span>
             </button>
             <button onclick="setLanguage('en')" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 text-white transition-all font-medium" data-lang="en">
               <span class="flex items-center gap-2.5">
                 <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 60 30"><clipPath id="uk-clip"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="uk-diag"><path d="M30,15 h30 v15 z M30,15 h-30 v-15 z M30,15 h-30 v15 z M30,15 h30 v-15 z"/></clipPath><g clip-path="url(#uk-clip)"><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="4" clip-path="url(#uk-diag)"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/></g></svg>
                 <span>English</span>
               </span>
-              <span id="check-en" class="lang-check text-emerald-400 font-bold hidden">âœ“</span>
+              <span id="check-en" class="lang-check text-emerald-400 font-bold hidden">✓</span>
             </button>
             <button onclick="setLanguage('zh')" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 text-white transition-all font-medium" data-lang="zh">
               <span class="flex items-center gap-2.5">
                 <svg class="w-5 h-3.5 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="600" fill="#EE1C25"/><polygon points="150,60 185,170 290,170 205,235 235,340 150,275 65,340 95,235 10,170 115,170" fill="#FFDE00"/><polygon points="300,60 310,90 340,90 315,110 325,140 300,120 275,140 285,110 260,90 290,90" fill="#FFDE00"/><polygon points="360,120 370,150 400,150 375,170 385,200 360,180 335,200 345,170 320,150 350,150" fill="#FFDE00"/><polygon points="360,210 370,240 400,240 375,260 385,290 360,270 335,290 345,260 320,240 350,240" fill="#FFDE00"/><polygon points="300,270 310,300 340,300 315,320 325,350 300,330 275,350 285,320 260,300 290,300" fill="#FFDE00"/></svg>
-                <span>ç®€ä½“ä¸­æ–‡</span>
+                <span>简体中文</span>
               </span>
-              <span id="check-zh" class="lang-check text-emerald-400 font-bold hidden">âœ“</span>
+              <span id="check-zh" class="lang-check text-emerald-400 font-bold hidden">✓</span>
             </button>
           </div>
         </div>
 
-                <!-- Header Cart Button -->
-        <button onclick="toggleCartDrawer(true)" class="relative border border-white/20 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-2xl px-3 py-2 text-xs font-medium text-white shadow-sm hover-lift flex items-center gap-1.5" title="Keranjang Belanja">
-          <i data-lucide="shopping-cart" class="w-4 h-4 text-emerald-400"></i>
-          <span class="hidden sm:inline font-semibold">Keranjang</span>
-          <span class="cart-badge-count bg-emerald-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
-        </button>
         <!-- Menu Drawer Toggle -->
         <button onclick="toggleNavMenu(true)" class="border border-white/20 bg-black/50 hover:bg-black/80 backdrop-blur-md rounded-2xl px-3.5 sm:px-4 py-2 text-[0.75rem] font-medium uppercase tracking-wider text-white shadow-sm hover-lift flex items-center gap-2">
           <i data-lucide="menu" class="w-4 h-4"></i>
@@ -367,14 +413,17 @@
         <!-- Left Column -->
         <div class="lg:col-span-7 flex flex-col gap-7 justify-center">
 
-          <!-- Headline (Line Reveal) -->
-          <h1 id="hero-title" class="max-w-[18ch] text-4xl sm:text-6xl md:text-7xl font-semibold leading-[0.98] tracking-tight text-white">
-            <span class="reveal-line"><span class="reveal-line-inner">Connected to</span></span>
-            <span class="reveal-line"><span class="reveal-line-inner">the Future.</span></span>
-          </h1>
+          <!-- Headline & Brand -->
+          <div class="flex flex-col gap-2">
+            <div id="hero-eyebrow" class="text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] text-amber-400">HOWELL</div>
+            <h1 id="hero-title" class="max-w-[18ch] text-4xl sm:text-6xl md:text-7xl font-semibold leading-[0.98] tracking-tight text-white">
+              <span class="reveal-line"><span class="reveal-line-inner">Connected to</span></span>
+              <span class="reveal-line"><span class="reveal-line-inner">the Future.</span></span>
+            </h1>
+          </div>
 
           <!-- Rating & Trust Row -->
-          <div id="hero-rating" class="flex items-center gap-3 transition-all duration-700 opacity-0 translate-y-3">
+          <div id="hero-rating" class="flex items-center gap-3 transition-all duration-700">
             <div class="flex items-center gap-1 text-amber-400">
               <i data-lucide="star" class="w-4 h-4 fill-current"></i>
               <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -386,13 +435,13 @@
           </div>
 
           <!-- Action CTA Row -->
-          <div id="hero-cta" class="flex flex-wrap items-center gap-3 pt-2 transition-all duration-700 opacity-0 translate-y-3">
+          <div id="hero-cta" class="flex flex-wrap items-center gap-3 pt-2 transition-all duration-700">
             
             <!-- Button 1: B2B Form Modal -->
             <button onclick="openB2BModal()" class="btn-pill">
               <span class="btn-pill-inner bg-white text-black has-arrow">
                 <span data-i18n="hero_b2b_btn">Ajukan Kerjasama B2B</span>
-                <span class="btn-pill-badge bg-black text-white up-right">â†’</span>
+                <span class="btn-pill-badge bg-black text-white up-right">→</span>
               </span>
             </button>
 
@@ -412,7 +461,7 @@
           <div class="w-full max-w-sm sm:max-w-md flex flex-col gap-5">
             
             <!-- Hero Interactive Carousel Card -->
-            <div id="hero-card" class="w-full rounded-2xl bg-[#0a0a0a]/80 p-2 shadow-2xl ring-1 ring-white/15 backdrop-blur-xl transition-all duration-700 opacity-0 translate-y-4 scale-95">
+            <div id="hero-card" class="w-full rounded-2xl bg-[#0a0a0a]/80 p-2 shadow-2xl ring-1 ring-white/15 backdrop-blur-xl transition-all duration-700">
               <div onclick="cycleHeroCard(1)" class="flex gap-3 cursor-pointer rounded-xl p-2 hover:bg-white/5 transition-colors">
                 
                 <!-- Left Tile with Product Photo -->
@@ -435,8 +484,8 @@
                       <span class="h-1 rounded-full bg-white/30 w-1.5 transition-all"></span>
                     </div>
                     <div class="flex items-center gap-1">
-                      <button onclick="event.stopPropagation(); cycleHeroCard(-1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">â†</button>
-                      <button onclick="event.stopPropagation(); cycleHeroCard(1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">â†’</button>
+                      <button onclick="event.stopPropagation(); cycleHeroCard(-1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">←</button>
+                      <button onclick="event.stopPropagation(); cycleHeroCard(1);" class="w-7 h-7 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20">→</button>
                     </div>
                   </div>
                 </div>
@@ -445,7 +494,7 @@
             </div>
 
             <!-- Official Partners & Marketplace Badges (Grid Equal Width) -->
-            <div id="hero-partners" class="w-full transition-all duration-700 opacity-0 translate-y-4">
+            <div id="hero-partners" class="w-full transition-all duration-700">
               <span class="block text-xs font-medium text-white/60 mb-2 text-center">Official E-Commerce Stores & B2B:</span>
               <div class="grid grid-cols-3 gap-2">
                 <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="hover-lift flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-white/10 border border-white/20 text-[11px] sm:text-xs font-medium text-white hover:bg-white/20 whitespace-nowrap shadow-sm text-center">
@@ -472,11 +521,11 @@
       <!-- Bottom Status Bar -->
       <div id="hero-status" class="relative z-20 border-t border-white/10 py-5 transition-all duration-700 opacity-0">
         <div class="shell flex items-center justify-between text-xs font-medium uppercase tracking-wider text-white/70">
-          <span>Est. 2009 â€” PT Howell Niaga Indonesia</span>
+          <span>Est. 2009 — PT Howell Niaga Indonesia</span>
           <span class="hidden sm:inline">Jakarta & Nationwide Distribution</span>
           <button onclick="scrollToId('marketplace')" class="flex items-center gap-1 hover:text-white">
             <span>Scroll to explore</span>
-            <span>â†“</span>
+            <span>↓</span>
           </button>
         </div>
       </div>
@@ -523,7 +572,7 @@
               <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
                 <span class="text-xs font-mono text-orange-400 font-semibold">@howellcable</span>
                 <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-orange-600 transition-all">
-                  â†—
+                  ↗
                 </a>
               </div>
             </div>
@@ -546,7 +595,7 @@
               <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
                 <span class="text-xs font-mono text-emerald-400 font-semibold">Howell Official</span>
                 <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-emerald-600 transition-all">
-                  â†—
+                  ↗
                 </a>
               </div>
             </div>
@@ -569,7 +618,7 @@
               <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
                 <span class="text-xs font-mono text-slate-300 font-semibold">@howell_official</span>
                 <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                  â†—
+                  ↗
                 </a>
               </div>
             </div>
@@ -613,12 +662,12 @@
           
           <!-- Clickable Active Banner Image Holder (16:9 Aspect Ratio) -->
           <div onclick="onCategoryBannerClick()" class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black/50 cursor-pointer">
-            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/2.png" alt="Category Banner" class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-[1.02]">
+            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/3.png" alt="Category Banner" class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-[1.02]">
             
             <!-- Hover Action Overlay Pill -->
             <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-10 flex items-center gap-3 bg-black/80 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-full text-white text-xs sm:text-sm font-semibold shadow-lg group-hover:bg-white group-hover:text-black transition-all">
               <span id="active-banner-label">HDMI 8K & Video Cables</span>
-              <span class="text-xs opacity-80 font-mono">Click to view catalog â†’</span>
+              <span class="text-xs opacity-80 font-mono">Click to view catalog →</span>
             </div>
           </div>
 
@@ -629,8 +678,8 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <button onclick="stepCategoryBanner(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">â†</button>
-              <button onclick="stepCategoryBanner(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">â†’</button>
+              <button onclick="stepCategoryBanner(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">←</button>
+              <button onclick="stepCategoryBanner(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">→</button>
             </div>
           </div>
 
@@ -671,8 +720,8 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <button onclick="stepStoreShowcase(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">â†</button>
-              <button onclick="stepStoreShowcase(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">â†’</button>
+              <button onclick="stepStoreShowcase(-1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">←</button>
+              <button onclick="stepStoreShowcase(1)" class="w-8 h-8 rounded-full bg-white/10 text-white border border-white/20 flex items-center justify-center text-xs hover:bg-white/20 transition-all">→</button>
             </div>
           </div>
 
@@ -682,59 +731,130 @@
     </section>
 
 
-    <!-- ==================== 5. PRODUCTS CATALOG (Lumora Portfolio Cards) ==================== -->
-    <!-- ==================== 5. PRODUCTS CATALOG (Minimalist iOS White Glassmorphism) ==================== -->
-    <section id="catalog-section" class="bg-[#f8f9fa] py-16 lg:py-24">
-      <div class="shell">
+    <!-- ==================== 5. PRODUCTS CATALOG (CableTime Tech Collections Style) ==================== -->
+    <section id="catalog-section" class="bg-white py-10 border-b border-[#e5e5e5] font-sans">
+      <div class="max-w-[1440px] w-full mx-auto px-4 sm:px-8 lg:px-12">
         
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <div class="eyebrow mb-2">Product Portfolio</div>
-            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Explore Howell Catalog.</h2>
-            <p class="text-xs sm:text-sm text-slate-600 mt-1">High-demand hardware designed for maximum reliability and performance.</p>
+        <!-- CableTime-Style Toolbar (Menyaring Pill, Count, Sort by Dropdown, View as Grid/List) -->
+        <div class="flex items-center justify-between pb-5 mb-8 border-b border-[#e5e5e5]">
+          
+          <!-- Left: Menyaring / Filter Toggle Button, Product Count & Print Catalog PDF Button -->
+          <div class="flex items-center gap-3 flex-wrap">
+            <button type="button" onclick="toggleCatalogSidebar()" id="btn-toggle-filter" class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] font-medium text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all select-none cursor-pointer">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+              <span id="filter-btn-text">Menyaring</span>
+            </button>
+            <span id="catalog-count" class="text-[13px] text-slate-600 font-normal">32 produk</span>
+
+            <button type="button" onclick="printCatalogPDF()" class="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white hover:bg-black text-[13px] font-semibold transition-all shadow-sm select-none cursor-pointer" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
+              <i data-lucide="printer" class="w-4 h-4 text-amber-400"></i>
+              <span>Cetak PDF Katalog</span>
+            </button>
           </div>
 
-          <!-- Controls: Category Dropdown & Search (iOS Light Glassmorphism) -->
-          <div class="flex flex-wrap items-center gap-3">
-            
-            <!-- Category Filter Dropdown -->
-            <select id="category-filter-select" onchange="filterByCategory(this.value)" class="px-4 py-2.5 rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur-md text-xs font-semibold text-slate-900 focus:outline-none focus:border-slate-400 shadow-sm">
-              <option value="all">All Categories</option>
-              <option value="patch-cable">Patch Cable & Networking</option>
-              <option value="hdmi-video">HDMI & Video Cables</option>
-              <option value="displayport">DisplayPort 8K/16K</option>
-              <option value="dvi-vga">DVI & VGA Cables</option>
-              <option value="audio">Audio Solutions</option>
-              <option value="power-cable">Power & PDU Cables</option>
-              <option value="usb-charging">USB & Data Cables</option>
-              <option value="adapter">Adapters & Converters</option>
-              <option value="computer-acc">Chargers & Mobile Acc</option>
-              <option value="earphone-tws">Audio & Earphones</option>
-            </select>
+          <!-- Right: Sort By & View As -->
+          <div class="flex items-center gap-4">
+            <!-- Sort By Dropdown -->
+            <div class="flex items-center gap-2 text-[13px] text-slate-700 font-normal">
+              <span class="hidden sm:inline">Urutkan berdasarkan:</span>
+              <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-slate-300 rounded-full px-4 py-2 text-[13px] font-normal text-slate-800 bg-white focus:outline-none cursor-pointer">
+                <option value="relevance">Paling relevan</option>
+                <option value="price-asc">Berdasarkan harga, rendah ke tinggi</option>
+                <option value="price-desc">Berdasarkan harga, tinggi ke rendah</option>
+                <option value="name">Berdasarkan abjad, A-Z</option>
+              </select>
+            </div>
 
-            <!-- Live Search Field -->
-            <div class="relative">
-              <input type="text" id="catalog-search-input" oninput="handleSearchInput(this.value)" placeholder="Search SKU or name..." class="px-4 py-2.5 pl-9 rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur-md text-xs font-semibold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 w-48 sm:w-64 shadow-sm">
-              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3 pointer-events-none"></i>
+            <!-- View As Toggle Icons -->
+            <div class="flex items-center gap-1.5 border-l border-slate-200 pl-4 text-[13px] text-slate-700 font-normal">
+              <span class="hidden md:inline mr-1">Lihat sebagai:</span>
+              <button type="button" onclick="setCatalogViewMode('grid')" id="view-mode-grid-btn" class="w-8 h-8 rounded flex items-center justify-center bg-black text-white cursor-pointer transition-all" title="Tampilan Grid">
+                <i data-lucide="layout-grid" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="setCatalogViewMode('list')" id="view-mode-list-btn" class="w-8 h-8 rounded flex items-center justify-center bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer transition-all" title="Tampilan List">
+                <i data-lucide="list" class="w-4 h-4"></i>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Product Count Indicator & Reset -->
-        <div class="flex items-center justify-between pb-4 border-b border-slate-200/80 mb-8 text-xs font-medium text-slate-500">
-          <span id="catalog-count">Loading catalog...</span>
-          <button onclick="resetFilters()" class="text-slate-800 font-semibold hover:underline">Reset Filters</button>
-        </div>
+        <!-- Main Catalog Layout: Flat Left Sidebar + Product Grid -->
+        <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+          
+          <!-- Left Collapsible Filter Sidebar (CableTime Flat Minimalist Style) -->
+          <aside id="catalog-filter-sidebar" class="w-full lg:w-60 shrink-0 transition-all duration-300">
+            <div class="space-y-0">
+              
+              <!-- Accordion 1: Harga -->
+              <div class="border-b border-[#e5e5e5] py-3.5">
+                <button type="button" onclick="toggleFilterAccordion('price')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
+                  <span>Harga</span>
+                  <span id="acc-icon-price" class="text-base font-light text-slate-500">-</span>
+                </button>
+                <div id="acc-body-price" class="pt-2 pb-1 space-y-2 text-[13px] text-slate-600">
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="radio" name="price-filter" value="all" onchange="changePriceFilter('all')" checked class="accent-black">
+                    <span>Semua Harga</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="radio" name="price-filter" value="under50k" onchange="changePriceFilter('under50k')" class="accent-black">
+                    <span>Di bawah Rp 50.000</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="radio" name="price-filter" value="50k-150k" onchange="changePriceFilter('50k-150k')" class="accent-black">
+                    <span>Rp 50.000 - Rp 150.000</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="radio" name="price-filter" value="over150k" onchange="changePriceFilter('over150k')" class="accent-black">
+                    <span>Di atas Rp 150.000</span>
+                  </label>
+                </div>
+              </div>
 
-        <!-- Dynamic Product Catalog Grid -->
-        <div id="product-catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Rendered dynamically by JavaScript -->
-        </div>
+              <!-- Accordion 2: Perangkat / Kategori -->
+              <div class="border-b border-[#e5e5e5] py-3.5">
+                <button type="button" onclick="toggleFilterAccordion('category')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
+                  <span>Perangkat</span>
+                  <span id="acc-icon-category" class="text-base font-light text-slate-500">-</span>
+                </button>
+                <div id="acc-body-category" class="pt-2 pb-1 space-y-1.5 text-[13px] text-slate-600 max-h-64 overflow-y-auto pr-1">
+                  <!-- Category items rendered dynamically -->
+                </div>
+              </div>
 
-        <!-- Load More / See More Button Container -->
-        <div id="catalog-load-more-box" class="mt-12 text-center flex flex-col items-center justify-center gap-3">
-          <!-- Rendered dynamically by JavaScript -->
+              <!-- Accordion 3: Ketersediaan -->
+              <div class="border-b border-[#e5e5e5] py-3.5">
+                <button type="button" onclick="toggleFilterAccordion('availability')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
+                  <span>Ketersediaan</span>
+                  <span id="acc-icon-availability" class="text-base font-light text-slate-500">-</span>
+                </button>
+                <div id="acc-body-availability" class="pt-2 pb-1 space-y-2 text-[13px] text-slate-600">
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="checkbox" id="filter-stock-ready" onchange="applyAvailabilityFilter()" class="accent-black">
+                    <span>Ready Stock Jakarta (32)</span>
+                  </label>
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
+                    <input type="checkbox" id="filter-official-warranty" onchange="applyAvailabilityFilter()" class="accent-black">
+                    <span>Garansi Resmi 12 Bulan (32)</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </aside>
+
+          <!-- Right: Product Grid / List Area -->
+          <div class="flex-1 w-full min-w-0">
+            <div id="product-catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 w-full">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+
+            <!-- Load More / See More Button Container -->
+            <div id="catalog-load-more-box" class="mt-12 text-center flex flex-col items-center justify-center gap-3">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -755,42 +875,42 @@
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">01</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Patch Cable & Networking</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
           <li onclick="filterByCategory('hdmi-video')" class="service-row-item border-b border-[#e6e5e2]">
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">02</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">HDMI 8K & DisplayPort</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
           <li onclick="filterByCategory('power-cable')" class="service-row-item border-b border-[#e6e5e2]">
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">03</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Heavy Duty Power & PDU</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
           <li onclick="filterByCategory('usb-charging')" class="service-row-item border-b border-[#e6e5e2]">
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">04</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">USB & High-Speed Data</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">Active Optic Extension, USB Type-C & High-Amp Charging.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
           <li onclick="filterByCategory('audio')" class="service-row-item border-b border-[#e6e5e2]">
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">05</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Audio Solutions & AUX</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
           <li onclick="filterByCategory('adapter')" class="service-row-item border-b border-[#e6e5e2]">
             <span class="w-8 text-xs font-medium text-slate-400 font-mono">06</span>
             <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Adapters & Converters</h3>
             <p class="hidden lg:block max-w-xs text-xs text-slate-500">Multi-port Display Converters, Audio Splitters & Signal Hubs.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">â†—</div>
+            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
           </li>
 
         </ul>
@@ -867,7 +987,7 @@
             </p>
             <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
               <span>Buka Formulir</span>
-              <span>â†’</span>
+              <span>→</span>
             </div>
           </div>
 
@@ -882,7 +1002,7 @@
             </p>
             <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
               <span>Hubungi WA 081188031976</span>
-              <span>â†’</span>
+              <span>→</span>
             </div>
           </div>
 
@@ -897,7 +1017,7 @@
             </p>
             <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-900">
               <span>Lihat Store Official</span>
-              <span>â†’</span>
+              <span>→</span>
             </div>
           </div>
 
@@ -905,7 +1025,7 @@
 
         <!-- Inline B2B Form Card (Hidden by default, unhides when clicked) -->
         <div id="kerjasama-form-card" class="hidden rounded-2xl bg-[#0a0a0a] p-8 sm:p-12 text-white relative transition-all duration-300">
-          <button onclick="toggleInlineB2BForm(false)" class="absolute top-6 right-6 text-white/50 hover:text-white text-xl">âœ•</button>
+          <button onclick="toggleInlineB2BForm(false)" class="absolute top-6 right-6 text-white/50 hover:text-white text-xl">✕</button>
           
           <div class="max-w-xl mb-8">
             <span class="eyebrow light mb-2 block">Direct WhatsApp Inquiry</span>
@@ -959,7 +1079,7 @@
             <button type="submit" class="btn-pill mt-2">
               <span class="btn-pill-inner bg-emerald-600 text-white has-arrow">
                 <span>Kirim Form via WhatsApp</span>
-                <span class="btn-pill-badge bg-white text-emerald-700">ðŸ’¬</span>
+                <span class="btn-pill-badge bg-white text-emerald-700">💬</span>
               </span>
             </button>
           </form>
@@ -984,7 +1104,7 @@
         <button onclick="openB2BModal()" class="btn-pill">
           <span class="btn-pill-inner btn-pill-light has-arrow">
             <span>Start a B2B Project</span>
-            <span class="btn-pill-badge up-right">â†’</span>
+            <span class="btn-pill-badge up-right">→</span>
           </span>
         </button>
       </div>
@@ -998,7 +1118,7 @@
             <img src="assets/howell-logo-white.png" alt="Howell Logo" class="h-16 sm:h-20 max-h-20 w-auto object-contain">
           </div>
           <p class="max-w-xs text-xs text-white/55 leading-relaxed">
-            PT Howell Niaga Indonesia â€” Premier supplier of certified cables, adapters, and server connectivity hardware.
+            PT Howell Niaga Indonesia — Premier supplier of certified cables, adapters, and server connectivity hardware.
           </p>
         </div>
 
@@ -1039,7 +1159,7 @@
 
       <!-- Legal Bar -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/45">
-        <span>Â© 2026 PT Howell Niaga Indonesia. All rights reserved.</span>
+        <span>© 2026 PT Howell Niaga Indonesia. All rights reserved.</span>
         <div class="flex items-center gap-6">
           <button onclick="openSupportModal()" class="hover:text-white transition-colors">Privacy Policy</button>
           <button onclick="openSupportModal()" class="hover:text-white transition-colors">Terms of Service</button>
@@ -1116,12 +1236,12 @@
       <div class="flex items-center gap-3">
         <span class="font-mono text-white/60">Language:</span>
         <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl p-1">
-          <button onclick="setLanguage('id')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Bahasa Indonesia">ðŸ‡®ðŸ‡© ID</button>
-          <button onclick="setLanguage('en')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="English">ðŸ‡¬ðŸ‡§ EN</button>
-          <button onclick="setLanguage('zh')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Simplified Chinese">ðŸ‡¨ðŸ‡³ ä¸­æ–‡</button>
+          <button onclick="setLanguage('id')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Bahasa Indonesia">🇮🇩 ID</button>
+          <button onclick="setLanguage('en')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="English">🇬🇧 EN</button>
+          <button onclick="setLanguage('zh')" class="px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors" title="Simplified Chinese">🇨🇳 中文</button>
         </div>
       </div>
-      <button onclick="toggleNavMenu(false); openB2BModal();" class="hover:text-white transition-colors" data-i18n="hero_b2b_btn">Start a project â†’</button>
+      <button onclick="toggleNavMenu(false); openB2BModal();" class="hover:text-white transition-colors" data-i18n="hero_b2b_btn">Start a project →</button>
     </div>
 
   </div>
@@ -1190,7 +1310,7 @@
             <button type="submit" class="btn-pill">
               <span class="btn-pill-inner btn-pill-dark has-arrow">
                 <span>Send via WhatsApp</span>
-                <span class="btn-pill-badge up-right">â†’</span>
+                <span class="btn-pill-badge up-right">→</span>
               </span>
             </button>
           </div>
@@ -1201,15 +1321,15 @@
   </div>
 
 
-  <!-- ==================== 11. PRODUCT DETAIL MODAL ==================== -->
-  <div id="product-detail-modal" onclick="closeModal('product-detail-modal')" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-slate-900/40 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-4xl rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-200/80 p-6 sm:p-8 shadow-2xl text-slate-900 max-h-[92vh] overflow-y-auto">
+  <!-- ==================== 11. PRODUCT DETAIL MODAL (CableTime Style) ==================== -->
+  <div id="product-detail-modal" onclick="closeModal('product-detail-modal')" class="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/60 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none font-sans">
+    <div onclick="event.stopPropagation()" class="relative w-full max-w-6xl rounded-2xl bg-white border border-[#e5e5e5] p-6 sm:p-10 shadow-2xl text-slate-900 max-h-[92vh] overflow-y-auto">
       
-      <button onclick="closeModal('product-detail-modal')" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100/80 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all z-10 border border-slate-200/80" title="Tutup Modal (ESC)">
-        <i data-lucide="x" class="w-4 h-4"></i>
+      <button onclick="closeModal('product-detail-modal')" class="absolute right-4 top-4 sm:right-6 sm:top-6 w-9 h-9 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all z-30 cursor-pointer" title="Tutup Modal (ESC)">
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div id="product-modal-content">
+      <div id="product-detail-content">
         <!-- Rendered dynamically by JavaScript -->
       </div>
     </div>
@@ -1255,7 +1375,7 @@
             </div>
             <a href="https://wa.me/6281188031976" target="_blank" class="mt-3 inline-flex items-center gap-1.5 font-semibold text-white bg-[#0a0a0a] px-4 py-2 rounded-xl text-xs hover:bg-slate-800 transition-all w-fit">
               <span data-i18n="wa_btn">Chat WhatsApp</span>
-              <span>â†’</span>
+              <span>→</span>
             </a>
           </div>
 
@@ -1269,7 +1389,7 @@
             </div>
             <a href="mailto:customerservice@howellcable.com" class="mt-3 inline-flex items-center gap-1.5 font-semibold text-slate-900 border border-slate-300 bg-white px-4 py-2 rounded-xl text-xs hover:bg-slate-100 transition-all w-fit">
               <span data-i18n="email_btn">Kirim Email</span>
-              <span>â†’</span>
+              <span>→</span>
             </a>
           </div>
         </div>
@@ -1355,54 +1475,55 @@
     
     <!-- Close Button -->
     <button onclick="closeModal('image-zoom-modal')" class="absolute top-6 right-6 text-white text-xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center transition-all z-50 border border-white/20 shadow-2xl" title="Tutup (ESC)">
-      âœ•
+      ✕
     </button>
 
     <!-- Content Box -->
     <div onclick="event.stopPropagation()" class="max-w-6xl max-h-[90vh] p-2 sm:p-4 flex flex-col items-center justify-center relative">
       <div class="relative overflow-hidden rounded-2xl border border-white/20 bg-black/80 shadow-2xl p-3 max-h-[80vh] flex items-center justify-center">
         <img id="zoom-modal-img" src="" alt="Zoom Photo" onclick="toggleZoomScale(this)" class="max-w-full max-h-[75vh] object-contain rounded-xl transition-transform duration-300 cursor-zoom-in" title="Klik foto untuk perbesar 2x / Zoom In">
-      </div>
-      <div class="flex items-center gap-3 mt-4">
+              <div class="flex items-center gap-3 mt-4">
         <span id="zoom-modal-title" class="text-center text-xs sm:text-sm font-semibold text-white/90 font-mono bg-white/10 px-4 py-1.5 rounded-full border border-white/10"></span>
-        <span class="text-[11px] text-white/60 font-mono">ðŸ’¡ Klik foto untuk Zoom In / Out</span>
+        <span class="text-[11px] text-white/60 font-mono">💡 Klik foto untuk Zoom In / Out</span>
       </div>
     </div>
   </div>
 
 
+  <!-- ==================== 14. DEDICATED PRINTABLE PDF CATALOG CONTAINER ==================== -->
+  <div id="printable-catalog-container" class="hidden">
+    <!-- Rendered dynamically by printCatalogPDF() in app.js -->
+  </div>
+
+
   <!-- Master Products Dataset Bundle -->
   <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
 
-  <!-- ES MODULE CDN IMPORTMAP FOR LENIS SMOOTH SCROLL -->
-  <script type="importmap">
-  {
-    "imports": {
-      "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"
-    }
-  }
-  </script>
+  <!-- Lenis Smooth Scroll Script CDN -->
+  <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 
-  <!-- MAIN MODULE APPLICATION SCRIPT -->
-  <script type="module">
-    import Lenis from 'lenis';
-
+  <!-- MAIN APPLICATION SCRIPT -->
+  <script>
     /* ==========================================================================
        1. GLOBAL STATE & LENIS SMOOTH SCROLL INITIALIZATION
        ========================================================================== */
     window.scrollTo(0, 0);
-    const lenis = new Lenis({ smoothWheel: true });
+    const LenisClass = window.Lenis || null;
+    const lenis = LenisClass ? new LenisClass({ smoothWheel: true }) : null;
 
-    function raf(t) {
-      lenis.raf(t);
+    if (lenis) {
+      function raf(t) {
+        lenis.raf(t);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     let scrollEnabled = true;
     window.stopScroll = function() {
       scrollEnabled = false;
-      lenis.stop();
+      if (lenis) lenis.stop();
       document.documentElement.style.position = 'relative';
       document.documentElement.style.overflow = 'hidden';
       document.documentElement.style.height = '100%';
@@ -1410,7 +1531,7 @@
 
     window.startScroll = function() {
       scrollEnabled = true;
-      lenis.start();
+      if (lenis) lenis.start();
       document.documentElement.style.removeProperty('position');
       document.documentElement.style.removeProperty('overflow');
       document.documentElement.style.removeProperty('height');
@@ -1419,12 +1540,14 @@
     window.scrollToId = function(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      stopScroll();
-      setTimeout(() => {
-        const top = el.getBoundingClientRect().top + window.pageYOffset;
+      const header = document.getElementById('site-header');
+      const headerOffset = header ? header.offsetHeight : 80;
+      const top = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - headerOffset);
+      if (lenis && typeof lenis.scrollTo === 'function') {
+        lenis.scrollTo(top);
+      } else {
         window.scrollTo({ top, behavior: 'smooth' });
-        setTimeout(startScroll, 100);
-      }, 50);
+      }
     };
 
     /* ==========================================================================
@@ -1718,7 +1841,6 @@
         name: "HDMI 8K & Video Cables",
         catId: "hdmi-video",
         images: [
-          "assets/Banner/9. HDMI/Landscape/2.png",
           "assets/Banner/9. HDMI/Landscape/3.png",
           "assets/Banner/9. HDMI/Landscape/4.png",
           "assets/Banner/9. HDMI/Landscape/5.png",
@@ -1727,7 +1849,10 @@
           "assets/Banner/9. HDMI/Landscape/8.png",
           "assets/Banner/9. HDMI/Landscape/9.png",
           "assets/Banner/9. HDMI/Landscape/10.png",
-          "assets/Banner/9. HDMI/Landscape/11.png"
+          "assets/Banner/9. HDMI/Landscape/11.png",
+          "assets/Banner/9. HDMI/Landscape/ChatGPT Image Jul 18, 2026, 04_28_22 PM.png",
+          "assets/Banner/9. HDMI/Landscape/ChatGPT Image Jul 18, 2026, 09_47_42 AM.png",
+          "assets/Banner/9. HDMI/Landscape/ChatGPT Image Jul 18, 2026, 09_49_56 AM.png"
         ]
       },
       'patch-cable': {
@@ -1741,14 +1866,34 @@
           "assets/Banner/10. LAN/Landscape/17.png",
           "assets/Banner/10. LAN/Landscape/18.png",
           "assets/Banner/10. LAN/Landscape/19.png",
-          "assets/Banner/10. LAN/Landscape/20.png"
+          "assets/Banner/10. LAN/Landscape/20.png",
+          "assets/Banner/10. LAN/Landscape/21.png",
+          "assets/Banner/10. LAN/Landscape/22.png",
+          "assets/Banner/10. LAN/Landscape/23.png",
+          "assets/Banner/10. LAN/Landscape/24.png",
+          "assets/Banner/10. LAN/Landscape/25.png",
+          "assets/Banner/10. LAN/Landscape/26.png",
+          "assets/Banner/10. LAN/Landscape/27.png",
+          "assets/Banner/10. LAN/Landscape/28.png",
+          "assets/Banner/10. LAN/Landscape/29.png",
+          "assets/Banner/10. LAN/Landscape/30.png",
+          "assets/Banner/10. LAN/Landscape/31.png",
+          "assets/Banner/10. LAN/Landscape/32.png",
+          "assets/Banner/10. LAN/Landscape/33.png",
+          "assets/Banner/10. LAN/Landscape/34.png",
+          "assets/Banner/10. LAN/Landscape/35.png",
+          "assets/Banner/10. LAN/Landscape/36.png",
+          "assets/Banner/10. LAN/Landscape/37.png",
+          "assets/Banner/10. LAN/Landscape/38.png",
+          "assets/Banner/10. LAN/Landscape/ChatGPT Image Jul 20, 2026, 09_34_55 AM.png",
+          "assets/Banner/10. LAN/Landscape/ChatGPT Image Jul 20, 2026, 10_05_34 AM.png",
+          "assets/Banner/10. LAN/Landscape/ChatGPT Image Jul 20, 2026, 11_06_38 AM.png"
         ]
       },
       'displayport': {
         name: "DisplayPort 8K / 16K Optic Fiber",
         catId: "displayport",
         images: [
-          "assets/Banner/2. DP/Landscape/80.png",
           "assets/Banner/2. DP/Landscape/81.png",
           "assets/Banner/2. DP/Landscape/82.png",
           "assets/Banner/2. DP/Landscape/83.png",
@@ -1761,7 +1906,6 @@
         name: "Heavy Duty Power & PDU Cables",
         catId: "power-cable",
         images: [
-          "assets/Banner/7. POWER/Landscape/48.png",
           "assets/Banner/7. POWER/Landscape/49.png",
           "assets/Banner/7. POWER/Landscape/50.png",
           "assets/Banner/7. POWER/Landscape/51.png",
@@ -1773,20 +1917,21 @@
         name: "USB Data & Active Optic Extension",
         catId: "usb-charging",
         images: [
-          "assets/Banner/6. ACC & USB/Landscape/39.png",
           "assets/Banner/6. ACC & USB/Landscape/40.png",
           "assets/Banner/6. ACC & USB/Landscape/41.png",
           "assets/Banner/6. ACC & USB/Landscape/42.png",
           "assets/Banner/6. ACC & USB/Landscape/43.png",
           "assets/Banner/6. ACC & USB/Landscape/44.png",
-          "assets/Banner/6. ACC & USB/Landscape/45.png"
+          "assets/Banner/6. ACC & USB/Landscape/45.png",
+          "assets/Banner/6. ACC & USB/Landscape/46.png",
+          "assets/Banner/6. ACC & USB/Landscape/47.png",
+          "assets/Banner/6. ACC & USB/Landscape/ChatGPT Image Jul 18, 2026, 04_28_22 PM.png"
         ]
       },
       'audio': {
         name: "Audio Solutions & AUX Cables",
         catId: "audio",
         images: [
-          "assets/Banner/1. AUDIO/Landscape/73.png",
           "assets/Banner/1. AUDIO/Landscape/74.png",
           "assets/Banner/1. AUDIO/Landscape/75.png",
           "assets/Banner/1. AUDIO/Landscape/76.png",
@@ -1799,37 +1944,43 @@
         name: "Adapters & Multi-Port Converters",
         catId: "adapter",
         images: [
-          "assets/Banner/8. ADAPTER/Landscape/54.png",
           "assets/Banner/8. ADAPTER/Landscape/55.png",
           "assets/Banner/8. ADAPTER/Landscape/56.png",
           "assets/Banner/8. ADAPTER/Landscape/57.png",
           "assets/Banner/8. ADAPTER/Landscape/58.png",
           "assets/Banner/8. ADAPTER/Landscape/59.png",
-          "assets/Banner/8. ADAPTER/Landscape/60.png"
+          "assets/Banner/8. ADAPTER/Landscape/60.png",
+          "assets/Banner/8. ADAPTER/Landscape/61.png",
+          "assets/Banner/8. ADAPTER/Landscape/62.png",
+          "assets/Banner/8. ADAPTER/Landscape/63.png",
+          "assets/Banner/8. ADAPTER/Landscape/64.png"
         ]
       },
       'earphone-tws': {
         name: "Audio & Wireless TWS Earphones",
         catId: "earphone-tws",
         images: [
-          "assets/Banner/4. TWS/Landscape/65.png",
           "assets/Banner/4. TWS/Landscape/66.png",
           "assets/Banner/4. TWS/Landscape/67.png",
           "assets/Banner/4. TWS/Landscape/68.png",
           "assets/Banner/4. TWS/Landscape/69.png",
-          "assets/Banner/4. TWS/Landscape/70.png"
+          "assets/Banner/4. TWS/Landscape/70.png",
+          "assets/Banner/4. TWS/Landscape/71.png",
+          "assets/Banner/4. TWS/Landscape/72.png"
         ]
       },
       'dvi-vga': {
         name: "DVI & Heavy Duty VGA Cables",
         catId: "dvi-vga",
         images: [
-          "assets/Banner/3. DVI/Landscape/87.png",
           "assets/Banner/3. DVI/Landscape/88.png",
           "assets/Banner/3. DVI/Landscape/89.png",
-          "assets/Banner/5. VGA/Landscape/93.png",
+          "assets/Banner/3. DVI/Landscape/90.png",
+          "assets/Banner/3. DVI/Landscape/91.png",
+          "assets/Banner/3. DVI/Landscape/92.png",
           "assets/Banner/5. VGA/Landscape/94.png",
-          "assets/Banner/5. VGA/Landscape/95.png"
+          "assets/Banner/5. VGA/Landscape/95.png",
+          "assets/Banner/5. VGA/Landscape/96.png"
         ]
       }
     };
@@ -1978,35 +2129,33 @@
     };
 
     /* ==========================================================================
-       7. HOWELL CATALOG RENDERER & INTERACTION CONTROLLER (MINIMALIST IOS WHITE GLASSMORPHISM)
+       7. HOWELL CATALOG RENDERER & INTERACTION CONTROLLER (CableTime Tech Collections Style)
        ========================================================================== */
-    let catalogState = {
-      category: 'all',
-      search: '',
-      isExpanded: false,
-      initialLimit: 6
-    };
-
     window.filterByCategory = function(catId) {
-      catalogState.category = catId;
-      catalogState.isExpanded = false;
-      const selectEl = document.getElementById('category-filter-select');
-      if (selectEl) selectEl.value = catId;
-      if (CATEGORY_BANNERS[catId]) {
-        switchCategoryBanner(catId);
+      if (typeof state !== 'undefined') {
+        state.activeCategory = catId;
+        state.catalogExpanded = false;
       }
-      renderCatalogGrid();
+      if (typeof CATEGORY_BANNERS !== 'undefined' && CATEGORY_BANNERS[catId]) {
+        if (typeof switchCategoryBanner === 'function') switchCategoryBanner(catId);
+      }
+      if (typeof renderCatalog === 'function') {
+        renderCatalog();
+      }
       scrollToId('catalog-section');
     };
 
     window.handleSearchInput = function(query) {
-      catalogState.search = query;
-      catalogState.isExpanded = false;
+      if (typeof state !== 'undefined') {
+        state.searchQuery = query;
+      }
       const catInput = document.getElementById('catalog-search-input');
       const headInput = document.getElementById('header-search-input');
       if (catInput && catInput !== document.activeElement) catInput.value = query;
       if (headInput && headInput !== document.activeElement) headInput.value = query;
-      renderCatalogGrid();
+      if (typeof renderCatalog === 'function') {
+        renderCatalog();
+      }
     };
 
     window.onHeaderSearchSubmit = function(e) {
@@ -2019,151 +2168,37 @@
     };
 
     window.resetFilters = function() {
-      catalogState.category = 'all';
-      catalogState.search = '';
-      catalogState.isExpanded = false;
-      const selectEl = document.getElementById('category-filter-select');
-      const searchEl = document.getElementById('catalog-search-input');
+      if (typeof state !== 'undefined') {
+        state.activeCategory = 'all';
+        state.searchQuery = '';
+        state.priceFilter = 'all';
+        state.availabilityStock = false;
+        state.availabilityWarranty = false;
+        state.sortBy = 'relevance';
+        state.catalogExpanded = false;
+      }
+      const catInput = document.getElementById('catalog-search-input');
       const headInput = document.getElementById('header-search-input');
-      if (selectEl) selectEl.value = 'all';
-      if (searchEl) searchEl.value = '';
+      if (catInput) catInput.value = '';
       if (headInput) headInput.value = '';
-      renderCatalogGrid();
+      const priceRadios = document.querySelectorAll('input[name="price-filter"]');
+      priceRadios.forEach(r => { r.checked = (r.value === 'all'); });
+      const stockEl = document.getElementById('filter-stock-ready');
+      if (stockEl) stockEl.checked = false;
+      const warrEl = document.getElementById('filter-official-warranty');
+      if (warrEl) warrEl.checked = false;
+      const sortSelect = document.getElementById('catalog-sort-select');
+      if (sortSelect) sortSelect.value = 'relevance';
+      if (typeof renderCatalog === 'function') {
+        renderCatalog();
+      }
     };
 
-    window.expandCatalog = function() {
-      catalogState.isExpanded = true;
-      renderCatalogGrid();
+    window.renderCatalogGrid = function() {
+      if (typeof renderCatalog === 'function') {
+        renderCatalog();
+      }
     };
-
-    window.collapseCatalog = function() {
-      catalogState.isExpanded = false;
-      renderCatalogGrid();
-      scrollToId('catalog-section');
-    };
-
-    function renderCatalogGrid() {
-      const grid = document.getElementById('product-catalog-grid');
-      const countEl = document.getElementById('catalog-count');
-      const loadMoreBox = document.getElementById('catalog-load-more-box');
-      if (!grid || typeof HOWELL_PRODUCTS === 'undefined') return;
-
-      let filtered = [...HOWELL_PRODUCTS];
-
-      if (catalogState.category !== 'all') {
-        filtered = filtered.filter(p => p.category === catalogState.category);
-      }
-
-      if (catalogState.search.trim() !== '') {
-        const q = catalogState.search.toLowerCase();
-        filtered = filtered.filter(p => 
-          p.name.toLowerCase().includes(q) || 
-          p.summary.toLowerCase().includes(q) || 
-          (p.sku && p.sku.toLowerCase().includes(q))
-        );
-      }
-
-      const totalCount = filtered.length;
-      const visibleProducts = catalogState.isExpanded ? filtered : filtered.slice(0, catalogState.initialLimit);
-      const t = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS[window.currentLanguage || 'id']) ? TRANSLATIONS[window.currentLanguage || 'id'] : {
-        showing_products: "Showing",
-        of_products: "of",
-        products_label: "Products Available",
-        btn_see_more: "See More Products",
-        btn_show_less: "Show Less Products"
-      };
-
-      if (countEl) {
-        if (totalCount <= catalogState.initialLimit || catalogState.isExpanded) {
-          countEl.textContent = `${totalCount} ${t.products_label}`;
-        } else {
-          countEl.textContent = `${t.showing_products} ${visibleProducts.length} ${t.of_products} ${totalCount} ${t.products_label}`;
-        }
-      }
-
-      if (totalCount === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-16 text-center rounded-2xl bg-white/80 border border-slate-200/80 p-8 backdrop-blur-md shadow-sm">
-            <h3 class="text-lg font-semibold text-slate-900">No Matching Products Found</h3>
-            <p class="text-xs text-slate-500 mt-1">Try adjusting category filters or search keywords.</p>
-            <button onclick="resetFilters()" class="mt-4 btn-pill">
-              <span class="btn-pill-inner btn-pill-outline text-xs text-slate-900 border-slate-300">Reset Filters</span>
-            </button>
-          </div>
-        `;
-        if (loadMoreBox) loadMoreBox.innerHTML = '';
-        return;
-      }
-
-      grid.innerHTML = visibleProducts.map(product => {
-        const escapedName = product.name.replace(/'/g, "\\'");
-        const imageSrc = product.image ? encodeURI(product.image) : '';
-        const imgContent = imageSrc ? `
-          <img src="${imageSrc}" alt="${product.name}" class="w-full h-full object-contain group-hover/img:scale-105 transition-transform duration-300">
-        ` : (product.svgRender || `<div class="text-xs text-slate-400 font-mono">HOWELL PRODUCT</div>`);
-
-        return `
-          <div onclick="openProductDetail('${product.id}')" class="hover-lift rounded-2xl bg-white/80 backdrop-blur-xl border border-slate-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-2xl hover:shadow-slate-300/60 hover:bg-white hover:border-slate-300 transition-all duration-300 cursor-pointer group relative overflow-hidden text-slate-900 flex flex-col justify-between">
-            
-            <div>
-              <!-- Top Badge Row -->
-              <div class="flex items-center justify-between text-xs text-slate-500 mb-3 font-mono">
-                <span class="px-3 py-1 rounded-full bg-slate-100/90 text-slate-700 font-semibold text-[11px] border border-slate-200/80 backdrop-blur-md uppercase tracking-wider">${product.badge || product.categoryName}</span>
-                <span class="w-8 h-8 rounded-full bg-slate-100/80 border border-slate-200/80 flex items-center justify-center text-slate-700 group-hover:bg-slate-900 group-hover:text-white transition-all text-xs font-bold" title="Lihat Detail & Spesifikasi">â†—</span>
-              </div>
-
-              <!-- Product Image Frame: 1:1 Aspect Ratio Canvas -->
-              <div onclick="event.stopPropagation(); openImageZoomModal('${imageSrc}', '${escapedName}');" class="aspect-square w-full rounded-xl bg-[#f1f3f5] border border-slate-200/60 p-4 flex items-center justify-center overflow-hidden relative cursor-pointer group/img mb-4 transition-all duration-300 group-hover/img:bg-[#e9ecef]" title="Klik foto untuk perbesar / zoom">
-                ${imgContent}
-                
-                <!-- Hover Zoom Hint Badge -->
-                <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold gap-1.5 backdrop-blur-md">
-                  <span>ðŸ” Zoom Foto</span>
-                </div>
-              </div>
-
-              <!-- Product Name & Short SKU -->
-              ${product.sku ? `<span class="block text-[0.68rem] font-mono text-slate-400 mb-1 tracking-wider uppercase">SKU: ${product.sku}</span>` : ''}
-              <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-black transition-colors line-clamp-2">${product.name}</h3>
-            </div>
-
-            <!-- Actions Footer -->
-            <div class="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="font-semibold text-slate-800 flex items-center gap-1.5 group-hover:text-black transition-colors">
-                <span>Spesifikasi & Detail</span>
-                <span class="group-hover:translate-x-1 transition-transform">â†’</span>
-              </span>
-              <span class="text-emerald-700 font-bold text-[11px] bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full backdrop-blur-md">â€¢ Ready Stock</span>
-            </div>
-
-          </div>
-        `;
-      }).join('');
-
-      if (loadMoreBox) {
-        if (totalCount > catalogState.initialLimit && !catalogState.isExpanded) {
-          loadMoreBox.innerHTML = `
-            <button onclick="expandCatalog()" class="btn-pill hover-lift">
-              <span class="btn-pill-inner btn-pill-dark px-8 py-3 text-xs font-semibold has-arrow">
-                <span>${t.btn_see_more} (${totalCount - catalogState.initialLimit} ${t.of_products})</span>
-                <span class="btn-pill-badge bg-white text-black font-bold">â†“</span>
-              </span>
-            </button>
-          `;
-        } else if (totalCount > catalogState.initialLimit && catalogState.isExpanded) {
-          loadMoreBox.innerHTML = `
-            <button onclick="collapseCatalog()" class="btn-pill hover-lift">
-              <span class="btn-pill-inner btn-pill-outline px-6 py-2.5 text-xs font-semibold has-arrow">
-                <span>${t.btn_show_less}</span>
-                <span class="btn-pill-badge bg-slate-900 text-white font-bold">â†‘</span>
-              </span>
-            </button>
-          `;
-        } else {
-          loadMoreBox.innerHTML = '';
-        }
-      }
-    }
 
     /* ==========================================================================
        8. MODALS & OVERLAYS CONTROLLER
@@ -2228,12 +2263,12 @@
       const catatan = document.getElementById(prefix + 'catatan')?.value || '';
 
       const text = `Halo Howell B2B Specialist,\nSaya ingin mengajukan Formulir Kerjasama B2B:\n\n` +
-                   `ðŸ¢ *Perusahaan/Toko:* ${perusahaan}\n` +
-                   `ðŸ‘¤ *PIC:* ${pic}\n` +
-                   `ðŸ“ *Lokasi:* ${kota}, ${provinsi} ${kodepos}\n` +
-                   `ðŸ“ž *Telp/WA:* ${telp}\n` +
-                   `âœ‰ï¸ *Email:* ${email}\n` +
-                   `ðŸ“ *Catatan:* ${catatan || '-'}\n\n` +
+                   `🏢 *Perusahaan/Toko:* ${perusahaan}\n` +
+                   `👤 *PIC:* ${pic}\n` +
+                   `📍 *Lokasi:* ${kota}, ${provinsi} ${kodepos}\n` +
+                   `📞 *Telp/WA:* ${telp}\n` +
+                   `✉️ *Email:* ${email}\n` +
+                   `📝 *Catatan:* ${catatan || '-'}\n\n` +
                    `Mohon informasi penawaran harga & prosedur B2B. Terima kasih!`;
 
       const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(text)}`;
@@ -2243,127 +2278,7 @@
       showToast('Form B2B terkirim ke WhatsApp Specialist!', 'HOWELL B2B', 'message-square');
     };
 
-    window.openProductDetail = function(productId) {
-      if (typeof HOWELL_PRODUCTS === 'undefined') return;
-      const product = HOWELL_PRODUCTS.find(p => p.id === productId);
-      if (!product) return;
-
-      const modal = document.getElementById('product-detail-modal');
-      const content = document.getElementById('product-modal-content');
-      if (!modal || !content) return;
-
-      const specsHtml = product.specs ? `
-        <div class="mt-4 p-4 rounded-xl bg-[#f8f9fa] border border-slate-200/60">
-          <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 mb-2 font-mono">Spesifikasi Teknis Produk:</span>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-            ${Object.entries(product.specs).map(([key, val]) => `
-              <div class="flex flex-col py-1 border-b border-slate-200/60 last:border-0">
-                <span class="text-[10px] text-slate-400">${key}</span>
-                <span class="font-bold text-slate-900">${val}</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      ` : '';
-
-      const variantsHtml = (product.variants && (product.variants.lengths || product.variants.colors)) ? `
-        <div class="mt-3 flex flex-wrap gap-2 text-xs font-mono">
-          ${product.variants.lengths ? product.variants.lengths.map(l => `<span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">${l}</span>`).join('') : ''}
-          ${product.variants.colors ? product.variants.colors.map(c => `<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px]">${c}</span>`).join('') : ''}
-        </div>
-      ` : '';
-
-      content.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch text-slate-900">
-          
-          <!-- Left Column: 1:1 Image Box & Highlights -->
-          <div class="lg:col-span-5 flex flex-col justify-between gap-4">
-            
-            <div onclick="openImageZoomModal('${encodeURI(product.image)}', '${product.name.replace(/'/g, "\\'")}');" class="aspect-square w-full rounded-2xl bg-[#f1f3f5] border border-slate-200/80 p-5 flex items-center justify-center relative group cursor-pointer overflow-hidden shadow-sm" title="Klik foto untuk perbesar / zoom">
-              ${product.image ? `
-                <img src="${encodeURI(product.image)}" alt="${product.name}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
-              ` : (product.svgRender || `<div class="text-xs font-mono text-slate-400">HOWELL PRODUCT</div>`)}
-              
-              <div class="absolute inset-0 bg-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-semibold gap-2 backdrop-blur-md">
-                <span class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg">ðŸ”</span>
-                <span>Klik untuk Zoom Fullscreen</span>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[#f8f9fa] border border-slate-200/60 space-y-2.5 text-xs text-slate-700 flex-1 flex flex-col justify-center">
-              <div class="flex items-center gap-2.5">
-                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">ðŸ›¡ï¸</span>
-                <span class="font-medium text-slate-800">Garansi Resmi 12 Bulan Howell</span>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">âš¡</span>
-                <span class="font-medium text-slate-800">Sertifikasi Standar ISO & CE</span>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] shrink-0">ðŸšš</span>
-                <span class="font-medium text-slate-800">Ready Stock & Pengiriman Jakarta</span>
-              </div>
-              <button onclick="openImageZoomModal('${encodeURI(product.image)}', '${product.name.replace(/'/g, "\\'")}');" class="mt-1 w-full py-2 rounded-xl bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
-                <span>ðŸ” Zoom Foto Produk</span>
-              </button>
-            </div>
-
-          </div>
-
-          <!-- Right Column: Specs & Purchase Options -->
-          <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
-            <div>
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <span class="text-[10px] font-bold tracking-wider text-slate-700 uppercase font-mono px-3 py-1 rounded-full bg-slate-100 border border-slate-200">${product.badge || product.categoryName}</span>
-                ${product.sku ? `<span class="text-[11px] font-mono text-slate-400">SKU: ${product.sku}</span>` : ''}
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug tracking-tight">${product.name}</h2>
-              ${product.tagline ? `<p class="text-xs font-bold text-emerald-700 mt-1 font-mono">${product.tagline}</p>` : ''}
-              
-              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">${product.summary}</p>
-              ${product.description ? `<p class="text-xs text-slate-500 mt-1.5 leading-relaxed italic">${product.description}</p>` : ''}
-
-              ${variantsHtml}
-              ${specsHtml}
-            </div>
-
-            <!-- E-Commerce & Actions -->
-            <div class="pt-4 border-t border-slate-200/80 space-y-3">
-              <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">Beli di E-Commerce Resmi Howell:</span>
-              <div class="grid grid-cols-3 gap-2">
-                <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-100 border border-slate-200/80 text-slate-900 text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white transition-all">
-                  <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
-                  <span>Shopee</span>
-                </a>
-                <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-100 border border-slate-200/80 text-slate-900 text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white transition-all">
-                  <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain">
-                  <span>Tokopedia</span>
-                </a>
-                <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-slate-900 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all">
-                  <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-sm">
-                  <span>TikTok</span>
-                </a>
-              </div>
-
-              <div class="flex items-center gap-3 pt-1">
-                <button onclick="closeModal('product-detail-modal'); openB2BModal('${product.name.replace(/'/g, "\\'")}');" class="btn-pill flex-1">
-                  <span class="btn-pill-inner bg-slate-900 text-white w-full justify-center text-xs font-bold">Request B2B Quote</span>
-                </button>
-                <button onclick="window.open('https://wa.me/6281188031976', '_blank')" class="btn-pill">
-                  <span class="btn-pill-inner btn-pill-outline text-xs text-slate-900 border-slate-300">WhatsApp</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-
-      stopScroll();
-      modal.classList.remove('pointer-events-none', 'opacity-0');
-      modal.classList.add('opacity-100');
-      if (window.lucide) lucide.createIcons();
-    };
+    // Product Detail modal is handled by CableTime controller in js/app.js (window.openProductDetail)
 
     window.openImageZoomModal = function(imgSrc, title = '') {
       if (!imgSrc) return;
@@ -2445,7 +2360,7 @@
       const toast = document.createElement('div');
       toast.className = 'p-4 rounded-2xl bg-[#0a0a0a] text-white border border-white/10 shadow-2xl flex items-center gap-3 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto min-w-[280px] max-w-md';
       toast.innerHTML = `
-        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0 font-bold">âœ“</div>
+        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0 font-bold">✓</div>
         <div class="flex-1">
           <h4 class="text-xs font-semibold text-white/90 uppercase">${title}</h4>
           <p class="text-xs text-white/80 mt-0.5">${message}</p>
@@ -2475,7 +2390,7 @@
         menu_label: "Menu",
         search_placeholder: "Cari produk atau SKU...",
         hero_tagline: "Connected to the Future",
-        hero_subtitle: "Independent Cable & Connectivity Studio â€” Menghadirkan kabel bersertifikasi tinggi, adaptor video 8K, dan sistem konektivitas enterprise.",
+        hero_subtitle: "Independent Cable & Connectivity Studio — Menghadirkan kabel bersertifikasi tinggi, adaptor video 8K, dan sistem konektivitas enterprise.",
         hero_clients: "200+ Klien B2B & Distributor Resmi",
         hero_b2b_btn: "Ajukan Kerjasama B2B",
         hero_catalog_btn: "Jelajahi Katalog",
@@ -2516,7 +2431,7 @@
         menu_label: "Menu",
         search_placeholder: "Search product or SKU...",
         hero_tagline: "Connected to the Future",
-        hero_subtitle: "Independent Cable & Connectivity Studio â€” Delivering high-performance certified cabling, 8K video adapters, and enterprise connectivity systems.",
+        hero_subtitle: "Independent Cable & Connectivity Studio — Delivering high-performance certified cabling, 8K video adapters, and enterprise connectivity systems.",
         hero_clients: "200+ Corporate B2B Clients & Distributors",
         hero_b2b_btn: "Start B2B Supply",
         hero_catalog_btn: "Browse Catalog",
@@ -2548,45 +2463,45 @@
         directions_btn: "Get Directions"
       },
       zh: {
-        nav_home: "é¦–é¡µ",
-        nav_marketplace: "å®˜æ–¹å•†åŸŽ",
-        nav_products: "äº§å“ç›®å½•",
-        nav_categories: "äº§å“åˆ†ç±»",
-        nav_b2b: "B2B é‡‡è´­",
-        nav_contact: "è”ç³»æˆ‘ä»¬",
-        menu_label: "èœå•",
-        search_placeholder: "æœç´¢äº§å“æˆ– SKU...",
+        nav_home: "首页",
+        nav_marketplace: "官方商城",
+        nav_products: "产品目录",
+        nav_categories: "产品分类",
+        nav_b2b: "B2B 采购",
+        nav_contact: "联系我们",
+        menu_label: "菜单",
+        search_placeholder: "搜索产品或 SKU...",
         hero_tagline: "Connected to the Future",
-        hero_subtitle: "ç‹¬ç«‹çº¿ç¼†ä¸Žè¿žæŽ¥æŠ€æœ¯å·¥ä½œå®¤ â€” æä¾›é«˜æ€§èƒ½è®¤è¯çº¿ç¼†ã€8K è§†é¢‘è½¬æŽ¥å™¨åŠä¼ä¸šçº§æœåŠ¡å™¨è¿žæŽ¥ç³»ç»Ÿã€‚",
-        hero_clients: "200+ ä¼ä¸šé‡‡è´­å®¢æˆ·ä¸Žå®˜æ–¹åˆ†é”€å•†",
-        hero_b2b_btn: "ç”³è¯· B2B é‡‡è´­",
-        hero_catalog_btn: "æµè§ˆå®Œæ•´ç›®å½•",
-        sec_marketplace_eyebrow: "å®˜æ–¹æ——èˆ°åº—å±•ç¤º",
-        sec_marketplace_title: "Howell å®˜æ–¹åœ¨çº¿å•†åŸŽ",
-        sec_marketplace_desc: "åœ¨æ‚¨é¦–é€‰çš„ç”µå•†å¹³å°ç›´æŽ¥è´­ä¹°å®˜æ–¹è®¤è¯åŽŸè£…æ­£å“ã€‚",
-        sec_categories_eyebrow: "æ ¸å¿ƒäº§å“ç³»åˆ—",
-        sec_categories_title: "ä¸»è¥çº¿ç¼†ä¸Žè½¬æŽ¥å™¨åˆ†ç±»",
-        sec_catalog_eyebrow: "å®˜æ–¹äº§å“ç›®å½•",
-        sec_catalog_title: "è®¤è¯çº¿ç¼†ä¸Žè¿žæŽ¥å™¨äº§å“ç›®å½•",
-        sec_catalog_desc: "Howell çŽ°è´§è®¤è¯äº§å“ï¼Œæ”¯æŒé›¶å”®å¿«æ·å‘è´§ä¸Žå¤§åž‹å·¥ç¨‹é‡‡è´­ã€‚",
-        sec_b2b_eyebrow: "ä¼ä¸šé‡‡è´­ä¸Žæ‰¹å‘",
-        sec_b2b_title: "Howell B2B ä¾›åº”é“¾ä¸Žå¤§å®—é‡‡è´­",
-        sec_b2b_desc: "å®˜æ–¹å·¥åŽ‚ç›´ä¾›çº¿ç¼†è§£å†³æ–¹æ¡ˆï¼ŒISO/CE åŒé‡è®¤è¯ï¼Œå®˜æ–¹è´¨ä¿ï¼Œå…¨å°å°¼ä¼˜å…ˆé…é€ã€‚",
-        btn_see_more: "æŸ¥çœ‹æ›´å¤šäº§å“",
-        btn_show_less: "æ”¶èµ·äº§å“åˆ—è¡¨",
-        showing_products: "æ˜¾ç¤º",
-        of_products: "å…±",
-        products_label: "ä»¶çŽ°è´§äº§å“",
-        contact_modal_eyebrow: "å®˜æ–¹è”ç³»æ–¹å¼ä¸Žæ¸ é“",
-        contact_modal_title: "è”ç³» HOWELL å°å°¼æ€»éƒ¨",
-        contact_modal_desc: "å®˜æ–¹å®¢æˆ·æœåŠ¡ã€æ€»éƒ¨åœ°å€åŠè®¤è¯æ²Ÿé€šæ¸ é“ã€‚",
-        address_label: "æ€»éƒ¨åœ°å€",
-        wa_label: "å®˜æ–¹ WhatsApp",
-        wa_btn: "WhatsApp åœ¨çº¿å’¨è¯¢",
-        email_label: "å®¢æœç”µå­é‚®ç®±",
-        email_btn: "å‘é€ç”µå­é‚®ä»¶",
-        medsos_label: "å®˜æ–¹ç¤¾äº¤åª’ä½“",
-        directions_btn: "æ‰“å¼€åœ°å›¾å¯¼èˆª"
+        hero_subtitle: "独立线缆与连接技术工作室 — 提供高性能认证线缆、8K 视频转接器及企业级服务器连接系统。",
+        hero_clients: "200+ 企业采购客户与官方分销商",
+        hero_b2b_btn: "申请 B2B 采购",
+        hero_catalog_btn: "浏览完整目录",
+        sec_marketplace_eyebrow: "官方旗舰店展示",
+        sec_marketplace_title: "Howell 官方在线商城",
+        sec_marketplace_desc: "在您首选的电商平台直接购买官方认证原装正品。",
+        sec_categories_eyebrow: "核心产品系列",
+        sec_categories_title: "主营线缆与转接器分类",
+        sec_catalog_eyebrow: "官方产品目录",
+        sec_catalog_title: "认证线缆与连接器产品目录",
+        sec_catalog_desc: "Howell 现货认证产品，支持零售快捷发货与大型工程采购。",
+        sec_b2b_eyebrow: "企业采购与批发",
+        sec_b2b_title: "Howell B2B 供应链与大宗采购",
+        sec_b2b_desc: "官方工厂直供线缆解决方案，ISO/CE 双重认证，官方质保，全印尼优先配送。",
+        btn_see_more: "查看更多产品",
+        btn_show_less: "收起产品列表",
+        showing_products: "显示",
+        of_products: "共",
+        products_label: "件现货产品",
+        contact_modal_eyebrow: "官方联系方式与渠道",
+        contact_modal_title: "联系 HOWELL 印尼总部",
+        contact_modal_desc: "官方客户服务、总部地址及认证沟通渠道。",
+        address_label: "总部地址",
+        wa_label: "官方 WhatsApp",
+        wa_btn: "WhatsApp 在线咨询",
+        email_label: "客服电子邮箱",
+        email_btn: "发送电子邮件",
+        medsos_label: "官方社交媒体",
+        directions_btn: "打开地图导航"
       }
     };
 
@@ -2668,7 +2583,25 @@
     /* ==========================================================================
        10. INITIALIZATION ENTRY POINT & GLOBAL EVENT LISTENERS
        ========================================================================== */
-    document.addEventListener('DOMContentLoaded', () => {
+    window.runIntroLoader = function() {
+      ['site-header', 'hero-rating', 'hero-cta', 'hero-card', 'hero-partners', 'hero-eyebrow', 'hero-title'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.remove('opacity-0', '-translate-y-4', 'translate-y-3', 'translate-y-4', 'scale-95');
+          el.classList.add('opacity-100');
+        }
+      });
+      document.getElementById('hero-title')?.classList.add('revealed');
+    };
+    window.initLiveClock = function() {};
+    window.initScrollReveals = function() {
+      document.querySelectorAll('.reveal-line-inner, .word-reveal-span').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    };
+
+    function initApp() {
       runIntroLoader();
       initLiveClock();
       initScrollReveals();
@@ -2679,141 +2612,108 @@
       updateStoreShowcaseDisplay();
       startStoreAutoplay();
       if (window.lucide) lucide.createIcons();
+    }
 
-      // Keyboard ESC shortcut to close any open modal cleanly
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeModal('image-zoom-modal');
-          closeModal('product-detail-modal');
-          closeB2BModal();
-          closeModal('support-howell-modal');
-          toggleNavMenu(false);
-        }
-      });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+
+    // Keyboard ESC shortcut to close any open modal cleanly
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal('image-zoom-modal');
+        closeModal('product-detail-modal');
+        closeB2BModal();
+        closeModal('support-howell-modal');
+        toggleNavMenu(false);
+      }
     });
   </script>
-  <!-- Sticky Floating Mobile Cart Button -->
-  <div id="floating-cart-btn" onclick="toggleCartDrawer(true)" class="fixed bottom-6 right-6 z-[100] transition-all duration-300 hidden">
-    <button class="bg-[#0a0a0a] text-white border border-white/20 rounded-full px-5 py-3.5 shadow-2xl flex items-center gap-3 hover:scale-105 active:scale-95 transition-all">
-      <div class="relative flex items-center justify-center">
-        <i data-lucide="shopping-bag" class="w-5 h-5 text-emerald-400"></i>
-        <span class="cart-badge-count absolute -top-2 -right-2.5 bg-emerald-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-black">0</span>
-      </div>
-      <div class="flex flex-col text-left">
-        <span id="floating-cart-count" class="text-[10px] uppercase font-mono tracking-wider text-white/60">0 Items</span>
-        <span id="floating-cart-total" class="text-xs font-bold text-emerald-400">Rp 0</span>
-      </div>
-      <span class="bg-white/10 px-2.5 py-1 rounded-full text-xs text-white">Lihat â†’</span>
-    </button>
-  </div>
+  <!-- Floating Mobile Cart Button -->
+  <button id="floating-cart-btn" onclick="toggleCartDrawer(true)" class="hidden fixed bottom-6 right-6 z-40 bg-slate-900 text-white p-3.5 px-5 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-all border border-slate-700">
+    <div class="relative">
+      <i data-lucide="shopping-cart" class="w-5 h-5 text-amber-400"></i>
+      <span class="cart-badge-count hidden absolute -top-2 -right-2 bg-amber-400 text-slate-950 font-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+    </div>
+    <div class="text-left pr-1">
+      <div id="floating-cart-count" class="text-[10px] uppercase tracking-wider text-amber-400 font-extrabold">0 Items</div>
+      <div id="floating-cart-total" class="text-xs font-black">Rp 0</div>
+    </div>
+  </button>
 
-  <!-- Shopping Cart Side-Drawer Modal -->
-  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-[140] bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none"></div>
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 z-[150] w-full max-w-md bg-white/95 backdrop-blur-2xl border-l border-slate-200 p-6 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 text-slate-900">
-    
-    <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+  <!-- Shopping Cart Side-Drawer -->
+  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 pointer-events-none opacity-0 transition-opacity duration-300"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between border-l border-slate-200">
+    <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
       <div class="flex items-center gap-2">
-        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-slate-900 leading-none">Keranjang Belanja</h3>
-          <span class="text-xs text-slate-500 mt-0.5 block">Official HOWELL Store</span>
-        </div>
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-600"></i>
+        <h3 class="text-base font-extrabold text-slate-900">Keranjang Belanja</h3>
       </div>
-      <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all">
-        âœ•
+      <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center text-slate-600 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
       </button>
     </div>
-
-    <div id="cart-drawer-items" class="flex-1 overflow-y-auto py-4 space-y-3">
-      <!-- Rendered by JS -->
-    </div>
-
-    <div class="pt-4 border-t border-slate-200 space-y-3">
-      <div class="flex items-center justify-between text-sm">
-        <span class="text-slate-500 font-medium">Subtotal Produk</span>
-        <span id="cart-drawer-subtotal" class="font-extrabold text-slate-900 text-base">Rp 0</span>
+    <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+    <div class="p-5 border-t border-slate-200 bg-slate-50 space-y-4">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Subtotal Pembelian:</span>
+        <span id="cart-drawer-subtotal" class="text-lg font-black text-emerald-600">Rp 0</span>
       </div>
-      <div class="flex items-center justify-between text-xs text-emerald-600 font-medium bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
-        <span class="flex items-center gap-1">ðŸ›¡ï¸ Garansi Resmi 12 Bulan</span>
-        <span>Pengiriman Kilat</span>
-      </div>
-      <button onclick="openCheckoutModal()" id="cart-checkout-btn" class="w-full btn-pill">
-        <span class="btn-pill-inner bg-emerald-600 text-white w-full justify-between has-arrow py-3.5">
-          <span>Lanjut ke Pembayaran QRIS</span>
-          <span class="btn-pill-badge bg-white text-emerald-700">âž”</span>
-        </span>
+      <button id="cart-checkout-btn" onclick="openCheckoutModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all">
+        <i data-lucide="credit-card" class="w-4 h-4"></i> Lanjut ke Pembayaran QRIS
       </button>
     </div>
   </div>
 
-  <!-- QRIS Payment Checkout Modal -->
-  <div id="qris-checkout-modal" class="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-xl rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-slate-200 text-slate-900 max-h-[92vh] overflow-y-auto">
-      
-      <button onclick="closeModal('qris-checkout-modal')" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all z-10" title="Tutup Modal (ESC)">
-        âœ•
+  <!-- QRIS Checkout Modal -->
+  <div id="qris-checkout-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('qris-checkout-modal')" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500">
+        <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
-      <div id="qris-checkout-content">
-        <!-- Step 1: Customer Form -->
-        <div id="qris-step-form">
-          <div class="mb-6">
-            <div class="eyebrow mb-1">Checkout & Pembayaran</div>
-            <h3 class="text-2xl font-bold tracking-tight text-slate-900">Detail Pengiriman & QRIS Gateway</h3>
-            <p class="text-xs text-slate-500 mt-1">Lengkapi data penerima untuk memproses pembayaran QRIS resmi.</p>
+      <div id="qris-step-form" class="space-y-5">
+        <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+            <i data-lucide="qr-code" class="w-5 h-5"></i>
           </div>
-
-          <form onsubmit="submitQrisCheckout(event)" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Pembeli *</label>
-                <input type="text" id="qris-cust-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-slate-900 focus:outline-none">
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp *</label>
-                <input type="tel" id="qris-cust-phone" required placeholder="081234567890" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-slate-900 focus:outline-none">
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap Pengiriman *</label>
-              <textarea id="qris-cust-address" rows="2" required placeholder="Jl. Nama Jalan No. X, RT/RW, Kelurahan, Kota, Kode Pos" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-slate-900 focus:outline-none resize-none"></textarea>
-            </div>
-
-            <!-- Order Summary Box -->
-            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <div class="text-xs font-bold text-slate-900 border-b border-slate-200 pb-2 flex justify-between">
-                <span>Ringkasan Pesanan</span>
-                <span id="qris-order-item-count">0 Items</span>
-              </div>
-              <div id="qris-order-items-list" class="max-h-32 overflow-y-auto space-y-1.5 text-xs text-slate-600 pr-1">
-                <!-- Populated by JS -->
-              </div>
-              <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-sm font-extrabold text-slate-900">
-                <span>Total Pembayaran (QRIS):</span>
-                <span id="qris-order-total-price" class="text-base text-emerald-600">Rp 0</span>
-              </div>
-            </div>
-
-            <button type="submit" class="w-full btn-pill mt-2">
-              <span class="btn-pill-inner bg-slate-900 text-white w-full justify-between has-arrow py-3.5">
-                <span>Tampilkan Barcode QRIS & Bayar</span>
-                <span class="btn-pill-badge bg-emerald-500 text-white">ðŸ“²</span>
-              </span>
-            </button>
-          </form>
+          <div>
+            <h3 class="text-lg font-extrabold text-slate-900">Checkout & Pembayaran QRIS</h3>
+            <p class="text-xs text-slate-500">Isi data pengiriman untuk konfirmasi pesanan</p>
+          </div>
         </div>
 
-        <!-- Step 2: QRIS Display -->
-        <div id="qris-step-display" class="hidden text-center">
-          <!-- Rendered by JS -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+          <div class="flex justify-between items-center text-xs text-slate-500">
+            <span>Total Pesanan (<span id="qris-order-item-count">0 Items</span>):</span>
+            <span id="qris-order-total-price" class="font-extrabold text-emerald-600">Rp 0</span>
+          </div>
+          <div id="qris-order-items-list" class="max-h-28 overflow-y-auto pt-1 border-t border-slate-200 space-y-1"></div>
         </div>
+
+        <form onsubmit="submitQrisCheckout(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap Pembeli *</label>
+            <input type="text" id="qris-cust-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 bg-white">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">No. WhatsApp Active *</label>
+            <input type="tel" id="qris-cust-phone" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 bg-white">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Alamat Pengiriman Lengkap *</label>
+            <textarea id="qris-cust-address" required rows="2" placeholder="Jl. Sudirman No. 12, Kel. Gelora, Kec. Tanah Abang, Jakarta Pusat" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 bg-white"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all">
+            Tampilkan QRIS Barcode <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </form>
       </div>
 
+      <div id="qris-step-display" class="hidden"></div>
     </div>
   </div>
 </body>
 </html>
-
