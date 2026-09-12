@@ -1096,19 +1096,13 @@ function renderFeaturedProducts() {
     const encodedSrc = encodeURI(product.image);
 
     return `
-      <div onclick="openProductDetail('${product.id}')" class="group relative flex flex-col cursor-pointer bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-slate-300 select-none font-sans">
-        <div class="aspect-square w-full bg-[#f7f7f7] rounded-xl overflow-hidden relative flex items-center justify-center p-3 sm:p-4 group-hover:bg-[#f0f0f0] transition-colors">
-          <span class="absolute top-2 left-2 bg-[#ff5a00] text-white text-[9px] sm:text-[10px] font-extrabold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide z-10">
-            ${product.badge || `${discountPercent}% OFF`}
-          </span>
-          <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+      <div onclick="openProductDetail('${product.id}')" class="group flex flex-col cursor-pointer bg-transparent select-none">
+        <div class="relative w-full aspect-square bg-[#f4f4f4] rounded-[6px] overflow-hidden flex items-center justify-center p-5 group-hover:bg-[#ededed] transition-colors duration-200">
+          <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
         </div>
-        <div class="p-3 pt-2.5 flex flex-col justify-between flex-1">
-          <h3 class="text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-amber-600 line-clamp-2 leading-snug transition-colors">${product.name}</h3>
-          <div class="mt-2 flex items-baseline gap-1.5 flex-wrap">
-            <span class="text-sm sm:text-base font-black text-[#e02b20]">${formattedPrice}</span>
-            <span class="text-xs text-slate-400 line-through font-medium">${formatRupiah(originalPrice)}</span>
-          </div>
+        <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
+          <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-[#c4301c] transition-colors mb-1.5">${product.name}</h3>
+          <div class="text-[15px] sm:text-[16px] font-bold text-[#c4301c] mt-auto">${formattedPrice}</div>
         </div>
       </div>
     `;
