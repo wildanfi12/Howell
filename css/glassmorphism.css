@@ -955,24 +955,24 @@ body {
   .page-break-inside-avoid { break-inside: avoid !important; }
 }
 
-/* ── Header Brand Logo (Medium & Prominent) ─────────────────── */
+/* ── Header Brand Logo (Balanced Medium) ─────────────────── */
 .header-brand-logo {
-  height: 38px !important;
-  max-height: 42px !important;
+  height: 28px !important;
+  max-height: 30px !important;
   width: auto !important;
   display: block !important;
 }
 
 @media (min-width: 640px) {
   .header-brand-logo {
-    height: 46px !important;
-    max-height: 48px !important;
+    height: 32px !important;
+    max-height: 34px !important;
   }
 }
 
 @media (min-width: 1024px) {
   .header-brand-logo {
-    height: 52px !important;
-    max-height: 54px !important;
+    height: 38px !important;
+    max-height: 40px !important;
   }
 }

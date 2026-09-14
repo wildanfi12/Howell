@@ -57,23 +57,23 @@
       padding: 0;
     }
 
-    /* Header Brand Logo (Medium & Prominent) */
+    /* Header Brand Logo (Balanced Medium) */
     .header-brand-logo {
-      height: 38px !important;
-      max-height: 42px !important;
+      height: 28px !important;
+      max-height: 30px !important;
       width: auto !important;
       display: block !important;
     }
     @media (min-width: 640px) {
       .header-brand-logo {
-        height: 46px !important;
-        max-height: 48px !important;
+        height: 32px !important;
+        max-height: 34px !important;
       }
     }
     @media (min-width: 1024px) {
       .header-brand-logo {
-        height: 52px !important;
-        max-height: 54px !important;
+        height: 38px !important;
+        max-height: 40px !important;
       }
     }
 
@@ -411,11 +411,11 @@
   <div id="top-brand-accent-bar" class="fixed top-0 inset-x-0 h-[3px] z-[60]" style="background: linear-gradient(90deg, #FFC700, #FFE066 50%, #FFC700); box-shadow: 0 0 12px rgba(255,199,0,0.5), 0 0 30px rgba(255,199,0,0.2);"></div>
 
   <header id="site-header" class="glass-header fixed inset-x-0 top-[3px] z-50 transition-all duration-500">
-    <div class="shell flex items-center justify-between gap-2 sm:gap-4 py-3 sm:py-4 min-h-[4.5rem] sm:min-h-[5rem]">
+    <div class="shell flex items-center justify-between gap-1.5 sm:gap-4 py-2 sm:py-3 min-h-[3.75rem] sm:min-h-[4.5rem]">
       
       <!-- Left: Howell Brand Logo -->
       <button onclick="scrollToId('home')" class="flex items-center group shrink-0 cursor-pointer" title="HOWELL Home">
-        <img src="assets/howell-logo-white.png?v=20260914-v8" alt="HOWELL Logo" class="header-brand-logo object-contain group-hover:scale-[1.03] transition-transform duration-300 drop-shadow-md" style="height: 48px; max-height: 52px; width: auto;">
+        <img src="assets/howell-logo-white.png?v=20260914-v9" alt="HOWELL Logo" class="header-brand-logo object-contain group-hover:scale-[1.03] transition-transform duration-300 drop-shadow-md" style="height: 38px; max-height: 40px; width: auto;">
       </button>
 
       <!-- Center: Primary Navigation (desktop) -->
@@ -427,34 +427,34 @@
       </nav>
 
       <!-- Right Controls -->
-      <div class="flex items-center gap-2 sm:gap-2.5">
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
         
         <!-- Search Bar -->
         <form onsubmit="onHeaderSearchSubmit(event)" class="relative flex items-center group">
           <input type="text" id="header-search-input" data-i18n-ph="search_placeholder" oninput="handleSearchInput(this.value)" onfocus="if(window.scrollY < 400) scrollToId('catalog-section');" placeholder="Cari produk..." 
-            class="w-28 sm:w-48 md:w-56 focus:w-36 sm:focus:w-56 pl-8 sm:pl-9 pr-3 py-2 rounded-xl border border-white/15 bg-white/5 text-[11px] sm:text-xs font-medium text-white placeholder-white/40 focus:outline-none focus:border-[#FFC700]/60 focus:bg-white/10 transition-all duration-300 shadow-sm">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-white/50 absolute left-2.5 pointer-events-none group-focus-within:text-[#FFC700] transition-colors"></i>
+            class="w-24 sm:w-44 md:w-56 focus:w-32 sm:focus:w-56 pl-7 sm:pl-9 pr-2.5 sm:pr-3 py-1.5 sm:py-2 rounded-xl border border-white/15 bg-white/5 text-[11px] sm:text-xs font-medium text-white placeholder-white/40 focus:outline-none focus:border-[#FFC700]/60 focus:bg-white/10 transition-all duration-300 shadow-sm">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-white/50 absolute left-2 sm:left-2.5 pointer-events-none group-focus-within:text-[#FFC700] transition-colors"></i>
         </form>
 
         <!-- Cart Button -->
         <button id="navbar-cart-btn" type="button" onclick="toggleCartDrawer(true)" 
-          class="relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-[#FFC700]/10 hover:border-[#FFC700]/50 text-white transition-all duration-300 cursor-pointer group" title="Keranjang Belanja">
+          class="relative flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-[#FFC700]/10 hover:border-[#FFC700]/50 text-white transition-all duration-300 cursor-pointer group" title="Keranjang Belanja">
           <div class="relative">
             <i data-lucide="shopping-bag" class="w-4 h-4 text-[#FFC700] group-hover:scale-110 transition-transform duration-300"></i>
-            <span class="cart-badge-count hidden absolute -top-2.5 -right-2.5 bg-[#FFC700] text-black font-black text-[9px] w-[18px] h-[18px] rounded-full flex items-center justify-center shadow-md">0</span>
+            <span class="cart-badge-count hidden absolute -top-2 -right-2 bg-[#FFC700] text-black font-black text-[9px] w-[17px] h-[17px] rounded-full flex items-center justify-center shadow-md">0</span>
           </div>
-          <span class="hidden sm:inline text-[11px] font-semibold uppercase tracking-widest text-white/80 group-hover:text-[#FFC700] transition-colors">Keranjang</span>
+          <span class="hidden md:inline text-[11px] font-semibold uppercase tracking-widest text-white/80 group-hover:text-[#FFC700] transition-colors">Keranjang</span>
         </button>
 
         <!-- Menu Toggle -->
         <button onclick="toggleNavMenu(true)" 
-          class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 hover:border-[#FFC700]/40 text-white transition-all duration-300 cursor-pointer">
+          class="flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 hover:border-[#FFC700]/40 text-white transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="w-4 h-4 text-[#FFC700]"></i>
-          <span class="hidden sm:inline text-[11px] font-semibold uppercase tracking-widest text-white/70" data-i18n="menu_label">Menu</span>
+          <span class="hidden md:inline text-[11px] font-semibold uppercase tracking-widest text-white/70" data-i18n="menu_label">Menu</span>
         </button>
 
         <!-- Language Selector -->
-        <div class="relative">
+        <div class="relative hidden sm:block">
           <button id="lang-selector-btn" onclick="toggleLangDropdown(event)" 
             class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 hover:border-[#FFC700]/40 text-white transition-all duration-300 cursor-pointer">
             <span id="current-lang-flag" class="flex items-center">
@@ -521,24 +521,24 @@
           <span class="text-[11px] font-medium text-white/55 hidden md:block">Beli produk original bergaransi resmi HOWELL:</span>
         </div>
         <!-- Store Links -->
-        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <div class="grid grid-cols-3 sm:flex sm:flex-wrap items-center gap-1.5 sm:gap-3 w-full sm:w-auto">
           <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" 
-            class="hover-lift-pro flex items-center gap-2 px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[11px] font-semibold transition-all duration-300">
-            <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain rounded-sm">
-            <span>Shopee Official</span>
-            <i data-lucide="arrow-up-right" class="w-3 h-3 opacity-50"></i>
+            class="hover-lift-pro flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[10px] sm:text-[11px] font-semibold transition-all duration-300">
+            <img src="assets/shopee-logo.webp" alt="Shopee" class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain rounded-sm shrink-0">
+            <span class="truncate">Shopee</span>
+            <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-50 hidden sm:inline shrink-0"></i>
           </a>
           <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" 
-            class="hover-lift-pro flex items-center gap-2 px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[11px] font-semibold transition-all duration-300">
-            <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain rounded-sm">
-            <span>Tokopedia Official</span>
-            <i data-lucide="arrow-up-right" class="w-3 h-3 opacity-50"></i>
+            class="hover-lift-pro flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[10px] sm:text-[11px] font-semibold transition-all duration-300">
+            <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain rounded-sm shrink-0">
+            <span class="truncate">Tokopedia</span>
+            <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-50 hidden sm:inline shrink-0"></i>
           </a>
           <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" 
-            class="hover-lift-pro flex items-center gap-2 px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[11px] font-semibold transition-all duration-300">
-            <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-sm">
-            <span>TikTok Shop</span>
-            <i data-lucide="arrow-up-right" class="w-3 h-3 opacity-50"></i>
+            class="hover-lift-pro flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-2 rounded-xl border border-white/12 bg-white/5 hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-white text-[10px] sm:text-[11px] font-semibold transition-all duration-300">
+            <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain rounded-sm shrink-0">
+            <span class="truncate">TikTok</span>
+            <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-50 hidden sm:inline shrink-0"></i>
           </a>
         </div>
       </div>
@@ -848,44 +848,44 @@
           <!-- Subtle bg glow -->
           <div class="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255,199,0,0.06) 0%, transparent 70%);"></div>
 
-          <div class="p-8 sm:p-12 lg:p-16 relative z-10">
+          <div class="p-6 sm:p-10 lg:p-16 relative z-10">
             <!-- Logo + Tagline -->
             <div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <img src="assets/howell-logo-white-transparent.png" alt="Howell Logo" class="h-10 sm:h-12 max-h-12 w-auto object-contain drop-shadow-md mb-3">
+                <img src="assets/howell-logo-white-transparent.png" alt="Howell Logo" class="h-8 sm:h-11 max-h-12 w-auto object-contain drop-shadow-md mb-3">
                 <p class="text-white/50 text-xs font-medium tracking-wide max-w-xs">PT Howell Niaga Indonesia — Premier Cable & Connectivity Supplier since 2009</p>
               </div>
-              <button onclick="openSupportModal()" class="btn-howell-primary text-sm self-start sm:self-auto shrink-0">
+              <button onclick="openSupportModal()" class="btn-howell-primary text-xs sm:text-sm self-start sm:self-auto shrink-0">
                 Hubungi Tim Kami →
               </button>
             </div>
 
-            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-10" style="background: linear-gradient(135deg, #FFC700, #FFE066 50%, #FFC700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Connected to the Future.</h2>
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-8 sm:mb-10" style="background: linear-gradient(135deg, #FFC700, #FFE066 50%, #FFC700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Connected to the Future.</h2>
 
             <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-0">
               
-              <div class="stat-item sm:border-r sm:border-[#FFC700]/15 sm:pr-10">
+              <div class="stat-item border-b border-[#FFC700]/15 pb-6 sm:pb-0 sm:border-b-0 sm:border-r sm:border-[#FFC700]/15 sm:pr-10">
                 <div class="flex items-baseline gap-1 mb-2">
-                  <span id="stat-num-products" class="text-5xl sm:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
-                  <span class="text-2xl font-black text-[#FFC700]">+</span>
+                  <span id="stat-num-products" class="text-4xl sm:text-6xl lg:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
+                  <span class="text-xl sm:text-2xl font-black text-[#FFC700]">+</span>
                 </div>
                 <p class="text-sm font-semibold text-white/70 mt-1">Produk Terjual</p>
                 <p class="text-xs text-white/35 mt-0.5">Ke Seluruh Indonesia</p>
               </div>
 
-              <div class="stat-item sm:border-r sm:border-[#FFC700]/15 sm:px-10">
+              <div class="stat-item border-b border-[#FFC700]/15 py-6 sm:py-0 sm:border-b-0 sm:border-r sm:border-[#FFC700]/15 sm:px-10">
                 <div class="flex items-baseline gap-1 mb-2">
-                  <span id="stat-num-clients" class="text-5xl sm:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
-                  <span class="text-2xl font-black text-[#FFC700]">+</span>
+                  <span id="stat-num-clients" class="text-4xl sm:text-6xl lg:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
+                  <span class="text-xl sm:text-2xl font-black text-[#FFC700]">+</span>
                 </div>
                 <p class="text-sm font-semibold text-white/70 mt-1">Klien Korporat B2B</p>
                 <p class="text-xs text-white/35 mt-0.5">Instansi & Perusahaan</p>
               </div>
 
-              <div class="stat-item sm:pl-10">
+              <div class="stat-item pt-6 sm:pt-0 sm:pl-10">
                 <div class="flex items-baseline gap-1 mb-2">
-                  <span id="stat-num-since" class="text-5xl sm:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
+                  <span id="stat-num-since" class="text-4xl sm:text-6xl lg:text-7xl font-black text-[#FFC700] font-sans tracking-tight leading-none">0</span>
                 </div>
                 <p class="text-sm font-semibold text-white/70 mt-1">Tahun Berdiri</p>
                 <p class="text-xs text-white/35 mt-0.5">Lebih dari 15 tahun pengalaman</p>
@@ -3534,7 +3534,7 @@
 
   <!-- Shopping Cart Side-Drawer (Premium) -->
   <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-[200] pointer-events-none opacity-0 transition-opacity duration-400" style="background: rgba(4,4,4,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"></div>
-  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-[22rem] sm:max-w-sm bg-white z-[201] transform translate-x-full transition-transform duration-300 flex flex-col" style="box-shadow: -20px 0 60px rgba(0,0,0,0.25);">
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-full sm:max-w-sm bg-white z-[201] transform translate-x-full transition-transform duration-300 flex flex-col" style="box-shadow: -20px 0 60px rgba(0,0,0,0.25);">
     
     <!-- Cart Header — Dark Premium -->
     <div class="flex items-center justify-between px-5 py-4" style="background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%); border-bottom: 1px solid rgba(255,199,0,0.12);">
@@ -3600,8 +3600,8 @@
 
 
   <!-- QRIS & Bank BCA Checkout Modal (Premium) -->
-  <div id="qris-checkout-modal" onclick="if(event.target === this) closeModal('qris-checkout-modal');" class="fixed inset-0 z-[250] pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-4" style="background: rgba(4,4,4,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 relative max-h-[92vh] overflow-y-auto" style="box-shadow: 0 40px 80px rgba(0,0,0,0.4);">
+  <div id="qris-checkout-modal" onclick="if(event.target === this) closeModal('qris-checkout-modal');" class="fixed inset-0 z-[250] pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-2 sm:p-4" style="background: rgba(4,4,4,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 relative max-h-[96vh] sm:max-h-[92vh] overflow-y-auto" style="box-shadow: 0 40px 80px rgba(0,0,0,0.4);">
       
       <!-- Checkout Modal Header — Premium -->
       <div class="px-5 sm:px-7 pt-5 pb-4 flex items-center justify-between border-b border-slate-100">
