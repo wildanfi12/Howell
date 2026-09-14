@@ -1,7 +1,7 @@
-﻿/**
+/**
  * Format numerical price to Indonesian Rupiah (Rp)
  */
-function formatRupiah(amount) {
+window.formatRupiah = function formatRupiah(amount) {
   if (!amount && amount !== 0) return 'Rp 0';
   return 'Rp ' + Math.round(amount).toLocaleString('id-ID');
 }
@@ -2355,3 +2355,9 @@ const HOWELL_PRODUCTS = [
     image: "assets/Produk/Produk Batch 1/10. VGA Cable/VGA0106.png"
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.HOWELL_CATEGORIES = HOWELL_CATEGORIES;
+  window.HOWELL_PRODUCTS = HOWELL_PRODUCTS;
+  window.products = HOWELL_PRODUCTS;
+}
