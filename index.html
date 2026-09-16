@@ -649,58 +649,85 @@
 
 
     <!-- ==================== 5. PRODUCTS CATALOG (CableTime Tech Collections Style) ==================== -->
-    <section id="catalog-section" class="bg-white py-10 border-b border-[#e5e5e5] font-sans">
+    <section id="catalog-section" class="bg-white py-8 sm:py-10 border-b border-[#e5e5e5] font-sans">
       <div class="shell">
         
-        <!-- CableTime-Style Toolbar (Menyaring Pill, Count, Sort by Dropdown, View as Grid/List) -->
-        <div class="flex items-center justify-between pb-5 mb-8 border-b border-[#e5e5e5]">
-          
-          <!-- Left: Menyaring / Filter Toggle Button, Product Count & Print Catalog PDF Button -->
-          <div class="flex items-center gap-3 flex-wrap">
-            <button type="button" onclick="toggleCatalogSidebar()" id="btn-toggle-filter" class="flex items-center gap-2 px-4 py-2 rounded-full border border-black bg-white text-[13px] font-semibold text-black hover:bg-black hover:text-white transition-all select-none cursor-pointer">
-              <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
-              <span id="filter-btn-text">Menyaring</span>
-            </button>
-            <span id="catalog-count" class="text-[13px] text-slate-800 font-semibold">137 produk</span>
+        <!-- Section Header -->
+        <div class="mb-5">
+          <div class="eyebrow mb-1">Katalog Resmi HOWELL</div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">Jelajahi Produk Howell</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">137 kabel, adapter, dan solusi konektivitas bersertifikasi resmi.</p>
+        </div>
 
-            <button type="button" onclick="printCatalogPDF()" class="flex items-center gap-2 px-4 py-2 rounded-full border border-black bg-black text-white hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-[13px] font-bold transition-all shadow-md select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
-              <i data-lucide="printer" class="w-4 h-4 text-[#FFC700] group-hover:text-black transition-colors"></i>
-              <span>Cetak PDF Katalog</span>
-            </button>
-          </div>
-
-          <!-- Right: Sort By & View As -->
-          <div class="flex items-center gap-4">
-            <!-- Sort By Dropdown -->
-            <div class="flex items-center gap-2 text-[13px] text-slate-700 font-normal">
-              <span class="hidden sm:inline font-medium">Urutkan berdasarkan:</span>
-              <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-slate-300 rounded-full px-4 py-2 text-[13px] font-medium text-slate-800 bg-white focus:outline-none focus:border-black cursor-pointer">
-                <option value="relevance">Paling relevan</option>
-                <option value="price-asc">Berdasarkan harga, rendah ke tinggi</option>
-                <option value="price-desc">Berdasarkan harga, tinggi ke rendah</option>
-                <option value="name">Berdasarkan abjad, A-Z</option>
-              </select>
-            </div>
-
-            <!-- View As Toggle Icons -->
-            <div class="flex items-center gap-1.5 border-l border-slate-200 pl-4 text-[13px] text-slate-700 font-normal">
-              <span class="hidden md:inline mr-1 font-medium">Lihat sebagai:</span>
-              <button type="button" onclick="setCatalogViewMode('grid')" id="view-mode-grid-btn" class="w-8 h-8 rounded flex items-center justify-center bg-black text-[#FFC700] cursor-pointer transition-all shadow-sm" title="Tampilan Grid">
-                <i data-lucide="layout-grid" class="w-4 h-4"></i>
-              </button>
-              <button type="button" onclick="setCatalogViewMode('list')" id="view-mode-list-btn" class="w-8 h-8 rounded flex items-center justify-center bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer transition-all" title="Tampilan List">
-                <i data-lucide="list" class="w-4 h-4"></i>
-              </button>
-            </div>
+        <!-- Quick Category Filter Chips Bar (Horizontal Touch Scroll) -->
+        <div class="mb-5 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div id="catalog-category-chips" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none no-scrollbar select-none">
+            <!-- Populated dynamically by JavaScript -->
           </div>
         </div>
 
-        <!-- Main Catalog Layout: Flat Left Sidebar + Product Grid -->
-        <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+        <!-- Catalog Toolbar (Filter Toggle, Count, Sort, View Mode, PDF) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-[#e5e5e5]">
           
-          <!-- Left Collapsible Filter Sidebar (CableTime Flat Minimalist Style) -->
-          <aside id="catalog-filter-sidebar" class="w-full lg:w-60 shrink-0 transition-all duration-300">
-            <div class="space-y-0">
+          <!-- Left: Filter Toggle & Count -->
+          <div class="flex items-center gap-2.5">
+            <button type="button" onclick="toggleCatalogSidebar()" id="btn-toggle-filter" class="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-black bg-white text-xs sm:text-[13px] font-semibold text-black hover:bg-black hover:text-white transition-all select-none cursor-pointer">
+              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              <span id="filter-btn-text">Menyaring</span>
+            </button>
+            <span id="catalog-count" class="text-xs sm:text-[13px] text-slate-800 font-semibold">137 produk</span>
+          </div>
+
+          <!-- Right: Sort By & View As & PDF -->
+          <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+            <!-- Sort By Dropdown -->
+            <div class="flex items-center gap-1 sm:gap-2 text-xs sm:text-[13px] text-slate-700">
+              <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-slate-300 rounded-full px-3 py-1.5 sm:py-2 text-xs sm:text-[13px] font-medium text-slate-800 bg-white focus:outline-none focus:border-black cursor-pointer max-w-[145px] sm:max-w-none truncate">
+                <option value="relevance">Paling relevan</option>
+                <option value="price-asc">Harga: Rendah ke Tinggi</option>
+                <option value="price-desc">Harga: Tinggi ke Rendah</option>
+                <option value="name">Abjad: A-Z</option>
+              </select>
+            </div>
+
+            <!-- View As (Desktop & Tablet) -->
+            <div class="hidden sm:flex items-center gap-1 border-l border-slate-200 pl-2 text-slate-700">
+              <button type="button" onclick="setCatalogViewMode('grid')" id="view-mode-grid-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center bg-black text-[#FFC700] cursor-pointer transition-all shadow-sm" title="Tampilan Grid">
+                <i data-lucide="layout-grid" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              </button>
+              <button type="button" onclick="setCatalogViewMode('list')" id="view-mode-list-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer transition-all" title="Tampilan List">
+                <i data-lucide="list" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              </button>
+            </div>
+
+            <!-- Print Catalog PDF -->
+            <button type="button" onclick="printCatalogPDF()" class="flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-full border border-black bg-black text-white hover:bg-[#FFC700] hover:text-black hover:border-[#FFC700] text-xs font-bold transition-all shadow-xs select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
+              <i data-lucide="printer" class="w-3.5 h-3.5 text-[#FFC700] group-hover:text-black transition-colors"></i>
+              <span class="hidden md:inline">Cetak PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile/Tablet Filter Backdrop -->
+        <div id="catalog-filter-backdrop" onclick="toggleCatalogSidebar(false)" class="catalog-filter-backdrop"></div>
+
+        <!-- Main Catalog Layout: Left Sidebar / Mobile Drawer + Product Grid -->
+        <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 relative">
+          
+          <!-- Collapsible Filter (Off-Canvas Drawer on Mobile/Tablet < 1024px, Sidebar on Desktop) -->
+          <aside id="catalog-filter-sidebar" class="catalog-filter-drawer w-full lg:w-60 shrink-0 transition-all duration-300">
+            <!-- Mobile/Tablet Drawer Header -->
+            <div class="filter-drawer-header">
+              <div class="flex items-center gap-2">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#FFC700]"></i>
+                <span class="text-sm font-extrabold text-white">Filter &amp; Menyaring</span>
+              </div>
+              <button type="button" onclick="toggleCatalogSidebar(false)" class="w-8 h-8 rounded-full bg-white/10 text-white hover:bg-white/20 flex items-center justify-center cursor-pointer" title="Tutup Filter">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="filter-drawer-body space-y-0">
               
               <!-- Accordion 1: Harga -->
               <div class="border-b border-[#e5e5e5] py-3.5">
@@ -731,7 +758,7 @@
               <!-- Accordion 2: Perangkat / Kategori -->
               <div class="border-b border-[#e5e5e5] py-3.5">
                 <button type="button" onclick="toggleFilterAccordion('category')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
-                  <span>Perangkat</span>
+                  <span>Perangkat / Kategori</span>
                   <span id="acc-icon-category" class="text-base font-light text-slate-500">-</span>
                 </button>
                 <div id="acc-body-category" class="pt-2 pb-1 space-y-1.5 text-[13px] text-slate-600 max-h-64 overflow-y-auto pr-1">
@@ -758,16 +785,26 @@
               </div>
 
             </div>
+
+            <!-- Mobile/Tablet Drawer Footer -->
+            <div class="filter-drawer-footer">
+              <button type="button" onclick="resetFilters(); toggleCatalogSidebar(false);" class="w-1/3 py-2.5 px-3 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold text-center hover:bg-slate-100 transition-colors cursor-pointer">
+                Reset
+              </button>
+              <button type="button" onclick="toggleCatalogSidebar(false);" class="w-2/3 py-2.5 px-3 rounded-xl bg-black text-[#FFC700] text-xs font-black text-center hover:bg-slate-900 shadow-md transition-colors cursor-pointer">
+                Terapkan Filter
+              </button>
+            </div>
           </aside>
 
           <!-- Right: Product Grid / List Area -->
           <div class="flex-1 w-full min-w-0">
-            <div id="product-catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 w-full">
+            <div id="product-catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6 w-full">
               <!-- Rendered dynamically by JavaScript -->
             </div>
 
             <!-- Load More / See More Button Container -->
-            <div id="catalog-load-more-box" class="mt-12 text-center flex flex-col items-center justify-center gap-3">
+            <div id="catalog-load-more-box" class="mt-10 sm:mt-12 text-center flex flex-col items-center justify-center gap-3">
               <!-- Rendered dynamically by JavaScript -->
             </div>
           </div>
@@ -924,18 +961,18 @@
       <div class="shell relative z-10">
         
         <!-- Upper Grid: Logo & Company Narrative -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16 lg:mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
           
           <!-- Left Col: Howell Emblem Graphic Card -->
-          <div class="lg:col-span-5 flex items-center justify-center">
-            <div class="relative w-full max-w-md p-8 sm:p-12 rounded-3xl bg-white border border-[#e6e5e2] shadow-xl shadow-slate-900/5 flex flex-col items-center justify-center text-center group hover:shadow-2xl transition-all duration-500">
-              <div class="absolute -top-3.5 px-4 py-1 rounded-full bg-[#c4301c] text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+          <div class="md:col-span-5 flex items-center justify-center">
+            <div class="relative w-full max-w-md p-6 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] shadow-xl shadow-slate-900/5 flex flex-col items-center justify-center text-center group hover:shadow-2xl transition-all duration-500">
+              <div class="absolute -top-3 px-3.5 py-0.5 rounded-full bg-[#c4301c] text-white text-[9px] sm:text-[10px] font-black uppercase tracking-widest shadow-md">
                 ESTABLISHED 2009
               </div>
-              <div class="w-full flex items-center justify-center py-6 sm:py-8">
-                <img src="assets/howell-logo.png" alt="Howell Logo" class="max-w-[220px] sm:max-w-[260px] w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-sm">
+              <div class="w-full flex items-center justify-center py-4 sm:py-7">
+                <img src="assets/howell-logo.png" alt="Howell Logo" class="max-w-[180px] sm:max-w-[240px] w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-sm">
               </div>
-              <div class="w-full pt-6 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+              <div class="w-full pt-4 sm:pt-5 border-t border-slate-100 flex items-center justify-between text-[11px] sm:text-xs text-slate-500 font-medium">
                 <span class="flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   Mitra Solusi Terpercaya
@@ -946,37 +983,37 @@
           </div>
 
           <!-- Right Col: Narrative & 3 Pilar -->
-          <div class="lg:col-span-7">
+          <div class="md:col-span-7">
             <span class="text-xs sm:text-sm font-black uppercase tracking-widest text-[#c4301c] block mb-2 font-mono">TENTANG KAMI</span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">HOWELL</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-4 sm:mb-6 leading-tight">HOWELL</h2>
             
-            <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-6 font-normal">
+            <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-5 font-normal">
               Didirikan pada tahun 2009, Howell telah bertransformasi dari pedagang tradisional menjadi mitra Solusi terpercaya yang mencakup B2B (Business to Business), B2C (Business to Consumer), hingga B2G (Business to Government).
             </p>
 
             <!-- 3 Pilar Section -->
-            <div class="p-6 rounded-2xl bg-white border border-[#e6e5e2] shadow-sm mb-6">
-              <p class="text-xs sm:text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <div class="p-4 sm:p-6 rounded-2xl bg-white border border-[#e6e5e2] shadow-sm mb-5">
+              <p class="text-xs sm:text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
                 <span class="w-1.5 h-4 rounded-full bg-[#c4301c]"></span>
                 Filosofi layanan kami di jalin oleh 3 pilar yang tak tergoyahkan:
               </p>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div class="p-3.5 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
-                  <div class="flex items-center gap-2 mb-1.5">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
+                  <div class="flex items-center gap-2 mb-1">
                     <span class="w-5 h-5 rounded-full bg-[#c4301c]/10 text-[#c4301c] font-black text-xs flex items-center justify-center font-mono">1</span>
                     <span class="font-bold text-xs text-slate-900">Kualitas Cermat</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug">Sebagai fondasi utama setiap produk.</p>
                 </div>
-                <div class="p-3.5 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
-                  <div class="flex items-center gap-2 mb-1.5">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
+                  <div class="flex items-center gap-2 mb-1">
                     <span class="w-5 h-5 rounded-full bg-[#c4301c]/10 text-[#c4301c] font-black text-xs flex items-center justify-center font-mono">2</span>
                     <span class="font-bold text-xs text-slate-900">Integritas</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug">Sebagai panduan etika kerja dan bisnis.</p>
                 </div>
-                <div class="p-3.5 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
-                  <div class="flex items-center gap-2 mb-1.5">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-[#c4301c]/40 transition-colors">
+                  <div class="flex items-center gap-2 mb-1">
                     <span class="w-5 h-5 rounded-full bg-[#c4301c]/10 text-[#c4301c] font-black text-xs flex items-center justify-center font-mono">3</span>
                     <span class="font-bold text-xs text-slate-900">Kepercayaan</span>
                   </div>
@@ -1058,48 +1095,102 @@
 
         </div>
 
-        <!-- Custom Product Solution Feature Banner -->
-        <div class="mt-8 lg:mt-12 rounded-3xl bg-white border border-[#e6e5e2] p-8 sm:p-12 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-          <!-- Subtle decorative radial background -->
-          <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-gradient-to-tl from-[#FFC700]/15 via-red-500/5 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+        <!-- Custom Product Solution Feature Flagship Card (Executive B2B) -->
+        <div id="custom-product-solution" class="mt-10 sm:mt-14 rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden transition-all duration-300" style="background: linear-gradient(145deg, #0e0e0e 0%, #161616 100%); border: 1px solid rgba(255,199,0,0.22); box-shadow: 0 30px 70px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,199,0,0.1);">
+          <!-- Subtle decorative radial glow -->
+          <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-gradient-to-tl from-[#FFC700]/15 via-red-500/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
           
-          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div class="max-w-2xl">
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                CUSTOM PRODUCT SOLUTION
+          <div class="relative z-10">
+            <!-- Header Badge & Title -->
+            <div class="max-w-3xl mb-6 sm:mb-8">
+              <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFC700]/10 border border-[#FFC700]/30 text-[#FFC700] text-[10px] font-black uppercase tracking-widest mb-3.5">
+                <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+                B2B OEM &amp; ODM CUSTOMIZATION SOLUTION
+              </span>
+              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight mb-3">
+                CUSTOM PRODUCT SOLUTION<span class="text-[#FFC700]">.</span>
               </h3>
-              <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mb-4">
-                Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong>custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.
+              <p class="text-sm sm:text-base text-white/90 leading-relaxed font-normal mb-2.5">
+                Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong class="text-[#FFC700]">custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.
               </p>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Mulai dari custom desain, spesifikasi, warna, packaging, hingga branding produk dapat disesuaikan dengan kebutuhan dan identitas bisnis Anda.
+              <p class="text-xs sm:text-sm text-white/65 leading-relaxed">
+                Mulai dari custom desain, spesifikasi, warna, packaging, hingga branding produk dapat disesuaikan dengan kebutuhan dan identitas bisnis.
               </p>
             </div>
 
-            <!-- Custom Scope Badges & Action -->
-            <div class="flex flex-col sm:flex-row lg:flex-col gap-4 lg:min-w-[280px] shrink-0">
-              <div class="grid grid-cols-2 gap-2.5">
-                <div class="flex items-center gap-2 p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/80 text-xs font-bold text-slate-800">
-                  <i data-lucide="palette" class="w-4 h-4 text-[#c4301c]"></i>
-                  <span>Custom Desain</span>
+            <!-- 5 Feature Grid Cards (Touch-Friendly Responsive Grid) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8">
+              
+              <!-- Feature 1: Desain -->
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFC700]/40 transition-all flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 text-[#c4301c] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i data-lucide="palette" class="w-5 h-5"></i>
                 </div>
-                <div class="flex items-center gap-2 p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/80 text-xs font-bold text-slate-800">
-                  <i data-lucide="sliders" class="w-4 h-4 text-amber-500"></i>
-                  <span>Spesifikasi Khusus</span>
-                </div>
-                <div class="flex items-center gap-2 p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/80 text-xs font-bold text-slate-800">
-                  <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
-                  <span>Custom Packaging</span>
-                </div>
-                <div class="flex items-center gap-2 p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/80 text-xs font-bold text-slate-800">
-                  <i data-lucide="award" class="w-4 h-4 text-blue-600"></i>
-                  <span>Brand Identity</span>
+                <div>
+                  <h4 class="text-xs sm:text-sm font-extrabold text-white mb-1">Custom Desain &amp; Cetak</h4>
+                  <p class="text-[11px] text-white/60 leading-relaxed">Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.</p>
                 </div>
               </div>
 
-              <button onclick="openB2BModal('Konsultasi Custom Product Solution')" class="btn-howell-primary text-xs w-full py-3.5 flex items-center justify-center gap-2 cursor-pointer shadow-md">
-                <span>Konsultasi Custom Solution</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              <!-- Feature 2: Spesifikasi -->
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFC700]/40 transition-all flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[#FFC700] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i data-lucide="sliders" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs sm:text-sm font-extrabold text-white mb-1">Spesifikasi &amp; Material</h4>
+                  <p class="text-[11px] text-white/60 leading-relaxed">Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi &amp; standar sertifikasi industri.</p>
+                </div>
+              </div>
+
+              <!-- Feature 3: Warna -->
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFC700]/40 transition-all flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs sm:text-sm font-extrabold text-white mb-1">Warna &amp; Finishing</h4>
+                  <p class="text-[11px] text-white/60 leading-relaxed">Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.</p>
+                </div>
+              </div>
+
+              <!-- Feature 4: Packaging -->
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFC700]/40 transition-all flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i data-lucide="package" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs sm:text-sm font-extrabold text-white mb-1">Custom Packaging</h4>
+                  <p class="text-[11px] text-white/60 leading-relaxed">Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.</p>
+                </div>
+              </div>
+
+              <!-- Feature 5: Branding -->
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFC700]/40 transition-all flex items-start gap-3.5 group sm:col-span-2 lg:col-span-2">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <i data-lucide="award" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs sm:text-sm font-extrabold text-white mb-1">Branding &amp; Private Label</h4>
+                  <p class="text-[11px] text-white/60 leading-relaxed">Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Action Bar -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-white/10">
+              <a href="https://wa.me/6281188031976?text=Halo%20PT%20Howell%20Niaga%20Indonesia%2C%20saya%20tertarik%20dengan%20layanan%20Custom%20Product%20Solution%20(OEM%2FODM)%20untuk%20kebutuhan%20bisnis%20kami.%20Mohon%20informasi%20lebih%20lanjut." target="_blank" rel="noopener noreferrer" 
+                class="btn-howell-primary text-xs sm:text-sm px-6 py-3.5 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#FFC700]/25 font-black text-black">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Konsultasi Custom via WhatsApp</span>
+                <span>→</span>
+              </a>
+
+              <button type="button" onclick="openB2BModal('Konsultasi Custom Product Solution')" 
+                class="px-5 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-[#FFC700] text-xs sm:text-sm font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-[#FFC700]"></i>
+                <span>Isi Formulir Penawaran B2B</span>
               </button>
             </div>
           </div>
@@ -1394,19 +1485,44 @@
       </ul>
     </div>
 
-    <!-- Bottom Bar — Language + CTA -->
-    <div class="shell border-t border-white/8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <span class="text-[10px] font-mono text-white/35 uppercase tracking-widest">Language:</span>
+    <!-- Middle Bar — Quick Official Channels on Mobile -->
+    <div class="shell py-3 border-t border-white/8">
+      <div class="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Official Store Channels:</div>
+      <div class="grid grid-cols-3 gap-2">
+        <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-[11px] font-semibold border border-white/10 transition-all">
+          <img src="assets/shopee-logo.webp" alt="Shopee" class="w-3.5 h-3.5 object-contain">
+          <span>Shopee</span>
+        </a>
+        <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-[11px] font-semibold border border-white/10 transition-all">
+          <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-3.5 h-3.5 object-contain">
+          <span>Tokopedia</span>
+        </a>
+        <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-[11px] font-semibold border border-white/10 transition-all">
+          <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-3.5 h-3.5 object-contain rounded-xs">
+          <span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar — Language + Direct WA / Project CTA -->
+    <div class="shell border-t border-white/8 py-4 safe-bottom flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono text-white/35 uppercase tracking-widest">Lang:</span>
         <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1">
-          <button onclick="setLanguage('id')" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/60 hover:text-white cursor-pointer">🇮🇩 ID</button>
-          <button onclick="setLanguage('en')" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/60 hover:text-white cursor-pointer">🇬🇧 EN</button>
-          <button onclick="setLanguage('zh')" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/60 hover:text-white cursor-pointer">🇨🇳 中文</button>
+          <button onclick="setLanguage('id')" class="flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/70 hover:text-white cursor-pointer">🇮🇩 ID</button>
+          <button onclick="setLanguage('en')" class="flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/70 hover:text-white cursor-pointer">🇬🇧 EN</button>
+          <button onclick="setLanguage('zh')" class="flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-semibold text-white/70 hover:text-white cursor-pointer">🇨🇳 中文</button>
         </div>
       </div>
-      <button onclick="toggleNavMenu(false); openB2BModal();" class="btn-howell-primary text-xs px-5 py-2.5 cursor-pointer" data-i18n="hero_b2b_btn">
-        Start a Project →
-      </button>
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <a href="https://wa.me/6281188031976" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-600 hover:text-white text-xs font-bold transition-all cursor-pointer">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+          <span>WhatsApp CS</span>
+        </a>
+        <button onclick="toggleNavMenu(false); openB2BModal();" class="flex-1 sm:flex-initial btn-howell-primary text-xs px-5 py-2.5 cursor-pointer text-black font-extrabold" data-i18n="hero_b2b_btn">
+          Start a Project →
+        </button>
+      </div>
     </div>
 
   </div>
@@ -2304,6 +2420,12 @@
       if (typeof state !== 'undefined') {
         state.activeCategory = catId;
         state.catalogExpanded = false;
+      }
+      if (typeof toggleCatalogSidebar === 'function' && window.innerWidth < 1024) {
+        toggleCatalogSidebar(false);
+      }
+      if (typeof renderCategoryChips === 'function') {
+        renderCategoryChips();
       }
       if (typeof CATEGORY_BANNERS !== 'undefined' && CATEGORY_BANNERS[catId]) {
         if (typeof switchCategoryBanner === 'function') switchCategoryBanner(catId);
@@ -3477,6 +3599,31 @@
       setTimeout(checkView, 400);
     };
 
+    function initSliderTouchSwipe() {
+      function addSwipe(elId, onLeft, onRight) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        let startX = 0;
+        let startY = 0;
+        el.addEventListener('touchstart', (e) => {
+          if (!e.touches || e.touches.length === 0) return;
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        }, { passive: true });
+        el.addEventListener('touchend', (e) => {
+          if (!e.changedTouches || e.changedTouches.length === 0) return;
+          const dx = e.changedTouches[0].clientX - startX;
+          const dy = e.changedTouches[0].clientY - startY;
+          if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) onLeft();
+            else onRight();
+          }
+        }, { passive: true });
+      }
+      addSwipe('category-banner-slider-box', () => stepCategoryBanner(1), () => stepCategoryBanner(-1));
+      addSwipe('store-showcase-slider-box', () => stepStoreShowcase(1), () => stepStoreShowcase(-1));
+    }
+
     function initApp() {
       runIntroLoader();
       initLiveClock();
@@ -3484,10 +3631,14 @@
       initStatsCounterAnimation();
       setLanguage(window.currentLanguage);
       renderCatalogGrid();
+      if (typeof renderCategoryChips === 'function') {
+        renderCategoryChips();
+      }
       updateBannerSliderDisplay();
       startBannerAutoplay();
       updateStoreShowcaseDisplay();
       startStoreAutoplay();
+      initSliderTouchSwipe();
       
       const navCartBtn = document.getElementById('navbar-cart-btn');
       if (navCartBtn) {

@@ -752,20 +752,72 @@ function toggleFilterAccordion(type) {
   }
 }
 
-// CableTime Sidebar Toggle Controller
-function toggleCatalogSidebar() {
+// CableTime Sidebar Toggle Controller (Desktop inline / Mobile & Tablet off-canvas drawer)
+window.toggleCatalogSidebar = function toggleCatalogSidebar(forceState) {
   const sidebar = document.getElementById('catalog-filter-sidebar');
+  const backdrop = document.getElementById('catalog-filter-backdrop');
   const btn = document.getElementById('btn-toggle-filter');
   if (!sidebar) return;
-  sidebar.classList.toggle('hidden');
-  if (btn) {
-    if (sidebar.classList.contains('hidden')) {
-      btn.className = 'flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 bg-white text-[13px] font-medium text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all select-none cursor-pointer';
+
+  const isMobileOrTablet = window.innerWidth < 1024;
+
+  if (isMobileOrTablet) {
+    const shouldOpen = typeof forceState === 'boolean' ? forceState : !sidebar.classList.contains('open');
+    if (shouldOpen) {
+      sidebar.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
     } else {
-      btn.className = 'flex items-center gap-2 px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white text-[13px] font-medium shadow-sm transition-all select-none cursor-pointer';
+      sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  } else {
+    // Desktop inline toggle
+    if (typeof forceState === 'boolean') {
+      if (forceState) sidebar.classList.remove('hidden');
+      else sidebar.classList.add('hidden');
+    } else {
+      sidebar.classList.toggle('hidden');
+    }
+    if (btn) {
+      if (sidebar.classList.contains('hidden')) {
+        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-slate-300 bg-white text-xs sm:text-[13px] font-medium text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all select-none cursor-pointer';
+      } else {
+        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white text-xs sm:text-[13px] font-medium shadow-sm transition-all select-none cursor-pointer';
+      }
     }
   }
-}
+};
+
+// Quick Category Filter Chips Renderer (Touch Scroll)
+window.renderCategoryChips = function renderCategoryChips() {
+  const container = document.getElementById('catalog-category-chips');
+  if (!container || typeof HOWELL_CATEGORIES === 'undefined') return;
+
+  const allCount = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.length : 137;
+  const isAllActive = !state.activeCategory || state.activeCategory === 'all';
+
+  let html = `
+    <button type="button" onclick="filterByCategory('all')" class="category-chip-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs transition-all cursor-pointer ${isAllActive ? 'active' : ''}">
+      <span>Semua</span>
+      <span class="opacity-70 text-[11px] ml-1">(${allCount})</span>
+    </button>
+  `;
+
+  HOWELL_CATEGORIES.forEach(cat => {
+    const count = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.filter(p => p.category === cat.id).length : 0;
+    const isActive = state.activeCategory === cat.id;
+    html += `
+      <button type="button" onclick="filterByCategory('${cat.id}')" class="category-chip-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs transition-all cursor-pointer ${isActive ? 'active' : ''}">
+        <span>${cat.name}</span>
+        <span class="opacity-70 text-[11px] ml-1">(${count})</span>
+      </button>
+    `;
+  });
+
+  container.innerHTML = html;
+};
 
 // CableTime Price Range Filter
 function changePriceFilter(val) {
@@ -858,6 +910,10 @@ window.renderCatalog = function renderCatalog() {
   // Update live count matching CableTime
   if (countEl) {
     countEl.textContent = `${filtered.length} produk`;
+  }
+
+  if (typeof renderCategoryChips === 'function') {
+    renderCategoryChips();
   }
 
   // Render Sidebar Category Accordion (#acc-body-category) - Flat minimal CableTime style
@@ -968,11 +1024,14 @@ window.renderCatalog = function renderCatalog() {
             <h3 class="text-[11px] sm:text-[12px] font-semibold text-slate-900 line-clamp-2 leading-snug flex-1" style="letter-spacing:-0.01em;">${product.name}</h3>
 
             <!-- Price Row -->
-            <div class="flex items-end justify-between mt-1">
+            <div class="flex items-end justify-between mt-1 gap-1">
               <div>
                 <div class="price-main" style="font-size:0.875rem;">${formattedPrice}</div>
+                <div class="badge-certified mt-0.5">✓ Garansi</div>
               </div>
-              <span class="badge-certified">✓ Garansi</span>
+              <button type="button" onclick="event.stopPropagation(); addToCart('${product.id}')" class="mobile-cart-btn w-7 h-7 rounded-lg bg-[#FFC700] hover:bg-[#e6b400] text-black items-center justify-center shadow-xs transition-transform active:scale-90" title="Beli">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -1639,8 +1698,29 @@ window.openProductDetail = function openProductDetail(productId) {
         </div>
       </div>
     </div>
+
+    <!-- Mobile Sticky Buy Bar (< 1024px) -->
+    <div class="block lg:hidden sticky -bottom-6 sm:-bottom-8 -mx-5 sm:-mx-8 p-3.5 sm:p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 shadow-lg mt-6">
+      <div class="flex items-center gap-2.5">
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] text-slate-500 font-medium truncate">Harga Total</div>
+          <div class="text-base font-extrabold text-[#c4301c] leading-tight truncate">${formatRupiah(currentPrice)}</div>
+        </div>
+        <button type="button" onclick="addToCartFromDetail()" class="flex-1 h-11 px-3 rounded-xl bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span>+ Keranjang</span>
+        </button>
+        <button type="button" onclick="buyWithQrisFromDetail()" class="h-11 px-4 rounded-xl bg-[#FFC700] text-black font-extrabold text-xs flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-transform cursor-pointer">
+          <span>Beli</span>
+        </button>
+      </div>
+    </div>
   `;
 
+  modalEl.style.removeProperty('display');
+  modalEl.style.removeProperty('opacity');
+  modalEl.style.removeProperty('pointer-events');
+  modalEl.style.display = 'flex';
   modalEl.classList.remove('pointer-events-none', 'opacity-0', 'hidden');
   modalEl.classList.add('opacity-100');
   if (typeof stopScroll === 'function') stopScroll();
@@ -1747,6 +1827,13 @@ window.backToCartFromCheckout = function backToCartFromCheckout() {
 
 function filterByCategory(catId) {
   state.activeCategory = catId;
+  state.catalogExpanded = false;
+  if (typeof toggleCatalogSidebar === 'function' && window.innerWidth < 1024) {
+    toggleCatalogSidebar(false);
+  }
+  if (typeof renderCategoryChips === 'function') {
+    renderCategoryChips();
+  }
   const section = document.getElementById('catalog-section');
   if (section) section.scrollIntoView({ behavior: 'smooth' });
 
@@ -1764,9 +1851,14 @@ function filterByCategory(catId) {
 function resetFilters() {
   state.activeCategory = 'all';
   state.searchQuery = '';
-  state.sortBy = 'featured';
+  state.priceFilter = 'all';
+  state.sortBy = 'relevance';
+  state.catalogExpanded = false;
   const searchInput = document.getElementById('catalog-search-input');
   if (searchInput) searchInput.value = '';
+  if (typeof renderCategoryChips === 'function') {
+    renderCategoryChips();
+  }
   filterByCategory('all');
 }
 
