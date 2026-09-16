@@ -572,31 +572,33 @@
           </div>
         </div>
 
-        <!-- Banner Slider Display Container -->
+        <!-- Banner Slider Display Container (Full Uncropped 16:9 Category Banners) -->
         <div id="category-banner-slider-box" onmouseenter="pauseBannerAutoplay()" onmouseleave="resumeBannerAutoplay()" class="relative rounded-2xl bg-black shadow-2xl overflow-hidden group w-full border border-black/10">
           
-          <!-- Clickable Active Banner Image Holder (Widescreen 16:9 on mobile, 21:9 on desktop) -->
-          <div onclick="onCategoryBannerClick()" class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-black cursor-pointer">
-            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/3.png" alt="Category Banner" class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-[1.01]">
-            
-            <!-- Floating Category Pill -->
-            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-8 z-10 flex items-center gap-3 bg-black/85 backdrop-blur-md border border-[#FFC700]/40 px-4 py-2 sm:py-2.5 rounded-full text-white text-xs sm:text-sm font-semibold shadow-xl group-hover:bg-[#FFC700] group-hover:text-black transition-all">
-              <span id="active-banner-label">HDMI 8K & Video Cables</span>
-              <span class="text-xs opacity-80 font-mono">Click to view catalog →</span>
+          <!-- Clickable Active Banner Image Holder (Exact 16:9 Aspect Ratio matching 1920x1080 banner assets) -->
+          <div onclick="onCategoryBannerClick()" class="relative w-full overflow-hidden bg-black cursor-pointer flex items-center justify-center" style="aspect-ratio: 16 / 9;">
+            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/3.png" alt="Category Banner" class="w-full h-full object-contain block select-none">
+
+            <!-- Floating Arrow Controls (Left & Right Edges) -->
+            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(-1);" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Previous Banner">
+              <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            </button>
+            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(1);" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Next Banner">
+              <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+            </button>
+          </div>
+
+          <!-- Bottom Control Bar (Outside the image so it NEVER covers any photo content) -->
+          <div onclick="onCategoryBannerClick()" class="flex items-center justify-between px-4 sm:px-6 py-2.5 bg-[#111111] border-t border-white/10 text-xs cursor-pointer hover:bg-[#161616] transition-colors">
+            <div class="flex items-center gap-2">
+              <span id="active-banner-label" class="text-white font-bold text-xs sm:text-sm">HDMI 8K &amp; Video Cables</span>
+              <span class="text-[#FFC700] text-[11px] hidden sm:inline font-mono">Lihat Katalog →</span>
             </div>
-
-            <!-- Floating Arrow Controls (Left & Right Edges - Vention Style) -->
-            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(-1);" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-[#FFC700] text-black shadow-xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-black/10" aria-label="Previous Banner">
-              <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-            </button>
-            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(1);" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-[#FFC700] text-black shadow-xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-black/10" aria-label="Next Banner">
-              <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-            </button>
-
             <!-- Bottom Center Pagination Dots -->
-            <div id="banner-pagination-dots" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+            <div id="banner-pagination-dots" class="flex items-center gap-1.5 sm:gap-2">
               <!-- Dots rendered by JS -->
             </div>
+            <span class="text-white/40 text-[10px] sm:text-[11px] font-mono hidden xs:inline">Klik banner untuk ke katalog</span>
           </div>
 
         </div>
@@ -618,28 +620,29 @@
           </p>
         </div>
 
-        <!-- Store Showcase Slider -->
+        <!-- Store Showcase Slider (Full Uncropped 1960x1000 Store Banners) -->
         <div id="store-showcase-slider-box" onmouseenter="pauseStoreAutoplay()" onmouseleave="resumeStoreAutoplay()" class="relative rounded-2xl bg-black shadow-2xl overflow-hidden group w-full border border-white/10">
           
-          <div class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-black">
-            <img id="active-store-showcase-img" src="assets/Banner/0. BANNER TOKO/0.png" alt="Store Showcase Banner" class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-[1.01]">
-            
-            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-8 z-10 flex items-center gap-3 bg-black/85 backdrop-blur-md border border-[#FFC700]/40 px-4 py-2 sm:py-2.5 rounded-full text-white text-xs sm:text-sm font-semibold shadow-xl">
-              <span id="store-showcase-label">HOWELL Official Store Showcase & Guarantee</span>
-            </div>
+          <div class="relative w-full overflow-hidden bg-black flex items-center justify-center" style="aspect-ratio: 1960 / 1000;">
+            <img id="active-store-showcase-img" src="assets/Banner/0. BANNER TOKO/0.png" alt="Store Showcase Banner" class="w-full h-full object-contain block select-none">
 
-            <!-- Floating Arrow Controls (Left & Right Edges - Vention Style) -->
-            <button type="button" onclick="event.stopPropagation(); stepStoreShowcase(-1);" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-[#FFC700] text-black shadow-xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-black/10" aria-label="Previous Store Banner">
-              <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            <!-- Floating Arrow Controls (Left & Right Edges) -->
+            <button type="button" onclick="event.stopPropagation(); stepStoreShowcase(-1);" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Previous Store Banner">
+              <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </button>
-            <button type="button" onclick="event.stopPropagation(); stepStoreShowcase(1);" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-[#FFC700] text-black shadow-xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-black/10" aria-label="Next Store Banner">
-              <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+            <button type="button" onclick="event.stopPropagation(); stepStoreShowcase(1);" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Next Store Banner">
+              <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </button>
+          </div>
 
+          <!-- Bottom Control Bar (Outside the image so it NEVER covers any photo content) -->
+          <div class="flex items-center justify-between px-4 sm:px-6 py-2.5 bg-[#111111] border-t border-white/10 text-xs">
+            <span class="text-white/80 font-bold text-xs sm:text-sm">HOWELL Official Store</span>
             <!-- Bottom Center Pagination Dots -->
-            <div id="store-pagination-dots" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+            <div id="store-pagination-dots" class="flex items-center gap-1.5 sm:gap-2">
               <!-- Dots rendered by JS -->
             </div>
+            <span class="text-[#FFC700] text-[10px] sm:text-[11px] font-mono">100% Original &amp; Garansi Resmi</span>
           </div>
 
         </div>
@@ -2309,7 +2312,7 @@
 
       if (dotsEl) {
         dotsEl.innerHTML = STORE_BANNERS.map((_, i) => `
-          <button onclick="setStoreShowcaseSlide(${i})" class="h-1.5 rounded-full transition-all ${i === activeStoreIndex ? 'bg-[#FFC700] w-6' : 'bg-white/40 w-2 hover:bg-white/70'}"></button>
+          <button onclick="setStoreShowcaseSlide(${i})" class="h-2 rounded-full transition-all cursor-pointer ${i === activeStoreIndex ? 'bg-[#FFC700] w-6' : 'bg-white/30 w-2 hover:bg-white/60'}" aria-label="Slide ${i+1}"></button>
         `).join('');
       }
     }
@@ -2373,7 +2376,7 @@
 
       if (dotsEl) {
         dotsEl.innerHTML = bannerData.images.map((_, i) => `
-          <button onclick="event.stopPropagation(); setCategoryBannerSlide(${i});" class="h-1.5 rounded-full transition-all ${i === activeBannerSlideIndex ? 'bg-[#FFC700] w-6' : 'bg-white/40 w-2 hover:bg-white/70'}"></button>
+          <button onclick="event.stopPropagation(); setCategoryBannerSlide(${i});" class="h-2 rounded-full transition-all cursor-pointer ${i === activeBannerSlideIndex ? 'bg-[#FFC700] w-6' : 'bg-white/30 w-2 hover:bg-white/60'}" aria-label="Slide ${i+1}"></button>
         `).join('');
       }
     }
