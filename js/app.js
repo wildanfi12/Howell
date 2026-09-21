@@ -585,6 +585,20 @@ function printCatalogPDF() {
     const cleanName = p.name.replace(/\s*\([A-Z0-9\s\-\.]+\)$/i, '').trim();
     const briefSpec = p.tagline || '';
     
+    function resolveCartonQty(itemSku, itemLen) {
+      const map = window.HOWELL_SKU_CARTON || (typeof HOWELL_SKU_CARTON !== 'undefined' ? HOWELL_SKU_CARTON : null);
+      if (!map) return '-';
+      if (map[itemSku] !== undefined) return String(map[itemSku]);
+      const clean = (itemSku || '').trim();
+      if (map[clean] !== undefined) return String(map[clean]);
+      if (p.lengthSkuMap && p.lengthSkuMap[itemLen] && map[p.lengthSkuMap[itemLen]] !== undefined) {
+        return String(map[p.lengthSkuMap[itemLen]]);
+      }
+      if (p.sku && map[p.sku] !== undefined) return String(map[p.sku]);
+      if (p.cartonQty !== undefined) return String(p.cartonQty);
+      return '-';
+    }
+    
     if (rangeMatch && lengths.length > 1) {
       const prefix1 = rangeMatch[1], n1 = parseInt(rangeMatch[2], 10);
       const prefix2 = rangeMatch[3], n2 = parseInt(rangeMatch[4], 10);
@@ -592,7 +606,9 @@ function printCatalogPDF() {
       
       return lengths.map((len, idx) => {
         let subSku;
-        if (prefix1 === prefix2) {
+        if (p.lengthSkuMap && p.lengthSkuMap[len]) {
+          subSku = p.lengthSkuMap[len];
+        } else if (prefix1 === prefix2) {
           subSku = prefix1 + String(n1 + idx).padStart(pad, '0');
         } else {
           subSku = sku;
@@ -602,17 +618,23 @@ function printCatalogPDF() {
           name: cleanName,
           spec: briefSpec,
           length: len,
-          qty: '-'
+          qty: resolveCartonQty(subSku, len)
         };
       });
     } else if (lengths.length > 1) {
-      return lengths.map((len) => ({
-        sku: sku,
-        name: cleanName,
-        spec: briefSpec,
-        length: len,
-        qty: '-'
-      }));
+      return lengths.map((len) => {
+        let subSku = sku;
+        if (p.lengthSkuMap && p.lengthSkuMap[len]) {
+          subSku = p.lengthSkuMap[len];
+        }
+        return {
+          sku: subSku,
+          name: cleanName,
+          spec: briefSpec,
+          length: len,
+          qty: resolveCartonQty(subSku, len)
+        };
+      });
     } else {
       let lenStr = '-';
       if (lengths.length === 1) {
@@ -630,7 +652,7 @@ function printCatalogPDF() {
         name: cleanName,
         spec: briefSpec,
         length: lenStr,
-        qty: '-'
+        qty: resolveCartonQty(sku, lengths[0] || lenStr)
       }];
     }
   }

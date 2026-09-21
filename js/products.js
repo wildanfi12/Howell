@@ -10,7 +10,490 @@ window.formatRupiah = function formatRupiah(amount) {
  * HOWELL Official Master Product Catalog Data Store
  * Brand: HOWELL (PT Howell Niaga Indonesia) - Est. 2009
  * Images: Fully mapped to assets/Produk/Produk Batch 1/ (137 Verified Products)
+/**
+ * HOWELL Official Master Catalog - Master ERP Qty per Carton Data
+ * Extracted directly from PT. Howell Niaga Indonesia ERP Inventory Management System
  */
+const HOWELL_SKU_CARTON = {
+  // 1. Patch Cable & Networking
+  "N6A02": 200,   // Cat6 UTP 1M
+  "N6A03": 180,   // Cat6 UTP 1.5M
+  "N6A04": 125,   // Cat6 UTP 2M
+  "N6A05": 90,    // Cat6 UTP 3M
+  "N6A06": 50,    // Cat6 UTP 5M
+  "N6A07": 35,    // Cat6 UTP 10M
+  "N6A08": 25,    // Cat6 UTP 15M
+  "N6A09": 18,    // Cat6 UTP 20M
+  "N6A10": 16,    // Cat6 UTP 25M
+  "N6A11": 12,    // Cat6 UTP 30M
+
+  "N8A01": 150,   // Cat8 Flat Yellow 1M
+  "N8A02": 150,   // Cat8 Flat Yellow 1M / 1.5M
+  "N8A03": 150,   // Cat8 Flat Yellow 1.5M
+  "N8A04": 150,   // Cat8 Flat Yellow 2M
+  "N8A05": 150,   // Cat8 Flat Yellow 3M
+  "N8A06": 104,   // Cat8 Flat Yellow 5M
+  "N8A07": 40,    // Cat8 Flat Yellow 10M
+  "N8A08": 36,    // Cat8 Flat Yellow 15M
+
+  "N8C04": 80,    // Cat8 Flat FTP 3M
+  "N8D04": 80,    // Cat8 Flat FTP 3M
+
+  "N8B02": 120,   // Cat8 SFTP Black 1.5M
+  "N8B03": 100,   // Cat8 SFTP Black 2M
+  "N8B04": 70,    // Cat8 SFTP Black 3M
+  "N8B05": 50,    // Cat8 SFTP Black 5M
+  "N8B06": 30,    // Cat8 SFTP Black 10M
+  "N8B07": 30,
+  "N8B08": 30,
+
+  "N6101": 2,     // Bulk Roll UTP Cat6 305M
+  "N6201": 2,     // Bulk Roll FTP Cat6 305M
+  "RC01": 200,    // RJ45 Cat6 UTP Modular Plug (50pcs / box, 200 boxes / carton)
+  "RC02": 200,    // RJ45 Cat6 FTP Shielded Plug (50pcs / box, 200 boxes / carton)
+  "RC01-50": 200,
+  "RC02-50": 200,
+
+  // 2. HDMI & Video Cables
+  // 4K Premium Series (H0103 - H0109)
+  "H0103": 170,   // 1.5M
+  "H0104": 140,   // 2M
+  "H0105": 75,    // 3M
+  "H0106": 45,    // 5M
+  "H0107": 25,    // 10M
+  "H0108": 15,    // 15M
+  "H0109": 8,     // 20M
+
+  // 4K Gold Premium Shell (H0203 - H0209)
+  "H0203": 170,   // 1.5M
+  "H0204": 140,   // 2M
+  "H0205": 85,    // 3M
+  "H0206": 60,    // 5M
+  "H0207": 25,    // 10M
+  "H0208": 15,    // 15M
+  "H0209": 12,    // 20M
+
+  // 4K Pure Copper Core (H0303 - H0309)
+  "H0303": 170,   // 1.5M
+  "H0304": 140,   // 2M
+  "H0305": 75,    // 3M
+  "H0306": 35,    // 5M
+  "H0307": 25,    // 10M
+  "H0308": 15,    // 15M
+  "H0309": 8,     // 20M
+
+  // 8K 60Hz Ultra Gold (H0403 - H0407)
+  "H0403": 96,    // 1.5M
+  "H0404": 96,    // 2M
+  "H0405": 51,    // 3M
+  "H0406": 51,    // 5M
+  "H0407": 51,    // 10M
+
+  // 8K 60Hz Ultra Core (H0503 - H0507)
+  "H0503": 96,    // 1.5M
+  "H0504": 96,    // 2M
+  "H0505": 51,    // 3M
+  "H0506": 51,    // 5M
+  "H0507": 15,    // 10M
+  "H0508": 15,
+
+  // Active Optical Fiber HDMI 8K (H0601 - H0612)
+  "H0601": 51,    // 10M
+  "H0602": 51,    // 15M
+  "H0603": 15,    // 20M
+  "H0604": 15,    // 25M
+  "H0605": 15,    // 30M
+  "H0606": 10,    // 40M / 50M
+  "H0607": 10,    // 50M
+  "H0608": 6,     // 60M
+  "H0609": 6,     // 80M
+  "H0610": 5,     // 100M
+  "H0611": 2,     // 150M
+  "H0612": 2,     // 200M
+
+  // Specialty HDMI Cables
+  "H0703": 140,   // Slim 2M
+  "H0803": 120,   // 90-Degree Angle 2M
+  "H0903": 96,    // Braided 2M
+  "H1003": 12,    // Flat 2M / 20M
+  "H1007": 12,
+  "H1101": 100,   // Slim 1M
+  "H1102": 100,   // Slim 2M
+  "H1103": 100,   // Zinc Alloy 2M
+  "H1182": 100,   // AM/AF 2M
+  "H1202": 100,
+  "H1303": 100,   // Heavy-Duty Armor 2M
+  "H1401": 80,    // Patch Jumper 1M
+  "H1402": 80,    // 2M
+  "H1431": 80,    // M-F 0.5M
+  "H1601": 120,   // Spring 1.5M
+  "H1603": 120,   // Pro 2M
+  "H1702": 100,
+  "H1703": 100,   // 24K Gold 2M
+  "H1803": 100,   // Dynamic HDR 2M
+  "H2001": 100,   // Portable 1M
+  "H2103": 100,   // Studio Broadcast 2M
+  "H2201": 200,   // 16K 1.5M
+  "H2202": 100,   // 16K 1M
+  "H2203": 200,   // 16K 2M
+  "H2204": 144,   // 16K 3M
+  "H2301": 12,    // 8K FO 20M
+  "H2302": 12,    // 8K FO 30M
+  "H2303": 12,    // 8K Dynamic HDR 2M
+  "H2401": 12,
+  "H2403": 12,    // 8K 48Gbps 2M
+  "H2503": 100,   // 8K Ultra-Slim 2M
+  "H2602": 12,
+  "H2603": 12,    // 8K eARC 2M
+  "H2701": 12,
+  "H2702": 12,
+  "H2703": 12,    // 4K Multi-Shielded 2M
+  "H2801": 12,
+  "H2802": 12,
+  "H2803": 12,    // Carbon Fiber 2M
+  "H2901": 12,
+  "H2902": 12,
+  "H2903": 12,    // Cotton Braided 2M
+  "H3001": 12,
+  "H3002": 12,
+  "H3003": 12,    // Next-Gen Gaming 2M
+  "H3101": 12,
+  "H3102": 12,
+  "H3103": 12,    // Anti-Tangle 2M
+  "H3201": 12,
+  "H3202": 12,
+  "H3203": 12,    // Pro Video 2M
+  "H3301": 12,
+  "H3302": 12,
+  "H3303": 12,    // High-Bandwidth 2M
+  "H3401": 12,
+  "H3402": 12,
+  "H3403": 12,    // Luxury Edition 2M
+  "H3503": 100,   // Commercial Grade 2M
+
+  // HDMI Converters & Cables
+  "CH0101": 12,   // Type-C to HDMI 20M FO / 1.8M
+  "CH0102": 12,   // 30M FO
+  "CH0103": 100,  // 4K@60 2M
+  "CH0111": 12,   // 50M FO
+  "CH0201": 100,  // Type-C to HDMI Adapter Dongle
+  "CH0301": 100,  // Mini HDMI 1M
+  "CH0302": 200,  // Mini HDMI 1.5M
+  "CH0303": 200,  // Mini HDMI 2M
+  "CH0304": 100,  // Mini HDMI 3M
+  "CH0305": 60,   // Mini HDMI 5M
+  "CH0401": 100,  // Micro HDMI 1M
+  "CH0402": 200,  // Micro HDMI 1.5M
+  "CH0403": 200,  // Micro HDMI 2M
+  "CH0404": 100,  // Micro HDMI 3M
+  "CH0405": 60,   // Micro HDMI 5M
+  "CH0502": 100,  // Type-C to HDMI 2M
+  "CH0602": 100,  // Right Angle Type-C to HDMI 2M
+  "CH0702": 100,  // 8K Type-C to HDMI 2M
+  "DH0102": 120,  // 360 Slim 2M
+  "DH0103": 100,  // DP to HDMI 2M
+  "DH0202": 120,  // Micro Slim 2M
+  "DH0203": 100,  // Mini DP to HDMI 2M
+  "DH0301": 200,  // DP to HDMI Adapter Converter
+  "DH0601": 120,  // Spring Micro 1.5M
+  "PH0801": 120,  // Spring Mini 1.5M
+  "MH0301": 100,  // Mini HDMI to HDMI 1.5M
+  "USB0206": 12,  // USB 3.0 to HDMI Multi-Display
+
+  // 3. Audio & Instrument Cables
+  "AU0101": 379,
+  "AU0102": 379,
+  "AU0103": 140,  // 6.35 to XLR F 2M
+  "AU0104": 379,
+  "AU0105": 379,
+  "AU0106": 379,
+  "AU0107": 379,
+  "AU0201": 380,
+  "AU0202": 380,
+  "AU0203": 125,  // 6.35 to XLR M 2M
+  "AU0204": 380,
+  "AU0205": 380,
+  "AU0206": 380,
+  "AU0207": 380,
+  "AU0301": 381,
+  "AU0302": 382,
+  "AU0303": 140,  // Aux to 6.35 2M
+  "AU0304": 284,
+  "AU0305": 385,
+  "AU0306": 386,
+  "AU0307": 207,
+  "AU0401": 388,
+  "AU0402": 389,
+  "AU0403": 140,  // TS 6.35 2M
+  "AU0404": 281,
+  "AU0405": 382,
+  "AU0406": 393,
+  "AU0407": 284,
+  "AU0501": 100,
+  "AU0502": 100,
+  "AU0503": 140,  // 3.5mm to 2RCA 2M
+  "AU0504": 50,
+  "AU0505": 50,
+  "AU0601": 140,
+  "AU0602": 140,
+  "AU0603": 140,  // Aux Male to Male 2M
+  "AU0604": 140,
+  "AU0605": 140,
+  "AU0607": 50,
+  "AU0701": 150,
+  "AU0702": 400,
+  "AU0703": 150,  // 2RCA to 2RCA 2M
+  "AU0704": 400,
+  "AU0705": 50,
+  "AU0803": 100,  // Optical Toslink 2M
+  "AU0903": 140,  // XLR Balanced 2M
+  "AU1003": 140,  // 3.5mm Headphone Ext 2M
+  "AU1101": 412,
+  "AU1102": 415,
+  "AU1103": 140,  // 3.5mm Y-Splitter 20cm
+  "AU1104": 415,
+  "AU1105": 416,
+  "AU1106": 417,
+  "AU1107": 429,
+  "AU1201": 140,
+  "AU1202": 140,
+  "AU1203": 140,
+  "AU1204": 140,
+  "AU1205": 140,
+  "AU1206": 140,
+  "AU1207": 140,
+  "AU1301": 140,
+  "AU1302": 140,
+  "AU1303": 140,
+  "AU1304": 140,
+  "AU1305": 140,
+  "AU1306": 140,
+  "AU1307": 140,
+  "AU1401": 100,
+  "AU1402": 100,
+  "AU1403": 100,
+  "AU1404": 100,
+  "AU1405": 100,
+  "AU1406": 100,
+  "AU1407": 100,
+  "AU1510": 50,
+
+  // 4. USB & Computer Accessories
+  "AC01": 250,    // USB-A to Lightning 1M
+  "AC02": 250,    // USB-A to Type-C 3A 1M
+  "AC03": 150,    // USB-A to Micro 1M
+  "AC04": 120,    // 3-in-1 Universal 1.2M
+  "AC04-20": 120,
+  "AC05": 250,    // Type-C to Lightning PD20W 1M
+  "AC06": 250,    // USB A to C 3A Green 1.2M
+  "CC01": 250,    // Dual USB Car Charger / Type-C to C 3A 1.2M
+  "CC02": 250,    // USB-C PD Car Charger / Type-C to C 3A 1.2M
+  "HW-C01": 144,  // GaN III 65W
+  "HW-C02A": 105, // 30W USB-C PD
+  "HW-C03": 100,  // 100W PD Type-C
+  "HW-C03A": 100, // 60W Type-C
+  "HW-C04": 100,  // 15W Wireless
+  "HA-016": 144,
+  "HA-020A": 105,
+  "HA-022": 144,
+  "HA-022A": 105,
+  "HA-024": 144,
+  "HA-CAR-AC01": 150,
+  "U0101": 250,
+  "U0102": 250,
+  "U0103": 200,
+  "U0104": 150,
+  "U0105": 100,
+  "UM0101": 200,
+  "UM0102": 200,
+  "UM0103": 200,
+  "UM0104": 100,
+  "UM0105": 100,
+  "UMF01": 250,
+  "UMF02": 250,
+  "UMF03": 200,
+  "UMF04": 150,
+  "UMF05": 100,
+  "UMM01": 200,
+  "UMM02": 250,
+  "UMM03": 200,
+  "UMM04": 150,
+  "UMM05": 100,
+  "UP0101": 100,
+  "UP0102": 250,
+  "UP0103": 200,
+  "UP0104": 170,
+  "UP0105": 100,
+  "UP0107": 50,
+  "USBO201": 12,
+  "USBO202": 8,
+  "USBO203": 8,
+  "USBO204": 8,
+  "USBO205": 8,
+  "USBO206": 12,
+  "CLA001": 100,
+  "CLA002": 100,
+  "CLA003": 100,
+  "CLA004": 100,
+  "UA001": 100,
+  "UA002": 100,
+  "DK1301": 15,
+  "DK1501": 15,
+  "HUB081": 100,
+  "CS01": 10,
+  "CS08": 10,
+  "LCP001": 20,
+  "LCP002": 16,
+  "LCP003": 20,
+  "MIC01": 50,
+  "MIC02": 90,
+  "MIC03": 10,
+  "MIC04": 50,
+  "VC0101": 192,
+  "VC0102": 114,
+  "HE0101": 50,
+
+  // 5. Power & PDU Cables
+  "POW-101": 100, // CPU AC Power Cord C13 1.2M / 1.5M
+  "POW-102": 85,  // CPU AC Power Cord C13 1.8M
+  "POW-103": 85,
+  "POW-104": 85,
+  "POW-105": 85,
+  "POW-201": 80,  // Laptop Power Cord C5 1.5M / 1.8M
+  "POW-202": 50,  // Laptop Power Cord C5 1.8M / 3M
+  "POW-301": 100, // Server PDU C13 to C14 1.2M / 1.8M
+  "POW-302": 85,  // Server PDU C13 to C14 1.8M / 3M
+
+  // 6. Earphones & Audio
+  "HW01": 50,     // ANC Wireless TWS
+  "HW02-B": 50,   // Dynamic Bass Black
+  "HW02-W": 50,   // Dynamic Bass White
+  "HW03-W": 500,  // Studio In-Ear Monitor
+  "HW03-B": 500,
+  "HW03-W & HW03-B": 500,
+  "HW04": 200,    // Type-C Digital Hi-Fi
+  "HW05": 200,    // Lightning DAC In-Ear
+  "HW06": 200,    // Sport Wireless Neckband
+  "HW07": 50,     // True Wireless Stereo ENC
+  "HV01": 50,     // Bluetooth Earphone
+  "HV01-A": 500,  // 3.5mm Earphone White
+  "HV02-B": 50,   // Bluetooth Earphone Black
+  "HV02-W": 50,   // Bluetooth Earphone White
+  "HV04": 500,    // 3.5mm Earphone Black
+  "HV05": 500,    // 3.5mm Earphone Black
+  "HV06": 200,    // Type-C Earphone
+  "HV07": 200,    // Type-C Earphone
+  "EP01-B": 500,  // 3.5mm Earphone Black
+
+  // 7. Adapters & Converters
+  "ADP001": 200,
+  "ADP002": 200,
+  "ADP003": 200,
+  "ADP004": 200,
+  "ADP005": 200,
+  "ADP006": 200,
+  "ADP007": 200,
+  "ADP008": 200,
+  "ADP009": 200,
+  "ADP010": 200,
+  "ADP011": 200,
+  "ADP012": 200,
+  "ADP013": 200,
+  "ADP014": 200,
+  "ADP015": 200,
+  "ADP016": 200,
+  "ADP017": 200,
+  "ADP018": 200,
+  "ADP019": 200,
+  "ADP020": 200,
+  "ADP021": 200,
+  "ADP022": 200,
+  "ADP023": 200,
+  "ADP024": 200,
+  "ADP025": 200,
+  "ADP026": 200,
+  "ADP027": 200,
+  "ADP028": 200,
+  "ADP029": 200,
+  "ADP030": 200,
+  "ADP031": 200,
+  "ADP032": 200,
+  "ADP033": 200,
+  "ADP034": 200,
+  "ADP035": 200,
+  "ADP036": 200,
+  "ADP037": 200,
+  "ADP038": 200,
+  "ADP002 - ADP013": 200,
+  "WP001": 200,   // 90D HDMI Wall Panel
+  "WP201": 100,   // 20W PD Wall Socket
+  "VD0101": 500,  // 4K DP EDID
+  "VD0201": 500,  // 4K HDMI EDID
+  "VD0202": 500,  // 4K HDMI EDID LED
+  "VD0301": 500,  // 4K HDMI EDID Passthrough
+  "VD0302": 500,  // 4K HDMI EDID Passthrough LED
+  "HS0101": 50,   // 4K HDMI Switch 3x1
+  "HS0102": 50,   // 4K HDMI Splitter 1x4
+  "HS0103": 25,   // 4K HDMI Splitter 1x8
+  "HS0104": 50,   // 4K HDMI Switch 5x1
+  "HS0105": 50,   // 4K HDMI Switch 4x1
+  "H8AB01": 50,   // 8K Bi-Direction Switcher
+  "H8AB02": 238,  // 8K Bi-Direction Switcher
+
+  // 8. DisplayPort
+  "DP0101": 12,
+  "DP0102": 12,
+  "DP0103": 80,
+  "DP0105": 12,
+  "DP0203": 80,   // DP 1.4 8K 2M
+  "DP0303": 80,   // Active Optic DP 8K 20M / 2M
+  "DP0403": 80,   // DP 2.0 16K 2M
+  "DP0501": 80,
+  "DP0502": 80,
+  "DP0503": 80,   // DP Braided 8K 2M
+  "DP0504": 80,
+  "DP0505": 80,
+  "DP0603": 80,   // DP 16K 2M
+  "DP0703": 80,   // Mini DP to DP 8K 2M
+  "DP0803": 80,   // DP to HDMI 4K 2M
+  "DP0903": 80,   // DP to DVI 2M
+  "DP1003": 100,  // Mini DP 2M
+  "DP1006": 12,   // Active Optic DP 15M
+  "DP1101": 80,
+  "DP1102": 80,
+  "DP1103": 80,
+  "DP1104": 80,
+  "DP1203": 100,  // Mini DP to HDMI 4K 2M
+  "DP1303": 80,   // DP 1.4 240Hz 2M
+  "DP1407": 10,   // DP 10M
+  "CD0103": 100,  // Type-C to DP 2M
+
+  // 9. DVI & VGA
+  "DVI0101": 12,  // FO DVI 10M
+  "DVI0103": 12,  // DVI FO 20M
+  "DVI0201": 12,  // FO DVI 20M
+  "DVI0203": 65,  // DVI-D Dual Link 2M
+  "DVI0301": 12,  // FO DVI 20M
+  "DVI0401": 12,  // FO DVI 30M
+  "DVI0403": 65,  // DVI-D Braided 2M
+  "DVI0501": 435,
+  "DVI0502": 435,
+  "DVI0503": 65,  // DVI-I to VGA 2M
+  "DVI0504": 435,
+  "DVI0505": 435,
+  "DVI0506": 425,
+  "DVI0507": 420,
+  "DVI0601": 100, // DVI-D 1.5M
+  "DVI0603": 100, // DVI-D 2M
+  "HD0102": 120,  // HDMI to DVI 1.5M
+  "HD0103": 55,
+  "HD0203": 55,   // HDMI to DVI Gold 2M
+  "VGA0106": 18,  // VGA 3+6 10M / 2M
+  "VGA0108": 11   // VGA 3+6 20M
+};
+
+// Expose globally
+window.HOWELL_SKU_CARTON = HOWELL_SKU_CARTON;
 
 const HOWELL_CATEGORIES = [
   { id: "patch-cable", name: "Patch Cable & Networking", icon: "network", count: 9, desc: "Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors & Keystone Adapters" },
@@ -106,6 +589,7 @@ const HOWELL_PRODUCTS = [
     tagline: "40Gbps | 2GHz | SFTP Double Shielded | 6.0mm OD",
     summary: "Heavy-duty Cat8 SFTP double-shielded network cable supporting 40Gbps transmission speeds.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Matte Black PVC"] },
+    lengthSkuMap: { "1.5M": "N8B02", "2M": "N8B03", "3M": "N8B04", "5M": "N8B05", "10M": "N8B06" },
     specs: { "SKU Series": "N8B03 to N8B08", "Shielding": "SFTP Double Foil+Braid", "Speed": "40 Gbps / 2GHz", "Warranty": "12-Month Warranty" },
     description: "Maximum noise isolation and zero crosstalk thanks to dual-layer SFTP shielding.",
     image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8B03 - N8B08.png"
@@ -276,6 +760,7 @@ const HOWELL_PRODUCTS = [
     tagline: "Active Fiber Optic | 48Gbps | 8K 60Hz | 10M to 200M",
     summary: "Hybrid fiber-optic HDMI 2.1 cable supporting 48Gbps uncompressed 8K video up to 200 meters without repeaters.",
     variants: { lengths: ["10M", "15M", "20M", "25M", "30M", "50M", "100M", "200M"], colors: ["Aluminum Gold"] },
+    lengthSkuMap: { "10M": "H0601", "15M": "H0602", "20M": "H0603", "25M": "H0604", "30M": "H0605", "50M": "H0607", "100M": "H0610", "200M": "H0612" },
     specs: { "SKU Series": "H0601 to H0612", "Core": "Active Optical Fiber Hybrid", "Warranty": "12-Month Warranty" },
     description: "Commercial auditorium and video wall optical HDMI link.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0601 - H0612.png"
