@@ -1148,3 +1148,28 @@ button, a, input, select {
   object-position: center center !important;
 }
 
+/* Visi & Misi Expandable Detail Animations */
+@keyframes visiMisiSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-visi-misi {
+  animation: visiMisiSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#visi-card, #misi-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#visi-card:active, #misi-card:active {
+  transform: scale(0.995);
+}
+
+

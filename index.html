@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- HOWELL Premium Design System CSS -->
-  <link rel="stylesheet" href="css/glassmorphism.css?v=20260921-v9-catalognocart">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=20260921-v11-visimisi">
 
   <!-- Tailwind CSS CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -997,67 +997,169 @@
 
         </div>
 
-        <!-- Lower Grid: VISI & MISI Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <!-- Lower Grid: VISI & MISI Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
           
-          <!-- Card 1: VISI -->
-          <div class="p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
-            <div>
-              <div class="flex items-center gap-3.5 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center shadow-xs">
-                  <i data-lucide="lightbulb" class="w-6 h-6"></i>
+          <!-- Column 1: VISI -->
+          <div class="flex flex-col gap-4">
+            <!-- Card 1: VISI (Interactive, No Icons) -->
+            <div id="visi-card" 
+                 onclick="toggleVisiMisiDetail('visi')" 
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); toggleVisiMisiDetail('visi');}" 
+                 role="button" 
+                 tabindex="0" 
+                 aria-expanded="false" 
+                 aria-controls="visi-detail-panel"
+                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-amber-400 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
+              
+              <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
+              
+              <div>
+                <div class="mb-5 flex items-start justify-between">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 font-mono block mb-1">ARAH &amp; TUJUAN</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">VISI</h3>
+                  </div>
+                  <span id="visi-card-badge" class="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full font-mono transition-all">
+                    KLIK DETAIL
+                  </span>
                 </div>
-                <div>
-                  <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 font-mono">ARAH & TUJUAN</span>
-                  <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">VISI</h3>
+                
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
+                  "Menjadi perusahaan trading terdepan di Indonesia dengan reputasi yang unggul, terpercaya, dan berstandar internasional."
+                </p>
+              </div>
+
+              <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-mono">
+                <span>● VISI PERUSAHAAN</span>
+                <span>EST. 2009</span>
+              </div>
+            </div>
+
+            <!-- Detail Panel: VISI (Expandable, Smooth Slide-Down) -->
+            <div id="visi-detail-panel" class="hidden overflow-hidden transition-all duration-300">
+              <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-amber-400/60 shadow-lg">
+                <div class="flex items-center justify-between pb-4 mb-5 border-b border-amber-100">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 font-mono block mb-0.5">DETAIL ARTI &amp; SASARAN</span>
+                    <h4 class="text-lg font-extrabold text-slate-900">Arah Strategis VISI Howell</h4>
+                  </div>
+                  <button type="button" 
+                          onclick="toggleVisiMisiDetail('visi')" 
+                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none">
+                    Tutup
+                  </button>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/15">
+                    <p class="font-bold text-slate-900 mb-1.5 text-sm sm:text-base">"Menjadi perusahaan trading terdepan di Indonesia dengan reputasi yang unggul, terpercaya, dan berstandar internasional."</p>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Visi ini merupakan kompas jangka panjang PT Howell Niaga Indonesia untuk memantapkan posisi sebagai pemimpin ekosistem distribusi connectivity hardware, kabel audio-video resolusi tinggi, dan peripheral teknologi informasi terpercaya di seluruh pelosok nusantara.</p>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                    <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/80">
+                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5">Reputasi Unggul &amp; Terpercaya</p>
+                      <p class="text-[11.5px] text-slate-600 leading-relaxed">Dibangun sejak 2009 melalui integritas pasokan, jaminan produk asli bergaransi 12 bulan tukar baru, dan kepercayaan dari ribuan mitra ritel, korporasi tender, serta institusi pemerintah.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/80">
+                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5">Standar Kualitas Internasional</p>
+                      <p class="text-[11.5px] text-slate-600 leading-relaxed">Seluruh produk Howell mengadopsi spesifikasi ketat sertifikasi internasional (HDMI ATC, DisplayPort VESA, CE, RoHS) dengan bahan tembaga murni untuk daya tahan transmisi optimal.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
-                "Menjadi perusahaan trading terdepan di Indonesia dengan reputasi yang unggul, terpercaya, dan berstandar internasional."
-              </p>
-            </div>
-            <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-mono">
-              <span>● VISI PERUSAHAAN</span>
-              <span>EST. 2009</span>
             </div>
           </div>
 
-          <!-- Card 2: MISI -->
-          <div class="p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-[#c4301c]/5 rounded-bl-full pointer-events-none"></div>
-            <div>
-              <div class="flex items-center gap-3.5 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-[#c4301c]/10 border border-[#c4301c]/20 text-[#c4301c] flex items-center justify-center shadow-xs">
-                  <i data-lucide="target" class="w-6 h-6"></i>
+          <!-- Column 2: MISI -->
+          <div class="flex flex-col gap-4">
+            <!-- Card 2: MISI (Interactive, No Icons) -->
+            <div id="misi-card" 
+                 onclick="toggleVisiMisiDetail('misi')" 
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); toggleVisiMisiDetail('misi');}" 
+                 role="button" 
+                 tabindex="0" 
+                 aria-expanded="false" 
+                 aria-controls="misi-detail-panel"
+                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-[#c4301c]/80 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
+              
+              <div class="absolute top-0 right-0 w-32 h-32 bg-[#c4301c]/5 rounded-bl-full pointer-events-none"></div>
+              
+              <div>
+                <div class="mb-5 flex items-start justify-between">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-[#c4301c] font-mono block mb-1">KOMITMEN OPERASIONAL</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">MISI</h3>
+                  </div>
+                  <span id="misi-card-badge" class="text-[10px] font-bold text-[#c4301c] bg-red-50 border border-red-200/60 px-3 py-1 rounded-full font-mono transition-all">
+                    KLIK DETAIL
+                  </span>
                 </div>
-                <div>
-                  <span class="text-[10px] font-black uppercase tracking-widest text-[#c4301c] font-mono">KOMITMEN OPERASIONAL</span>
-                  <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">MISI</h3>
+                
+                <ol class="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">1</span>
+                    <span>Menyediakan produk berkualitas tinggi dengan harga kompetitif.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">2</span>
+                    <span>Memberikan pelayanan yang cepat, tepat, dan profesional.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">3</span>
+                    <span>Menjalin hubungan jangka panjang dengan mitra bisnis dan pelanggan.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">4</span>
+                    <span>Terus berinovasi mengikuti perkembangan pasar dan teknologi.</span>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-mono">
+                <span>● 4 PILAR EKSEKUSI</span>
+                <span>KUALITAS &amp; INTEGRITAS</span>
+              </div>
+            </div>
+
+            <!-- Detail Panel: MISI (Expandable, Smooth Slide-Down) -->
+            <div id="misi-detail-panel" class="hidden overflow-hidden transition-all duration-300">
+              <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-[#c4301c]/50 shadow-lg">
+                <div class="flex items-center justify-between pb-4 mb-5 border-b border-red-100">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-[#c4301c] font-mono block mb-0.5">DETAIL OPERASIONAL</span>
+                    <h4 class="text-lg font-extrabold text-slate-900">4 Pilar Misi Howell</h4>
+                  </div>
+                  <button type="button" 
+                          onclick="toggleVisiMisiDetail('misi')" 
+                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none">
+                    Tutup
+                  </button>
+                </div>
+
+                <div class="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-red-500/5 border border-red-500/10">
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">1. Produk Berkualitas Tinggi &amp; Harga Kompetitif</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Melalui kontrol rantai pasok langsung dari pabrikasi berstandar internasional, Howell mampu menawarkan kabel performa tinggi (HDMI 8K, Active Optical, Audio Oxygen-Free) dengan efisiensi biaya terbaik untuk mendukung daya saing mitra ritel dan efisiensi pengadaan B2B.</p>
+                  </div>
+
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-red-500/5 border border-red-500/10">
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">2. Pelayanan Cepat, Tepat, dan Profesional</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Mendukung ritme bisnis modern dengan pemrosesan pesanan yang sigap, akurasi spesifikasi teknis, serta garansi resmi 12 bulan ganti baru tanpa birokrasi berbelit demi kepuasan pelanggan.</p>
+                  </div>
+
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-red-500/5 border border-red-500/10">
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">3. Hubungan Jangka Panjang dengan Mitra &amp; Pelanggan</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Menjadikan etika bisnis, transparansi harga, dan kehandalan pasokan sebagai fondasi kemitraan berkelanjutan bagi ratusan distributor, kontraktor instalasi, dan pelaku industri di seluruh Indonesia.</p>
+                  </div>
+
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-red-500/5 border border-red-500/10">
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">4. Berinovasi Mengikuti Perkembangan Pasar &amp; Teknologi</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Selalu berada di garis depan evolusi konektivitas digital dengan menghadirkan solusi kabel HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN Fast Charger, hingga hybrid active fiber untuk instalasi jarak jauh.</p>
+                  </div>
                 </div>
               </div>
-              <ol class="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-                <li class="flex items-start gap-3">
-                  <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">1</span>
-                  <span>Menyediakan produk berkualitas tinggi dengan harga kompetitif.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">2</span>
-                  <span>Memberikan pelayanan yang cepat, tepat, dan profesional.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">3</span>
-                  <span>Menjalin hubungan jangka panjang dengan mitra bisnis dan pelanggan.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">4</span>
-                  <span>Terus berinovasi mengikuti perkembangan pasar dan teknologi.</span>
-                </li>
-              </ol>
-            </div>
-            <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-mono">
-              <span>● 4 PILAR EKSEKUSI</span>
-              <span>KUALITAS & INTEGRITAS</span>
             </div>
           </div>
 
@@ -1742,7 +1844,7 @@
 
   <!-- Master Products Dataset Bundle -->
   <script src="js/products.js?v=20260914-v7-cartfix"></script>
-  <script src="js/app.js?v=20260921-v10-printcatalog"></script>
+  <script src="js/app.js?v=20260921-v11-visimisi"></script>
 
   <!-- Lenis Smooth Scroll Script CDN -->
   <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
