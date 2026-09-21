@@ -1120,7 +1120,7 @@ button, a, input, select {
     display: none !important;
   }
   .mobile-cart-btn {
-    display: inline-flex !important;
+    display: none !important;
   }
   .quick-view-btn {
     opacity: 1 !important;
@@ -1130,12 +1130,6 @@ button, a, input, select {
     width: 28px !important;
     height: 28px !important;
     background: rgba(255, 255, 255, 0.95) !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .mobile-cart-btn {
-    display: none !important;
   }
 }
 

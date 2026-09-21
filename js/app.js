@@ -124,535 +124,30 @@ const wishlistSystem = {
 };
 
 /* ==========================================================================
-   SHOPPING CART ENGINE & LOCALSTORAGE PERSISTENCE
+   CATALOG SHOWCASE CONTROLLER & SAFE STUBS
    ========================================================================== */
-window.saveCart = function saveCart() {
-  localStorage.setItem('howell_cart', JSON.stringify(state.cart));
-  updateCartBadge();
-  renderCartDrawer();
-}
-
-window.getCartSubtotal = function getCartSubtotal() {
-  return state.cart.reduce((sum, item) => sum + ((item.price || 0) * item.quantity), 0);
-}
-
-window.updateCartBadge = function updateCartBadge() {
-  const totalCount = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalRp = getCartSubtotal();
-
-  document.querySelectorAll('.cart-badge-count').forEach(el => {
-    el.textContent = totalCount;
-    if (totalCount > 0) {
-      el.classList.remove('hidden');
-    } else {
-      el.classList.add('hidden');
-    }
-  });
-
+window.saveCart = function() {};
+window.getCartSubtotal = function() { return 0; };
+window.updateCartBadge = function() {
+  document.querySelectorAll('.cart-badge-count').forEach(el => el.classList.add('hidden'));
   const floatBtn = document.getElementById('floating-cart-btn');
-  const floatCountEl = document.getElementById('floating-cart-count');
-  const floatTotalEl = document.getElementById('floating-cart-total');
-
-  if (floatBtn) {
-    if (totalCount > 0) {
-      floatBtn.classList.remove('hidden');
-    } else {
-      floatBtn.classList.add('hidden');
-    }
-  }
-
-  if (floatCountEl) floatCountEl.textContent = `${totalCount} Items`;
-  if (floatTotalEl) floatTotalEl.textContent = formatRupiah(totalRp);
-}
-
-window.addToCart = function addToCart(productId, length = null, color = null, qty = 1) {
-  const product = HOWELL_PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
-
-  const selLength = length || state.activeLength || (product.variants?.lengths?.[0]) || 'Standard';
-  const selColor = color || state.activeColor || (product.variants?.colors?.[0]) || 'Standard';
-
-  let itemPrice = product.price || 0;
-  if (product.variantPrices && product.variantPrices[selLength]) {
-    itemPrice = product.variantPrices[selLength];
-  }
-
-  const existingIdx = state.cart.findIndex(i => i.id === productId && i.length === selLength && i.color === selColor);
-
-  if (existingIdx > -1) {
-    state.cart[existingIdx].quantity += qty;
-  } else {
-    state.cart.push({
-      id: productId,
-      name: product.name,
-      categoryName: product.categoryName,
-      sku: product.sku,
-      image: product.image,
-      price: itemPrice,
-      length: selLength,
-      color: selColor,
-      quantity: qty
-    });
-  }
-
-  saveCart();
-  toggleCartDrawer(true);
-  showToast(`"${product.name}" (${selLength}) ditambahkan ke keranjang`, "Keranjang Belanja", "shopping-cart");
-}
-
-window.updateCartQty = function updateCartQty(index, delta) {
-  if (state.cart[index]) {
-    state.cart[index].quantity += delta;
-    if (state.cart[index].quantity <= 0) {
-      state.cart.splice(index, 1);
-    }
-    saveCart();
-  }
-}
-
-window.removeFromCart = function removeFromCart(index) {
-  if (state.cart[index]) {
-    state.cart.splice(index, 1);
-    saveCart();
-    showToast("Item berhasil dihapus dari keranjang", "Keranjang Belanja", "trash-2");
-  }
-}
-
-window.clearCart = function clearCart() {
-  state.cart = [];
-  saveCart();
-}
-
-window.toggleCartDrawer = function toggleCartDrawer(open) {
-  const backdrop = document.getElementById('cart-drawer-backdrop');
-  const drawer = document.getElementById('cart-drawer');
-
-  if (!backdrop || !drawer) {
-    console.warn("Cart drawer elements not found!");
-    return;
-  }
-
-  if (open) {
-    try {
-      renderCartDrawer();
-    } catch (e) {
-      console.error("Error in renderCartDrawer:", e);
-    }
-    backdrop.classList.remove('pointer-events-none', 'opacity-0');
-    backdrop.classList.add('opacity-100');
-    backdrop.style.pointerEvents = 'auto';
-    backdrop.style.opacity = '1';
-
-    drawer.classList.remove('translate-x-full');
-    drawer.classList.add('translate-x-0');
-    drawer.style.transform = 'translateX(0%)';
-
-    if (typeof stopScroll === 'function') stopScroll();
-  } else {
-    backdrop.classList.add('pointer-events-none', 'opacity-0');
-    backdrop.classList.remove('opacity-100');
-    backdrop.style.pointerEvents = 'none';
-    backdrop.style.opacity = '0';
-
-    drawer.classList.remove('translate-x-0');
-    drawer.classList.add('translate-x-full');
-    drawer.style.transform = 'translateX(100%)';
-
-    if (typeof startScroll === 'function') startScroll();
+  if (floatBtn) floatBtn.classList.add('hidden');
+};
+window.addToCart = function(productId) {
+  if (typeof window.openProductDetail === 'function') {
+    window.openProductDetail(productId);
   }
 };
-
-window.renderCartDrawer = function renderCartDrawer() {
-  const container = document.getElementById('cart-drawer-items');
-  const subtotalEl = document.getElementById('cart-drawer-subtotal');
-  const checkoutBtn = document.getElementById('cart-checkout-btn');
-
-  if (!container) return;
-
-  const subtotal = getCartSubtotal();
-  if (subtotalEl) subtotalEl.textContent = formatRupiah(subtotal);
-
-  if (!state.cart || state.cart.length === 0) {
-    container.innerHTML = `
-      <div class="flex flex-col items-center justify-center py-16 px-6 text-center">
-        <div class="w-20 h-20 rounded-2xl flex items-center justify-center mb-4" style="background: linear-gradient(145deg, #F8FAFC, #F1F5F9);">
-          <i data-lucide="shopping-bag" class="w-9 h-9 text-slate-300"></i>
-        </div>
-        <h4 class="text-sm font-bold text-slate-800 mb-1">Keranjang Masih Kosong</h4>
-        <p class="text-xs text-slate-400 leading-relaxed mb-5">Pilih produk berkualitas HOWELL dan tambahkan ke keranjang untuk mulai berbelanja.</p>
-        <button onclick="toggleCartDrawer(false); setTimeout(()=>scrollToId('catalog-section'),200);" 
-          class="btn-howell-primary text-xs px-5 py-2.5 cursor-pointer">
-          🛍️ Mulai Belanja Produk
-        </button>
-      </div>
-    `;
-    if (checkoutBtn) checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
-    if (window.lucide) lucide.createIcons();
-    return;
-  }
-
-  if (checkoutBtn) checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
-
-  container.innerHTML = state.cart.map((item, idx) => {
-    const imgSrc = item.image ? encodeURI(item.image) : 'assets/howell-logo.png';
-    const priceFormatted = formatRupiah(item.price || 0);
-    const lineTotalFormatted = formatRupiah((item.price || 0) * (item.quantity || 1));
-    return `
-      <div class="cart-item-row">
-        <img src="${imgSrc}" alt="${item.name || 'HOWELL Product'}" class="cart-item-thumb" onerror="this.src='assets/howell-logo.png'">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-start justify-between gap-2">
-            <div class="min-w-0">
-              <span class="inline-block text-[9px] font-black uppercase tracking-widest text-[#b88e00] bg-[#FFC700]/10 px-1.5 py-0.5 rounded-md mb-1">${item.categoryName || 'HOWELL'}</span>
-              <h4 class="text-[11px] font-bold text-slate-900 leading-snug line-clamp-2">${item.name || 'Produk HOWELL'}</h4>
-              ${item.length && item.length !== 'Standard' ? `<span class="text-[10px] text-slate-400 font-medium">${item.length}</span>` : ''}
-            </div>
-            <button onclick="removeFromCart(${idx})" class="shrink-0 w-6 h-6 rounded-full hover:bg-red-50 text-slate-300 hover:text-red-400 flex items-center justify-center transition-all cursor-pointer" title="Hapus">
-              <i data-lucide="x" class="w-3 h-3"></i>
-            </button>
-          </div>
-          <div class="flex items-center justify-between mt-2.5">
-            <div class="qty-control">
-              <button onclick="updateCartQty(${idx}, -1)" class="qty-btn cursor-pointer">−</button>
-              <span class="qty-display">${item.quantity || 1}</span>
-              <button onclick="updateCartQty(${idx}, 1)" class="qty-btn cursor-pointer">+</button>
-            </div>
-            <div class="text-right">
-              <div class="text-[10px] text-slate-400 font-medium">${priceFormatted} × ${item.quantity || 1}</div>
-              <div class="text-xs font-extrabold text-slate-900">${lineTotalFormatted}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  if (window.lucide) lucide.createIcons();
-};
-
-
-
-/* ==========================================================================
-   QRIS & BANK BCA PAYMENT GATEWAY & CHECKOUT CONTROLLER
-   ========================================================================== */
-window.openCheckoutModal = function openCheckoutModal() {
-  if (!state.cart || state.cart.length === 0) {
-    showToast("Keranjang Anda masih kosong", "Checkout Error", "alert-circle");
-    return;
-  }
-
-  toggleCartDrawer(false);
-
-  const modal = document.getElementById('qris-checkout-modal');
-  const stepForm = document.getElementById('qris-step-form');
-  const stepDisplay = document.getElementById('qris-step-display');
-  const itemCountEl = document.getElementById('qris-order-item-count');
-  const itemsListEl = document.getElementById('qris-order-items-list');
-  const totalPriceEl = document.getElementById('qris-order-total-price');
-
-  if (!modal) return;
-
-  const totalCount = state.cart.reduce((sum, i) => sum + (i.quantity || 1), 0);
-  const totalRp = getCartSubtotal();
-
-  if (itemCountEl) itemCountEl.textContent = `${totalCount} Items`;
-  if (totalPriceEl) totalPriceEl.textContent = formatRupiah(totalRp);
-
-  if (itemsListEl) {
-    itemsListEl.innerHTML = state.cart.map(i => `
-      <div class="flex justify-between items-center py-1 border-b border-slate-100 text-xs">
-        <span class="truncate max-w-[240px] text-slate-800 font-medium">${i.name} (${i.length}) x${i.quantity}</span>
-        <span class="font-bold text-slate-900 shrink-0">${formatRupiah((i.price || 0) * (i.quantity || 1))}</span>
-      </div>
-    `).join('');
-  }
-
-  if (stepForm) stepForm.classList.remove('hidden');
-  if (stepDisplay) stepDisplay.classList.add('hidden');
-
-  modal.classList.remove('pointer-events-none', 'opacity-0', 'hidden');
-  modal.classList.add('opacity-100');
-  modal.style.pointerEvents = 'auto';
-  modal.style.opacity = '1';
-  modal.style.display = 'flex';
-
-  if (window.lucide) lucide.createIcons();
-  if (typeof stopScroll === 'function') stopScroll();
-};
-
-window.handlePaymentMethodChange = function handlePaymentMethodChange(method) {
-  const qrisLabel = document.getElementById('pay-opt-label-qris');
-  const bcaLabel = document.getElementById('pay-opt-label-bca');
-  const submitBtn = document.getElementById('checkout-submit-btn');
-
-  if (method === 'qris') {
-    if (qrisLabel) {
-      qrisLabel.className = 'relative flex items-center gap-3 p-3 border-2 border-[#FFC700] bg-amber-50/60 rounded-2xl cursor-pointer transition-all';
-    }
-    if (bcaLabel) {
-      bcaLabel.className = 'relative flex items-center gap-3 p-3 border-2 border-slate-200 bg-white rounded-2xl cursor-pointer transition-all hover:border-blue-400';
-    }
-    if (submitBtn) {
-      submitBtn.innerHTML = '<span>Tampilkan Barcode QRIS</span> <i data-lucide="qr-code" class="w-4 h-4"></i>';
-    }
-  } else {
-    if (qrisLabel) {
-      qrisLabel.className = 'relative flex items-center gap-3 p-3 border-2 border-slate-200 bg-white rounded-2xl cursor-pointer transition-all hover:border-yellow-400';
-    }
-    if (bcaLabel) {
-      bcaLabel.className = 'relative flex items-center gap-3 p-3 border-2 border-blue-600 bg-blue-50/60 rounded-2xl cursor-pointer transition-all';
-    }
-    if (submitBtn) {
-      submitBtn.innerHTML = '<span>Lanjut ke Rekening BCA</span> <i data-lucide="credit-card" class="w-4 h-4"></i>';
-    }
-  }
-  if (window.lucide) lucide.createIcons();
-};
-
-window.copyBcaAccount = function copyBcaAccount(accNumber = '5271988888') {
-  navigator.clipboard?.writeText(accNumber).then(() => {
-    showToast('Nomor Rekening BCA (' + accNumber + ') berhasil disalin!', 'Salin Rekening', 'copy');
-    const copyBtn = document.getElementById('copy-bca-btn');
-    if (copyBtn) {
-      copyBtn.innerHTML = '✓ Tersalin';
-      setTimeout(() => {
-        copyBtn.innerHTML = '📋 Salin';
-      }, 2500);
-    }
-  }).catch(() => {
-    showToast('Nomor Rekening BCA: ' + accNumber, 'Salin Rekening', 'copy');
-  });
-};
-
-window.backToCheckoutForm = function backToCheckoutForm() {
-  const stepForm = document.getElementById('qris-step-form');
-  const stepDisplay = document.getElementById('qris-step-display');
-  if (stepForm) stepForm.classList.remove('hidden');
-  if (stepDisplay) stepDisplay.classList.add('hidden');
-};
-
-window.submitQrisCheckout = function submitQrisCheckout(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('qris-cust-name')?.value || 'Pelanggan Howell';
-  const phone = document.getElementById('qris-cust-phone')?.value || '-';
-  const address = document.getElementById('qris-cust-address')?.value || '-';
-  const method = document.querySelector('input[name="checkout_pay_method"]:checked')?.value || 'qris';
-
-  const stepForm = document.getElementById('qris-step-form');
-  const stepDisplay = document.getElementById('qris-step-display');
-  const totalRp = getCartSubtotal();
-
-  if (!stepForm || !stepDisplay) return;
-
-  stepForm.classList.add('hidden');
-  stepDisplay.classList.remove('hidden');
-
-  if (method === 'bca') {
-    // Bank BCA Payment View
-    stepDisplay.innerHTML = `
-      <div class="text-center space-y-4">
-        <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full text-blue-800 text-xs font-bold">
-          <span>✓</span> Transfer Bank BCA Resmi PT HOWELL NIAGA INDONESIA
-        </div>
-
-        <h3 class="text-xl font-bold text-slate-900">Instruksi Pembayaran Bank BCA</h3>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto">Silakan lakukan transfer manual ke Rekening Resmi BCA di bawah ini sesuai total tagihan pesanan.</p>
-
-        <!-- BCA Account Card -->
-        <div class="max-w-sm mx-auto p-5 rounded-3xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-950 text-white shadow-2xl space-y-4 text-left border border-blue-700/50 relative overflow-hidden">
-          <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
-
-          <div class="flex items-center justify-between border-b border-white/15 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="text-lg font-black tracking-wider bg-white text-blue-900 px-2.5 py-0.5 rounded-lg">BCA</span>
-              <span class="text-[11px] font-semibold tracking-wide text-blue-100">Bank Central Asia</span>
-            </div>
-            <span class="text-[10px] font-mono uppercase bg-blue-950/60 border border-white/20 px-2 py-0.5 rounded-full text-blue-200">Official Account</span>
-          </div>
-
-          <div>
-            <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-200">Nomor Rekening BCA:</span>
-            <div class="flex items-center justify-between mt-1 bg-black/30 backdrop-blur-md p-2.5 rounded-xl border border-white/10">
-              <span class="text-lg sm:text-xl font-black font-mono tracking-widest text-[#FFC700]">527 198 8888</span>
-              <button type="button" id="copy-bca-btn" onclick="copyBcaAccount('5271988888')" class="text-xs bg-white text-blue-950 font-extrabold px-3 py-1.5 rounded-lg hover:bg-[#FFC700] hover:text-black transition-all cursor-pointer shrink-0">
-                📋 Salin
-              </button>
-            </div>
-          </div>
-
-          <div class="flex justify-between items-end pt-1">
-            <div>
-              <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-200">Atas Nama:</span>
-              <div class="text-xs sm:text-sm font-black tracking-wide text-white">PT HOWELL NIAGA INDONESIA</div>
-            </div>
-            <div class="text-right">
-              <span class="block text-[10px] font-bold uppercase tracking-wider text-blue-200">Total Transfer:</span>
-              <div class="text-base sm:text-lg font-black text-[#FFC700] font-mono">${formatRupiah(totalRp)}</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Transfer Guide -->
-        <div class="p-3.5 rounded-2xl bg-slate-100 text-xs text-slate-700 space-y-1.5 max-w-sm mx-auto text-left border border-slate-200">
-          <span class="block font-bold text-slate-900 text-[11px]">Panduan Pembayaran BCA:</span>
-          <ol class="list-decimal pl-4 space-y-1 text-[11px] text-slate-600">
-            <li>Transfer via <strong>m-BCA (BCA Mobile)</strong>, <strong>myBCA</strong>, <strong>KlikBCA</strong>, atau <strong>ATM BCA</strong>.</li>
-            <li>Masukkan No. Rekening: <strong class="text-blue-900 font-mono">5271988888</strong> a/n <strong>PT HOWELL NIAGA INDONESIA</strong>.</li>
-            <li>Pastikan nominal transfer tepat: <strong class="text-black font-mono">${formatRupiah(totalRp)}</strong>.</li>
-            <li>Simpan bukti transfer dan klik tombol konfirmasi di bawah.</li>
-          </ol>
-        </div>
-
-        <div class="pt-2 flex flex-col sm:flex-row gap-2.5 max-w-sm mx-auto">
-          <button type="button" onclick="confirmBcaPayment('${name.replace(/'/g, "\\'")}', '${phone}', '${address.replace(/'/g, "\\'")}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all cursor-pointer">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span>Saya Sudah Transfer (Kirim Bukti via WhatsApp)</span>
-          </button>
-        </div>
-
-        <div class="flex flex-col gap-2 pt-2">
-          <button type="button" onclick="backToCheckoutForm()" class="text-xs font-bold text-slate-600 hover:text-black hover:underline cursor-pointer flex items-center justify-center gap-1">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Ubah Data / Pilihan Pembayaran</span>
-          </button>
-          <button type="button" onclick="backToCartFromCheckout()" class="text-xs text-slate-500 hover:text-slate-800 cursor-pointer flex items-center justify-center gap-1">
-            <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
-            <span>Kembali ke Keranjang Belanja</span>
-          </button>
-        </div>
-      </div>
-    `;
-  } else {
-    // QRIS Payment View
-    stepDisplay.innerHTML = `
-      <div class="text-center space-y-4">
-        <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-4 py-1.5 rounded-full text-emerald-700 text-xs font-bold">
-          <span>✓</span> Standard QRIS Pembayaran Nasional
-        </div>
-
-        <h3 class="text-xl font-bold text-slate-900">Scan Barcode QRIS Resmi</h3>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto">Gunakan aplikasi e-Wallet atau m-Banking Anda (BCA Mobile, Livin, GoPay, OVO, Dana, ShopeePay, dll) untuk memindai kode QRIS di bawah ini.</p>
-
-        <div class="max-w-xs mx-auto p-5 rounded-3xl bg-white border-2 border-slate-900 shadow-2xl space-y-3 relative text-left">
-          <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-            <div class="flex items-center gap-1">
-              <span class="font-extrabold text-red-600 text-lg tracking-tighter">QRIS</span>
-              <span class="text-[9px] font-mono text-slate-500 uppercase tracking-widest block leading-tight">GPN</span>
-            </div>
-            <span class="text-[10px] font-bold text-slate-400 uppercase">PT HOWELL NIAGA</span>
-          </div>
-
-          <div class="text-center py-1">
-            <span class="block text-[11px] font-bold text-slate-500 uppercase">NAMA MERCHANT:</span>
-            <h4 class="text-sm font-extrabold text-slate-900">PT HOWELL NIAGA INDONESIA</h4>
-            <span class="block text-[10px] text-slate-400 font-mono">NMID: ID1024883019274</span>
-          </div>
-
-          <div class="w-56 h-56 mx-auto bg-white p-2 border-2 border-black rounded-2xl flex items-center justify-center shadow-inner relative">
-            <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="200" height="200" fill="white"/>
-              <rect x="10" y="10" width="50" height="50" rx="6" fill="black"/>
-              <rect x="20" y="20" width="30" height="30" rx="3" fill="white"/>
-              <rect x="27" y="27" width="16" height="16" rx="2" fill="black"/>
-              <rect x="140" y="10" width="50" height="50" rx="6" fill="black"/>
-              <rect x="150" y="20" width="30" height="30" rx="3" fill="white"/>
-              <rect x="157" y="27" width="16" height="16" rx="2" fill="black"/>
-              <rect x="10" y="140" width="50" height="50" rx="6" fill="black"/>
-              <rect x="20" y="150" width="30" height="30" rx="3" fill="white"/>
-              <rect x="27" y="157" width="16" height="16" rx="2" fill="black"/>
-              <path d="M70 10h10v10H70zM90 10h20v10H90zM120 10h10v10h-10zM70 30h30v10H70zM110 30h20v10h-20zM70 50h10v10H70zM90 50h10v10H90zM110 50h20v10h-20zM10 70h60v10H10zM80 70h10v10H80zM100 70h20v10h-20zM130 70h60v10h-60zM10 90h20v10H10zM40 90h20v10H40zM70 90h30v10H70zM110 90h10v10h-10zM130 90h30v10h-30zM170 90h20v10h-20zM20 110h30v10H20zM60 110h20v10H60zM90 110h20v10H90zM120 110h20v10h-20zM150 110h30v10h-30zM70 130h20v10H70zM100 130h20v10h-20zM130 130h30v10h-30zM70 150h30v10H70zM110 150h20v10h-20zM140 150h20v10h-20zM170 150h20v10h-20zM70 170h10v10H70zM90 170h20v10H90zM120 170h30v10h-30zM160 170h20v10h-20z" fill="black"/>
-              <rect x="75" y="75" width="50" height="50" rx="10" fill="white" stroke="black" stroke-width="3"/>
-              <text x="100" y="105" font-size="14" font-weight="bold" fill="black" text-anchor="middle" font-family="sans-serif">HW</text>
-            </svg>
-          </div>
-
-          <div class="text-center pt-2 border-t border-slate-200">
-            <span class="text-[10px] font-bold text-slate-400 uppercase">TOTAL DIBAYARKAN:</span>
-            <div class="text-xl font-extrabold text-emerald-600 font-mono">${formatRupiah(totalRp)}</div>
-          </div>
-        </div>
-
-        <div class="p-3 rounded-2xl bg-slate-100 text-xs text-slate-600 space-y-1 max-w-sm mx-auto text-left">
-          <span class="block font-bold text-slate-800 text-[11px]">Dukungan Pembayaran QRIS:</span>
-          <p class="text-[10px] leading-relaxed">BCA Mobile, Mandiri Livin, BRImo, BNI Mobile, GoPay, OVO, DANA, ShopeePay, LinkAja &amp; Seluruh m-Banking GPN.</p>
-        </div>
-
-        <div class="pt-2 flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
-          <button type="button" onclick="confirmQrisPayment('${name.replace(/'/g, "\\'")}', '${phone}', '${address.replace(/'/g, "\\'")}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all cursor-pointer">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span>Saya Sudah Bayar via QRIS (Konfirmasi WA)</span>
-          </button>
-        </div>
-
-        <div class="flex flex-col gap-2 pt-2">
-          <button type="button" onclick="backToCheckoutForm()" class="text-xs font-bold text-slate-600 hover:text-black hover:underline cursor-pointer flex items-center justify-center gap-1">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Ubah Data / Pilihan Pembayaran</span>
-          </button>
-          <button type="button" onclick="backToCartFromCheckout()" class="text-xs text-slate-500 hover:text-slate-800 cursor-pointer flex items-center justify-center gap-1">
-            <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
-            <span>Kembali ke Keranjang Belanja</span>
-          </button>
-        </div>
-      </div>
-    `;
-  }
-
-  if (window.lucide) lucide.createIcons();
-};
-
-window.confirmBcaPayment = function confirmBcaPayment(name, phone, address) {
-  const totalRp = getCartSubtotal();
-  const itemsText = state.cart.map(i => `• ${i.name} (${i.length}) x${i.quantity} = ${formatRupiah(i.price * i.quantity)}`).join('\n');
-
-  let waMsg = `Halo *HOWELL Indonesia*, saya telah melakukan pembayaran via *Transfer Bank BCA* dengan detail pesanan berikut:\n\n` +
-    `*STRUK PESANAN KERANJANG HOWELL*\n` +
-    `---------------------------------------\n` +
-    `• *Nama Pembeli:* ${name}\n` +
-    `• *No. WhatsApp:* ${phone}\n` +
-    `• *Alamat Pengiriman:* ${address}\n\n` +
-    `*METODE PEMBAYARAN:* Transfer Bank BCA\n` +
-    `• *Rekening Tujuan:* 527 198 8888\n` +
-    `• *Atas Nama:* PT HOWELL NIAGA INDONESIA\n\n` +
-    `*ITEM PRODUK DIBELI:*\n${itemsText}\n\n` +
-    `---------------------------------------\n` +
-    `*TOTAL TRANSFER:* ${formatRupiah(totalRp)}\n` +
-    `*Status:* Sudah Transfer (Bukti terlampir)\n\n` +
-    `Berikut saya lampirkan bukti transfer BCA saya. Mohon segera memproses pesanan dan pengiriman. Terima kasih!`;
-
-  const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
-  window.open(waUrl, '_blank');
-
-  clearCart();
-  closeModal('qris-checkout-modal');
-  showToast("Pesanan berhasil dikonfirmasi! Bukti transfer dikirim via WhatsApp CS Howell.", "Transfer Bank BCA", "check-circle-2");
-};
-
-window.confirmQrisPayment = function confirmQrisPayment(name, phone, address) {
-  const totalRp = getCartSubtotal();
-  const itemsText = state.cart.map(i => `• ${i.name} (${i.length}) x${i.quantity} = ${formatRupiah(i.price * i.quantity)}`).join('\n');
-
-  let waMsg = `Halo *HOWELL Indonesia*, saya telah melakukan pembayaran via *QRIS Standar Nasional* dengan detail pesanan berikut:\n\n` +
-    `*STRUK PESANAN KERANJANG HOWELL*\n` +
-    `---------------------------------------\n` +
-    `• *Nama Pembeli:* ${name}\n` +
-    `• *No. WhatsApp:* ${phone}\n` +
-    `• *Alamat Pengiriman:* ${address}\n\n` +
-    `*METODE PEMBAYARAN:* QRIS Standar Nasional\n\n` +
-    `*ITEM PRODUK DIBELI:*\n${itemsText}\n\n` +
-    `---------------------------------------\n` +
-    `*TOTAL PEMBAYARAN QRIS:* ${formatRupiah(totalRp)}\n` +
-    `*Status Pembayaran:* QRIS Success / Menunggu Pengiriman\n\n` +
-    `Mohon segera memproses pengiriman pesanan saya. Terima kasih!`;
-
-  const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
-  window.open(waUrl, '_blank');
-
-  clearCart();
-  closeModal('qris-checkout-modal');
-  showToast("Pesanan berhasil dikonfirmasi! Bukti pesanan dikirim via WhatsApp CS Howell.", "Pembayaran QRIS", "check-circle-2");
-};
+window.updateCartQty = function() {};
+window.removeFromCart = function() {};
+window.clearCart = function() {};
+window.toggleCartDrawer = function() {};
+window.renderCartDrawer = function() {};
+window.openCheckoutModal = function() {};
+window.backToCheckoutForm = function() {};
+window.handlePaymentMethodChange = function() {};
+window.submitQrisCheckout = function(e) { if (e) e.preventDefault(); };
+window.confirmQrisManualPayment = function() {};
 
 // Product Specifications Snippet for Cards
 function renderProductSpecsSnippet(product) {
@@ -716,20 +211,11 @@ function renderProductVisual(product, isLarge = false) {
   return product.svgRender || `<div class="w-full h-full flex items-center justify-center text-slate-400 font-bold text-xs uppercase font-sans">HOWELL Product</div>`;
 }
 
-// Select Length Variant & Update Price Dynamic
-// Select Length Variant & Update Price Dynamically (CableTime Style)
+// Select Length Variant (CableTime Showcase Style)
 window.selectVariantLength = function selectVariantLength(len) {
   state.activeLength = len;
   const product = state.activeProductDetail;
   if (!product) return;
-
-  let price = product.price || 0;
-  if (product.variantPrices && product.variantPrices[len]) {
-    price = product.variantPrices[len];
-  }
-
-  const priceEl = document.getElementById('detail-active-price') || document.getElementById('modal-product-price');
-  if (priceEl) priceEl.textContent = formatRupiah(price);
 
   document.querySelectorAll('#detail-length-pills button, #product-detail-modal button[data-variant-length]').forEach(btn => {
     if (btn.getAttribute('data-variant-length') === len) {
@@ -738,8 +224,14 @@ window.selectVariantLength = function selectVariantLength(len) {
       btn.className = 'px-3.5 py-2 rounded-xl text-xs font-bold border transition-all bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
     }
   });
-}
 
+  const waMsg = `Halo HOWELL, saya tertarik dengan produk ${product.name} (SKU: ${product.sku || '-'})` + (len !== 'Standard' ? ` varian panjang ${len}` : '') + `. Mohon informasi spesifikasi teknis & ketersediaan stok.`;
+  const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
+  const waBtn = document.getElementById('detail-wa-inquiry-btn');
+  if (waBtn) waBtn.href = waUrl;
+  const mobileWaBtn = document.getElementById('mobile-detail-wa-btn');
+  if (mobileWaBtn) mobileWaBtn.href = waUrl;
+};
 
 // CableTime Filter Accordion Controller
 function toggleFilterAccordion(type) {
@@ -857,7 +349,7 @@ function setCatalogViewMode(mode) {
   renderCatalog();
 }
 
-// Catalog & Product Filtering Renderer (CableTime Collections Style)
+// Catalog & Product Filtering Renderer (Corporate Showcase Style)
 window.renderCatalog = function renderCatalog() {
   const catalogGrid = document.getElementById('product-catalog-grid');
   const countEl = document.getElementById('catalog-count');
@@ -882,32 +374,19 @@ window.renderCatalog = function renderCatalog() {
     );
   }
 
-  // Price range filter
-  if (state.priceFilter === 'under50k') {
-    filtered = filtered.filter(p => p.price < 50000);
-  } else if (state.priceFilter === '50k-150k') {
-    filtered = filtered.filter(p => p.price >= 50000 && p.price <= 150000);
-  } else if (state.priceFilter === 'over150k') {
-    filtered = filtered.filter(p => p.price > 150000);
-  }
-
   // Availability filter
   if (state.availabilityStock) {
     filtered = filtered.filter(p => p.rating >= 4.0);
   }
 
-  // Sorting logic (CableTime)
-  if (state.sortBy === 'price-asc') {
-    filtered.sort((a, b) => a.price - b.price);
-  } else if (state.sortBy === 'price-desc') {
-    filtered.sort((a, b) => b.price - a.price);
-  } else if (state.sortBy === 'name') {
+  // Sorting logic (Name, Rating)
+  if (state.sortBy === 'name') {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
   } else if (state.sortBy === 'rating') {
     filtered.sort((a, b) => b.rating - a.rating);
   }
 
-  // Update live count matching CableTime
+  // Update live count
   if (countEl) {
     countEl.textContent = `${filtered.length} produk`;
   }
@@ -916,7 +395,7 @@ window.renderCatalog = function renderCatalog() {
     renderCategoryChips();
   }
 
-  // Render Sidebar Category Accordion (#acc-body-category) - Flat minimal CableTime style
+  // Render Sidebar Category Accordion (#acc-body-category)
   const catContainer = document.getElementById('acc-body-category');
   if (catContainer) {
     const allCount = HOWELL_PRODUCTS.length;
@@ -946,7 +425,7 @@ window.renderCatalog = function renderCatalog() {
           <i data-lucide="search-x" class="w-7 h-7"></i>
         </div>
         <h3 class="text-base font-bold text-slate-900">Tidak Ada Produk yang Sesuai</h3>
-        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan filter atau kategori produk Anda.</p>
+        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan pencarian atau kategori produk Anda.</p>
         <button onclick="resetFilters()" class="mt-4 px-5 py-2 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-all cursor-pointer">Reset Filter</button>
       </div>
     `;
@@ -955,16 +434,14 @@ window.renderCatalog = function renderCatalog() {
     return;
   }
 
-  // 6-Product Limit & "See More" (Lihat Lebih Banyak) Logic
+  // 6-Product Limit & "See More" Logic
   const limit = state.catalogInitialLimit || 6;
   const shouldLimit = !state.catalogExpanded && filtered.length > limit;
   const displayed = shouldLimit ? filtered.slice(0, limit) : filtered;
 
-  // Set Grid vs List container classes
   if (state.viewMode === 'list') {
     catalogGrid.className = 'flex flex-col gap-4 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
-      const formattedPrice = formatRupiah(product.price);
       const encodedSrc = encodeURI(product.image);
 
       return `
@@ -974,46 +451,51 @@ window.renderCatalog = function renderCatalog() {
           </div>
           <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
             <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[9px] font-black uppercase tracking-widest text-[#92400E]">${product.categoryName || 'HOWELL'}</span>
+                <span class="text-[10px] text-slate-400 font-mono">SKU: ${product.sku || '-'}</span>
+              </div>
               <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-[#c4301c] transition-colors line-clamp-2 leading-snug">${product.name}</h3>
+              <p class="text-xs text-slate-500 line-clamp-2 mt-1">${product.summary || ''}</p>
             </div>
-            <div class="mt-4 pt-2 flex items-center justify-between">
-              <span class="text-[17px] font-bold text-[#c4301c]">${formattedPrice}</span>
-              <span class="text-xs font-semibold text-slate-700 hover:text-black transition-colors flex items-center gap-1">Lihat Detail &amp; Spesifikasi →</span>
+            <div class="mt-4 pt-2 flex items-center justify-between border-t border-slate-100">
+              <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">✓ Garansi Resmi 12 Bulan</span>
+              <span class="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors flex items-center gap-1">Lihat Detail &amp; Spesifikasi →</span>
             </div>
           </div>
         </div>
       `;
     }).join('');
   } else {
-    // Grid View — Premium Howell Style: Shine, Rating, Warranty Badge
+    // Grid View — Corporate Showcase Style (No Price, Clean CTA)
     catalogGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
-      const formattedPrice = formatRupiah(product.price);
       const encodedSrc = encodeURI(product.image);
       const rating = product.rating || 4.8;
       const stars = '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
 
       return `
-        <div class="product-card-pro flex flex-col" style="cursor:pointer;">
+        <div class="product-card-pro flex flex-col" style="cursor:pointer;" onclick="openProductDetail('${product.id}')">
           <!-- Image Wrapper -->
-          <div class="card-img-wrap" onclick="openProductDetail('${product.id}')">
+          <div class="card-img-wrap">
             <img src="${encodedSrc}" alt="${product.name}" loading="lazy" onerror="this.src='assets/howell-logo.png'">
             <!-- Quick View Button -->
             <button class="quick-view-btn" onclick="event.stopPropagation(); openProductDetail('${product.id}')" title="Lihat Detail">
               <i data-lucide="eye" style="width:14px;height:14px;color:#0F172A;"></i>
             </button>
-            <!-- Hover Add to Cart -->
+            <!-- Hover Action: Detail Spesifikasi -->
             <div class="card-actions">
-              <button type="button" onclick="event.stopPropagation(); addToCart('${product.id}')" 
-                class="w-full mx-2 py-2.5 rounded-xl text-[11px] font-bold text-black cursor-pointer transition-all" 
+              <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')" 
+                class="w-full mx-2 py-2.5 rounded-xl text-[11px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1.5" 
                 style="background: #FFC700; box-shadow: 0 4px 16px rgba(255,199,0,0.35);">
-                🛒 Tambahkan ke Keranjang
+                <i data-lucide="eye" style="width:13px;height:13px;"></i>
+                Lihat Spesifikasi
               </button>
             </div>
           </div>
 
           <!-- Product Info -->
-          <div class="p-3 flex flex-col gap-1 flex-1" onclick="openProductDetail('${product.id}')">
+          <div class="p-3 flex flex-col gap-1 flex-1">
             <!-- Category + Rating Row -->
             <div class="flex items-center justify-between">
               <span class="text-[9px] font-black uppercase tracking-widest" style="color:#92400E;">${product.categoryName || 'HOWELL'}</span>
@@ -1023,22 +505,16 @@ window.renderCatalog = function renderCatalog() {
             <!-- Product Name -->
             <h3 class="text-[11px] sm:text-[12px] font-semibold text-slate-900 line-clamp-2 leading-snug flex-1" style="letter-spacing:-0.01em;">${product.name}</h3>
 
-            <!-- Price Row -->
-            <div class="flex items-end justify-between mt-1 gap-1">
-              <div>
-                <div class="price-main" style="font-size:0.875rem;">${formattedPrice}</div>
-                <div class="badge-certified mt-0.5">✓ Garansi</div>
-              </div>
-              <button type="button" onclick="event.stopPropagation(); addToCart('${product.id}')" class="mobile-cart-btn w-7 h-7 rounded-lg bg-[#FFC700] hover:bg-[#e6b400] text-black items-center justify-center shadow-xs transition-transform active:scale-90" title="Beli">
-                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-              </button>
+            <!-- Specs & Detail Link Row (Clean, No Price) -->
+            <div class="flex items-center justify-between mt-2 pt-1 border-t border-slate-100">
+              <div class="badge-certified">✓ Garansi Resmi</div>
+              <span class="text-[10px] font-bold text-slate-600 hover:text-black flex items-center gap-0.5">Detail →</span>
             </div>
           </div>
         </div>
       `;
     }).join('');
   }
-
 
   // Render "See More" / "Lihat Lebih Banyak" Button
   if (loadMoreBox) {
@@ -1048,20 +524,20 @@ window.renderCatalog = function renderCatalog() {
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
             <button type="button" onclick="toggleCatalogExpand(true)" class="group px-8 py-3.5 rounded-full border border-slate-900 bg-slate-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center gap-2 select-none cursor-pointer">
-              <span>Lihat Lebih Banyak (${remaining} Produk Lainnya)</span>
-              <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform text-amber-400"></i>
+              <span>Lihat ${remaining} Produk Lainnya</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
             </button>
-            <span class="text-xs text-slate-500 font-medium">Menampilkan ${limit} dari ${filtered.length} produk resmi HOWELL</span>
+            <span class="text-[11px] text-slate-400">Menampilkan ${limit} dari ${filtered.length} produk katalog HOWELL</span>
           </div>
         `;
       } else {
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
-            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-8 py-3.5 rounded-full border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 text-xs sm:text-sm font-semibold shadow-sm transition-all flex items-center gap-2 select-none cursor-pointer">
-              <span>Tampilkan Lebih Sedikit (6 Teratas)</span>
-              <i data-lucide="chevron-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform text-slate-600"></i>
+            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-8 py-3 rounded-full border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-bold shadow-xs transition-all flex items-center gap-2 select-none cursor-pointer">
+              <span>Tampilkan Lebih Sedikit</span>
+              <i data-lucide="chevron-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"></i>
             </button>
-            <span class="text-xs text-slate-500 font-medium">Menampilkan seluruh ${filtered.length} produk resmi HOWELL</span>
+            <span class="text-[11px] text-slate-400">Menampilkan seluruh ${filtered.length} produk katalog</span>
           </div>
         `;
       }
@@ -1070,8 +546,10 @@ window.renderCatalog = function renderCatalog() {
     }
   }
 
-  if (window.lucide) lucide.createIcons();
-}
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+};
 
 // Toggle Catalog See More
 function toggleCatalogExpand(expand) {
@@ -1442,9 +920,6 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
   const featuredList = HOWELL_PRODUCTS.slice(0, 12);
   featuredGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 w-full';
   featuredGrid.innerHTML = featuredList.map(product => {
-    const formattedPrice = formatRupiah(product.price);
-    const originalPrice = Math.round(product.price * 1.35);
-    const discountPercent = Math.round(((originalPrice - product.price) / originalPrice) * 100);
     const encodedSrc = encodeURI(product.image);
 
     return `
@@ -1454,13 +929,13 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
         </div>
         <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
           <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-[#c4301c] transition-colors mb-1.5">${product.name}</h3>
-          <div class="text-[15px] sm:text-[16px] font-bold text-[#c4301c] mt-auto">${formattedPrice}</div>
+          <div class="text-[11px] font-bold text-emerald-700 mt-auto flex items-center gap-1">✓ Garansi 12 Bulan</div>
         </div>
       </div>
     `;
   }).join('');
   if (window.lucide) lucide.createIcons();
-}
+};
 
 window.renderCategoryCards = function renderCategoryCards() {
   const categoryContainer = document.getElementById('category-cards-grid');
@@ -1501,8 +976,8 @@ window.openProductDetail = function openProductDetail(productId) {
 
   const encodedSrc = encodeURI(product.image);
   const safeTitle = (product.name || '').replace(/'/g, "\\'");
-  const currentPrice = (product.variantPrices && product.variantPrices[state.activeLength]) ? product.variantPrices[state.activeLength] : product.price;
-
+  const waMsg = `Halo HOWELL, saya tertarik dengan produk ${product.name} (SKU: ${product.sku || '-'})` + (state.activeLength !== 'Standard' ? ` varian panjang ${state.activeLength}` : '') + `. Mohon informasi spesifikasi & ketersediaan stok.`;
+  const waInquiryUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
 
   containerEl.innerHTML = `
     <!-- Top Back Navigation & Breadcrumbs -->
@@ -1520,10 +995,10 @@ window.openProductDetail = function openProductDetail(productId) {
       </div>
     </div>
 
-    <!-- Main 2-Column Product Layout (CableTime: single photo | right info) -->
+    <!-- Main 2-Column Product Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-      <!-- Left Column: Single Large Product Image Only (CableTime Style) -->
+      <!-- Left Column: Single Large Product Image Only -->
       <div class="lg:col-span-6">
         <div class="aspect-square w-full bg-[#f4f4f4] rounded-2xl overflow-hidden relative flex items-center justify-center p-8 sm:p-12 group/detailimg border border-slate-100">
           <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
@@ -1539,7 +1014,7 @@ window.openProductDetail = function openProductDetail(productId) {
         </div>
       </div>
 
-      <!-- Right Column: Product Info (CableTime Match) -->
+      <!-- Right Column: Product Info & Actions -->
       <div class="lg:col-span-6 flex flex-col gap-4">
 
         <!-- Product Title -->
@@ -1554,15 +1029,10 @@ window.openProductDetail = function openProductDetail(productId) {
           </span>
         </div>
 
-        <!-- Price (Red bold, no discount/strikethrough) -->
-        <div class="flex items-baseline gap-2.5 flex-wrap">
-          <span id="detail-active-price" class="text-2xl sm:text-3xl font-bold text-[#c4301c] tracking-tight">${formatRupiah(currentPrice)}</span>
-        </div>
-
-        <!-- Short Description + "Pelajari Selengkapnya" expand -->
+        <!-- Short Description + Expand -->
         <div class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          <span id="detail-short-desc">${(product.summary || product.tagline || '').substring(0, 120)}${(product.summary || '').length > 120 ? '…' : ''}</span>
-          ${(product.summary || '').length > 120 ? `
+          <span id="detail-short-desc">${(product.summary || product.tagline || '').substring(0, 130)}${(product.summary || '').length > 130 ? '…' : ''}</span>
+          ${(product.summary || '').length > 130 ? `
             <span id="detail-full-desc" class="hidden"> ${product.summary}</span>
             <button type="button" onclick="(function(){var s=document.getElementById('detail-short-desc'),f=document.getElementById('detail-full-desc'),b=this;if(f.classList.contains('hidden')){f.classList.remove('hidden');s.classList.add('hidden');b.textContent='Lebih sedikit ▲';}else{f.classList.add('hidden');s.classList.remove('hidden');b.textContent='Pelajari Selengkapnya ▾';}}).call(this)" class="text-slate-900 font-semibold underline cursor-pointer ml-1 hover:text-[#b88e00] transition-colors">Pelajari Selengkapnya ▾</button>
           ` : ''}
@@ -1571,7 +1041,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Length Variant Selector (if applicable) -->
         ${product.variants?.lengths ? `
           <div>
-            <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Pilih Panjang:</label>
+            <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Pilihan Varian Panjang:</label>
             <div class="flex flex-wrap gap-2" id="detail-length-pills">
               ${product.variants.lengths.map(len => `
                 <button type="button" onclick="selectVariantLength('${len}')" data-variant-length="${len}" class="px-3.5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${state.activeLength === len ? 'bg-[#FFC700] text-slate-950 border-[#FFC700] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'}">
@@ -1582,69 +1052,56 @@ window.openProductDetail = function openProductDetail(productId) {
           </div>
         ` : ''}
 
-        <!-- Stepper + Add To Cart (same row, CableTime style: [-] [qty] [+] | black wide button) -->
-        <div class="flex items-stretch gap-3">
-          <!-- Stepper -->
-          <div class="flex items-center border border-slate-300 rounded-xl bg-white overflow-hidden shrink-0 h-12">
-            <button type="button" onclick="changeDetailQty(-1)" class="w-10 h-full flex items-center justify-center text-slate-700 hover:bg-slate-100 text-lg font-bold select-none cursor-pointer">−</button>
-            <span id="detail-qty-display" class="w-10 text-center text-sm font-bold text-slate-900">${state.detailQty || 1}</span>
-            <button type="button" onclick="changeDetailQty(1)" class="w-10 h-full flex items-center justify-center text-slate-700 hover:bg-slate-100 text-lg font-bold select-none cursor-pointer">+</button>
-          </div>
-          <!-- Add To Cart black full-width button -->
-          <button type="button" onclick="addToCartFromDetail()" class="flex-1 h-12 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all select-none cursor-pointer">
-            Tambahkan ke Keranjang
+        <!-- Primary CTA: WhatsApp Inquiry Button -->
+        <div class="space-y-2.5 pt-2">
+          <a id="detail-wa-inquiry-btn" href="${waInquiryUrl}" target="_blank" rel="noopener noreferrer" 
+            class="w-full h-12 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-md shadow-emerald-600/20 transition-all select-none cursor-pointer">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>Konsultasi Produk via WhatsApp</span>
+            <span class="text-xs opacity-75">→</span>
+          </a>
+
+          <!-- B2B Procurement Button -->
+          <button type="button" onclick="closeModal('product-detail-modal'); openB2BModal();" 
+            class="w-full h-11 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all select-none cursor-pointer">
+            <i data-lucide="building-2" class="w-4 h-4 text-[#FFC700]"></i>
+            <span>Permintaan Penawaran B2B &amp; Proyek Korporat</span>
           </button>
         </div>
 
-        <!-- QRIS & BCA Quick Buy Button -->
-        <button type="button" onclick="buyWithQrisFromDetail()" class="w-full h-12 rounded-xl bg-[#f5c518] hover:bg-[#e0b000] text-slate-900 font-extrabold text-sm flex items-center justify-center gap-2 shadow-sm transition-all select-none cursor-pointer">
-          <i data-lucide="wallet" class="w-4 h-4"></i>
-          <span>Beli Sekarang (QRIS / Bank BCA)</span>
-        </button>
-
-        <!-- Opsi Pembayaran Lainnya link -->
-        <div class="text-center -mt-1">
-          <button type="button" onclick="toggleMarketplaceOptions()" class="text-xs text-slate-600 hover:text-slate-900 font-medium underline underline-offset-2 select-none cursor-pointer">Opsi pembayaran lainnya</button>
-          <div id="detail-marketplace-options" class="hidden mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-2">
-            <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-2 rounded-xl bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 text-orange-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+        <!-- Official Online Channels -->
+        <div class="space-y-2 pt-1">
+          <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Tersedia di Toko Online Resmi:</label>
+          <div class="grid grid-cols-3 gap-2">
+            <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 text-orange-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
               <span>Shopee</span>
             </a>
-            <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+            <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain">
               <span>Tokopedia</span>
             </a>
-            <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-2 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
-              <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-sm">
+            <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+              <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-xs">
               <span>TikTok</span>
             </a>
           </div>
         </div>
 
-        <!-- Payment & Security box (CableTime Match) -->
-        <div class="p-4 rounded-2xl bg-[#f8f9fa] border border-slate-200 space-y-2.5">
-          <h4 class="text-xs font-bold text-slate-900">Payment &amp; Security</h4>
-          <div class="flex flex-wrap items-center gap-1.5">
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-black text-red-600 tracking-tight">QRIS</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-blue-800">BCA</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-[#b88e00]">MANDIRI</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-blue-600">BRI</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-orange-600">BNI</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-emerald-600">GoPay</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-purple-700">OVO</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-sky-600">DANA</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-orange-500">ShopeePay</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-blue-900">VISA</span>
-            <span class="px-2 py-1 bg-white border border-slate-200 rounded text-[10px] font-bold text-red-500">Mastercard</span>
+        <!-- Quality & Verification Box -->
+        <div class="p-4 rounded-2xl bg-[#f8f9fa] border border-slate-200 space-y-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="award" class="w-4 h-4 text-[#FFC700]"></i>
+            <h4 class="text-xs font-bold text-slate-900">Jaminan Mutu &amp; Distribusi Resmi</h4>
           </div>
           <p class="text-[11px] text-slate-500 leading-relaxed">
-            Informasi pembayaran Anda diproses dengan aman. Kami tidak menyimpan detail kartu kredit atau memiliki akses ke informasi pembayaran Anda.
+            Didistribusikan resmi oleh <strong>PT Howell Niaga Indonesia</strong>. Seluruh kabel dan adaptor melewati pengujian QC ketat, 100% tembaga bebas oksigen (OFC), dan bergaransi resmi 12 bulan tukar baru.
           </p>
         </div>
 
         <!-- Social Share -->
-        <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
-          <span class="font-semibold text-slate-700">Bagikan:</span>
+        <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
+          <span class="font-semibold text-slate-700">Bagikan Produk:</span>
           <div class="flex items-center gap-2">
             <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke Facebook"><i data-lucide="facebook" class="w-3.5 h-3.5"></i></button>
             <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke X"><i data-lucide="twitter" class="w-3.5 h-3.5"></i></button>
@@ -1699,20 +1156,21 @@ window.openProductDetail = function openProductDetail(productId) {
       </div>
     </div>
 
-    <!-- Mobile Sticky Buy Bar (< 1024px) -->
+    <!-- Mobile Sticky Bar (< 1024px) -->
     <div class="block lg:hidden sticky -bottom-6 sm:-bottom-8 -mx-5 sm:-mx-8 p-3.5 sm:p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 z-30 shadow-lg mt-6">
-      <div class="flex items-center gap-2.5">
-        <div class="flex-1 min-w-0">
-          <div class="text-[10px] text-slate-500 font-medium truncate">Harga Total</div>
-          <div class="text-base font-extrabold text-[#c4301c] leading-tight truncate">${formatRupiah(currentPrice)}</div>
-        </div>
-        <button type="button" onclick="addToCartFromDetail()" class="flex-1 h-11 px-3 rounded-xl bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-          <span>+ Keranjang</span>
-        </button>
-        <button type="button" onclick="buyWithQrisFromDetail()" class="h-11 px-4 rounded-xl bg-[#FFC700] text-black font-extrabold text-xs flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-transform cursor-pointer">
-          <span>Beli</span>
-        </button>
+      <div class="flex items-center gap-2">
+        <a id="mobile-detail-wa-btn" href="${waInquiryUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 h-11 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>Konsultasi WhatsApp</span>
+        </a>
+        <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="h-11 px-3 rounded-xl bg-orange-50 border border-orange-200 text-orange-600 font-bold text-xs flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-transform" title="Shopee">
+          <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
+          <span class="hidden sm:inline">Shopee</span>
+        </a>
+        <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="h-11 px-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold text-xs flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-transform" title="Tokopedia">
+          <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain">
+          <span class="hidden sm:inline">Tokopedia</span>
+        </a>
       </div>
     </div>
   `;
@@ -1725,30 +1183,11 @@ window.openProductDetail = function openProductDetail(productId) {
   modalEl.classList.add('opacity-100');
   if (typeof stopScroll === 'function') stopScroll();
   if (window.lucide) lucide.createIcons();
-}
+};
 
-function changeDetailQty(delta) {
-  state.detailQty = Math.max(1, (state.detailQty || 1) + delta);
-  const qtyDisplay = document.getElementById('detail-qty-display');
-  if (qtyDisplay) qtyDisplay.textContent = state.detailQty;
-}
-
-function addToCartFromDetail() {
-  const product = state.activeProductDetail;
-  if (!product) return;
-  addToCart(product.id, state.activeLength, state.activeColor, state.detailQty || 1);
-  closeModal('product-detail-modal');
-  toggleCartDrawer(true);
-}
-
-function buyWithQrisFromDetail() {
-  const product = state.activeProductDetail;
-  if (!product) return;
-  addToCart(product.id, state.activeLength, state.activeColor, state.detailQty || 1);
-  closeModal('product-detail-modal');
-  openCheckoutModal();
-}
-
+function changeDetailQty(delta) {}
+function addToCartFromDetail() {}
+function buyWithQrisFromDetail() {}
 function toggleMarketplaceOptions() {
   const box = document.getElementById('detail-marketplace-options');
   if (box) box.classList.toggle('hidden');
