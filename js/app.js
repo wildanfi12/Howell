@@ -560,36 +560,103 @@ function toggleCatalogExpand(expand) {
   }
 }
 
-// Print / Export Entire HOWELL Product Catalog as PDF (All Products)
+/// Print / Export Entire HOWELL Product Catalog as PDF (All Products - Master B2B Table Format)
 function printCatalogPDF() {
   const todayStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
   const allProducts = [...HOWELL_PRODUCTS];
 
-  // 10 Kategori Sesuai Permintaan:
-  // 1. HDMI
-  // 2. DP
-  // 3. DVI/VGA
-  // 4. USB
-  // 5. LAN
-  // 6. Power dan PDU Cables
-  // 7. Cable audio
-  // 8. adapter dan converter
-  // 9. TWS / earphone
-  // 10. Charger dan mobile accesoris
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatProductRows(p) {
+    const lengths = p.variants && p.variants.lengths ? p.variants.lengths : [];
+    const sku = p.sku || '-';
+    
+    // Check if SKU is a range like H0503 - H0507, N6A02 - N6A11, POW-101 - POW-102
+    const rangeMatch = sku.match(/^([A-Za-z0-9\-]+?)(\d+)\s*-\s*([A-Za-z0-9\-]+?)(\d+)$/);
+    
+    // Clean product name by removing trailing SKU parentheticals like (H0503 - H0507) or (H0703)
+    const cleanName = p.name.replace(/\s*\([A-Z0-9\s\-\.]+\)$/i, '').trim();
+    const briefSpec = p.tagline || '';
+    
+    if (rangeMatch && lengths.length > 1) {
+      const prefix1 = rangeMatch[1], n1 = parseInt(rangeMatch[2], 10);
+      const prefix2 = rangeMatch[3], n2 = parseInt(rangeMatch[4], 10);
+      const pad = rangeMatch[2].length;
+      
+      return lengths.map((len, idx) => {
+        let subSku;
+        if (prefix1 === prefix2) {
+          subSku = prefix1 + String(n1 + idx).padStart(pad, '0');
+        } else {
+          subSku = sku;
+        }
+        return {
+          sku: subSku,
+          name: cleanName,
+          spec: briefSpec,
+          length: len,
+          qty: '-'
+        };
+      });
+    } else if (lengths.length > 1) {
+      return lengths.map((len) => ({
+        sku: sku,
+        name: cleanName,
+        spec: briefSpec,
+        length: len,
+        qty: '-'
+      }));
+    } else {
+      let lenStr = '-';
+      if (lengths.length === 1) {
+        const l = lengths[0];
+        if (/^\d+(\.\d+)?\s*(m|meter|cm|ft)/i.test(l)) {
+          lenStr = l;
+        } else if (/^\d+\s*Pack/i.test(l)) {
+          lenStr = l;
+        } else {
+          lenStr = '-';
+        }
+      }
+      return [{
+        sku: sku,
+        name: cleanName,
+        spec: briefSpec,
+        length: lenStr,
+        qty: '-'
+      }];
+    }
+  }
+
+  // 10 Kategori Resmi HOWELL
   const categoryDefs = [
-    { title: "1. HDMI", filter: p => p.category === 'hdmi-video' },
-    { title: "2. DP", filter: p => p.category === 'displayport' },
-    { title: "3. DVI/VGA", filter: p => p.category === 'dvi-vga' },
-    { title: "4. USB", filter: p => p.category === 'computer-acc' && /Cable|Kabel/i.test(p.name) },
-    { title: "5. LAN", filter: p => p.category === 'patch-cable' },
-    { title: "6. Power dan PDU Cables", filter: p => p.category === 'power-cable' },
-    { title: "7. Cable audio", filter: p => p.category === 'audio' },
-    { title: "8. adapter dan converter", filter: p => p.category === 'adapter' },
-    { title: "9. TWS / earphone", filter: p => p.category === 'earphone-tws' },
-    { title: "10. Charger dan mobile accesoris", filter: p => p.category === 'computer-acc' && !/Cable|Kabel/i.test(p.name) }
+    { id: 'hdmi', title: '1. HDMI & VIDEO CABLES', filter: p => p.category === 'hdmi-video' },
+    { id: 'dp', title: '2. DISPLAYPORT (DP) 8K / 16K', filter: p => p.category === 'displayport' },
+    { id: 'dvi-vga', title: '3. DVI & VGA CABLES', filter: p => p.category === 'dvi-vga' },
+    { id: 'usb', title: '4. USB & DATA CABLES', filter: p => p.category === 'computer-acc' && /Cable|Kabel/i.test(p.name) },
+    { id: 'lan', title: '5. PATCH CABLE & NETWORKING', filter: p => p.category === 'patch-cable' },
+    { id: 'power', title: '6. POWER & PDU CABLES', filter: p => p.category === 'power-cable' },
+    { id: 'audio', title: '7. AUDIO & INSTRUMENT CABLES', filter: p => p.category === 'audio' },
+    { id: 'adapter', title: '8. ADAPTERS & CONVERTERS', filter: p => p.category === 'adapter' },
+    { id: 'tws', title: '9. AUDIO & EARPHONES / TWS', filter: p => p.category === 'earphone-tws' },
+    { id: 'charger', title: '10. CHARGERS & MOBILE ACCESSORIES', filter: p => p.category === 'computer-acc' && !/Cable|Kabel/i.test(p.name) }
   ];
 
-  let globalIndex = 0;
+  let totalProductCount = allProducts.length;
+  let totalRowCount = 0;
+  categoryDefs.forEach(cat => {
+    const catProducts = allProducts.filter(cat.filter);
+    catProducts.forEach(p => {
+      totalRowCount += formatProductRows(p).length;
+    });
+  });
 
   const htmlContent = `<!DOCTYPE html>
 <html lang="id">
@@ -603,7 +670,7 @@ function printCatalogPDF() {
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Plus Jakarta Sans', Arial, -apple-system, sans-serif;
-      background: #ffffff;
+      background: #f8fafc;
       color: #111111;
       padding: 24px;
       font-size: 11px;
@@ -611,9 +678,17 @@ function printCatalogPDF() {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
+    .catalog-wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 32px 36px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
     .no-print-toolbar {
       position: sticky;
-      top: 0;
+      top: 12px;
       z-index: 999;
       background: #111827;
       color: #ffffff;
@@ -623,10 +698,13 @@ function printCatalogPDF() {
       align-items: center;
       justify-content: space-between;
       margin-bottom: 24px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .btn-print {
-      background: #FFC700;
+      background: #F5C518;
       color: #000000;
       border: none;
       padding: 9px 22px;
@@ -637,131 +715,236 @@ function printCatalogPDF() {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 2px 8px rgba(255,199,0,0.3);
-      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(245,197,24,0.35);
+      transition: background 0.2s, transform 0.1s;
     }
     .btn-print:hover {
-      background: #e6b400;
+      background: #dfb212;
+      transform: translateY(-1px);
     }
     .btn-close {
       background: #374151;
       color: #ffffff;
       border: none;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 9999px;
       font-weight: 600;
       font-size: 12px;
       cursor: pointer;
+      transition: background 0.2s;
     }
     .btn-close:hover {
       background: #4b5563;
     }
     .header-box {
       border-bottom: 3px solid #111827;
-      padding-bottom: 16px;
-      margin-bottom: 20px;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
     }
     .brand-title {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #111827;
     }
     .catalog-subtitle {
       font-size: 11.5px;
-      font-weight: 700;
+      font-weight: 800;
       color: #000000;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin: 3px 0 5px 0;
+      margin: 4px 0 6px 0;
     }
     .company-meta {
       font-size: 10.5px;
       color: #4b5563;
-      line-height: 1.45;
+      line-height: 1.5;
     }
     .edition-badge {
       background: #111827;
       color: #ffffff;
       font-weight: 700;
       font-size: 11px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 6px;
       display: inline-block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       text-align: right;
+    }
+    .category-section {
+      margin-bottom: 28px;
+      page-break-inside: auto;
+    }
+    .category-header {
+      background: #111827;
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 6px 6px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid #F5C518;
+      page-break-after: avoid;
+      page-break-inside: avoid;
+      break-after: avoid;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .category-title {
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .category-bullet {
+      color: #F5C518;
+      font-size: 12px;
+    }
+    .category-count {
+      font-size: 11px;
+      font-weight: 600;
+      color: #F5C518;
     }
     .catalog-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 24px;
+      table-layout: fixed;
+    }
+    .catalog-table thead {
+      display: table-header-group;
     }
     .catalog-table th {
-      background: #f3f4f6;
-      border-top: 1px solid #d1d5db;
-      border-bottom: 2px solid #111827;
-      padding: 9px 8px;
-      font-weight: 700;
-      font-size: 10.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-align: left;
-    }
-    .catalog-table td {
-      padding: 9px 8px;
-      border-bottom: 1px solid #e5e7eb;
-      vertical-align: top;
-    }
-    .catalog-table tr:nth-child(even):not(.category-row) {
-      background: #f9fafb;
-    }
-    .category-row td {
-      background: #0f172a !important;
-      color: #ffffff !important;
+      background-color: #F5C518 !important;
+      color: #000000 !important;
       font-weight: 800;
       font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       padding: 10px 12px;
-      border-top: 2px solid #FFC700 !important;
-      border-bottom: 1px solid #0f172a !important;
-      letter-spacing: 0.4px;
+      border: 2px solid #ffffff !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
-    .sku-pill {
-      font-family: monospace;
-      font-weight: 700;
-      font-size: 10.5px;
-      background: #e5e7eb;
-      color: #1f2937;
-      padding: 2px 5px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 3px;
+    .catalog-table td {
+      padding: 8px 12px;
+      border: 2px solid #ffffff !important;
+      vertical-align: middle;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      overflow: hidden;
+      word-wrap: break-word;
     }
-    .warranty-tag {
-      font-weight: 700;
-      color: #059669;
-      font-size: 10.5px;
-    }
-    .page-break {
-      break-inside: avoid;
+    .catalog-table tr {
       page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .catalog-table tr.row-even td {
+      background-color: #ECEFF1 !important;
+    }
+    .catalog-table tr.row-odd td {
+      background-color: #FFFFFF !important;
+    }
+    .col-sku {
+      width: 16%;
+      text-align: center;
+    }
+    .col-desc {
+      width: 54%;
+      text-align: left;
+    }
+    .col-len {
+      width: 15%;
+      text-align: center;
+    }
+    .col-qty {
+      width: 15%;
+      text-align: center;
+    }
+    .catalog-footer {
+      border-top: 2px solid #111827;
+      padding-top: 12px;
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #4b5563;
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
     @media print {
       .no-print-toolbar { display: none !important; }
-      body { padding: 0 !important; font-size: 9.5px !important; }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        font-size: 9.5px !important;
+      }
+      .catalog-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
       @page {
         size: A4 portrait;
-        margin: 1.2cm 1cm;
+        margin: 1cm 0.8cm;
       }
-      .page-break {
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
+      .header-box {
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
-      .category-row td {
-        background: #0f172a !important;
+      .category-header {
+        background: #111827 !important;
         color: #ffffff !important;
+        border-left: 5px solid #F5C518 !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-after: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .catalog-table {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 14px !important;
+      }
+      .catalog-table thead {
+        display: table-header-group !important;
+      }
+      .catalog-table th {
+        background-color: #F5C518 !important;
+        color: #000000 !important;
+        padding: 7px 8px !important;
+        font-size: 10.5px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .catalog-table td {
+        padding: 6px 8px !important;
+        font-size: 9.5px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .catalog-table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .catalog-table tr.row-even td {
+        background-color: #ECEFF1 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .catalog-table tr.row-odd td {
+        background-color: #FFFFFF !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -772,103 +955,106 @@ function printCatalogPDF() {
 
   <!-- Non-printable Action Bar -->
   <div class="no-print-toolbar">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <span style="font-weight:700; font-size:14px;">🖨️ Cetak / Simpan PDF Seluruh Katalog HOWELL</span>
-      <span style="font-size:11px; color:#9ca3af;">(${allProducts.length} Produk Terdaftar — Diurut Berdasarkan Kategori)</span>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-weight:800; font-size:14px; letter-spacing:-0.2px;">🖨️ Cetak / Simpan PDF Seluruh Katalog HOWELL</span>
+      <span style="font-size:11px; color:#9ca3af;">(${totalProductCount} Produk Terdaftar • ${totalRowCount} Baris SKU • Diurut Berdasarkan Kategori)</span>
     </div>
-    <div style="display:flex; align-items:center; gap:8px;">
-      <button class="btn-print" onclick="window.print()">Cetak / Simpan PDF</button>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Cetak / Simpan PDF
+      </button>
       <button class="btn-close" onclick="window.close()">Tutup</button>
     </div>
   </div>
 
-  <!-- Official Catalog Header -->
-  <div class="header-box">
-    <div>
-      <div class="brand-title">HOWELL INDONESIA</div>
-      <div class="catalog-subtitle">Katalog Resmi Produk &amp; Spesifikasi Teknis (Master Catalog)</div>
-      <div class="company-meta">
-        <strong>PT Howell Niaga Indonesia</strong> • Distributor Resmi Sejak 2009<br>
-        Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>
-        WhatsApp CS: +62 811-8803-1976 | Website: www.howell.co.id
+  <div class="catalog-wrapper">
+    <!-- Official Catalog Header -->
+    <div class="header-box">
+      <div>
+        <div class="brand-title">HOWELL INDONESIA</div>
+        <div class="catalog-subtitle">KATALOG RESMI PRODUK &amp; SPESIFIKASI TEKNIS (MASTER CATALOG)</div>
+        <div class="company-meta">
+          <strong>PT Howell Niaga Indonesia</strong> • Distributor Resmi Sejak 2009<br>
+          Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>
+          WhatsApp CS: +62 811-8803-1976 | Website: www.howell.co.id
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="edition-badge">EDISI RESMI • ${todayStr}</div>
+        <div style="font-size:11px; color:#4b5563; line-height:1.5;">
+          Total: <strong>${totalProductCount} Produk (${totalRowCount} SKU)</strong><br>
+          Garansi: <strong>12 Bulan Ganti Baru</strong>
+        </div>
       </div>
     </div>
-    <div style="text-align:right;">
-      <div class="edition-badge">EDISI RESMI • ${todayStr}</div>
-      <div style="font-size:11px; color:#4b5563;">
-        Total: <strong>${allProducts.length} SKU Produk</strong><br>
-        Garansi: <strong>12 Bulan Ganti Baru</strong>
+
+    <!-- Category Sections & Tables -->
+    ${categoryDefs.map(cat => {
+      const catProducts = allProducts.filter(cat.filter);
+      if (catProducts.length === 0) return '';
+      
+      const allCatRows = [];
+      catProducts.forEach(p => {
+        const rows = formatProductRows(p);
+        allCatRows.push(...rows);
+      });
+
+      return `
+        <div class="category-section">
+          <div class="category-header">
+            <div class="category-title">
+              <span class="category-bullet">■</span>
+              <span>${escapeHtml(cat.title)}</span>
+            </div>
+            <div class="category-count">${catProducts.length} Produk (${allCatRows.length} SKU)</div>
+          </div>
+          <table class="catalog-table">
+            <thead>
+              <tr>
+                <th class="col-sku">SKU</th>
+                <th class="col-desc" style="padding-left:16px;">DESKRIPSI</th>
+                <th class="col-len">LENGTH</th>
+                <th class="col-qty">QTY/KARTON</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${allCatRows.map((row, idx) => {
+                const rowClass = idx % 2 === 0 ? 'row-odd' : 'row-even';
+                return `
+                  <tr class="${rowClass}">
+                    <td class="col-sku" style="font-weight:700; color:#111827; font-family:'Plus Jakarta Sans',Arial,sans-serif; font-size:11px;">
+                      ${escapeHtml(row.sku)}
+                    </td>
+                    <td class="col-desc" style="padding-left:16px;">
+                      <div style="font-weight:600; color:#111827; font-size:11px; line-height:1.35;">${escapeHtml(row.name)}</div>
+                      ${row.spec ? `<div style="font-size:9px; color:#4b5563; margin-top:2px; line-height:1.3;">${escapeHtml(row.spec)}</div>` : ''}
+                    </td>
+                    <td class="col-len" style="font-weight:600; color:#1f2937; font-size:11px;">
+                      ${escapeHtml(row.length)}
+                    </td>
+                    <td class="col-qty" style="font-weight:600; color:#1f2937; font-size:11px;">
+                      ${escapeHtml(row.qty)}
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }).join('')}
+
+    <!-- Catalog Footer -->
+    <div class="catalog-footer">
+      <div>
+        © ${new Date().getFullYear()} PT Howell Niaga Indonesia. Seluruh hak cipta dilindungi undang-undang.<br>
+        Dokumen Master Katalog Resmi untuk Keperluan Pengadaan Tender, Proyek B2B, dan Mitra Distribusi.
       </div>
-    </div>
-  </div>
-
-  <!-- Full Table Grouped by 10 Categories (Tanpa Harga) -->
-  <table class="catalog-table">
-    <thead>
-      <tr>
-        <th style="width:35px; text-align:center;">No</th>
-        <th style="width:75px; text-align:center;">Foto</th>
-        <th style="width:145px;">SKU &amp; Kategori</th>
-        <th>Nama Produk &amp; Spesifikasi Teknis</th>
-        <th style="width:105px; text-align:center;">Garansi Resmi</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${categoryDefs.map(cat => {
-        const catProducts = allProducts.filter(cat.filter);
-        if (catProducts.length === 0) return '';
-
-        const rowsHtml = catProducts.map(p => {
-          globalIndex++;
-          const specsText = p.specs 
-            ? Object.entries(p.specs).filter(([k]) => !['Barcode', 'Barcodes', 'SKU Series', 'SKU Code'].includes(k)).map(([k, v]) => `<strong>${k}:</strong> ${v}`).join(' • ')
-            : '';
-          return `
-            <tr class="page-break">
-              <td style="text-align:center; font-weight:700; color:#6b7280;">${globalIndex}</td>
-              <td style="text-align:center;">
-                <img src="${encodeURI(p.image)}" alt="" style="width:58px; height:58px; object-fit:contain; border:1px solid #e5e7eb; border-radius:4px; padding:2px; background:#fff; margin:0 auto; display:block;">
-              </td>
-              <td>
-                <span class="sku-pill">${p.sku || '-'}</span>
-                <div style="font-size:9.5px; color:#6b7280; font-weight:600; text-transform:uppercase;">${p.categoryName || ''}</div>
-              </td>
-              <td>
-                <div style="font-weight:700; font-size:11.5px; color:#111827; margin-bottom:2px;">${p.name}</div>
-                <div style="font-size:10px; color:#374151; margin-bottom:2px;">${p.tagline || ''}</div>
-                <div style="font-size:9.5px; color:#6b7280; line-height:1.4;">${specsText}</div>
-              </td>
-              <td style="text-align:center;">
-                <div class="warranty-tag">12 Bulan</div>
-                <div style="font-size:9px; color:#6b7280;">Ganti Baru</div>
-              </td>
-            </tr>
-          `;
-        }).join('');
-
-        return `
-          <tr class="category-row page-break">
-            <td colspan="5">
-              <span style="color:#FFC700; font-size:13px; margin-right:5px;">■</span>
-              ${cat.title}
-              <span style="font-size:10.5px; font-weight:normal; color:#94a3b8; margin-left:8px;">(${catProducts.length} Produk)</span>
-            </td>
-          </tr>
-          ${rowsHtml}
-        `;
-      }).join('')}
-    </tbody>
-  </table>
-
-  <!-- Catalog Footer -->
-  <div style="border-top:2px solid #111827; padding-top:10px; display:flex; justify-content:space-between; font-size:9.5px; color:#6b7280;">
-    <div>
-      © ${new Date().getFullYear()} PT Howell Niaga Indonesia. Seluruh hak cipta dilindungi undang-undang.<br>
-      Katalog ini dicetak resmi dari sistem e-commerce HOWELL untuk keperluan B2B, tender, dan ritel.
-    </div>
-    <div style="text-align:right;">
-      CS WhatsApp: <strong>+62 811-8803-1976</strong><br>
-      Website Resmi: <strong>www.howell.co.id</strong>
+      <div style="text-align:right;">
+        Customer Support WhatsApp: <strong>+62 811-8803-1976</strong><br>
+        Website Resmi: <strong>www.howell.co.id</strong>
+      </div>
     </div>
   </div>
 
@@ -881,6 +1067,12 @@ function printCatalogPDF() {
   <\/script>
 </body>
 </html>`;
+
+  // Update in-page container if present
+  const container = document.getElementById('printable-catalog-container');
+  if (container) {
+    container.innerHTML = htmlContent;
+  }
 
   // Open clean dedicated print window
   const printWin = window.open('', '_blank');
