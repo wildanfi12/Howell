@@ -703,7 +703,7 @@
   </div>
 
   <!-- Load Master Product Data from products.js -->
-  <script src="js/products.js?v=20260922-v16-stock-sync"></script>
+  <script src="js/products.js?v=20260922-v17-bizgo-sync"></script>
 
   <script>
     // State management
@@ -735,7 +735,7 @@
 
     // Resolves Stock Qty from Master ERP BIZGO database (stockQty field)
     function resolveCartonQty(product, itemSku, itemLen) {
-      // Primary: use HOWELL_SKU_STOCK (stockQty dari BIZGO ERP)
+      // Strictly use HOWELL_SKU_STOCK (stockQty dari BIZGO ERP)
       const stockMap = window.HOWELL_SKU_STOCK || (typeof HOWELL_SKU_STOCK !== 'undefined' ? HOWELL_SKU_STOCK : null);
       if (stockMap) {
         if (itemSku && stockMap[itemSku] !== undefined) return String(stockMap[itemSku]);
@@ -746,19 +746,7 @@
         }
         if (product.sku && stockMap[product.sku] !== undefined) return String(stockMap[product.sku]);
       }
-      // Fallback: HOWELL_SKU_CARTON (qtyPerCarton)
-      const cartonMap = window.HOWELL_SKU_CARTON || (typeof HOWELL_SKU_CARTON !== 'undefined' ? HOWELL_SKU_CARTON : null);
-      if (cartonMap) {
-        if (itemSku && cartonMap[itemSku] !== undefined) return String(cartonMap[itemSku]);
-        const cleanSku = (itemSku || '').trim();
-        if (cleanSku && cartonMap[cleanSku] !== undefined) return String(cartonMap[cleanSku]);
-        if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && cartonMap[product.lengthSkuMap[itemLen]] !== undefined) {
-          return String(cartonMap[product.lengthSkuMap[itemLen]]);
-        }
-        if (product.sku && cartonMap[product.sku] !== undefined) return String(cartonMap[product.sku]);
-      }
-      if (product.cartonQty !== undefined) return String(product.cartonQty);
-      return '-';
+      return '0';
     }
 
     // Formats product records into SKU variant rows
