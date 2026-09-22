@@ -703,7 +703,7 @@
   </div>
 
   <!-- Load Master Product Data from products.js -->
-  <script src="js/products.js?v=20260922-v15-carton-sync"></script>
+  <script src="js/products.js?v=20260922-v16-stock-sync"></script>
 
   <script>
     // State management
@@ -733,17 +733,30 @@
         .replace(/"/g, '&quot;');
     }
 
-    // Resolves accurate Qty per Carton from Master ERP database
+    // Resolves Stock Qty from Master ERP BIZGO database (stockQty field)
     function resolveCartonQty(product, itemSku, itemLen) {
-      const map = window.HOWELL_SKU_CARTON || (typeof HOWELL_SKU_CARTON !== 'undefined' ? HOWELL_SKU_CARTON : null);
-      if (!map) return '-';
-      if (itemSku && map[itemSku] !== undefined) return String(map[itemSku]);
-      const cleanSku = (itemSku || '').trim();
-      if (cleanSku && map[cleanSku] !== undefined) return String(map[cleanSku]);
-      if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && map[product.lengthSkuMap[itemLen]] !== undefined) {
-        return String(map[product.lengthSkuMap[itemLen]]);
+      // Primary: use HOWELL_SKU_STOCK (stockQty dari BIZGO ERP)
+      const stockMap = window.HOWELL_SKU_STOCK || (typeof HOWELL_SKU_STOCK !== 'undefined' ? HOWELL_SKU_STOCK : null);
+      if (stockMap) {
+        if (itemSku && stockMap[itemSku] !== undefined) return String(stockMap[itemSku]);
+        const cleanSku = (itemSku || '').trim();
+        if (cleanSku && stockMap[cleanSku] !== undefined) return String(stockMap[cleanSku]);
+        if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && stockMap[product.lengthSkuMap[itemLen]] !== undefined) {
+          return String(stockMap[product.lengthSkuMap[itemLen]]);
+        }
+        if (product.sku && stockMap[product.sku] !== undefined) return String(stockMap[product.sku]);
       }
-      if (product.sku && map[product.sku] !== undefined) return String(map[product.sku]);
+      // Fallback: HOWELL_SKU_CARTON (qtyPerCarton)
+      const cartonMap = window.HOWELL_SKU_CARTON || (typeof HOWELL_SKU_CARTON !== 'undefined' ? HOWELL_SKU_CARTON : null);
+      if (cartonMap) {
+        if (itemSku && cartonMap[itemSku] !== undefined) return String(cartonMap[itemSku]);
+        const cleanSku = (itemSku || '').trim();
+        if (cleanSku && cartonMap[cleanSku] !== undefined) return String(cartonMap[cleanSku]);
+        if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && cartonMap[product.lengthSkuMap[itemLen]] !== undefined) {
+          return String(cartonMap[product.lengthSkuMap[itemLen]]);
+        }
+        if (product.sku && cartonMap[product.sku] !== undefined) return String(cartonMap[product.sku]);
+      }
       if (product.cartonQty !== undefined) return String(product.cartonQty);
       return '-';
     }
@@ -897,7 +910,7 @@
               <thead>
                 <tr>
                   <th class="col-sku">SKU</th>
-                  <th class="col-desc">DESKRIPSI</th>
+                  <th class="col-desc">PRODUCT NAME</th>
                   <th class="col-len">LENGTH</th>
                   <th class="col-qty">QTY/KARTON</th>
                 </tr>
