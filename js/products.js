@@ -15,484 +15,477 @@ window.formatRupiah = function formatRupiah(amount) {
  * Extracted directly from PT. Howell Niaga Indonesia ERP Inventory Management System
  */
 const HOWELL_SKU_CARTON = {
-  // 1. Patch Cable & Networking
-  "N6A02": 200,   // Cat6 UTP 1M
-  "N6A03": 180,   // Cat6 UTP 1.5M
-  "N6A04": 125,   // Cat6 UTP 2M
-  "N6A05": 90,    // Cat6 UTP 3M
-  "N6A06": 50,    // Cat6 UTP 5M
-  "N6A07": 35,    // Cat6 UTP 10M
-  "N6A08": 25,    // Cat6 UTP 15M
-  "N6A09": 18,    // Cat6 UTP 20M
-  "N6A10": 16,    // Cat6 UTP 25M
-  "N6A11": 12,    // Cat6 UTP 30M
+  // 1. HDMI 4K High Speed (H0103 - H0110)
+  "H0103": 125,   // 1.5M (BIZGO: 125)
+  "H0104": 100,   // 2M (BIZGO: 100)
+  "H0105": 75,    // 3M (BIZGO: 75)
+  "H0106": 50,    // 5M (BIZGO: 50)
+  "H0107": 25,    // 10M fallback
+  "H0108": 25,    // 10M (BIZGO: 25)
+  "H0109": 15,    // 15M (BIZGO: 15)
+  "H0110": 12,    // 20M (BIZGO: 12)
 
-  "N8A01": 150,   // Cat8 Flat Yellow 1M
-  "N8A02": 150,   // Cat8 Flat Yellow 1M / 1.5M
-  "N8A03": 150,   // Cat8 Flat Yellow 1.5M
-  "N8A04": 150,   // Cat8 Flat Yellow 2M
-  "N8A05": 150,   // Cat8 Flat Yellow 3M
-  "N8A06": 104,   // Cat8 Flat Yellow 5M
-  "N8A07": 40,    // Cat8 Flat Yellow 10M
-  "N8A08": 36,    // Cat8 Flat Yellow 15M
+  // 2. HDMI 4K Gold Premium Shell (H0203 - H0210)
+  "H0203": 120,   // 1.5M (BIZGO: 120)
+  "H0204": 100,   // 2M (BIZGO: 100)
+  "H0205": 70,    // 3M (BIZGO: 70)
+  "H0206": 40,    // 5M (BIZGO: 40)
+  "H0207": 25,    // 10M fallback
+  "H0208": 25,    // 10M (BIZGO: 25)
+  "H0209": 12,    // 15M (BIZGO: 12)
+  "H0210": 8,     // 20M (BIZGO: 8)
 
-  "N8C04": 80,    // Cat8 Flat FTP 3M
-  "N8D04": 80,    // Cat8 Flat FTP 3M
+  // 3. HDMI 4K Pure Copper Core (H0303 - H0310)
+  "H0303": 125,   // 1.5M (BIZGO: 125)
+  "H0304": 100,   // 2M (BIZGO: 100)
+  "H0305": 75,    // 3M (BIZGO: 75)
+  "H0306": 35,    // 5M (BIZGO: 35)
+  "H0307": 20,    // 10M fallback
+  "H0308": 20,    // 10M (BIZGO: 20)
+  "H0309": 15,    // 15M (BIZGO: 15)
+  "H0310": 8,     // 20M (BIZGO: 8)
 
-  "N8B02": 120,   // Cat8 SFTP Black 1.5M
-  "N8B03": 100,   // Cat8 SFTP Black 2M
-  "N8B04": 70,    // Cat8 SFTP Black 3M
-  "N8B05": 50,    // Cat8 SFTP Black 5M
-  "N8B06": 30,    // Cat8 SFTP Black 10M
-  "N8B07": 30,
-  "N8B08": 30,
+  // 4. HDMI 8K 60Hz Ultra Gold (H0403 - H0408)
+  "H0403": 96,    // 1.5M (BIZGO: 96)
+  "H0404": 96,    // 2M (BIZGO: 96)
+  "H0405": 51,    // 3M (BIZGO: 51)
+  "H0406": 51,    // 5M (BIZGO: 51)
+  "H0407": 51,    // 10M fallback
+  "H0408": 51,    // 10M (BIZGO: 51)
 
-  "N6101": 2,     // Bulk Roll UTP Cat6 305M
-  "N6201": 2,     // Bulk Roll FTP Cat6 305M
-  "RC01": 200,    // RJ45 Cat6 UTP Modular Plug (50pcs / box, 200 boxes / carton)
-  "RC02": 200,    // RJ45 Cat6 FTP Shielded Plug (50pcs / box, 200 boxes / carton)
+  // 5. HDMI 8K 60Hz Ultra Core (H0503 - H0508)
+  "H0503": 96,    // 1.5M (BIZGO: 96)
+  "H0504": 96,    // 2M (BIZGO: 96)
+  "H0505": 51,    // 3M (BIZGO: 51)
+  "H0506": 51,    // 5M (BIZGO: 51)
+  "H0507": 15,    // 10M fallback
+  "H0508": 15,    // 10M (BIZGO: 15)
+
+  // 6. Active Optical Fiber HDMI 8K (H0601 - H0612)
+  "H0601": 51,    // 10M (BIZGO: 51)
+  "H0602": 51,    // 15M (BIZGO: 51)
+  "H0603": 15,    // 20M (BIZGO: 15)
+  "H0604": 15,    // 25M (BIZGO: 15)
+  "H0605": 15,    // 30M (BIZGO: 15)
+  "H0606": 10,    // 40M (BIZGO: 10)
+  "H0607": 10,    // 50M (BIZGO: 10)
+  "H0608": 6,     // 60M (BIZGO: 6)
+  "H0609": 6,     // 80M (BIZGO: 6)
+  "H0610": 6,     // 100M (BIZGO: 6)
+  "H0611": 2,     // 150M (BIZGO: 2)
+  "H0612": 2,     // 200M (BIZGO: 2)
+
+  // 7. Specialty HDMI
+  "H0703": 120,   // Slim 2M (BIZGO: 120)
+  "H0803": 65,    // 90D Angle 2M (BIZGO: 65)
+  "H0903": 96,    // Braided 2M (BIZGO: 96)
+  "H1003": 100,   // Slim 2M (BIZGO: 100)
+  "H1007": 12,    // Flat 20M (BIZGO: 12)
+  "H1101": 100,   // Slim 1M (BIZGO: 100)
+  "H1102": 100,   // Slim 2M (BIZGO: 100)
+  "H1103": 100,   // Zinc Alloy 2M (BIZGO: 100)
+  "H1182": 100,   // AM/AF 2M (BIZGO: 100)
+  "H1202": 100,
+  "H1303": 100,   // Armor 2M (BIZGO: 100)
+  "H1401": 80,    // Patch Jumper / M-F 0.5M (BIZGO: 80)
+  "H1402": 80,    // 2M (BIZGO: 80)
+  "H1431": 80,
+  "H1601": 120,   // Spring 1.5M (BIZGO: 120)
+  "H1603": 80,    // Pro 2M (BIZGO: 80)
+  "H1702": 100,
+  "H1703": 100,   // 24K Gold 2M (BIZGO: 100)
+  "H1803": 80,    // Dynamic HDR 2M (BIZGO: 80)
+  "H2001": 120,   // Portable 1.5M (BIZGO: 120)
+  "H2103": 100,   // Studio Broadcast 2M (BIZGO: 100)
+  "H2201": 100,   // 16K 1M (BIZGO: 100)
+  "H2202": 200,   // 16K 1.5M (BIZGO: 200)
+  "H2203": 200,   // 16K 2M (BIZGO: 200)
+  "H2204": 144,   // 16K 3M (BIZGO: 144)
+  "H2301": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2302": 12,    // 8K FO 30M (BIZGO: 12)
+  "H2303": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2401": 12,
+  "H2403": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2503": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2602": 12,
+  "H2603": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2701": 12,
+  "H2702": 12,
+  "H2703": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2803": 12,    // 8K FO 20M (BIZGO: 12)
+  "H2903": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3003": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3103": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3203": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3303": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3403": 12,    // 8K FO 20M (BIZGO: 12)
+  "H3503": 12,    // 8K FO 20M (BIZGO: 12)
+
+  // HDMI Micro / Mini
+  "DH0103": 120,  // Micro Slim 2M (BIZGO: 120)
+  "DH0203": 120,  // Micro Slim 2M (BIZGO: 120)
+  "DH0301": 120,  // Spring Micro 1.5M (BIZGO: 120)
+  "DH0401": 100,  // Micro 1M (BIZGO: 100)
+  "DH0402": 200,  // Micro 1.5M (BIZGO: 200)
+  "DH0403": 200,  // Micro 2M (BIZGO: 200)
+  "DH0404": 100,  // Micro 3M (BIZGO: 100)
+  "DH0405": 80,   // Micro 5M (BIZGO: 80)
+  "MH0101": 100,  // Mini 1M (BIZGO: 100)
+  "MH0102": 200,  // Mini 1.5M (BIZGO: 200)
+  "MH0103": 200,  // Mini 2M (BIZGO: 200)
+  "MH0104": 100,  // Mini 3M (BIZGO: 100)
+  "MH0105": 80,   // Mini 5M (BIZGO: 80)
+  "MH0301": 120,  // Spring Mini 1.5M (BIZGO: 120)
+
+  // HDMI Converters / Splitters
+  "HD0102": 120,  // Slim HDMI to DVI 2M (BIZGO: 120)
+  "HD0203": 65,   // HDMI to DVI 24+1 2M (BIZGO: 65)
+  "HS1401": 50,   // Splitter 1x4 (BIZGO: 50)
+  "HS1801": 25,   // Splitter 1x8 (BIZGO: 25)
+  "HS3101": 50,   // Switch 3x1 (BIZGO: 50)
+  "HS4101": 50,   // Switch 4x1 (BIZGO: 50)
+  "HS5101": 50,   // Switch 5x1 (BIZGO: 50)
+  "HSAB01": 50,   // Bi-Direction Switch (BIZGO: 50)
+  "HSAB02": 238,  // Bi-Direction Switch (BIZGO: 238)
+  "HNE001": 50,   // Network Extender 65m (BIZGO: 50)
+
+  // 8. DisplayPort (DP)
+  "DP0101": 12,   // 8K FO 10M (BIZGO: 12)
+  "DP0102": 12,   // 8K FO 15M (BIZGO: 12)
+  "DP0103": 12,   // 8K FO 20M (BIZGO: 12)
+  "DP0104": 12,   // 8K FO 30M (BIZGO: 12)
+  "DP0105": 12,   // 8K FO 50M (BIZGO: 12)
+  "DP0106": 12,   // 8K FO 100M (BIZGO: 12)
+  "DP0203": 12,   // 8K FO 20M (BIZGO: 12)
+  "DP0303": 80,   // 8K 2M (BIZGO: 80)
+  "DP0403": 80,   // 8K 2M (BIZGO: 80)
+  "DP0503": 80,   // 8K 2M (BIZGO: 80)
+  "DP0601": 100,  // 8K 1M (BIZGO: 100)
+  "DP0602": 100,  // 8K 1.5M (BIZGO: 100)
+  "DP0603": 100,  // 8K 2M (BIZGO: 100)
+  "DP0604": 80,   // 8K 3M (BIZGO: 80)
+  "DP0605": 80,   // 8K 5M (BIZGO: 80)
+  "DP0703": 80,   // Mini DP to DP 8K 2M (BIZGO: 80)
+  "DP0803": 80,   // DP to HDMI 4K 2M (BIZGO: 80)
+  "DP0903": 80,   // 16K DP 2M (BIZGO: 80)
+  "DP1006": 10,   // 8K DP 10M (BIZGO: 10)
+  "DP1101": 100,  // 16K DP 1M (BIZGO: 100)
+  "DP1102": 200,  // 16K DP 1.5M (BIZGO: 200)
+  "DP1103": 200,  // 16K DP 2M (BIZGO: 200)
+  "DP1104": 150,  // 16K DP 3M (BIZGO: 150)
+  "DP1203": 100,  // Mini DP 2M (BIZGO: 100)
+  "DP1303": 100,  // Mini DP 2M (BIZGO: 100)
+
+  // 9. DVI & VGA Cables
+  "DVI0103": 12,  // DVI FO 20M (BIZGO: 12)
+  "DVI0203": 12,  // DVI FO 20M (BIZGO: 12)
+  "DVI0303": 12,  // DVI FO 20M (BIZGO: 12)
+  "DVI0403": 12,  // DVI FO 20M (BIZGO: 12)
+  "DVI0501": 428, // DVI 24+1 1M (BIZGO: 428)
+  "DVI0502": 428, // DVI 24+1 1.5M (BIZGO: 428)
+  "DVI0503": 65,  // DVI 24+1 2M (BIZGO: 65)
+  "DVI0504": 428, // DVI 24+1 3M (BIZGO: 428)
+  "DVI0505": 428, // DVI 24+1 5M (BIZGO: 428)
+  "DVI0506": 428, // DVI 24+1 10M (BIZGO: 428)
+  "DVI0507": 428, // DVI 24+1 15M (BIZGO: 428)
+  "DVI0601": 100, // DVI 24+1 2M (BIZGO: 100)
+  "VGA0106": 18,  // Super VGA 3+6 10M (BIZGO: 18)
+  "VGA0108": 11,  // Super VGA 3+6 20M (BIZGO: 11)
+
+  // 10. Patch Cable & Networking
+  "N6A02": 200,   // Cat6 UTP 1M (BIZGO: 200)
+  "N6A03": 160,   // Cat6 UTP 1.5M (BIZGO: 160)
+  "N6A04": 125,   // Cat6 UTP 2M (BIZGO: 125)
+  "N6A05": 90,    // Cat6 UTP 3M (BIZGO: 90)
+  "N6A06": 60,    // Cat6 UTP 5M (BIZGO: 60)
+  "N6A07": 35,    // Cat6 UTP 10M (BIZGO: 35)
+  "N6A08": 25,    // Cat6 UTP 15M (BIZGO: 25)
+  "N6A09": 18,    // Cat6 UTP 20M (BIZGO: 18)
+  "N6A10": 16,    // Cat6 UTP 25M (BIZGO: 16)
+  "N6A11": 15,    // Cat6 UTP 30M (BIZGO: 15)
+
+  "N8A01": 150,   // Cat8 Flat Yellow 1M (BIZGO: 150)
+  "N8A02": 150,   // Cat8 Flat Yellow 1M (BIZGO: 150)
+  "N8A03": 150,   // Cat8 Flat Yellow 1.5M (BIZGO: 150)
+  "N8A04": 150,   // Cat8 Flat Yellow 2M (BIZGO: 150)
+  "N8A05": 150,   // Cat8 Flat Yellow 3M (BIZGO: 150)
+  "N8A06": 104,   // Cat8 Flat Yellow 5M (BIZGO: 104)
+  "N8A07": 46,    // Cat8 Flat Yellow 10M (BIZGO: 46)
+  "N8A08": 36,    // Cat8 Flat Yellow 15M (BIZGO: 36)
+
+  "N8C04": 80,    // Cat8 Flat FTP 3M (BIZGO: 80)
+  "N8D04": 80,    // Cat8 Flat FTP 3M (BIZGO: 80)
+
+  "N8B02": 120,   // Cat8 SFTP Black 1.5M (BIZGO: 120)
+  "N8B03": 120,   // Cat8 SFTP Black 1.5M (BIZGO: 120)
+  "N8B04": 100,   // Cat8 SFTP Black 2M (BIZGO: 100)
+  "N8B05": 70,    // Cat8 SFTP Black 3M (BIZGO: 70)
+  "N8B06": 50,    // Cat8 SFTP Black 5M (BIZGO: 50)
+  "N8B07": 30,    // Cat8 SFTP Black 10M (BIZGO: 30)
+  "N8B08": 30,    // Cat8 SFTP Black 10M (BIZGO: 30)
+
+  "N6101": 2,     // Bulk Roll UTP Cat6 305M (BIZGO: 2)
+  "N6201": 2,     // Bulk Roll FTP Cat6 305M (BIZGO: 2)
+  "RC01": 200,    // RJ45 Cat6 UTP Modular Plug (BIZGO: 200)
+  "RC02": 200,    // RJ45 Cat6 FTP Modular Plug (BIZGO: 200)
   "RC01-50": 200,
   "RC02-50": 200,
 
-  // 2. HDMI & Video Cables
-  // 4K Premium Series (H0103 - H0109)
-  "H0103": 170,   // 1.5M
-  "H0104": 140,   // 2M
-  "H0105": 75,    // 3M
-  "H0106": 45,    // 5M
-  "H0107": 25,    // 10M
-  "H0108": 15,    // 15M
-  "H0109": 8,     // 20M
+  // 11. Power & PDU Cables
+  "POW-101": 100, // C5 1.2M (BIZGO: 100)
+  "POW-102": 85,  // C5 1.8M (BIZGO: 85)
+  "POW-201": 85,  // 90D C13 1.8M (BIZGO: 85)
+  "POW-202": 50,  // 90D C13 3M (BIZGO: 50)
+  "POW-301": 100, // C13 1.2M (BIZGO: 100)
+  "POW-302": 85,  // C13 1.8M (BIZGO: 85)
+  "POW-303": 85,  // C13 3M (BIZGO: 85)
+  "POW-304": 85,  // C13 5M (BIZGO: 85)
+  "POW-305": 85,  // C13 10M (BIZGO: 85)
 
-  // 4K Gold Premium Shell (H0203 - H0209)
-  "H0203": 170,   // 1.5M
-  "H0204": 140,   // 2M
-  "H0205": 85,    // 3M
-  "H0206": 60,    // 5M
-  "H0207": 25,    // 10M
-  "H0208": 15,    // 15M
-  "H0209": 12,    // 20M
+  // 12. Audio Cables
+  "AU0101": 379,  // DC6.35 to XLR F 1M (BIZGO: 379)
+  "AU0102": 379,  // DC6.35 to XLR F 1.5M (BIZGO: 379)
+  "AU0103": 140,  // DC6.35 to XLR F 2M (BIZGO: 140)
+  "AU0104": 379,  // DC6.35 to XLR F 3M (BIZGO: 379)
+  "AU0105": 379,  // DC6.35 to XLR F 5M (BIZGO: 379)
+  "AU0106": 379,  // DC6.35 to XLR F 8M (BIZGO: 379)
+  "AU0107": 379,  // DC6.35 to XLR F 10M (BIZGO: 379)
 
-  // 4K Pure Copper Core (H0303 - H0309)
-  "H0303": 170,   // 1.5M
-  "H0304": 140,   // 2M
-  "H0305": 75,    // 3M
-  "H0306": 35,    // 5M
-  "H0307": 25,    // 10M
-  "H0308": 15,    // 15M
-  "H0309": 8,     // 20M
+  "AU0201": 380,  // DC6.35 to XLR M 1M (BIZGO: 380)
+  "AU0202": 380,  // DC6.35 to XLR M 1.5M (BIZGO: 380)
+  "AU0203": 125,  // DC6.35 to XLR M 2M (BIZGO: 125)
+  "AU0204": 380,  // DC6.35 to XLR M 3M (BIZGO: 380)
+  "AU0205": 380,  // DC6.35 to XLR M 5M (BIZGO: 380)
+  "AU0206": 380,  // DC6.35 to XLR M 8M (BIZGO: 380)
+  "AU0207": 380,  // DC6.35 to XLR M 10M (BIZGO: 380)
 
-  // 8K 60Hz Ultra Gold (H0403 - H0407)
-  "H0403": 96,    // 1.5M
-  "H0404": 96,    // 2M
-  "H0405": 51,    // 3M
-  "H0406": 51,    // 5M
-  "H0407": 51,    // 10M
+  "AU0301": 381,  // DC3.5 to 6.35 1M (BIZGO: 381)
+  "AU0302": 382,  // DC3.5 to 6.35 1.5M (BIZGO: 382)
+  "AU0303": 140,  // DC3.5 to 6.35 2M (BIZGO: 140)
+  "AU0304": 384,  // DC3.5 to 6.35 3M (BIZGO: 384)
+  "AU0305": 385,  // DC3.5 to 6.35 5M (BIZGO: 385)
+  "AU0306": 386,  // DC3.5 to 6.35 8M (BIZGO: 386)
+  "AU0307": 387,  // DC3.5 to 6.35 10M (BIZGO: 387)
 
-  // 8K 60Hz Ultra Core (H0503 - H0507)
-  "H0503": 96,    // 1.5M
-  "H0504": 96,    // 2M
-  "H0505": 51,    // 3M
-  "H0506": 51,    // 5M
-  "H0507": 15,    // 10M
-  "H0508": 15,
+  "AU0401": 388,  // TRS 6.35 1M (BIZGO: 388)
+  "AU0402": 389,  // TRS 6.35 1.5M (BIZGO: 389)
+  "AU0403": 140,  // TRS 6.35 2M (BIZGO: 140)
+  "AU0404": 391,  // TRS 6.35 3M (BIZGO: 391)
+  "AU0405": 392,  // TRS 6.35 5M (BIZGO: 392)
+  "AU0406": 393,  // TRS 6.35 8M (BIZGO: 393)
+  "AU0407": 394,  // TRS 6.35 10M (BIZGO: 394)
 
-  // Active Optical Fiber HDMI 8K (H0601 - H0612)
-  "H0601": 51,    // 10M
-  "H0602": 51,    // 15M
-  "H0603": 15,    // 20M
-  "H0604": 15,    // 25M
-  "H0605": 15,    // 30M
-  "H0606": 10,    // 40M / 50M
-  "H0607": 10,    // 50M
-  "H0608": 6,     // 60M
-  "H0609": 6,     // 80M
-  "H0610": 5,     // 100M
-  "H0611": 2,     // 150M
-  "H0612": 2,     // 200M
+  "AU0501": 100,  // 6.35 to 2RCA 1M (BIZGO: 100)
+  "AU0502": 100,  // 6.35 to 2RCA 1.5M (BIZGO: 100)
+  "AU0503": 140,  // 6.35 to 2RCA 2M (BIZGO: 140)
+  "AU0504": 50,   // 6.35 to 2RCA 3M (BIZGO: 50)
+  "AU0505": 50,   // 6.35 to 2RCA 5M (BIZGO: 50)
 
-  // Specialty HDMI Cables
-  "H0703": 140,   // Slim 2M
-  "H0803": 120,   // 90-Degree Angle 2M
-  "H0903": 96,    // Braided 2M
-  "H1003": 12,    // Flat 2M / 20M
-  "H1007": 12,
-  "H1101": 100,   // Slim 1M
-  "H1102": 100,   // Slim 2M
-  "H1103": 100,   // Zinc Alloy 2M
-  "H1182": 100,   // AM/AF 2M
-  "H1202": 100,
-  "H1303": 100,   // Heavy-Duty Armor 2M
-  "H1401": 80,    // Patch Jumper 1M
-  "H1402": 80,    // 2M
-  "H1431": 80,    // M-F 0.5M
-  "H1601": 120,   // Spring 1.5M
-  "H1603": 120,   // Pro 2M
-  "H1702": 100,
-  "H1703": 100,   // 24K Gold 2M
-  "H1803": 100,   // Dynamic HDR 2M
-  "H2001": 100,   // Portable 1M
-  "H2103": 100,   // Studio Broadcast 2M
-  "H2201": 200,   // 16K 1.5M
-  "H2202": 100,   // 16K 1M
-  "H2203": 200,   // 16K 2M
-  "H2204": 144,   // 16K 3M
-  "H2301": 12,    // 8K FO 20M
-  "H2302": 12,    // 8K FO 30M
-  "H2303": 12,    // 8K Dynamic HDR 2M
-  "H2401": 12,
-  "H2403": 12,    // 8K 48Gbps 2M
-  "H2503": 100,   // 8K Ultra-Slim 2M
-  "H2602": 12,
-  "H2603": 12,    // 8K eARC 2M
-  "H2701": 12,
-  "H2702": 12,
-  "H2703": 12,    // 4K Multi-Shielded 2M
-  "H2801": 12,
-  "H2802": 12,
-  "H2803": 12,    // Carbon Fiber 2M
-  "H2901": 12,
-  "H2902": 12,
-  "H2903": 12,    // Cotton Braided 2M
-  "H3001": 12,
-  "H3002": 12,
-  "H3003": 12,    // Next-Gen Gaming 2M
-  "H3101": 12,
-  "H3102": 12,
-  "H3103": 12,    // Anti-Tangle 2M
-  "H3201": 12,
-  "H3202": 12,
-  "H3203": 12,    // Pro Video 2M
-  "H3301": 12,
-  "H3302": 12,
-  "H3303": 12,    // High-Bandwidth 2M
-  "H3401": 12,
-  "H3402": 12,
-  "H3403": 12,    // Luxury Edition 2M
-  "H3503": 100,   // Commercial Grade 2M
+  "AU0601": 45,   // DC3.5 F to 6.35 M 1M (BIZGO: 45)
+  "AU0602": 95,   // DC3.5 F to 6.35 M 1.5M (BIZGO: 95)
+  "AU0603": 150,  // DC3.5 F to 6.35 M 2M (BIZGO: 150)
+  "AU0604": 47,   // DC3.5 F to 6.35 M 3M (BIZGO: 47)
+  "AU0605": 47,   // DC3.5 F to 6.35 M 5M (BIZGO: 47)
 
-  // HDMI Converters & Cables
-  "CH0101": 12,   // Type-C to HDMI 20M FO / 1.8M
-  "CH0102": 12,   // 30M FO
-  "CH0103": 100,  // 4K@60 2M
-  "CH0111": 12,   // 50M FO
-  "CH0201": 100,  // Type-C to HDMI Adapter Dongle
-  "CH0301": 100,  // Mini HDMI 1M
-  "CH0302": 200,  // Mini HDMI 1.5M
-  "CH0303": 200,  // Mini HDMI 2M
-  "CH0304": 100,  // Mini HDMI 3M
-  "CH0305": 60,   // Mini HDMI 5M
-  "CH0401": 100,  // Micro HDMI 1M
-  "CH0402": 200,  // Micro HDMI 1.5M
-  "CH0403": 200,  // Micro HDMI 2M
-  "CH0404": 100,  // Micro HDMI 3M
-  "CH0405": 60,   // Micro HDMI 5M
-  "CH0502": 100,  // Type-C to HDMI 2M
-  "CH0602": 100,  // Right Angle Type-C to HDMI 2M
-  "CH0702": 100,  // 8K Type-C to HDMI 2M
-  "DH0102": 120,  // 360 Slim 2M
-  "DH0103": 100,  // DP to HDMI 2M
-  "DH0202": 120,  // Micro Slim 2M
-  "DH0203": 100,  // Mini DP to HDMI 2M
-  "DH0301": 200,  // DP to HDMI Adapter Converter
-  "DH0601": 120,  // Spring Micro 1.5M
-  "PH0801": 120,  // Spring Mini 1.5M
-  "MH0301": 100,  // Mini HDMI to HDMI 1.5M
-  "USB0206": 12,  // USB 3.0 to HDMI Multi-Display
+  "AU0701": 50,   // DC3.5 to 2x6.35 1M (BIZGO: 50)
+  "AU0702": 402,  // DC3.5 to 2x6.35 1.5M (BIZGO: 402)
+  "AU0703": 150,  // DC3.5 to 2x6.35 2M (BIZGO: 150)
+  "AU0704": 404,  // DC3.5 to 2x6.35 3M (BIZGO: 404)
+  "AU0705": 50,   // DC3.5 to 2x6.35 5M (BIZGO: 50)
 
-  // 3. Audio & Instrument Cables
-  "AU0101": 379,
-  "AU0102": 379,
-  "AU0103": 140,  // 6.35 to XLR F 2M
-  "AU0104": 379,
-  "AU0105": 379,
-  "AU0106": 379,
-  "AU0107": 379,
-  "AU0201": 380,
-  "AU0202": 380,
-  "AU0203": 125,  // 6.35 to XLR M 2M
-  "AU0204": 380,
-  "AU0205": 380,
-  "AU0206": 380,
-  "AU0207": 380,
-  "AU0301": 381,
-  "AU0302": 382,
-  "AU0303": 140,  // Aux to 6.35 2M
-  "AU0304": 284,
-  "AU0305": 385,
-  "AU0306": 386,
-  "AU0307": 207,
-  "AU0401": 388,
-  "AU0402": 389,
-  "AU0403": 140,  // TS 6.35 2M
-  "AU0404": 281,
-  "AU0405": 382,
-  "AU0406": 393,
-  "AU0407": 284,
-  "AU0501": 100,
-  "AU0502": 100,
-  "AU0503": 140,  // 3.5mm to 2RCA 2M
-  "AU0504": 50,
-  "AU0505": 50,
-  "AU0601": 140,
-  "AU0602": 140,
-  "AU0603": 140,  // Aux Male to Male 2M
-  "AU0604": 140,
-  "AU0605": 140,
-  "AU0607": 50,
-  "AU0701": 150,
-  "AU0702": 400,
-  "AU0703": 150,  // 2RCA to 2RCA 2M
-  "AU0704": 400,
-  "AU0705": 50,
-  "AU0803": 100,  // Optical Toslink 2M
-  "AU0903": 140,  // XLR Balanced 2M
-  "AU1003": 140,  // 3.5mm Headphone Ext 2M
-  "AU1101": 412,
-  "AU1102": 415,
-  "AU1103": 140,  // 3.5mm Y-Splitter 20cm
-  "AU1104": 415,
-  "AU1105": 416,
-  "AU1106": 417,
-  "AU1107": 429,
-  "AU1201": 140,
-  "AU1202": 140,
-  "AU1203": 140,
-  "AU1204": 140,
-  "AU1205": 140,
-  "AU1206": 140,
-  "AU1207": 140,
-  "AU1301": 140,
-  "AU1302": 140,
-  "AU1303": 140,
-  "AU1304": 140,
-  "AU1305": 140,
-  "AU1306": 140,
-  "AU1307": 140,
-  "AU1401": 100,
-  "AU1402": 100,
-  "AU1403": 100,
-  "AU1404": 100,
-  "AU1405": 100,
-  "AU1406": 100,
-  "AU1407": 100,
-  "AU1510": 50,
+  "AU0801": 45,   // DC3.5 to 2RCA 1M (BIZGO: 45)
+  "AU0802": 95,   // DC3.5 to 2RCA 1.5M (BIZGO: 95)
+  "AU0803": 140,  // DC3.5 to 2RCA 2M (BIZGO: 140)
+  "AU0804": 47,   // DC3.5 to 2RCA 3M (BIZGO: 47)
+  "AU0805": 47,   // DC3.5 to 2RCA 5M (BIZGO: 47)
+  "AU0807": 47,   // DC3.5 to 2RCA 10M (BIZGO: 47)
+  "AU1520": 6,    // DC3.5 to 2RCA 80M (BIZGO: 6)
 
-  // 4. USB & Computer Accessories
-  "AC01": 250,    // USB-A to Lightning 1M
-  "AC02": 250,    // USB-A to Type-C 3A 1M
-  "AC03": 150,    // USB-A to Micro 1M
-  "AC04": 120,    // 3-in-1 Universal 1.2M
-  "AC04-20": 120,
-  "AC05": 250,    // Type-C to Lightning PD20W 1M
-  "AC06": 250,    // USB A to C 3A Green 1.2M
-  "CC01": 250,    // Dual USB Car Charger / Type-C to C 3A 1.2M
-  "CC02": 250,    // USB-C PD Car Charger / Type-C to C 3A 1.2M
-  "HW-C01": 144,  // GaN III 65W
-  "HW-C02A": 105, // 30W USB-C PD
-  "HW-C03": 100,  // 100W PD Type-C
-  "HW-C03A": 100, // 60W Type-C
-  "HW-C04": 100,  // 15W Wireless
-  "HA-016": 144,
-  "HA-020A": 105,
-  "HA-022": 144,
-  "HA-022A": 105,
-  "HA-024": 144,
-  "HA-CAR-AC01": 150,
-  "U0101": 250,
-  "U0102": 250,
-  "U0103": 200,
-  "U0104": 150,
-  "U0105": 100,
-  "UM0101": 200,
-  "UM0102": 200,
-  "UM0103": 200,
-  "UM0104": 100,
-  "UM0105": 100,
-  "UMF01": 250,
-  "UMF02": 250,
-  "UMF03": 200,
-  "UMF04": 150,
-  "UMF05": 100,
-  "UMM01": 200,
-  "UMM02": 250,
-  "UMM03": 200,
-  "UMM04": 150,
-  "UMM05": 100,
-  "UP0101": 100,
-  "UP0102": 250,
-  "UP0103": 200,
-  "UP0104": 170,
-  "UP0105": 100,
-  "UP0107": 50,
-  "USBO201": 12,
-  "USBO202": 8,
-  "USBO203": 8,
-  "USBO204": 8,
-  "USBO205": 8,
-  "USBO206": 12,
-  "CLA001": 100,
-  "CLA002": 100,
-  "CLA003": 100,
-  "CLA004": 100,
-  "UA001": 100,
-  "UA002": 100,
-  "DK1301": 15,
-  "DK1501": 15,
-  "HUB081": 100,
-  "CS01": 10,
-  "CS08": 10,
-  "LCP001": 20,
-  "LCP002": 16,
-  "LCP003": 20,
-  "MIC01": 50,
-  "MIC02": 90,
-  "MIC03": 10,
-  "MIC04": 50,
-  "VC0101": 192,
-  "VC0102": 114,
-  "HE0101": 50,
+  "AU0903": 140,  // RCA M-F 2M (BIZGO: 140)
 
-  // 5. Power & PDU Cables
-  "POW-101": 100, // CPU AC Power Cord C13 1.2M / 1.5M
-  "POW-102": 85,  // CPU AC Power Cord C13 1.8M
-  "POW-103": 85,
-  "POW-104": 85,
-  "POW-105": 85,
-  "POW-201": 80,  // Laptop Power Cord C5 1.5M / 1.8M
-  "POW-202": 50,  // Laptop Power Cord C5 1.8M / 3M
-  "POW-301": 100, // Server PDU C13 to C14 1.2M / 1.8M
-  "POW-302": 85,  // Server PDU C13 to C14 1.8M / 3M
+  "AU1001": 412,  // XLR M to F 1M (BIZGO: 412)
+  "AU1002": 413,  // XLR M to F 1.5M (BIZGO: 413)
+  "AU1003": 140,  // XLR M to F 2M (BIZGO: 140)
+  "AU1004": 415,  // XLR M to F 3M (BIZGO: 415)
+  "AU1005": 416,  // XLR M to F 5M (BIZGO: 416)
+  "AU1007": 418,  // XLR M to F 10M (BIZGO: 418)
 
-  // 6. Earphones & Audio
-  "HW01": 50,     // ANC Wireless TWS
-  "HW02-B": 50,   // Dynamic Bass Black
-  "HW02-W": 50,   // Dynamic Bass White
-  "HW03-W": 500,  // Studio In-Ear Monitor
-  "HW03-B": 500,
-  "HW03-W & HW03-B": 500,
-  "HW04": 200,    // Type-C Digital Hi-Fi
-  "HW05": 200,    // Lightning DAC In-Ear
-  "HW06": 200,    // Sport Wireless Neckband
-  "HW07": 50,     // True Wireless Stereo ENC
-  "HV01": 50,     // Bluetooth Earphone
-  "HV01-A": 500,  // 3.5mm Earphone White
-  "HV02-B": 50,   // Bluetooth Earphone Black
-  "HV02-W": 50,   // Bluetooth Earphone White
-  "HV04": 500,    // 3.5mm Earphone Black
-  "HV05": 500,    // 3.5mm Earphone Black
-  "HV06": 200,    // Type-C Earphone
-  "HV07": 200,    // Type-C Earphone
-  "EP01-B": 500,  // 3.5mm Earphone Black
+  "AU1101": 419,  // XLR M to F 1M (BIZGO: 419)
+  "AU1102": 420,  // XLR M to F 1.5M (BIZGO: 420)
+  "AU1103": 140,  // XLR M to F 2M (BIZGO: 140)
+  "AU1104": 422,  // XLR M to F 3M (BIZGO: 422)
+  "AU1105": 423,  // XLR M to F 5M (BIZGO: 423)
+  "AU1107": 425,  // XLR M to F 10M (BIZGO: 425)
 
-  // 7. Adapters & Converters
-  "ADP001": 200,
-  "ADP002": 200,
-  "ADP003": 200,
-  "ADP004": 200,
-  "ADP005": 200,
-  "ADP006": 200,
-  "ADP007": 200,
-  "ADP008": 200,
-  "ADP009": 200,
-  "ADP010": 200,
-  "ADP011": 200,
-  "ADP012": 200,
-  "ADP013": 200,
-  "ADP014": 200,
-  "ADP015": 200,
-  "ADP016": 200,
-  "ADP017": 200,
-  "ADP018": 200,
-  "ADP019": 200,
-  "ADP020": 200,
-  "ADP021": 200,
-  "ADP022": 200,
-  "ADP023": 200,
-  "ADP024": 200,
-  "ADP025": 200,
-  "ADP026": 200,
-  "ADP027": 200,
-  "ADP028": 200,
-  "ADP029": 200,
-  "ADP030": 200,
-  "ADP031": 200,
-  "ADP032": 200,
-  "ADP033": 200,
-  "ADP034": 200,
-  "ADP035": 200,
-  "ADP036": 200,
-  "ADP037": 200,
-  "ADP038": 200,
-  "ADP002 - ADP013": 200,
-  "WP001": 200,   // 90D HDMI Wall Panel
-  "WP201": 100,   // 20W PD Wall Socket
-  "VD0101": 500,  // 4K DP EDID
-  "VD0201": 500,  // 4K HDMI EDID
-  "VD0202": 500,  // 4K HDMI EDID LED
-  "VD0301": 500,  // 4K HDMI EDID Passthrough
-  "VD0302": 500,  // 4K HDMI EDID Passthrough LED
-  "HS0101": 50,   // 4K HDMI Switch 3x1
-  "HS0102": 50,   // 4K HDMI Splitter 1x4
-  "HS0103": 25,   // 4K HDMI Splitter 1x8
-  "HS0104": 50,   // 4K HDMI Switch 5x1
-  "HS0105": 50,   // 4K HDMI Switch 4x1
-  "H8AB01": 50,   // 8K Bi-Direction Switcher
-  "H8AB02": 238,  // 8K Bi-Direction Switcher
+  "AU1201": 140,  // DC3.5 M to M 1M (BIZGO: 140)
+  "AU1202": 140,  // DC3.5 M to M 1.5M (BIZGO: 140)
+  "AU1203": 140,  // DC3.5 M to M 2M (BIZGO: 140)
+  "AU1204": 140,  // DC3.5 M to M 3M (BIZGO: 140)
+  "AU1205": 140,  // DC3.5 M to M 5M (BIZGO: 140)
+  "AU1206": 140,  // DC3.5 M to M 8M (BIZGO: 140)
+  "AU1207": 140,  // DC3.5 M to M 10M (BIZGO: 140)
 
-  // 8. DisplayPort
-  "DP0101": 12,
-  "DP0102": 12,
-  "DP0103": 80,
-  "DP0105": 12,
-  "DP0203": 80,   // DP 1.4 8K 2M
-  "DP0303": 80,   // Active Optic DP 8K 20M / 2M
-  "DP0403": 80,   // DP 2.0 16K 2M
-  "DP0501": 80,
-  "DP0502": 80,
-  "DP0503": 80,   // DP Braided 8K 2M
-  "DP0504": 80,
-  "DP0505": 80,
-  "DP0603": 80,   // DP 16K 2M
-  "DP0703": 80,   // Mini DP to DP 8K 2M
-  "DP0803": 80,   // DP to HDMI 4K 2M
-  "DP0903": 80,   // DP to DVI 2M
-  "DP1003": 100,  // Mini DP 2M
-  "DP1006": 12,   // Active Optic DP 15M
-  "DP1101": 80,
-  "DP1102": 80,
-  "DP1103": 80,
-  "DP1104": 80,
-  "DP1203": 100,  // Mini DP to HDMI 4K 2M
-  "DP1303": 80,   // DP 1.4 240Hz 2M
-  "DP1407": 10,   // DP 10M
-  "CD0103": 100,  // Type-C to DP 2M
+  "AU1301": 140,  // TS 6.35 1M (BIZGO: 140)
+  "AU1302": 140,  // TS 6.35 1.5M (BIZGO: 140)
+  "AU1303": 140,  // TS 6.35 2M (BIZGO: 140)
+  "AU1304": 140,  // TS 6.35 3M (BIZGO: 140)
+  "AU1305": 140,  // TS 6.35 5M (BIZGO: 140)
+  "AU1306": 140,  // TS 6.35 8M (BIZGO: 140)
+  "AU1307": 140,  // TS 6.35 10M (BIZGO: 140)
 
-  // 9. DVI & VGA
-  "DVI0101": 12,  // FO DVI 10M
-  "DVI0103": 12,  // DVI FO 20M
-  "DVI0201": 12,  // FO DVI 20M
-  "DVI0203": 65,  // DVI-D Dual Link 2M
-  "DVI0301": 12,  // FO DVI 20M
-  "DVI0401": 12,  // FO DVI 30M
-  "DVI0403": 65,  // DVI-D Braided 2M
-  "DVI0501": 435,
-  "DVI0502": 435,
-  "DVI0503": 65,  // DVI-I to VGA 2M
-  "DVI0504": 435,
-  "DVI0505": 435,
-  "DVI0506": 425,
-  "DVI0507": 420,
-  "DVI0601": 100, // DVI-D 1.5M
-  "DVI0603": 100, // DVI-D 2M
-  "HD0102": 120,  // HDMI to DVI 1.5M
-  "HD0103": 55,
-  "HD0203": 55,   // HDMI to DVI Gold 2M
-  "VGA0106": 18,  // VGA 3+6 10M / 2M
-  "VGA0108": 11   // VGA 3+6 20M
+  "AU1401": 100,  // Audio Optik 1M (BIZGO: 100)
+  "AU1403": 100,  // Audio Optik 2M (BIZGO: 100)
+  "AU1404": 100,  // Audio Optik 3M (BIZGO: 100)
+  "AU1405": 100,  // Audio Optik 5M (BIZGO: 100)
+  "AU1406": 100,  // Audio Optik 8M (BIZGO: 100)
+  "AU1407": 100,  // Audio Optik 10M (BIZGO: 100)
+
+  // 13. USB & Data Cables
+  "UBM101": 100,  // USB Printer 1M (BIZGO: 100)
+  "UBM102": 250,  // USB Printer 1.5M (BIZGO: 250)
+  "UBM103": 200,  // USB Printer 2M (BIZGO: 200)
+  "UBM104": 170,  // USB Printer 3M (BIZGO: 170)
+  "UBM105": 100,  // USB Printer 5M (BIZGO: 100)
+  "UBM107": 50,   // USB Printer 10M (BIZGO: 50)
+
+  "UMF101": 250,  // USB AM-AF 1M (BIZGO: 250)
+  "UMF102": 250,  // USB AM-AF 1.5M (BIZGO: 250)
+  "UMF103": 200,  // USB AM-AF 2M (BIZGO: 200)
+  "UMF104": 150,  // USB AM-AF 3M (BIZGO: 150)
+  "UMF105": 100,  // USB AM-AF 5M (BIZGO: 100)
+
+  "UMM101": 200,  // USB AM-AM 1M (BIZGO: 200)
+  "UMM102": 250,  // USB AM-AM 1.5M (BIZGO: 250)
+  "UMM103": 200,  // USB AM-AM 2M (BIZGO: 200)
+  "UMM104": 150,  // USB AM-AM 3M (BIZGO: 150)
+  "UMM105": 100,  // USB AM-AM 5M (BIZGO: 100)
+
+  "U5P101": 250,  // USB AM-Micro 1M (BIZGO: 250)
+  "U5P102": 250,  // USB AM-Micro 1.5M (BIZGO: 250)
+  "U5P103": 200,  // USB AM-Micro 2M (BIZGO: 200)
+  "U5P104": 170,  // USB AM-Micro 3M (BIZGO: 170)
+  "U5P105": 100,  // USB AM-Micro 5M (BIZGO: 100)
+
+  "UMI101": 200,  // USB AM-Mini 1M (BIZGO: 200)
+  "UMI102": 200,  // USB AM-Mini 1.5M (BIZGO: 200)
+  "UMI103": 200,  // USB AM-Mini 2M (BIZGO: 200)
+  "UMI104": 100,  // USB AM-Mini 3M (BIZGO: 100)
+  "UMI105": 100,  // USB AM-Mini 5M (BIZGO: 100)
+
+  "USB0101": 12,  // OP USB 15M (BIZGO: 12)
+  "USB0202": 10,  // OP USB 10M (BIZGO: 10)
+  "USB0203": 10,  // OP USB 15M (BIZGO: 10)
+  "USB0204": 10,  // OP USB 20M (BIZGO: 10)
+  "USB0205": 10,  // OP USB 25M (BIZGO: 10)
+  "USB0206": 12,  // OP USB 30M (BIZGO: 12)
+
+  // 14. Adapters & Converters
+  "ADP001": 200,  // 8K HDMI AF/AF (BIZGO: 200)
+  "ADP002": 200,  // 4K HDMI AF/AF (BIZGO: 200)
+  "ADP003": 200,  // 8K HDMI 90D (BIZGO: 200)
+  "ADP004": 200,  // 8K HDMI 270D (BIZGO: 200)
+  "ADP005": 200,  // 8K HDMI Left (BIZGO: 200)
+  "ADP006": 200,  // 8K HDMI Right (BIZGO: 200)
+  "ADP007": 200,  // 8K HDMI AM/AF (BIZGO: 200)
+  "ADP008": 200,  // 8K HDMI AM/AM (BIZGO: 200)
+  "ADP009": 200,  // 4K HDMI 90D (BIZGO: 200)
+  "ADP010": 200,  // 4K HDMI 270D (BIZGO: 200)
+  "ADP011": 200,  // 4K HDMI Left (BIZGO: 200)
+  "ADP012": 200,  // 4K HDMI Right (BIZGO: 200)
+  "ADP013": 200,  // 4K HDMI AM/AF (BIZGO: 200)
+  "ADP014": 200,  // 8K HDMI Mini (BIZGO: 200)
+  "ADP015": 200,  // 4K HDMI Mini (BIZGO: 200)
+  "ADP016": 200,  // 4K HDMI 3in1 (BIZGO: 200)
+  "ADP017": 200,  // 8K HDMI Micro (BIZGO: 200)
+  "ADP018": 200,  // 4K HDMI Micro (BIZGO: 200)
+  "ADP019": 200,  // USB 3.2 AM/AF (BIZGO: 200)
+  "ADP020": 200,  // USB 3.2 AM/AM (BIZGO: 200)
+  "ADP021": 200,  // USB 3.2 AF/AF (BIZGO: 200)
+  "ADP022": 200,  // USB 3.2 Right (BIZGO: 200)
+  "ADP023": 200,  // USB 3.2 Left (BIZGO: 200)
+  "ADP024": 200,  // USB 3.2 90D (BIZGO: 200)
+  "ADP025": 200,  // USB 3.2 270D (BIZGO: 200)
+  "ADP026": 200,  // USB 3.0 Keystone (BIZGO: 200)
+  "ADP027": 200,  // RJ45 Keystone (BIZGO: 200)
+  "ADP028": 200,  // Type-C Keystone (BIZGO: 200)
+  "ADP029": 200,  // RJ45 Coupler F/F (BIZGO: 200)
+  "ADP030": 200,  // RJ45 Coupler Aluminium (BIZGO: 200)
+  "ADP031": 200,  // RJ45 Splitter 1 to 2 (BIZGO: 200)
+  "ADP032": 200,  // Type-C AM/AM 40GB (BIZGO: 200)
+  "ADP033": 200,  // Type-C 90D (BIZGO: 200)
+  "ADP035": 200,  // USB 3.0 AF to Type-C AM (BIZGO: 200)
+  "ADP037": 200,  // DP AM to HDMI AF (BIZGO: 200)
+  "ADP038": 200,  // Mini DP to DP AF (BIZGO: 200)
+
+  "CDP013": 100,  // 8K Type-C to DP 2M (BIZGO: 100)
+  "CH0101": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
+  "CH0201": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
+  "CH0301": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
+  "CH0403": 100,  // 4K@30 Type-C to HDMI 2M (BIZGO: 100)
+  "CH0503": 100,  // 4K Type-C to HDMI 2M (BIZGO: 100)
+  "CH0603": 100,  // 4K Right Angle Type-C to HDMI 2M (BIZGO: 100)
+  "CH0703": 100,  // 8K Type-C to HDMI 2M (BIZGO: 100)
+
+  "DK1301": 15,   // 13in1 USB-C Dock (BIZGO: 15)
+  "DK1501": 15,   // 15in1 USB-C Dock (BIZGO: 15)
+  "HUB801": 100,  // 8in1 USB-C Dock (BIZGO: 100)
+
+  "VD0101": 500,  // 4K DP EDID (BIZGO: 500)
+  "VD0201": 500,  // 4K HDMI EDID (BIZGO: 500)
+  "VC0302": 500,  // 4K HDMI Passthrough (BIZGO: 500)
+  "VC0101": 192,  // Video Capture Card 4K@30 (BIZGO: 192)
+  "VC0201": 114,  // Video Capture Card 4K@60 (BIZGO: 114)
+
+  "UEA001": 100,  // USB2.0 100Mbps Ethernet (BIZGO: 100)
+  "UEA002": 100,  // USB3.0 Gigabit Ethernet (BIZGO: 100)
+  "UEA003": 100,  // USB3.0 100Mbps Ethernet (BIZGO: 100)
+  "CEA001": 100,  // Type-C 100Mbps Ethernet (BIZGO: 100)
+  "CEA002": 100,  // Type-C Gigabit Ethernet (BIZGO: 100)
+  "CEA003": 100,  // Type-C Gigabit Ethernet (BIZGO: 100)
+
+  "LCP001": 20,   // Laptop Cooling Pad (BIZGO: 20)
+  "LCP002": 16,   // Laptop Cooling Pad (BIZGO: 16)
+  "LCP003": 30,   // Laptop Cooling Pad (BIZGO: 30)
+  "LCP004": 10,   // Laptop Stand (BIZGO: 10)
+
+  "MIC001": 50,   // USB Microphone (BIZGO: 50)
+  "MIC002": 40,   // USB Microphone (BIZGO: 40)
+  "MIC003": 10,   // USB Microphone (BIZGO: 10)
+  "MIC004": 50,   // USB Microphone (BIZGO: 50)
+
+  // 15. Earphones & TWS
+  "HW01": 50,     // Bluetooth Earphone HW01 (BIZGO: 50)
+  "HW02": 50,     // Bluetooth Earphone HW02 (BIZGO: 50)
+  "HW02-B": 50,   // Bluetooth Earphone HW02 Black (BIZGO: 50)
+  "HW02-W": 50,   // Bluetooth Earphone HW02 White (BIZGO: 50)
+  "HW03-B": 500,  // 3.5" Earphone Black (BIZGO: 500)
+  "HW03-W": 500,  // 3.5" Earphone White (BIZGO: 500)
+  "HW04": 500,    // 3.5" Earphone Black (BIZGO: 500)
+  "HW05": 500,    // 3.5" Earphone Black (BIZGO: 500)
+  "HW06": 200,    // Type-C Earphone (BIZGO: 200)
+  "HW07": 200,    // Type-C Earphone (BIZGO: 200)
+
+  // 16. Chargers & Cables
+  "HW-C01": 144,  // 12W Charger (BIZGO: 144)
+  "HW-C02A": 105, // 20W Charger + Cable (BIZGO: 105)
+  "HW-C03": 144,  // 30W Charger (BIZGO: 144)
+  "HW-C03A": 105, // 30W Charger + Cable (BIZGO: 105)
+  "HW-C04": 144,  // 65W Charger (BIZGO: 144)
+  "HW-C04+AC01": 100, // 65W Set (BIZGO: 100)
+  "CC01": 150,    // Car Charger (BIZGO: 150)
+  "CC02": 150,    // Car Charger (BIZGO: 150)
+  "AC01": 200,    // 4in1 USB Cable (BIZGO: 200)
+  "AC02": 150,    // USB A to C 1.2M (BIZGO: 150)
+  "AC02-20": 10,  // Toples USB 20pcs (BIZGO: 10)
+  "AC03": 250,    // USB A to C 1.2M (BIZGO: 250)
+  "AC04": 250,    // USB A to C 1.2M (BIZGO: 250)
+  "AC05": 250     // Type-C to Lightning (BIZGO: 250)
+,
+  // Composite / Series Multi-SKU Items
+  "HW03-W & HW03-B": 500, // Studio IEM Black & White (BIZGO: 500)
+  "ADP002 - ADP013": 200  // Display & Audio Adapter Series (BIZGO: 200)
 };
 
-// Expose globally
 window.HOWELL_SKU_CARTON = HOWELL_SKU_CARTON;
 
 const HOWELL_CATEGORIES = [
@@ -538,6 +531,7 @@ const HOWELL_PRODUCTS = [
     tagline: "40Gbps | 2GHz (2000MHz) | Pure Copper 30AWG | Flat Ribbon",
     summary: "Ultra-fast Cat8 FTP flat network cable supporting up to 40Gbps and 2GHz bandwidth frequency.",
     variants: { lengths: ["1M", "1.5M", "2M", "3M", "5M", "10M", "15M"], colors: ["High-Vis Yellow"] },
+    lengthSkuMap: { "1M": "N8A02", "1.5M": "N8A03", "2M": "N8A04", "3M": "N8A05", "5M": "N8A06", "10M": "N8A07", "15M": "N8A08" },
     specs: { "SKU Series": "N8A02 to N8A08", "Conductor": "Pure Copper 30AWG", "Speed": "40 Gbps / 2GHz", "Warranty": "12-Month Warranty" },
     description: "Engineered for next-gen 40G infrastructure. Flat ribbon form factor easily slides under doors and carpets.",
     image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8A02 - N8A08.png"
@@ -675,6 +669,7 @@ const HOWELL_PRODUCTS = [
     tagline: "18 Gbps | 4K 60Hz | HDR 3D | Gold Plated Plugs",
     summary: "HDMI 2.0 high-speed cable supporting 4K 60Hz, HDR, 3D video, and Audio Return Channel (ARC).",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Black PVC"] },
+    lengthSkuMap: { "1.5M": "H0103", "2M": "H0104", "3M": "H0105", "5M": "H0106", "10M": "H0108", "15M": "H0109", "20M": "H0110" },
     specs: { "SKU Series": "H0103 to H0110", "Resolution": "4K 60Hz / 18Gbps", "Warranty": "12-Month Warranty" },
     description: "Universal HDMI cable for 4K Smart TVs, gaming consoles, and workstations.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0103 - H0110.png"
@@ -692,6 +687,7 @@ const HOWELL_PRODUCTS = [
     tagline: "18 Gbps | Gold Metal Head | 4K 60Hz HDR",
     summary: "Premium aluminum gold casing HDMI 2.0 cable for high-end home theaters.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Gold Casing"] },
+    lengthSkuMap: { "1.5M": "H0203", "2M": "H0204", "3M": "H0205", "5M": "H0206", "10M": "H0208", "15M": "H0209", "20M": "H0210" },
     specs: { "SKU Series": "H0203 to H0210", "Resolution": "4K 60Hz / 18Gbps", "Warranty": "12-Month Warranty" },
     description: "Heavy-duty aluminum shell providing maximum connector durability.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0203 - H0210.png"
@@ -709,6 +705,7 @@ const HOWELL_PRODUCTS = [
     tagline: "18 Gbps | 30AWG/28AWG Pure Copper | 4K 60Hz",
     summary: "High-grade pure copper conductor HDMI cable for zero distortion 4K signal delivery.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M", "15M", "20M"], colors: ["Black PVC"] },
+    lengthSkuMap: { "1.5M": "H0303", "2M": "H0304", "3M": "H0305", "5M": "H0306", "10M": "H0308", "15M": "H0309", "20M": "H0310" },
     specs: { "SKU Series": "H0303 to H0310", "Conductor": "Pure Copper Core", "Warranty": "12-Month Warranty" },
     description: "Ideal for professional AV distribution and 4K projectors.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0303 - H0310.png"
@@ -726,6 +723,7 @@ const HOWELL_PRODUCTS = [
     tagline: "48 Gbps Bandwidth | 8K 60Hz / 4K 120Hz | Dynamic HDR | eARC",
     summary: "HDMI 2.1 ultra-high-speed certified cable delivering 48Gbps throughput for 8K 60Hz and 4K 120Hz console gaming.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Ultra Gold Casing"] },
+    lengthSkuMap: { "1.5M": "H0403", "2M": "H0404", "3M": "H0405", "5M": "H0406", "10M": "H0408" },
     specs: { "SKU Series": "H0403 to H0408", "Speed": "48 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
     description: "Designed for PS5, Xbox Series X, and OLED 8K displays.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0403 - H0408.png"
@@ -733,17 +731,18 @@ const HOWELL_PRODUCTS = [
   {
     id: "hw-hdmi-8k-core-h0503",
     price: 94074,
-    name: "HOWELL HDMI 8K 60Hz Ultra Core (H0503 - H0507)",
+    name: "HOWELL HDMI 8K 60Hz Ultra Core (H0503 - H0508)",
     category: "hdmi-video",
     categoryName: "HDMI & Video Cables",
     rating: 5.0,
     reviewsCount: 290,
     badge: "8K 48Gbps Core",
-    sku: "H0503 - H0507",
+    sku: "H0503 - H0508",
     tagline: "48 Gbps | 30AWG Copper Core | 8K 60Hz / 4K 120Hz",
     summary: "Pure copper core HDMI 2.1 cable supporting uncompressed 8K 60Hz video streaming.",
     variants: { lengths: ["1.5M", "2M", "3M", "5M", "10M"], colors: ["Black PVC"] },
-    specs: { "SKU Series": "H0503 to H0507", "Speed": "48 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
+    lengthSkuMap: { "1.5M": "H0503", "2M": "H0504", "3M": "H0505", "5M": "H0506", "10M": "H0508" },
+    specs: { "SKU Series": "H0503 to H0508", "Speed": "48 Gbps / 8K 60Hz", "Warranty": "12-Month Warranty" },
     description: "High refresh rate 4K 120Hz / 8K 60Hz gaming connection.",
     image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0503 - H0507.png"
   },
