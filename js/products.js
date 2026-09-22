@@ -2844,5 +2844,6 @@ const HOWELL_PRODUCTS = [
 if (typeof window !== 'undefined') {
   window.HOWELL_CATEGORIES = HOWELL_CATEGORIES;
   window.HOWELL_PRODUCTS = HOWELL_PRODUCTS;
+  window.HOWELL_SKU_CARTON = HOWELL_SKU_CARTON;
   window.products = HOWELL_PRODUCTS;
 }

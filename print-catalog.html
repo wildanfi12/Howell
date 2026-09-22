@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOWELL Official Product Catalog &amp; Inventory - Cetak / Simpan PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/Logo/logo howell.png">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f1f5f9;
+      color: #111111;
+      font-size: 11px;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Screen-only Interactive Header / Toolbar */
+    .screen-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 14px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      border-bottom: 2px solid #FFC700;
+    }
+
+    .toolbar-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toolbar-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toolbar-brand-badge {
+      background: #FFC700;
+      color: #000000;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .toolbar-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+    }
+
+    .toolbar-stats {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: none;
+    }
+
+    .btn-print-primary {
+      background: #FFC700;
+      color: #000000;
+      box-shadow: 0 2px 8px rgba(255, 199, 0, 0.4);
+    }
+    .btn-print-primary:hover {
+      background: #eab308;
+      transform: translateY(-1px);
+    }
+
+    .btn-print-all {
+      background: #1e293b;
+      color: #FFC700;
+      border: 1px solid #334155;
+    }
+    .btn-print-all:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    .btn-back {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .btn-back:hover {
+      background: #475569;
+    }
+
+    .toolbar-filters-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .filter-select {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      min-width: 220px;
+    }
+    .filter-select:focus {
+      border-color: #FFC700;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 380px;
+      min-width: 200px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #1e293b;
+      color: #ffffff;
+      border: 1px solid #475569;
+      padding: 6px 32px 6px 12px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-family: inherit;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: #FFC700;
+      background: #0f172a;
+    }
+    .search-input::placeholder {
+      color: #64748b;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      display: none;
+    }
+
+    /* Category Quick Chips */
+    .category-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
+    }
+
+    .chip-btn {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .chip-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .chip-btn.active {
+      background: #FFC700;
+      color: #000000;
+      border-color: #FFC700;
+      font-weight: 800;
+    }
+
+    /* Main Printable Catalog Sheet Wrapper */
+    .catalog-wrapper {
+      max-width: 1080px;
+      margin: 28px auto 40px auto;
+      background: #ffffff;
+      padding: 36px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Catalog Header (Photo 5 Inspiration) */
+    .header-box {
+      border-bottom: 3px solid #111827;
+      padding-bottom: 18px;
+      margin-bottom: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #111827;
+      line-height: 1.1;
+    }
+
+    .catalog-subtitle {
+      font-size: 12px;
+      font-weight: 800;
+      color: #000000;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin: 6px 0 6px 0;
+    }
+
+    .company-meta {
+      font-size: 10.5px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .edition-badge {
+      background: #111827;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .header-summary-text {
+      font-size: 11px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    /* Category Section */
+    .category-section {
+      margin-bottom: 26px;
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    /* Category Header (Photo 5: Dark container, yellow left border, yellow square bullet) */
+    .category-header {
+      background: #111116;
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid #FFC700;
+      page-break-after: avoid !important;
+      page-break-inside: avoid !important;
+      break-after: avoid !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .category-title {
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .category-bullet {
+      color: #FFC700;
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .category-count {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFC700;
+      letter-spacing: 0.2px;
+    }
+
+    /* Catalog Table (Photo 5: Yellow thead, white borders, alternating rows) */
+    .catalog-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 11px;
+    }
+
+    .catalog-table thead {
+      display: table-header-group;
+    }
+
+    .catalog-table th {
+      background-color: #FFC700 !important;
+      color: #000000 !important;
+      font-weight: 800;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 9px 12px;
+      border: 2px solid #ffffff !important;
+      text-align: center;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .catalog-table td {
+      padding: 8px 12px;
+      border: 2px solid #ffffff !important;
+      vertical-align: middle;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+
+    .catalog-table tr {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* Alternating rows: Odd white, Even cool light grey #ECEFF1 */
+    .catalog-table tr.row-odd td {
+      background-color: #FFFFFF !important;
+    }
+
+    .catalog-table tr.row-even td {
+      background-color: #ECEFF1 !important;
+    }
+
+    /* Columns Width & Alignment */
+    .col-sku {
+      width: 15%;
+      text-align: center;
+      font-weight: 700;
+      color: #111827;
+      font-size: 11px;
+    }
+
+    .col-desc {
+      width: 54%;
+      text-align: left;
+      padding-left: 16px !important;
+    }
+
+    .product-name {
+      font-weight: 700;
+      color: #111827;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .product-spec {
+      font-size: 9.5px;
+      color: #4b5563;
+      margin-top: 2px;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .col-len {
+      width: 15%;
+      text-align: center;
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 11px;
+    }
+
+    .col-qty {
+      width: 16%;
+      text-align: center;
+      font-weight: 700;
+      color: #1f2937;
+      font-size: 11px;
+    }
+
+    /* Catalog Footer */
+    .catalog-footer {
+      border-top: 2px solid #111827;
+      padding-top: 14px;
+      margin-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #4b5563;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Empty state */
+    .no-results {
+      padding: 36px 16px;
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border: 1px dashed #cbd5e1;
+      margin: 16px 0;
+    }
+
+    /* PRINT SPECIFIC STYLING */
+    @media print {
+      .screen-toolbar {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 9.5px !important;
+      }
+
+      .catalog-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 10mm 8mm;
+      }
+
+      .header-box {
+        margin-bottom: 14px !important;
+        padding-bottom: 10px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .category-section {
+        margin-bottom: 14px !important;
+      }
+
+      .category-header {
+        background: #111116 !important;
+        color: #ffffff !important;
+        border-left: 5px solid #FFC700 !important;
+        padding: 7px 12px !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-after: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .category-title {
+        font-size: 11px !important;
+      }
+
+      .category-count {
+        font-size: 10px !important;
+        color: #FFC700 !important;
+      }
+
+      .catalog-table {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 12px !important;
+        font-size: 9.5px !important;
+      }
+
+      .catalog-table thead {
+        display: table-header-group !important;
+      }
+
+      .catalog-table th {
+        background-color: #FFC700 !important;
+        color: #000000 !important;
+        padding: 6px 8px !important;
+        font-size: 10px !important;
+        border: 2px solid #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .catalog-table td {
+        padding: 5px 8px !important;
+        font-size: 9.5px !important;
+        border: 2px solid #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .product-name {
+        font-size: 9.5px !important;
+      }
+
+      .product-spec {
+        font-size: 8.5px !important;
+      }
+
+      .catalog-table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .catalog-table tr.row-odd td {
+        background-color: #FFFFFF !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .catalog-table tr.row-even td {
+        background-color: #ECEFF1 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .catalog-footer {
+        margin-top: 18px !important;
+        padding-top: 8px !important;
+        font-size: 9px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen-only Interactive Header Toolbar -->
+  <div class="screen-toolbar">
+    <div class="toolbar-container">
+      <!-- Top Row: Brand, Info, and Action Buttons -->
+      <div class="toolbar-top-row">
+        <div class="toolbar-brand">
+          <span class="toolbar-brand-badge">HOWELL ERP</span>
+          <div>
+            <div class="toolbar-title">Katalog Inventaris &amp; Qty/Karton Resmi HOWELL</div>
+            <div class="toolbar-stats" id="toolbar-stats-text">Memuat database produk...</div>
+          </div>
+        </div>
+
+        <div class="toolbar-actions">
+          <button type="button" class="btn-action btn-print-primary" onclick="triggerPrint()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Cetak / Simpan PDF
+          </button>
+
+          <button type="button" class="btn-action btn-print-all" onclick="printAllCategories()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            Cetak Semua (10 Kategori)
+          </button>
+
+          <a href="index.html" class="btn-action btn-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Kembali ke Website
+          </a>
+        </div>
+      </div>
+
+      <!-- Filters & Live Search Row -->
+      <div class="toolbar-filters-row">
+        <div class="filter-group">
+          <label for="category-select" class="filter-label">Filter Kategori:</label>
+          <select id="category-select" class="filter-select" onchange="onCategorySelectChange(this.value)">
+            <option value="all">Semua Kategori (10 Kategori • 192 SKU)</option>
+            <option value="hdmi">1. HDMI &amp; Video Cables (39 Produk • 72 SKU)</option>
+            <option value="dp">2. DisplayPort (DP) 8K / 16K (10 Produk • 10 SKU)</option>
+            <option value="dvi-vga">3. DVI &amp; VGA Cables (8 Produk • 8 SKU)</option>
+            <option value="usb">4. USB &amp; Data Cables (7 Produk • 7 SKU)</option>
+            <option value="lan">5. Patch Cable &amp; Networking (9 Produk • 28 SKU)</option>
+            <option value="power">6. Power &amp; PDU Cables (3 Produk • 6 SKU)</option>
+            <option value="audio">7. Audio &amp; Instrument Cables (11 Produk • 11 SKU)</option>
+            <option value="adapter">8. Adapters &amp; Converters (37 Produk • 37 SKU)</option>
+            <option value="tws">9. Audio &amp; Earphones / TWS (8 Produk • 8 SKU)</option>
+            <option value="charger">10. Chargers &amp; Mobile Accessories (5 Produk • 5 SKU)</option>
+          </select>
+        </div>
+
+        <div class="search-box">
+          <input type="text" id="catalog-search-input" class="search-input" placeholder="Pencarian cepat SKU, Nama, atau Spesifikasi..." oninput="onSearchInput(this.value)">
+          <button type="button" id="search-clear-btn" class="search-clear" onclick="clearSearch()" title="Hapus pencarian">&times;</button>
+        </div>
+      </div>
+
+      <!-- Category Quick Chips -->
+      <div class="category-chips" id="category-chips-bar">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Document Sheet -->
+  <div class="catalog-wrapper" id="catalog-print-sheet">
+    <!-- Official Document Header -->
+    <div class="header-box">
+      <div>
+        <div class="brand-title">HOWELL INDONESIA</div>
+        <div class="catalog-subtitle">KATALOG RESMI PRODUK &amp; SPESIFIKASI TEKNIS (INVENTORY CATALOG)</div>
+        <div class="company-meta">
+          <strong>PT Howell Niaga Indonesia</strong> • Distributor Resmi Sejak 2009<br>
+          Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>
+          WhatsApp CS: +62 811-8803-1976 | Website: www.howell.co.id
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="edition-badge" id="catalog-date-badge">EDISI RESMI • 22 SEPTEMBER 2026</div>
+        <div class="header-summary-text" id="catalog-summary-meta">
+          Total Terpilih: <strong>137 Produk (192 SKU)</strong><br>
+          Garansi: <strong>12 Bulan Ganti Baru</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Sections & Product Tables Container -->
+    <div id="catalog-content-container">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Official Document Footer -->
+    <div class="catalog-footer">
+      <div>
+        &copy; <span id="copyright-year">2026</span> PT Howell Niaga Indonesia. Seluruh hak cipta dilindungi undang-undang.<br>
+        Dokumen Master Katalog Resmi untuk Keperluan Pengadaan Tender, Proyek B2B, dan Mitra Distribusi.
+      </div>
+      <div style="text-align:right;">
+        Customer Support WhatsApp: <strong>+62 811-8803-1976</strong><br>
+        Website Resmi: <strong>www.howell.co.id</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Master Product Data from products.js -->
+  <script src="js/products.js?v=20260922-v14-print"></script>
+
+  <script>
+    // State management
+    let currentCategory = 'all';
+    let currentSearchQuery = '';
+
+    // Category Definitions matching ERP & Photo 5
+    const CATEGORY_DEFS = [
+      { id: 'hdmi', title: '1. HDMI & VIDEO CABLES', shortTitle: 'HDMI & Video', filter: p => p.category === 'hdmi-video' },
+      { id: 'dp', title: '2. DISPLAYPORT (DP) 8K / 16K', shortTitle: 'DisplayPort', filter: p => p.category === 'displayport' },
+      { id: 'dvi-vga', title: '3. DVI & VGA CABLES', shortTitle: 'DVI & VGA', filter: p => p.category === 'dvi-vga' },
+      { id: 'usb', title: '4. USB & DATA CABLES', shortTitle: 'USB & Data', filter: p => p.category === 'computer-acc' && /Cable|Kabel/i.test(p.name) },
+      { id: 'lan', title: '5. PATCH CABLE & NETWORKING', shortTitle: 'Patch Cable / LAN', filter: p => p.category === 'patch-cable' },
+      { id: 'power', title: '6. POWER & PDU CABLES', shortTitle: 'Power & PDU', filter: p => p.category === 'power-cable' },
+      { id: 'audio', title: '7. AUDIO & INSTRUMENT CABLES', shortTitle: 'Audio Cables', filter: p => p.category === 'audio' },
+      { id: 'adapter', title: '8. ADAPTERS & CONVERTERS', shortTitle: 'Adapters & Converters', filter: p => p.category === 'adapter' },
+      { id: 'tws', title: '9. AUDIO & EARPHONES / TWS', shortTitle: 'Earphone & TWS', filter: p => p.category === 'earphone-tws' },
+      { id: 'charger', title: '10. CHARGERS & MOBILE ACCESSORIES', shortTitle: 'Chargers & Acc', filter: p => p.category === 'computer-acc' && !/Cable|Kabel/i.test(p.name) }
+    ];
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Resolves accurate Qty per Carton from Master ERP database
+    function resolveCartonQty(product, itemSku, itemLen) {
+      const map = window.HOWELL_SKU_CARTON || (typeof HOWELL_SKU_CARTON !== 'undefined' ? HOWELL_SKU_CARTON : null);
+      if (!map) return '-';
+      if (itemSku && map[itemSku] !== undefined) return String(map[itemSku]);
+      const cleanSku = (itemSku || '').trim();
+      if (cleanSku && map[cleanSku] !== undefined) return String(map[cleanSku]);
+      if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && map[product.lengthSkuMap[itemLen]] !== undefined) {
+        return String(map[product.lengthSkuMap[itemLen]]);
+      }
+      if (product.sku && map[product.sku] !== undefined) return String(map[product.sku]);
+      if (product.cartonQty !== undefined) return String(product.cartonQty);
+      return '-';
+    }
+
+    // Formats product records into SKU variant rows
+    function formatProductRows(p) {
+      const lengths = p.variants && p.variants.lengths ? p.variants.lengths : [];
+      const sku = p.sku || '-';
+      const rangeMatch = sku.match(/^([A-Za-z0-9\-]+?)(\d+)\s*-\s*([A-Za-z0-9\-]+?)(\d+)$/);
+      const cleanName = p.name.replace(/\s*\([A-Z0-9\s\-\.]+\)$/i, '').trim();
+      const briefSpec = p.tagline || '';
+
+      if (rangeMatch && lengths.length > 1) {
+        const prefix1 = rangeMatch[1], n1 = parseInt(rangeMatch[2], 10);
+        const prefix2 = rangeMatch[3], n2 = parseInt(rangeMatch[4], 10);
+        const pad = rangeMatch[2].length;
+
+        return lengths.map((len, idx) => {
+          let subSku;
+          if (p.lengthSkuMap && p.lengthSkuMap[len]) {
+            subSku = p.lengthSkuMap[len];
+          } else if (prefix1 === prefix2) {
+            subSku = prefix1 + String(n1 + idx).padStart(pad, '0');
+          } else {
+            subSku = sku;
+          }
+          return {
+            sku: subSku,
+            name: cleanName,
+            spec: briefSpec,
+            length: len,
+            qty: resolveCartonQty(p, subSku, len)
+          };
+        });
+      } else if (lengths.length > 1) {
+        return lengths.map(len => {
+          let subSku = sku;
+          if (p.lengthSkuMap && p.lengthSkuMap[len]) {
+            subSku = p.lengthSkuMap[len];
+          }
+          return {
+            sku: subSku,
+            name: cleanName,
+            spec: briefSpec,
+            length: len,
+            qty: resolveCartonQty(p, subSku, len)
+          };
+        });
+      } else {
+        let lenStr = '-';
+        if (lengths.length === 1) {
+          const l = lengths[0];
+          if (/^\d+(\.\d+)?\s*(m|meter|cm|ft)/i.test(l)) {
+            lenStr = l;
+          } else if (/^\d+\s*Pack/i.test(l)) {
+            lenStr = l;
+          } else {
+            lenStr = '-';
+          }
+        }
+        return [{
+          sku: sku,
+          name: cleanName,
+          spec: briefSpec,
+          length: lenStr,
+          qty: resolveCartonQty(p, sku, lengths[0] || lenStr)
+        }];
+      }
+    }
+
+    // Render Quick Filter Chips
+    function renderCategoryChips() {
+      const bar = document.getElementById('category-chips-bar');
+      if (!bar) return;
+
+      const chipsHtml = [
+        `<button type="button" class="chip-btn ${currentCategory === 'all' ? 'active' : ''}" onclick="onCategorySelectChange('all')">Semua Kategori</button>`
+      ];
+
+      CATEGORY_DEFS.forEach(cat => {
+        const isActive = currentCategory === cat.id ? 'active' : '';
+        chipsHtml.push(
+          `<button type="button" class="chip-btn ${isActive}" onclick="onCategorySelectChange('${cat.id}')">${escapeHtml(cat.shortTitle)}</button>`
+        );
+      });
+
+      bar.innerHTML = chipsHtml.join('');
+    }
+
+    // Main Render Function
+    function renderCatalog() {
+      const allProducts = window.HOWELL_PRODUCTS || [];
+      const container = document.getElementById('catalog-content-container');
+      const statsText = document.getElementById('toolbar-stats-text');
+      const summaryMeta = document.getElementById('catalog-summary-meta');
+      const searchClearBtn = document.getElementById('search-clear-btn');
+
+      if (searchClearBtn) {
+        searchClearBtn.style.display = currentSearchQuery ? 'block' : 'none';
+      }
+
+      // Filter categories to display
+      let activeCategoryDefs = CATEGORY_DEFS;
+      if (currentCategory !== 'all') {
+        activeCategoryDefs = CATEGORY_DEFS.filter(c => c.id === currentCategory);
+      }
+
+      const q = currentSearchQuery.trim().toLowerCase();
+      let totalDisplayedProducts = 0;
+      let totalDisplayedRows = 0;
+      let outputHtml = '';
+
+      activeCategoryDefs.forEach(cat => {
+        const catProducts = allProducts.filter(cat.filter);
+        if (catProducts.length === 0) return;
+
+        // Flatten products to SKU rows and apply search filter if present
+        let matchedCatRows = [];
+        let matchedProductIds = new Set();
+
+        catProducts.forEach(p => {
+          const rows = formatProductRows(p);
+          rows.forEach(r => {
+            if (!q || 
+                r.sku.toLowerCase().includes(q) || 
+                r.name.toLowerCase().includes(q) || 
+                r.spec.toLowerCase().includes(q) || 
+                r.length.toLowerCase().includes(q)) {
+              matchedCatRows.push(r);
+              matchedProductIds.add(p.id);
+            }
+          });
+        });
+
+        if (matchedCatRows.length === 0) return;
+
+        totalDisplayedProducts += matchedProductIds.size;
+        totalDisplayedRows += matchedCatRows.length;
+
+        // Render Section & Table matching Photo 5
+        outputHtml += `
+          <div class="category-section">
+            <div class="category-header">
+              <div class="category-title">
+                <span class="category-bullet">■</span>
+                <span>${escapeHtml(cat.title)}</span>
+              </div>
+              <div class="category-count">${matchedProductIds.size} Produk (${matchedCatRows.length} SKU)</div>
+            </div>
+            <table class="catalog-table">
+              <thead>
+                <tr>
+                  <th class="col-sku">SKU</th>
+                  <th class="col-desc">DESKRIPSI</th>
+                  <th class="col-len">LENGTH</th>
+                  <th class="col-qty">QTY/KARTON</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${matchedCatRows.map((row, idx) => {
+                  const rowClass = idx % 2 === 0 ? 'row-odd' : 'row-even';
+                  return `
+                    <tr class="${rowClass}">
+                      <td class="col-sku">${escapeHtml(row.sku)}</td>
+                      <td class="col-desc">
+                        <div class="product-name">${escapeHtml(row.name)}</div>
+                        ${row.spec ? `<div class="product-spec">${escapeHtml(row.spec)}</div>` : ''}
+                      </td>
+                      <td class="col-len">${escapeHtml(row.length)}</td>
+                      <td class="col-qty">${escapeHtml(row.qty)}</td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      });
+
+      if (totalDisplayedRows === 0) {
+        outputHtml = `
+          <div class="no-results">
+            <p style="font-size:14px; font-weight:700; color:#1e293b; margin-bottom:6px;">Tidak ada produk yang cocok</p>
+            <p>Tidak ditemukan SKU atau produk yang sesuai dengan pencarian "${escapeHtml(currentSearchQuery)}".</p>
+            <button type="button" class="btn-action btn-print-primary" style="margin-top:14px;" onclick="clearSearch()">Reset Pencarian</button>
+          </div>
+        `;
+      }
+
+      container.innerHTML = outputHtml;
+
+      // Update metadata & stats
+      if (statsText) {
+        statsText.textContent = `${totalDisplayedProducts} Produk Terpilih • ${totalDisplayedRows} Baris SKU Aktif • Database BIZGO Terverifikasi`;
+      }
+      if (summaryMeta) {
+        summaryMeta.innerHTML = `
+          Total Terpilih: <strong>${totalDisplayedProducts} Produk (${totalDisplayedRows} SKU)</strong><br>
+          Garansi: <strong>12 Bulan Ganti Baru</strong>
+        `;
+      }
+
+      renderCategoryChips();
+    }
+
+    // Category selector change
+    function onCategorySelectChange(val) {
+      currentCategory = val;
+      const select = document.getElementById('category-select');
+      if (select && select.value !== val) {
+        select.value = val;
+      }
+      renderCatalog();
+    }
+
+    // Live search input
+    function onSearchInput(val) {
+      currentSearchQuery = val;
+      renderCatalog();
+    }
+
+    function clearSearch() {
+      currentSearchQuery = '';
+      const input = document.getElementById('catalog-search-input');
+      if (input) input.value = '';
+      renderCatalog();
+    }
+
+    // Trigger Print
+    function triggerPrint() {
+      window.print();
+    }
+
+    // Print all categories
+    function printAllCategories() {
+      currentCategory = 'all';
+      currentSearchQuery = '';
+      const select = document.getElementById('category-select');
+      if (select) select.value = 'all';
+      const input = document.getElementById('catalog-search-input');
+      if (input) input.value = '';
+      renderCatalog();
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    }
+
+    // Initialization on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set date
+      const dateBadge = document.getElementById('catalog-date-badge');
+      const yearSpan = document.getElementById('copyright-year');
+      const now = new Date();
+      if (yearSpan) yearSpan.textContent = now.getFullYear();
+      if (dateBadge) {
+        const formattedDate = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        dateBadge.textContent = `EDISI RESMI • ${formattedDate.toUpperCase()}`;
+      }
+
+      // Check URL parameters (e.g. ?cat=hdmi or ?q=H0103 or ?autoprint=1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('cat');
+      const qParam = urlParams.get('q');
+      const autoPrint = urlParams.get('autoprint');
+
+      if (catParam && (catParam === 'all' || CATEGORY_DEFS.some(c => c.id === catParam))) {
+        currentCategory = catParam;
+        const select = document.getElementById('category-select');
+        if (select) select.value = catParam;
+      }
+
+      if (qParam) {
+        currentSearchQuery = qParam;
+        const input = document.getElementById('catalog-search-input');
+        if (input) input.value = qParam;
+      }
+
+      renderCatalog();
+
+      if (autoPrint === '1' || autoPrint === 'true') {
+        setTimeout(() => {
+          window.print();
+        }, 600);
+      }
+    });
+  </script>
+</body>
+</html>
