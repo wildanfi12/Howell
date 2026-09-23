@@ -528,137 +528,104 @@
   <!-- ==================== MAIN CONTENT ==================== -->
   <main id="main">
 
-    <!-- ==================== 1. HERO BANNER (Clean Premium – No Blur) ==================== -->
-    <section id="home" class="relative w-full overflow-hidden" style="background: #0a0a0a; padding-top: 4rem;">
+    <!-- ==================== 1. HERO BANNER (Cinematic Video Stage) ==================== -->
+    <section id="home" class="relative w-full overflow-hidden bg-[#0a0a0a] min-h-[90vh] sm:min-h-[88vh] flex items-center pt-[4.2rem]">
 
-      <!-- Hero Inner -->
-      <div class="relative w-full min-h-[88vh] sm:min-h-[82vh] flex flex-col lg:flex-row items-center justify-between overflow-hidden">
+      <!-- ── Background Video Layer (Looping Cinematic) ── -->
+      <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+        <video id="hero-background-video" class="hero-video-element" autoplay loop muted playsinline preload="auto" poster="assets/Video/moon-walk-poster.jpg">
+          <source src="assets/Video/moon-walk.mp4" type="video/mp4">
+        </video>
 
-        <!-- ── Background: Pure dark gradient, zero blur ── -->
-        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, #0a0a0a 0%, #111111 45%, #0d0d0d 100%);"></div>
-        <!-- Subtle golden accent glow — bottom right -->
-        <div class="absolute bottom-0 right-0 w-[55%] h-[60%] pointer-events-none" style="background: radial-gradient(ellipse at bottom right, rgba(255,199,0,0.07) 0%, transparent 65%);"></div>
-        <!-- Subtle left accent -->
-        <div class="absolute top-0 left-0 w-[35%] h-[40%] pointer-events-none" style="background: radial-gradient(ellipse at top left, rgba(255,199,0,0.04) 0%, transparent 60%);"></div>
+        <!-- Asymmetric Left-to-Right Gradient for Desktop (Protects typography with 100% crisp contrast) -->
+        <div class="absolute inset-0 pointer-events-none hidden lg:block"
+          style="background: linear-gradient(90deg, #0a0a0a 0%, rgba(10,10,10,0.95) 36%, rgba(10,10,10,0.65) 55%, rgba(10,10,10,0.15) 80%, transparent 100%);">
+        </div>
 
-        <!-- ── Left Column: Text Content ── -->
-        <div class="hero-text-col relative z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-12 pb-8 lg:py-16 lg:w-[48%] xl:w-[44%] shrink-0">
+        <!-- Mobile/Tablet Balanced Gradient -->
+        <div class="absolute inset-0 pointer-events-none lg:hidden"
+          style="background: linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.72) 45%, #0a0a0a 100%);">
+        </div>
 
+        <!-- Top Vignette for Navbar Integration -->
+        <div class="absolute top-0 inset-x-0 h-32 pointer-events-none"
+          style="background: linear-gradient(180deg, #0a0a0a 0%, rgba(10,10,10,0.6) 50%, transparent 100%);">
+        </div>
+
+        <!-- Bottom Blend into Official Stores Bar -->
+        <div class="absolute bottom-0 inset-x-0 h-28 pointer-events-none"
+          style="background: linear-gradient(0deg, #0a0a0a 0%, rgba(10,10,10,0.85) 50%, transparent 100%);">
+        </div>
+      </div>
+
+      <!-- ── Foreground Content Layer ── -->
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-14 sm:py-20 flex flex-col justify-center min-h-[80vh]">
+        <div class="hero-text-col max-w-xl lg:max-w-2xl">
           <!-- Eyebrow -->
           <div class="inline-flex items-center gap-2 mb-5 sm:mb-6">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700] animate-pulse"></span>
-            <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-[#FFC700]">PT Howell Niaga Indonesia · Est. 2009</span>
+            <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+            <span class="text-[10.5px] sm:text-[11.5px] font-black uppercase tracking-[0.2em] text-[#FFC700]">PT Howell Niaga Indonesia · Est. 2009</span>
           </div>
 
-          <!-- Main Headline -->
-          <h1 class="text-[2.4rem] sm:text-[3.2rem] lg:text-[3.6rem] xl:text-[4rem] font-bold text-white leading-[1.08] tracking-tight mb-5 sm:mb-6" style="letter-spacing: -0.025em;">
+          <!-- Headline -->
+          <h1 class="text-[2.6rem] sm:text-[3.5rem] lg:text-[4.2rem] font-bold text-white leading-[1.05] tracking-tight mb-6" style="letter-spacing: -0.03em;">
             Konektivitas<br>
             <span style="color:#FFC700;">Premium.</span><br>
-            <span class="text-white/70 font-light" style="font-size:0.72em; letter-spacing:-0.01em;">Untuk Setiap Kebutuhan.</span>
+            <span class="text-white/80 font-light block mt-1" style="font-size:0.75em; letter-spacing:-0.015em;">Untuk Setiap Kebutuhan.</span>
           </h1>
 
           <!-- Subtext -->
-          <p class="text-[13px] sm:text-[14.5px] text-white/50 leading-relaxed max-w-[400px] mb-8">
-            Kabel HDMI 8K, Patch LAN, Power Cable, USB, Adapter, dan lebih dari <strong class="text-white/75 font-semibold">137 produk</strong> bersertifikasi resmi — distribusi langsung dari gudang Jakarta.
+          <p class="text-[13.5px] sm:text-[15px] text-white/70 leading-relaxed max-w-lg mb-8" style="text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+            Kabel HDMI 8K, Patch LAN, Power Cable, USB, Adapter, dan lebih dari <strong class="text-white font-semibold">137 produk</strong> bersertifikasi resmi — distribusi langsung dari gudang Jakarta.
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex flex-wrap items-center gap-3.5 mb-10">
             <button onclick="scrollToId('catalog-section')"
-              class="flex items-center gap-2 px-6 py-3 rounded-full text-[12px] sm:text-[13px] font-bold text-black transition-all hover:scale-[1.03] active:scale-[0.97] select-none cursor-pointer"
-              style="background: #FFC700; box-shadow: 0 4px 20px rgba(255,199,0,0.3);">
+              class="flex items-center gap-2 px-7 py-3.5 rounded-full text-[13px] font-bold text-black transition-all hover:scale-[1.03] active:scale-[0.97] select-none cursor-pointer"
+              style="background: #FFC700; box-shadow: 0 4px 24px rgba(255,199,0,0.35);">
               Lihat Katalog Produk
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
             <button onclick="openB2BModal()"
-              class="flex items-center gap-2 px-6 py-3 rounded-full text-[12px] sm:text-[13px] font-semibold text-white/80 border border-white/15 hover:border-white/30 hover:text-white transition-all select-none cursor-pointer">
+              class="flex items-center gap-2 px-6 py-3.5 rounded-full text-[13px] font-semibold text-white/90 border border-white/25 hover:border-white/50 hover:bg-white/10 transition-all select-none cursor-pointer">
               Pengadaan B2B
             </button>
           </div>
 
           <!-- Trust Stats Row -->
-          <div class="flex items-center gap-6 mt-8 pt-6 border-t border-white/8">
-            <div class="text-center">
-              <div class="text-[22px] sm:text-[26px] font-black text-white leading-none">137<span class="text-[#FFC700]">+</span></div>
-              <div class="text-[9.5px] font-medium text-white/40 uppercase tracking-wider mt-1">Produk SKU</div>
+          <div class="flex items-center gap-6 pt-6 border-t border-white/15 max-w-md">
+            <div>
+              <div class="text-[24px] sm:text-[28px] font-black text-white leading-none">137<span class="text-[#FFC700]">+</span></div>
+              <div class="text-[10px] font-medium text-white/60 uppercase tracking-wider mt-1">Produk SKU</div>
             </div>
-            <div class="w-px h-8 bg-white/10"></div>
-            <div class="text-center">
-              <div class="text-[22px] sm:text-[26px] font-black text-white leading-none">15<span class="text-[#FFC700]">+</span></div>
-              <div class="text-[9.5px] font-medium text-white/40 uppercase tracking-wider mt-1">Tahun Berdiri</div>
+            <div class="w-px h-8 bg-white/20"></div>
+            <div>
+              <div class="text-[24px] sm:text-[28px] font-black text-white leading-none">15<span class="text-[#FFC700]">+</span></div>
+              <div class="text-[10px] font-medium text-white/60 uppercase tracking-wider mt-1">Tahun Berdiri</div>
             </div>
-            <div class="w-px h-8 bg-white/10"></div>
-            <div class="text-center">
-              <div class="text-[22px] sm:text-[26px] font-black text-white leading-none">10<span class="text-[#FFC700]">+</span></div>
-              <div class="text-[9.5px] font-medium text-white/40 uppercase tracking-wider mt-1">Kategori</div>
+            <div class="w-px h-8 bg-white/20"></div>
+            <div>
+              <div class="text-[24px] sm:text-[28px] font-black text-white leading-none">10<span class="text-[#FFC700]">+</span></div>
+              <div class="text-[10px] font-medium text-white/60 uppercase tracking-wider mt-1">Kategori</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- ── Right Column: Product Visual Grid ── -->
-        <div class="hero-grid-col relative z-10 lg:flex-1 w-full lg:h-full flex items-center justify-center px-4 sm:px-8 lg:px-8 xl:px-12 pb-10 lg:py-12 mt-2 lg:mt-0">
+      <!-- ── Floating Video Control & Switcher Badge (Bottom-Right) ── -->
+      <div class="hero-video-badge">
+        <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+        <span id="hero-video-active-label" class="text-[10.5px] sm:text-[11px] font-bold text-white tracking-wider uppercase">Cinematic Vision</span>
+        <div class="h-3 w-px bg-white/20"></div>
+        <button type="button" onclick="heroVideoController.switchNext()" class="text-[10.5px] font-medium text-[#FFC700] hover:text-white px-2 py-0.5 rounded-full hover:bg-white/10 transition-all cursor-pointer" title="Ganti ke video berikutnya">
+          Ganti Video ⟳
+        </button>
+        <button type="button" id="hero-video-playpause-btn" onclick="heroVideoController.togglePlayPause()" class="text-[10.5px] text-white/70 hover:text-white px-1.5 py-0.5 rounded-full hover:bg-white/10 transition-all cursor-pointer" title="Jeda / Putar Video">
+          ⏸
+        </button>
+      </div>
 
-          <!-- 2×3 floating product grid -->
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-[480px] lg:max-w-[440px] xl:max-w-[500px]">
-
-            <!-- Card 1 -->
-            <div onclick="openProductDetail('hw-hdmi-4k-premium-h0103')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1px solid rgba(255,255,255,0.07);">
-              <img src="assets/Produk/Produk Batch 1/2. HDMI Cable/DH0103.png" alt="HDMI Cable"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-white/60 uppercase tracking-wide">HDMI 4K</span>
-            </div>
-
-            <!-- Card 2 -->
-            <div onclick="filterByCategory('patch-cable')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1px solid rgba(255,255,255,0.07);">
-              <img src="assets/Produk/Produk Batch 1/1. Patch Cable/N6A02 - N6A11.png" alt="Patch Cable"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-white/60 uppercase tracking-wide">CAT6 LAN</span>
-            </div>
-
-            <!-- Card 3: Highlight (golden border) -->
-            <div onclick="filterByCategory('usb-charging')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1.5px solid rgba(255,199,0,0.35);">
-              <img src="assets/Produk/Produk Batch 1/4. Acc Ponsel/AC01.png" alt="USB Cable"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-[#FFC700] uppercase tracking-wide">USB-C</span>
-            </div>
-
-            <!-- Card 4 -->
-            <div onclick="filterByCategory('power-cable')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1px solid rgba(255,255,255,0.07);">
-              <img src="assets/Produk/Produk Batch 1/5. Cable Power/POW-101 - POW-102.png" alt="Power Cable"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-white/60 uppercase tracking-wide">Power</span>
-            </div>
-
-            <!-- Card 5 -->
-            <div onclick="filterByCategory('displayport')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1px solid rgba(255,255,255,0.07);">
-              <img src="assets/Produk/Produk Batch 1/8. DP Cable/DP0203.png" alt="DisplayPort"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-white/60 uppercase tracking-wide">DisplayPort</span>
-            </div>
-
-            <!-- Card 6 -->
-            <div onclick="filterByCategory('adapter')" class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
-              style="background:#181818; border:1px solid rgba(255,255,255,0.07);">
-              <img src="assets/Produk/Produk Batch 1/7. Adapter/ADP001.png" alt="Adapter"
-                class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-400">
-              <div class="absolute bottom-0 inset-x-0 h-1/2 pointer-events-none" style="background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);"></div>
-              <span class="absolute bottom-2 left-2 text-[8.5px] font-bold text-white/60 uppercase tracking-wide">Adapter</span>
-            </div>
-
-          </div><!-- end grid -->
-        </div><!-- end right col -->
-
-      </div><!-- end hero inner -->
     </section>
 
 

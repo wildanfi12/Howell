@@ -1280,3 +1280,109 @@ function toggleVisiMisiDetail(type) {
 }
 
 window.toggleVisiMisiDetail = toggleVisiMisiDetail;
+
+// ============================================================
+// Hero Cinematic Video Controller
+// ============================================================
+window.heroVideoController = (function() {
+  const videoPlaylist = [
+    {
+      src: 'assets/Video/moon-walk.mp4',
+      poster: 'assets/Video/moon-walk-poster.jpg',
+      label: 'Cinematic Vision'
+    },
+    {
+      src: 'assets/motion-header.mp4',
+      poster: 'assets/motion-header-poster.jpg',
+      label: 'Hardware 3D'
+    }
+  ];
+
+  let currentIndex = 0;
+  let isPausedByUser = false;
+
+  function init() {
+    const video = document.getElementById('hero-background-video');
+    if (!video) return;
+
+    // Check prefers-reduced-motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause();
+      isPausedByUser = true;
+      updatePlayPauseBtn();
+      return;
+    }
+
+    // Try autoplay
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function(err) {
+        console.warn('Hero video autoplay blocked by browser policy:', err);
+        isPausedByUser = true;
+        updatePlayPauseBtn();
+      });
+    }
+
+    // Loop seamlessly
+    video.addEventListener('ended', function() {
+      video.currentTime = 0;
+      video.play().catch(function() {});
+    });
+  }
+
+  function switchNext() {
+    const video = document.getElementById('hero-background-video');
+    const labelEl = document.getElementById('hero-video-active-label');
+    if (!video) return;
+
+    video.classList.add('is-transitioning');
+    setTimeout(function() {
+      currentIndex = (currentIndex + 1) % videoPlaylist.length;
+      const currentItem = videoPlaylist[currentIndex];
+      video.poster = currentItem.poster;
+      video.src = currentItem.src;
+      video.load();
+      if (!isPausedByUser) {
+        video.play().catch(function() {});
+      }
+      if (labelEl) {
+        labelEl.textContent = currentItem.label;
+      }
+      setTimeout(function() {
+        video.classList.remove('is-transitioning');
+      }, 150);
+    }, 300);
+  }
+
+  function togglePlayPause() {
+    const video = document.getElementById('hero-background-video');
+    if (!video) return;
+    if (video.paused) {
+      video.play().catch(function() {});
+      isPausedByUser = false;
+    } else {
+      video.pause();
+      isPausedByUser = true;
+    }
+    updatePlayPauseBtn();
+  }
+
+  function updatePlayPauseBtn() {
+    const btn = document.getElementById('hero-video-playpause-btn');
+    const video = document.getElementById('hero-background-video');
+    if (!btn || !video) return;
+    btn.textContent = video.paused ? '▶' : '⏸';
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 50);
+  }
+
+  return {
+    switchNext: switchNext,
+    togglePlayPause: togglePlayPause
+  };
+})();
