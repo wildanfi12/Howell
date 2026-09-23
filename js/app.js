@@ -455,7 +455,7 @@ window.renderCatalog = function renderCatalog() {
                 <span class="text-[9px] font-black uppercase tracking-widest text-[#92400E]">${product.categoryName || 'HOWELL'}</span>
                 <span class="text-[10px] text-slate-400 font-mono">SKU: ${product.sku || '-'}</span>
               </div>
-              <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-[#c4301c] transition-colors line-clamp-2 leading-snug">${product.name}</h3>
+              <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-amber-600 transition-colors line-clamp-2 leading-snug">${product.name}</h3>
               <p class="text-xs text-slate-500 line-clamp-2 mt-1">${product.summary || ''}</p>
             </div>
             <div class="mt-4 pt-2 flex items-center justify-between border-t border-slate-100">
@@ -594,7 +594,7 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
           <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
         </div>
         <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
-          <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-[#c4301c] transition-colors mb-1.5">${product.name}</h3>
+          <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-amber-600 transition-colors mb-1.5">${product.name}</h3>
           <div class="text-[11px] font-bold text-emerald-700 mt-auto flex items-center gap-1">✓ Garansi 12 Bulan</div>
         </div>
       </div>
@@ -934,6 +934,7 @@ window.backToCartFromCheckout = function backToCartFromCheckout() {
 };
 
 function filterByCategory(catId) {
+  if (catId === 'usb-charging') catId = 'computer-acc';
   state.activeCategory = catId;
   state.catalogExpanded = false;
   if (typeof toggleCatalogSidebar === 'function' && window.innerWidth < 1024) {
@@ -942,8 +943,12 @@ function filterByCategory(catId) {
   if (typeof renderCategoryChips === 'function') {
     renderCategoryChips();
   }
-  const section = document.getElementById('catalog-section');
-  if (section) section.scrollIntoView({ behavior: 'smooth' });
+  if (typeof window.scrollToId === 'function') {
+    window.scrollToId('catalog-section');
+  } else {
+    const section = document.getElementById('catalog-section');
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
+  }
 
   document.querySelectorAll('#category-pills-container button').forEach(btn => {
     if (btn.getAttribute('data-cat') === catId) {
@@ -1127,6 +1132,7 @@ window.backToCartFromCheckout = function backToCartFromCheckout() {
 };
 
 function filterByCategory(catId) {
+  if (catId === 'usb-charging') catId = 'computer-acc';
   state.activeCategory = catId;
   state.catalogExpanded = false;
   if (typeof toggleCatalogSidebar === 'function' && window.innerWidth < 1024) {
@@ -1135,8 +1141,12 @@ function filterByCategory(catId) {
   if (typeof renderCategoryChips === 'function') {
     renderCategoryChips();
   }
-  const section = document.getElementById('catalog-section');
-  if (section) section.scrollIntoView({ behavior: 'smooth' });
+  if (typeof window.scrollToId === 'function') {
+    window.scrollToId('catalog-section');
+  } else {
+    const section = document.getElementById('catalog-section');
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
+  }
 
   document.querySelectorAll('#category-pills-container button').forEach(btn => {
     if (btn.getAttribute('data-cat') === catId) {
@@ -1280,11 +1290,11 @@ function toggleVisiMisiDetail(type) {
         badge.classList.add('bg-amber-500', 'text-white', 'border-amber-500');
       }
     } else {
-      card.classList.add('border-[#c4301c]', 'ring-2', 'ring-[#c4301c]/20');
+      card.classList.add('border-amber-500', 'ring-2', 'ring-amber-500/20');
       if (badge) {
         badge.textContent = 'TUTUP DETAIL';
-        badge.classList.remove('bg-red-50', 'text-[#c4301c]', 'border-red-200/60');
-        badge.classList.add('bg-[#c4301c]', 'text-white', 'border-[#c4301c]');
+        badge.classList.remove('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
+        badge.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
       }
     }
   } else {
@@ -1299,11 +1309,11 @@ function toggleVisiMisiDetail(type) {
         badge.classList.remove('bg-amber-500', 'text-white', 'border-amber-500');
       }
     } else {
-      card.classList.remove('border-[#c4301c]', 'ring-2', 'ring-[#c4301c]/20');
+      card.classList.remove('border-amber-500', 'ring-2', 'ring-amber-500/20');
       if (badge) {
         badge.textContent = 'KLIK DETAIL';
-        badge.classList.add('bg-red-50', 'text-[#c4301c]', 'border-red-200/60');
-        badge.classList.remove('bg-[#c4301c]', 'text-white', 'border-[#c4301c]');
+        badge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
+        badge.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
       }
     }
   }
