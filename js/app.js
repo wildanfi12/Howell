@@ -275,9 +275,9 @@ window.toggleCatalogSidebar = function toggleCatalogSidebar(forceState) {
     }
     if (btn) {
       if (sidebar.classList.contains('hidden')) {
-        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-slate-300 bg-white text-xs sm:text-[13px] font-medium text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all select-none cursor-pointer';
+        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-[8px] border border-slate-300 bg-white text-xs sm:text-[13px] font-medium text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all select-none cursor-pointer';
       } else {
-        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white text-xs sm:text-[13px] font-medium shadow-sm transition-all select-none cursor-pointer';
+        btn.className = 'flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-[8px] border border-slate-900 bg-slate-900 text-white text-xs sm:text-[13px] font-medium shadow-xs transition-all select-none cursor-pointer';
       }
     }
   }
@@ -292,9 +292,9 @@ window.renderCategoryChips = function renderCategoryChips() {
   const isAllActive = !state.activeCategory || state.activeCategory === 'all';
 
   let html = `
-    <button type="button" onclick="filterByCategory('all')" class="category-chip-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs transition-all cursor-pointer ${isAllActive ? 'active' : ''}">
+    <button type="button" onclick="filterByCategory('all')" class="category-chip-btn ${isAllActive ? 'active' : ''}">
       <span>Semua</span>
-      <span class="opacity-70 text-[11px] ml-1">(${allCount})</span>
+      <span class="cat-count-pill text-[11px] opacity-70 ml-1">(${allCount})</span>
     </button>
   `;
 
@@ -302,9 +302,9 @@ window.renderCategoryChips = function renderCategoryChips() {
     const count = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.filter(p => p.category === cat.id).length : 0;
     const isActive = state.activeCategory === cat.id;
     html += `
-      <button type="button" onclick="filterByCategory('${cat.id}')" class="category-chip-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs transition-all cursor-pointer ${isActive ? 'active' : ''}">
+      <button type="button" onclick="filterByCategory('${cat.id}')" class="category-chip-btn ${isActive ? 'active' : ''}">
         <span>${cat.name}</span>
-        <span class="opacity-70 text-[11px] ml-1">(${count})</span>
+        <span class="cat-count-pill text-[11px] opacity-70 ml-1">(${count})</span>
       </button>
     `;
   });
@@ -482,22 +482,22 @@ window.renderCatalog = function renderCatalog() {
       return `
         <div class="bg-white border-b border-[#e5e5e5]">
           <!-- Main row (clickable) -->
-          <div onclick="openProductDetail('${product.id}')" class="group flex flex-col sm:flex-row items-center gap-5 cursor-pointer p-4 hover:bg-slate-50 transition-colors duration-200 select-none pb-3">
-            <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 bg-[#f4f4f4] rounded-[6px] overflow-hidden relative flex items-center justify-center p-3">
+          <div onclick="openProductDetail('${product.id}')" class="group flex flex-col sm:flex-row items-center gap-5 cursor-pointer p-4 hover:bg-slate-50/80 transition-colors duration-200 select-none pb-3">
+            <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 bg-[#F8FAFC] rounded-[8px] border border-slate-200/60 overflow-hidden relative flex items-center justify-center p-3">
               <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
             </div>
             <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
               <div>
-                <span class="text-[9px] font-black uppercase tracking-widest text-[#92400E]">${product.categoryName || 'HOWELL'}</span>
-                <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-amber-600 transition-colors line-clamp-2 leading-snug">${product.name}</h3>
-                <p class="text-xs text-slate-500 line-clamp-2 mt-1">${product.summary || ''}</p>
+                <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">${product.categoryName || 'HOWELL'}</span>
+                <h3 class="text-[14px] sm:text-[15px] font-semibold text-slate-900 mt-1 hover:text-amber-600 transition-colors line-clamp-2 leading-snug tracking-tight">${product.name}</h3>
+                <p class="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">${product.summary || ''}</p>
               </div>
               <div class="mt-3 flex items-center justify-between">
                 <button id="expand-btn-${product.id}" onclick="toggleCardExpand('${product.id}', event)"
-                  class="flex items-center gap-1 text-[11px] font-bold text-slate-500 hover:text-amber-600 transition-colors cursor-pointer select-none px-0 bg-transparent border-0">
+                  class="flex items-center gap-1 text-[11px] font-semibold text-slate-500 hover:text-slate-900 transition-colors cursor-pointer select-none px-0 bg-transparent border-0">
                   <span class="expand-label">${isExpanded ? 'Lebih Sedikit ▲' : 'Lihat Lebih ▼'}</span>
                 </button>
-                <span class="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors flex items-center gap-1">Lihat Detail →</span>
+                <span class="text-xs font-semibold text-slate-900 group-hover:text-amber-600 transition-colors flex items-center gap-1">Lihat Detail →</span>
               </div>
             </div>
           </div>
@@ -508,18 +508,18 @@ window.renderCatalog = function renderCatalog() {
               <!-- Specs table -->
               ${specHtml ? `
               <div class="flex-1 min-w-0">
-                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Spesifikasi Teknis</p>
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Spesifikasi Teknis</p>
                 <div>${specHtml}</div>
               </div>` : ''}
               <!-- CTA -->
               <div class="flex flex-col gap-2 sm:w-44 shrink-0">
                 <button type="button" onclick="openProductDetail('${product.id}')"
-                  class="w-full py-2.5 rounded-xl text-xs font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
+                  class="w-full py-2.5 rounded-[8px] text-xs font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
                   style="background:#FFC700;">
                   Lihat Detail Lengkap
                 </button>
                 <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
-                  class="w-full py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                  class="w-full py-2.5 rounded-[8px] text-xs font-bold text-white cursor-pointer flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700 transition-colors">
                   Tanya via WhatsApp
                 </a>
               </div>
@@ -560,8 +560,8 @@ window.renderCatalog = function renderCatalog() {
               <!-- Hover Action -->
               <div class="card-actions">
                 <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-                  class="w-full mx-2 py-2.5 rounded-xl text-[11px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1.5"
-                  style="background: #FFC700; box-shadow: 0 4px 16px rgba(255,199,0,0.35);">
+                  class="w-full mx-1.5 py-2 rounded-[8px] text-[11px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1.5"
+                  style="background: #FFC700; box-shadow: 0 4px 12px rgba(255,199,0,0.3);">
                   <i data-lucide="eye" style="width:13px;height:13px;"></i>
                   Lihat Spesifikasi
                 </button>
@@ -570,8 +570,8 @@ window.renderCatalog = function renderCatalog() {
 
             <!-- Product Info -->
             <div class="p-3 flex flex-col gap-1.5">
-              <span class="text-[9px] font-black uppercase tracking-widest" style="color:#92400E;">${product.categoryName || 'HOWELL'}</span>
-              <h3 class="text-[11px] sm:text-[12px] font-semibold text-slate-900 line-clamp-2 leading-snug" style="letter-spacing:-0.01em;">${product.name}</h3>
+              <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">${product.categoryName || 'HOWELL'}</span>
+              <h3 class="text-[11.5px] sm:text-[12.5px] font-semibold text-slate-900 line-clamp-2 leading-snug tracking-tight">${product.name}</h3>
             </div>
           </div>
 
@@ -592,12 +592,12 @@ window.renderCatalog = function renderCatalog() {
               <!-- CTA Buttons -->
               <div class="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
                 <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-                  class="w-full py-2 rounded-lg text-[10.5px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
+                  class="w-full py-2 rounded-[8px] text-[10.5px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
                   style="background:#FFC700;">
                   Lihat Detail Lengkap
                 </button>
                 <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                  class="w-full py-2 rounded-lg text-[10.5px] font-bold text-white cursor-pointer transition-all flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700">
+                  class="w-full py-2 rounded-[8px] text-[10.5px] font-bold text-white cursor-pointer transition-all flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700">
                   Tanya via WhatsApp
                 </a>
               </div>
@@ -615,7 +615,7 @@ window.renderCatalog = function renderCatalog() {
         const remaining = filtered.length - limit;
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
-            <button type="button" onclick="toggleCatalogExpand(true)" class="group px-8 py-3.5 rounded-full border border-slate-900 bg-slate-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center gap-2 select-none cursor-pointer">
+            <button type="button" onclick="toggleCatalogExpand(true)" class="group px-7 py-3 rounded-[8px] border border-slate-900 bg-slate-900 hover:bg-black text-white text-xs sm:text-[13px] font-semibold shadow-xs hover:shadow-md transition-all flex items-center gap-2 select-none cursor-pointer">
               <span>Lihat ${remaining} Produk Lainnya</span>
               <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
             </button>
@@ -625,7 +625,7 @@ window.renderCatalog = function renderCatalog() {
       } else {
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
-            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-8 py-3 rounded-full border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-bold shadow-xs transition-all flex items-center gap-2 select-none cursor-pointer">
+            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-7 py-2.5 rounded-[8px] border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-[13px] font-semibold shadow-xs transition-all flex items-center gap-2 select-none cursor-pointer">
               <span>Tampilkan Lebih Sedikit</span>
               <i data-lucide="chevron-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"></i>
             </button>
@@ -757,17 +757,17 @@ window.openProductDetail = function openProductDetail(productId) {
 
       <!-- Left Column: Single Large Product Image Only -->
       <div class="lg:col-span-6">
-        <div class="aspect-square w-full bg-[#f4f4f4] rounded-2xl overflow-hidden relative flex items-center justify-center p-8 sm:p-12 group/detailimg border border-slate-100">
-          <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
+        <div class="aspect-square w-full bg-[#F8FAFC] rounded-2xl overflow-hidden relative flex items-center justify-center p-8 sm:p-12 group/detailimg border border-slate-200/70">
+          <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain mix-blend-multiply cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
           <!-- Zoom button -->
-          <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-md transition-all cursor-pointer border border-slate-200" title="Perbesar Foto">
+          <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-[8px] bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-sm transition-all cursor-pointer border border-slate-200" title="Perbesar Foto">
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </button>
         </div>
         <!-- Hint -->
         <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
           <span>Klik foto untuk perbesar gambar</span>
-          <span class="font-mono text-[11px] text-slate-400">HOWELL Official</span>
+          <span class="font-mono text-[11px] text-slate-400">HOWELL</span>
         </div>
       </div>
 
@@ -775,12 +775,11 @@ window.openProductDetail = function openProductDetail(productId) {
       <div class="lg:col-span-6 flex flex-col gap-4">
 
         <!-- Product Title -->
-        <h1 class="text-xl sm:text-2xl lg:text-[26px] font-bold text-slate-900 leading-snug">${product.name}</h1>
+        <h1 class="text-xl sm:text-2xl lg:text-[26px] font-bold text-slate-900 leading-snug tracking-tight">${product.name}</h1>
 
-        <!-- SKU & Category Badges -->
+        <!-- Category Badge -->
         <div class="flex items-center gap-2 flex-wrap text-xs -mt-1">
-          <span class="font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded border border-slate-200">SKU: ${product.sku || '-'}</span>
-          <span class="font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded border border-slate-200">
+          <span class="font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-[6px] border border-slate-200">
             ${product.categoryName || 'HOWELL'}
           </span>
         </div>
@@ -800,7 +799,7 @@ window.openProductDetail = function openProductDetail(productId) {
             <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Pilihan Varian Panjang:</label>
             <div class="flex flex-wrap gap-2" id="detail-length-pills">
               ${product.variants.lengths.map(len => `
-                <button type="button" onclick="selectVariantLength('${len}')" data-variant-length="${len}" class="px-3.5 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${state.activeLength === len ? 'bg-[#FFC700] text-slate-950 border-[#FFC700] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'}">
+                <button type="button" onclick="selectVariantLength('${len}')" data-variant-length="${len}" class="px-3.5 py-2 rounded-[8px] text-xs font-bold border transition-all cursor-pointer ${state.activeLength === len ? 'bg-[#FFC700] text-slate-950 border-[#FFC700] shadow-xs' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'}">
                   ${len}
                 </button>
               `).join('')}
@@ -811,7 +810,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Primary CTA: WhatsApp Inquiry Button -->
         <div class="space-y-2.5 pt-2">
           <a id="detail-wa-inquiry-btn" href="${waInquiryUrl}" target="_blank" rel="noopener noreferrer" 
-            class="w-full h-12 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-md shadow-emerald-600/20 transition-all select-none cursor-pointer">
+            class="w-full h-12 rounded-[8px] bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-sm transition-all select-none cursor-pointer">
             <i data-lucide="phone" class="w-4 h-4"></i>
             <span>Konsultasi Produk via WhatsApp</span>
             <span class="text-xs opacity-75">→</span>
@@ -819,7 +818,7 @@ window.openProductDetail = function openProductDetail(productId) {
 
           <!-- B2B Procurement Button -->
           <button type="button" onclick="closeModal('product-detail-modal'); openB2BModal();" 
-            class="w-full h-11 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all select-none cursor-pointer">
+            class="w-full h-11 rounded-[8px] bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all select-none cursor-pointer">
             <i data-lucide="building-2" class="w-4 h-4 text-[#FFC700]"></i>
             <span>Permintaan Penawaran B2B &amp; Proyek Korporat</span>
           </button>
@@ -829,15 +828,15 @@ window.openProductDetail = function openProductDetail(productId) {
         <div class="space-y-2 pt-1">
           <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Tersedia di Toko Online Resmi:</label>
           <div class="grid grid-cols-3 gap-2">
-            <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 text-orange-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+            <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-[8px] bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 text-orange-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
               <span>Shopee</span>
             </a>
-            <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+            <a href="https://tk.tokopedia.com/ZSqShWPvf/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/tokopedia-logo.png" alt="Tokopedia" class="w-4 h-4 object-contain">
               <span>Tokopedia</span>
             </a>
-            <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
+            <a href="https://www.tiktok.com/@howell_official?_r=1&_t=ZS-99aNN6XJUF2" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-[8px] bg-slate-900 hover:bg-black text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/tiktok-logo.avif" alt="TikTok" class="w-4 h-4 object-contain rounded-xs">
               <span>TikTok</span>
             </a>
