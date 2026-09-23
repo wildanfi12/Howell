@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HOWELL Official Product Catalog &amp; Inventory - Cetak / Simpan PDF</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/Logo/logo howell.png">
   <style>
+    :root {
+      --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -16,11 +18,14 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-primary);
       background: #f1f5f9;
       color: #111111;
       font-size: 11px;
       line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
@@ -408,9 +413,20 @@
     .col-sku {
       width: 15%;
       text-align: center;
-      font-weight: 700;
-      color: #111827;
       font-size: 11px;
+    }
+
+    th.col-sku {
+      font-family: var(--font-primary);
+      font-weight: 700;
+    }
+
+    td.col-sku {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: #111827;
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum" 1, "zero" 1;
     }
 
     .col-desc {
@@ -759,8 +775,8 @@
 
   <!-- Load Master Product Data from products.js -->
     <!-- Load Master Product Data from official PDF source -->
-  <script src="js/pdf-catalog.js?v=20260923-pdf-source"></script>
-  <script src="js/products.js?v=20260923-pdf-source"></script>
+  <script src="js/pdf-catalog.js?v=20260923-apple-typography"></script>
+  <script src="js/products.js?v=20260923-apple-typography"></script>
 
   <script>
     // State management

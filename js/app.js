@@ -790,12 +790,15 @@ window.openProductDetail = function openProductDetail(productId) {
       <!-- Tab: Spesifikasi -->
       <div id="tab-content-specs" class="space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          ${Object.entries(product.specs || {}).map(([key, val]) => `
+          ${Object.entries(product.specs || {}).map(([key, val]) => {
+            const isMono = /SKU|Model|Part|Code|Barcode/i.test(key);
+            return `
             <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
               <span class="text-slate-500 font-semibold">${key}:</span>
-              <span class="font-bold text-slate-900">${val}</span>
+              <span class="font-bold text-slate-900 ${isMono ? 'font-mono' : ''}">${val}</span>
             </div>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
       </div>
 

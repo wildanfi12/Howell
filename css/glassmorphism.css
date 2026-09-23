@@ -2,12 +2,11 @@
    HOWELL Official Visual System — Premium Professional Edition
    Brand: PT Howell Niaga Indonesia
    Design: Enterprise-grade, Apple-inspired, Signature Yellow
-   ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 /* ── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --font-apple: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+  --font-apple: var(--font-primary);
 
   /* Color Palette */
   --bg-main: #FFFFFF;
@@ -69,12 +68,40 @@ html {
 }
 
 body {
-  font-family: var(--font-apple);
+  font-family: var(--font-primary);
   background-color: #FFFFFF;
   color: #0F172A;
   overflow-x: hidden;
   line-height: 1.5;
   letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  color: var(--text-title);
+  letter-spacing: -0.022em;
+}
+
+h1 { font-weight: 700; line-height: 1.15; }
+h2 { font-weight: 650; line-height: 1.2; letter-spacing: -0.02em; }
+h3 { font-weight: 600; line-height: 1.25; letter-spacing: -0.015em; }
+h4, h5, h6 { font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+
+p, span, li, a, input, textarea, select, button {
+  font-family: var(--font-primary);
+}
+
+/* ── Monospace Utilities for SKU & Precision Technical Data ──── */
+.font-mono,
+.sku-badge,
+.sku-code,
+.sku-text,
+.tech-mono,
+.model-number {
+  font-family: var(--font-mono) !important;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  letter-spacing: -0.02em;
 }
 
 /* ── Custom Scrollbar ───────────────────────────────────────── */
