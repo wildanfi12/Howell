@@ -453,19 +453,11 @@
         <img src="assets/howell-logo-white.png?v=20260914-v9" alt="HOWELL Logo" class="h-6 sm:h-7 max-h-8 w-auto object-contain group-hover:scale-105 transition-transform duration-200 drop-shadow-md">
       </button>
 
-      <!-- Center: Primary Navigation (Rylo Style with Dropdown Carets) -->
-      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 select-none">
+      <!-- Center: Primary Navigation (Rylo Style) -->
+      <nav class="hidden lg:flex items-center gap-7 xl:gap-8 select-none">
         <button onclick="scrollToId('home')" data-i18n="nav_home" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">Home</button>
-        <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer flex items-center gap-1">
-          <span>Katalog Produk</span>
-          <i data-lucide="chevron-down" class="w-3 h-3 text-white/45"></i>
-        </button>
-        <button onclick="scrollToId('services')" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer flex items-center gap-1">
-          <span>Kategori</span>
-          <i data-lucide="chevron-down" class="w-3 h-3 text-white/45"></i>
-        </button>
+        <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">Produk</button>
         <button onclick="scrollToId('about-us')" data-i18n="nav_about" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">Tentang Kami</button>
-        <button onclick="openSupportModal()" data-i18n="nav_contact" class="nav-link text-[13px] font-medium text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">Kontak</button>
       </nav>
 
       <!-- Right Controls: Search, Language & Rylo-Style Standout Golden CTA Button -->
@@ -1633,7 +1625,7 @@
               <button onclick="scrollToId('catalog-section'); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
                 <div class="flex items-center gap-3 sm:gap-4">
                   <span class="text-xs font-mono text-white/25 group-hover:text-[#FFC700] transition-colors w-6 shrink-0">02</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_products">Katalog Produk</span>
+                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_products">Produk</span>
                   <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
                 </div>
                 <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">137+ Produk Bersertifikasi &amp; Spesifikasi Lengkap</p>
@@ -2904,7 +2896,7 @@
       id: {
         nav_home: "Home",
         nav_marketplace: "Marketplace",
-        nav_products: "Katalog Produk",
+        nav_products: "Produk",
         nav_categories: "Kategori",
         nav_b2b: "B2B Supply",
         nav_about: "Tentang Kami",
@@ -2946,7 +2938,7 @@
       en: {
         nav_home: "Home",
         nav_marketplace: "Marketplace",
-        nav_products: "Products Catalog",
+        nav_products: "Products",
         nav_categories: "Categories",
         nav_b2b: "B2B Supply",
         nav_about: "About Us",
@@ -2988,7 +2980,7 @@
       zh: {
         nav_home: "首页",
         nav_marketplace: "官方商城",
-        nav_products: "产品目录",
+        nav_products: "产品",
         nav_categories: "产品分类",
         nav_b2b: "B2B 采购",
         nav_about: "关于我们",
