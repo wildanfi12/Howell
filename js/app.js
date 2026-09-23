@@ -38,7 +38,7 @@ const state = {
   availabilityWarranty: false,
   viewMode: 'grid',
   catalogExpanded: false,
-  catalogInitialLimit: 6,
+  catalogInitialLimit: 4,
   activeProductDetail: null,
   activeDetailTab: 'specs',
   activeLength: null,
@@ -457,8 +457,8 @@ window.renderCatalog = function renderCatalog() {
     return;
   }
 
-  // 6-Product Limit & "See More" Logic
-  const limit = state.catalogInitialLimit || 6;
+  // 4-Product Initial Limit & "See More" Logic (Strict 4 Cards Per Row)
+  const limit = state.catalogInitialLimit || 4;
   const shouldLimit = !state.catalogExpanded && filtered.length > limit;
   const displayed = shouldLimit ? filtered.slice(0, limit) : filtered;
 
@@ -529,8 +529,8 @@ window.renderCatalog = function renderCatalog() {
       `;
     }).join('');
   } else {
-    // Grid View — Corporate Showcase Style with Show More
-    catalogGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 w-full';
+    // Grid View — Corporate Showcase Style with Show More (Strictly 4 Cards Per Row Max)
+    catalogGrid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
       const encodedSrc = encodeURI(product.image);
       const isExpanded = state.expandedCards.has(product.id);
@@ -676,7 +676,7 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
   if (!featuredGrid) return;
 
   const featuredList = HOWELL_PRODUCTS.slice(0, 12);
-  featuredGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 w-full';
+  featuredGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 w-full';
   featuredGrid.innerHTML = featuredList.map(product => {
     const encodedSrc = encodeURI(product.image);
 
