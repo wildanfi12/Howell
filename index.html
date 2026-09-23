@@ -728,7 +728,7 @@
             <div class="flex items-center gap-1 sm:gap-2 text-xs sm:text-[13px] text-slate-700">
               <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-slate-300 rounded-full px-3 py-1.5 sm:py-2 text-xs sm:text-[13px] font-medium text-slate-800 bg-white focus:outline-none focus:border-black cursor-pointer max-w-[145px] sm:max-w-none truncate">
                 <option value="relevance">Paling relevan</option>
-                <option value="rating">Rating Tertinggi</option>
+                <option value="sku">Kode SKU: A-Z</option>
                 <option value="name">Abjad: A-Z</option>
               </select>
             </div>
@@ -794,10 +794,6 @@
                   <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
                     <input type="checkbox" id="filter-stock-ready" onchange="applyAvailabilityFilter()" class="accent-black">
                     <span>Ready Stock Jakarta (137)</span>
-                  </label>
-                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
-                    <input type="checkbox" id="filter-official-warranty" onchange="applyAvailabilityFilter()" class="accent-black">
-                    <span>Garansi Resmi 12 Bulan (137)</span>
                   </label>
                 </div>
               </div>
@@ -2605,8 +2601,6 @@
       priceRadios.forEach(r => { r.checked = (r.value === 'all'); });
       const stockEl = document.getElementById('filter-stock-ready');
       if (stockEl) stockEl.checked = false;
-      const warrEl = document.getElementById('filter-official-warranty');
-      if (warrEl) warrEl.checked = false;
       const sortSelect = document.getElementById('catalog-sort-select');
       if (sortSelect) sortSelect.value = 'relevance';
       if (typeof renderCatalog === 'function') {

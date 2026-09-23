@@ -320,9 +320,7 @@ function changePriceFilter(val) {
 // CableTime Availability Filter
 function applyAvailabilityFilter() {
   const stockEl = document.getElementById('filter-stock-ready');
-  const warrEl = document.getElementById('filter-official-warranty');
   state.availabilityStock = stockEl ? stockEl.checked : false;
-  state.availabilityWarranty = warrEl ? warrEl.checked : false;
   renderCatalog();
 }
 
@@ -376,14 +374,14 @@ window.renderCatalog = function renderCatalog() {
 
   // Availability filter
   if (state.availabilityStock) {
-    filtered = filtered.filter(p => p.rating >= 4.0);
+    filtered = filtered.filter(p => (p.stockQty && p.stockQty > 0) || p.readyStock !== false);
   }
 
-  // Sorting logic (Name, Rating)
+  // Sorting logic (Name, SKU)
   if (state.sortBy === 'name') {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (state.sortBy === 'rating') {
-    filtered.sort((a, b) => b.rating - a.rating);
+  } else if (state.sortBy === 'sku') {
+    filtered.sort((a, b) => (a.sku || '').localeCompare(b.sku || ''));
   }
 
   // Update live count
@@ -459,7 +457,7 @@ window.renderCatalog = function renderCatalog() {
               <p class="text-xs text-slate-500 line-clamp-2 mt-1">${product.summary || ''}</p>
             </div>
             <div class="mt-4 pt-2 flex items-center justify-between border-t border-slate-100">
-              <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">✓ Garansi Resmi 12 Bulan</span>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">HOWELL Official Hardware</span>
               <span class="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors flex items-center gap-1">Lihat Detail &amp; Spesifikasi →</span>
             </div>
           </div>
@@ -471,8 +469,6 @@ window.renderCatalog = function renderCatalog() {
     catalogGrid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
       const encodedSrc = encodeURI(product.image);
-      const rating = product.rating || 4.8;
-      const stars = '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
 
       return `
         <div class="product-card-pro flex flex-col" style="cursor:pointer;" onclick="openProductDetail('${product.id}')">
@@ -495,20 +491,20 @@ window.renderCatalog = function renderCatalog() {
           </div>
 
           <!-- Product Info -->
-          <div class="p-3 flex flex-col gap-1 flex-1">
-            <!-- Category + Rating Row -->
+          <div class="p-3 flex flex-col gap-1.5 flex-1">
+            <!-- Category & SKU Row -->
             <div class="flex items-center justify-between">
               <span class="text-[9px] font-black uppercase tracking-widest" style="color:#92400E;">${product.categoryName || 'HOWELL'}</span>
-              <span class="star-rating text-[9px]" title="${rating} / 5">${stars.slice(0,5)} <span class="text-slate-400 text-[9px]">${rating}</span></span>
+              <span class="text-[9.5px] font-mono text-slate-400 font-medium">SKU: ${product.sku || '-'}</span>
             </div>
 
             <!-- Product Name -->
             <h3 class="text-[11px] sm:text-[12px] font-semibold text-slate-900 line-clamp-2 leading-snug flex-1" style="letter-spacing:-0.01em;">${product.name}</h3>
 
-            <!-- Specs & Detail Link Row (Clean, No Price) -->
-            <div class="flex items-center justify-between mt-2 pt-1 border-t border-slate-100">
-              <div class="badge-certified">✓ Garansi Resmi</div>
-              <span class="text-[10px] font-bold text-slate-600 hover:text-black flex items-center gap-0.5">Detail →</span>
+            <!-- Detail Link Row -->
+            <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-slate-100">
+              <span class="text-[9.5px] text-slate-400 font-medium">Official Product</span>
+              <span class="text-[10px] font-bold text-slate-700 hover:text-amber-600 transition-colors flex items-center gap-0.5">Detail →</span>
             </div>
           </div>
         </div>
@@ -595,7 +591,7 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
         </div>
         <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
           <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-amber-600 transition-colors mb-1.5">${product.name}</h3>
-          <div class="text-[11px] font-bold text-emerald-700 mt-auto flex items-center gap-1">✓ Garansi 12 Bulan</div>
+          <div class="text-[11px] font-mono text-slate-400 font-medium mt-auto">SKU: ${product.sku || '-'}</div>
         </div>
       </div>
     `;
@@ -673,10 +669,10 @@ window.openProductDetail = function openProductDetail(productId) {
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </button>
         </div>
-        <!-- Warranty Hint -->
+        <!-- Hint -->
         <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
           <span>Klik foto untuk perbesar gambar</span>
-          <span class="font-semibold text-emerald-600">✓ Garansi Resmi 12 Bulan</span>
+          <span class="font-mono text-[11px] text-slate-400">HOWELL Official</span>
         </div>
       </div>
 
@@ -686,12 +682,11 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Product Title -->
         <h1 class="text-xl sm:text-2xl lg:text-[26px] font-bold text-slate-900 leading-snug">${product.name}</h1>
 
-        <!-- SKU & Warranty Badges -->
+        <!-- SKU & Category Badges -->
         <div class="flex items-center gap-2 flex-wrap text-xs -mt-1">
           <span class="font-mono font-bold bg-slate-100 text-slate-800 px-2.5 py-1 rounded border border-slate-200">SKU: ${product.sku || '-'}</span>
-          <span class="font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200/80 flex items-center gap-1.5">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-            <span>Garansi Resmi 12 Bulan (PT Howell Niaga Indonesia)</span>
+          <span class="font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded border border-slate-200">
+            ${product.categoryName || 'HOWELL'}
           </span>
         </div>
 
@@ -784,7 +779,6 @@ window.openProductDetail = function openProductDetail(productId) {
       <div class="flex border-b border-slate-200 gap-6 text-sm font-semibold mb-6">
         <button type="button" onclick="switchDetailTab('specs')" id="tab-btn-specs" class="pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer">Spesifikasi Teknis</button>
         <button type="button" onclick="switchDetailTab('desc')" id="tab-btn-desc" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer">Ikhtisar &amp; Fitur</button>
-        <button type="button" onclick="switchDetailTab('warranty')" id="tab-btn-warranty" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer">Garansi &amp; Kebijakan</button>
       </div>
 
       <!-- Tab: Spesifikasi -->
@@ -813,14 +807,6 @@ window.openProductDetail = function openProductDetail(productId) {
             <li>Konektor kontak berlapis emas tahan oksidasi hingga lebih dari 10.000 kali pemasangan.</li>
             <li>Lolos sertifikasi QC ketat berstandar internasional dari PT Howell Niaga Indonesia.</li>
           </ul>
-        </div>
-      </div>
-
-      <!-- Tab: Garansi -->
-      <div id="tab-content-warranty" class="hidden text-xs sm:text-sm text-slate-700 space-y-3">
-        <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs">
-          <h4 class="font-bold text-amber-900 mb-1">Garansi Resmi 12 Bulan Ganti Baru (PT Howell Niaga Indonesia)</h4>
-          <p class="text-[#997600] leading-relaxed">Seluruh produk kabel &amp; adaptor resmi HOWELL dilindungi garansi 12 bulan penggantian unit baru terhadap kerusakan akibat cacat produksi pabrik. Klaim dapat diajukan dengan mudah melalui konfirmasi ke admin customer service WhatsApp kami.</p>
         </div>
       </div>
     </div>
