@@ -995,212 +995,17 @@ window.openImageZoom = openImageZoom;
 
 // B2B Quote Modal Controller
 function openB2BModal(productName = '') {
-  const modal = document.getElementById('b2b-quote-modal');
-  const inputEl = document.getElementById('b2b-product-input');
+  const modal = document.getElementById('b2b-kerjasama-modal') || document.getElementById('b2b-quote-modal');
   if (!modal) return;
 
-  if (inputEl && productName) {
-    inputEl.value = productName;
-  }
-  modal.classList.remove('hidden');
-}
-
-// Initialize Application Logic on DOM Load
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  updateCartBadge();
-  if (typeof renderCategoryCards === 'function') renderCategoryCards();
-  if (typeof renderCatalog === 'function') renderCatalog();
-  if (typeof renderFeaturedProducts === 'function') renderFeaturedProducts();
-
-  const searchInput = document.getElementById('catalog-search-input');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value;
-      if (typeof renderCatalog === 'function') renderCatalog();
-    });
-  }
-
-  const sortSelect = document.getElementById('catalog-sort-select');
-  if (sortSelect) {
-    sortSelect.addEventListener('change', (e) => {
-      state.sortBy = e.target.value;
-      if (typeof renderCatalog === 'function') renderCatalog();
-    });
-  }
-});
-
-// Explicit Global Window Exports for Event Handlers
-window.state = state;
-window.renderCatalog = renderCatalog;
-window.renderCatalogGrid = renderCatalog;
-window.openProductDetail = openProductDetail;
-window.selectVariantLength = selectVariantLength;
-window.changeDetailQty = changeDetailQty;
-window.addToCartFromDetail = addToCartFromDetail;
-window.buyWithQrisFromDetail = buyWithQrisFromDetail;
-window.toggleMarketplaceOptions = toggleMarketplaceOptions;
-window.shareProduct = shareProduct;
-window.switchDetailTab = switchDetailTab;
-window.toggleCatalogSidebar = toggleCatalogSidebar;
-window.toggleFilterAccordion = toggleFilterAccordion;
-window.changePriceFilter = changePriceFilter;
-window.applyAvailabilityFilter = applyAvailabilityFilter;
-window.changeCatalogSort = changeCatalogSort;
-window.setCatalogViewMode = setCatalogViewMode;
-window.filterByCategory = filterByCategory;
-window.resetFilters = resetFilters;
-window.closeModal = closeModal;
-window.addToCart = addToCart;
-window.updateCartQty = updateCartQty;
-window.removeFromCart = removeFromCart;
-window.clearCart = clearCart;
-window.toggleCartDrawer = toggleCartDrawer;
-window.renderCartDrawer = renderCartDrawer;
-window.openCheckoutModal = openCheckoutModal;
-window.handlePaymentMethodChange = handlePaymentMethodChange;
-window.copyBcaAccount = copyBcaAccount;
-function shareProduct(platform) {
-  const product = state.activeProductDetail;
-  const url = window.location.href;
-  const title = product ? product.name : 'HOWELL Official Products';
-
-  if (platform === 'facebook') {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-  } else if (platform === 'twitter') {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
-  } else if (platform === 'whatsapp') {
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
-  } else if (platform === 'copy') {
-    navigator.clipboard?.writeText(url).then(() => {
-      showToast('Tautan produk berhasil disalin!', 'Berbagi Produk', 'link');
-    }).catch(() => {
-      showToast('Tautan produk disalin!', 'Berbagi Produk', 'link');
-    });
-  }
-}
-
-function switchDetailTab(tab) {
-  state.activeDetailTab = tab;
-  ['desc', 'specs', 'warranty'].forEach(t => {
-    const btn = document.getElementById(`tab-btn-${t}`);
-    const content = document.getElementById(`tab-content-${t}`);
-
-    if (t === tab) {
-      if (btn) btn.className = 'pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer';
-      if (content) content.classList.remove('hidden');
-    } else {
-      if (btn) btn.className = 'pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer';
-      if (content) content.classList.add('hidden');
-    }
-  });
-}
-
-window.closeModal = function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    if (typeof window.popModalStack === 'function') {
-      window.popModalStack(modalId);
-    }
-    modal.style.pointerEvents = 'none';
-    modal.style.opacity = '0';
-    modal.classList.add('pointer-events-none', 'opacity-0');
-    modal.classList.remove('opacity-100');
-    setTimeout(() => {
-      modal.style.display = 'none';
-      modal.classList.add('hidden');
-    }, 300);
-    if (typeof startScroll === 'function') startScroll();
-  }
-};
-
-window.backToCartFromCheckout = function backToCartFromCheckout() {
-  const modal = document.getElementById('qris-checkout-modal');
-  if (modal) {
-    if (typeof window.popModalStack === 'function') {
-      window.popModalStack('qris-checkout-modal');
-    }
-    modal.style.pointerEvents = 'none';
-    modal.style.opacity = '0';
-    modal.style.display = 'none';
-    modal.classList.add('pointer-events-none', 'opacity-0', 'hidden');
-    modal.classList.remove('opacity-100');
-  }
-  if (typeof window.toggleCartDrawer === 'function') {
-    window.toggleCartDrawer(true);
-  }
-};
-
-function filterByCategory(catId) {
-  if (catId === 'usb-charging') catId = 'computer-acc';
-  state.activeCategory = catId;
-  state.catalogExpanded = false;
-  if (typeof toggleCatalogSidebar === 'function' && window.innerWidth < 1024) {
-    toggleCatalogSidebar(false);
-  }
-  if (typeof renderCategoryChips === 'function') {
-    renderCategoryChips();
-  }
-  if (typeof window.scrollToId === 'function') {
-    window.scrollToId('catalog-section');
-  } else {
-    const section = document.getElementById('catalog-section');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  document.querySelectorAll('#category-pills-container button').forEach(btn => {
-    if (btn.getAttribute('data-cat') === catId) {
-      btn.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-[#FFC700] text-slate-950 border border-[#FFC700] shadow-sm';
-    } else {
-      btn.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-50';
-    }
-  });
-
-  renderCatalog();
-}
-
-function resetFilters() {
-  state.activeCategory = 'all';
-  state.searchQuery = '';
-  state.priceFilter = 'all';
-  state.sortBy = 'relevance';
-  state.catalogExpanded = false;
-  const searchInput = document.getElementById('catalog-search-input');
-  if (searchInput) searchInput.value = '';
-  if (typeof renderCategoryChips === 'function') {
-    renderCategoryChips();
-  }
-  filterByCategory('all');
-}
-
-// Lightbox Photo Zoom System
-function openImageZoom(imgSrc, title) {
-  if (typeof window.openImageZoomModal === 'function') {
-    window.openImageZoomModal(imgSrc, title);
-    return;
-  }
-  const modal = document.getElementById('image-zoom-modal');
-  const imgEl = document.getElementById('zoom-modal-img') || document.getElementById('image-zoom-target');
-  const titleEl = document.getElementById('zoom-modal-title') || document.getElementById('image-zoom-title');
-  if (!modal || !imgEl) return;
-
-  imgEl.src = imgSrc;
-  if (titleEl) titleEl.textContent = title || 'HOWELL Product View';
-  modal.classList.remove('hidden', 'opacity-0');
+  if (typeof stopScroll === 'function') stopScroll();
+  modal.classList.remove('hidden', 'pointer-events-none', 'opacity-0');
   modal.classList.add('opacity-100');
-}
-window.openImageZoom = openImageZoom;
 
-// B2B Quote Modal Controller
-function openB2BModal(productName = '') {
-  const modal = document.getElementById('b2b-quote-modal');
-  const inputEl = document.getElementById('b2b-product-input');
-  if (!modal) return;
-
-  if (inputEl && productName) {
-    inputEl.value = productName;
+  if (productName) {
+    const inputEl = document.getElementById('b2b-modal-catatan') || document.getElementById('b2b-product-input');
+    if (inputEl) inputEl.value = `Inquiry untuk produk: ${productName}`;
   }
-  modal.classList.remove('hidden');
 }
 
 // Initialize Application Logic on DOM Load
@@ -1266,6 +1071,80 @@ window.openImageZoom = openImageZoom;
 window.openB2BModal = openB2BModal;
 window.toggleCatalogExpand = toggleCatalogExpand;
 window.printCatalogPDF = printCatalogPDF;
+
+function shareProduct(platform) {
+  const product = state.activeProductDetail;
+  const url = window.location.href;
+  const title = product ? product.name : 'HOWELL Official Products';
+
+  if (platform === 'facebook') {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+  } else if (platform === 'twitter') {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+  } else if (platform === 'whatsapp') {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
+  } else if (platform === 'copy') {
+    navigator.clipboard?.writeText(url).then(() => {
+      showToast('Tautan produk berhasil disalin!', 'Berbagi Produk', 'link');
+    }).catch(() => {
+      showToast('Tautan produk disalin!', 'Berbagi Produk', 'link');
+    });
+  }
+}
+
+function switchDetailTab(tab) {
+  state.activeDetailTab = tab;
+  ['desc', 'specs', 'warranty'].forEach(t => {
+    const btn = document.getElementById(`tab-btn-${t}`);
+    const content = document.getElementById(`tab-content-${t}`);
+
+    if (t === tab) {
+      if (btn) btn.className = 'pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer';
+      if (content) content.classList.remove('hidden');
+    } else {
+      if (btn) btn.className = 'pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer';
+      if (content) content.classList.add('hidden');
+    }
+  });
+}
+
+window.closeModal = function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    if (typeof window.popModalStack === 'function') {
+      window.popModalStack(modalId);
+    }
+    modal.style.pointerEvents = 'none';
+    modal.style.opacity = '0';
+    modal.classList.add('pointer-events-none', 'opacity-0');
+    modal.classList.remove('opacity-100');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      modal.classList.add('hidden');
+    }, 300);
+    const otherOpen = document.querySelector('#product-detail-modal:not(.opacity-0):not(.hidden), #b2b-kerjasama-modal:not(.opacity-0):not(.hidden), #support-howell-modal:not(.hidden), #qris-checkout-modal:not(.opacity-0):not(.hidden)');
+    if (!otherOpen && typeof startScroll === 'function') {
+      startScroll();
+    }
+  }
+};
+
+window.backToCartFromCheckout = function backToCartFromCheckout() {
+  const modal = document.getElementById('qris-checkout-modal');
+  if (modal) {
+    if (typeof window.popModalStack === 'function') {
+      window.popModalStack('qris-checkout-modal');
+    }
+    modal.style.pointerEvents = 'none';
+    modal.style.opacity = '0';
+    modal.style.display = 'none';
+    modal.classList.add('pointer-events-none', 'opacity-0', 'hidden');
+    modal.classList.remove('opacity-100');
+  }
+  if (typeof window.toggleCartDrawer === 'function') {
+    window.toggleCartDrawer(true);
+  }
+};
 
 // Toggle Visi & Misi Expandable Detail Panels
 function toggleVisiMisiDetail(type) {

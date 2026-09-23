@@ -1,0 +1,7 @@
+# HOWELL Official Website (PT Howell Niaga Indonesia)
+# Production Robots Exclusion Standard
+
+User-agent: *
+Allow: /
+
+Sitemap: https://wildanfi12.github.io/Howell/sitemap.xml

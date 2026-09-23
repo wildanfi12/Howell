@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOWELL — Independent Cable & Connectivity Studio</title>
+  <title>HOWELL — Independent Cable &amp; Connectivity Studio | PT Howell Niaga Indonesia</title>
   <meta name="description" content="HOWELL (PT Howell Niaga Indonesia) delivers high-performance certified cabling, 8K video adapters, server power distribution, and enterprise connectivity systems — bold ideas, shipped with quiet precision." />
+  <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://wildanfi12.github.io/Howell/" />
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" href="assets/howell-logo-white-transparent.png" />
+  <link rel="apple-touch-icon" href="assets/howell-logo-white-transparent.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wildanfi12.github.io/Howell/" />
+  <meta property="og:title" content="HOWELL — Independent Cable &amp; Connectivity Studio" />
+  <meta property="og:description" content="Official website of PT Howell Niaga Indonesia. Certified cabling, 8K video adapters, networking, and enterprise connectivity systems." />
+  <meta property="og:image" content="https://wildanfi12.github.io/Howell/assets/howell-logo.png" />
+  <meta property="og:site_name" content="HOWELL Indonesia" />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://wildanfi12.github.io/Howell/" />
+  <meta name="twitter:title" content="HOWELL — Independent Cable &amp; Connectivity Studio" />
+  <meta name="twitter:description" content="Certified cabling, 8K video adapters, networking, and enterprise connectivity systems by PT Howell Niaga Indonesia." />
+  <meta name="twitter:image" content="https://wildanfi12.github.io/Howell/assets/howell-logo.png" />
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -507,7 +531,7 @@
     <!-- ==================== 1. HERO BANNER (Clean Widescreen Video Banner) ==================== -->
     <section id="home" class="relative overflow-hidden w-full bg-black pt-[4rem] sm:pt-[4.5rem]">
       <div class="relative w-full aspect-[16/9] max-h-[85vh] overflow-hidden bg-black flex items-center justify-center">
-        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+        <video id="hero-header-video" autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover">
           <source src="assets/motion-header.mp4" type="video/mp4">
         </video>
       </div>
@@ -2075,140 +2099,27 @@
 
 
     /* ==========================================================================
-       4. LIQUID CANVAS CURSOR TRAIL REVEAL ENGINE
+       4. HERO VIDEO VIEWPORT & GPU OPTIMIZER
        ========================================================================== */
-    function initLiquidCanvas() {
-      const container = document.getElementById('liquid-canvas-container');
-      const canvas = document.getElementById('liquid-brush-canvas');
-      if (!container || !canvas) return;
+    function initVideoViewportObserver() {
+      const video = document.getElementById('hero-header-video');
+      if (!video) return;
 
-      const ctx = canvas.getContext('2d');
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const brushRadius = 143;
-      const decay = 0.016;
-
-      let rect = container.getBoundingClientRect();
-      let width = rect.width * dpr;
-      let height = rect.height * dpr;
-
-      canvas.width = width;
-      canvas.height = height;
-
-      // Offscreen cover image canvas layer
-      const coverCanvas = document.createElement('canvas');
-      const coverCtx = coverCanvas.getContext('2d');
-      coverCanvas.width = width;
-      coverCanvas.height = height;
-
-      const afterImage = new Image();
-      afterImage.src = 'assets/howell-logo.png';
-      afterImage.onload = () => {
-        const imgRatio = afterImage.width / afterImage.height;
-        const containerRatio = width / height;
-        let dw, dh, dx, dy;
-
-        if (containerRatio > imgRatio) {
-          dw = width;
-          dh = width / imgRatio;
-          dx = 0;
-          dy = (height - dh) / 2;
-        } else {
-          dh = height;
-          dw = height * imgRatio;
-          dx = (width - dw) / 2;
-          dy = 0;
-        }
-        coverCtx.drawImage(afterImage, dx, dy, dw, dh);
-      };
-
-      // Offscreen brush canvas
-      const radius = brushRadius * dpr;
-      const diam = Math.ceil(radius * 2);
-      const brushCanvas = document.createElement('canvas');
-      brushCanvas.width = diam;
-      brushCanvas.height = diam;
-      const brushCtx = brushCanvas.getContext('2d');
-
-      let points = [];
-      let lastPoint = null;
-      let idle = 0;
-
-      function onPointerMove(e) {
-        rect = container.getBoundingClientRect();
-        const x = (e.clientX - rect.left) * dpr;
-        const y = (e.clientY - rect.top) * dpr;
-
-        if (lastPoint) {
-          const dist = Math.hypot(x - lastPoint.x, y - lastPoint.y);
-          const step = Math.max(radius * 0.3, 1);
-          const steps = Math.min(Math.ceil(dist / step), 60);
-
-          for (let i = 0; i < steps; i++) {
-            const t = i / steps;
-            points.push({
-              x: lastPoint.x + (x - lastPoint.x) * t,
-              y: lastPoint.y + (y - lastPoint.y) * t
-            });
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (video.paused) {
+              video.play().catch(() => {});
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
           }
-        } else {
-          points.push({ x, y });
-        }
+        });
+      }, { threshold: 0.1 });
 
-        lastPoint = { x, y };
-        idle = 0;
-      }
-
-      window.addEventListener('pointermove', onPointerMove);
-
-      function renderCanvas() {
-        if (points.length === 0) {
-          idle++;
-        } else {
-          idle = 0;
-        }
-
-        if (idle < 120) {
-          // Fade existing trail
-          ctx.globalCompositeOperation = 'destination-out';
-          ctx.fillStyle = `rgba(0,0,0,${decay})`;
-          ctx.fillRect(0, 0, width, height);
-
-          // Draw queued points
-          if (points.length > 0) {
-            points.forEach(pt => {
-              brushCtx.clearRect(0, 0, diam, diam);
-
-              // Radial gradient brush
-              const grad = brushCtx.createRadialGradient(radius, radius, 0, radius, radius, radius);
-              grad.addColorStop(0, 'rgba(255,255,255,1)');
-              grad.addColorStop(0.55, 'rgba(255,255,255,0.82)');
-              grad.addColorStop(1, 'rgba(255,255,255,0)');
-
-              brushCtx.globalCompositeOperation = 'source-over';
-              brushCtx.fillStyle = grad;
-              brushCtx.beginPath();
-              brushCtx.arc(radius, radius, radius, 0, Math.PI * 2);
-              brushCtx.fill();
-
-              // Source-in cover pixels
-              brushCtx.globalCompositeOperation = 'source-in';
-              brushCtx.drawImage(coverCanvas, pt.x - radius, pt.y - radius, diam, diam, 0, 0, diam, diam);
-
-              // Draw stamped brush onto main canvas
-              ctx.globalCompositeOperation = 'source-over';
-              ctx.drawImage(brushCanvas, pt.x - radius, pt.y - radius);
-            });
-
-            points = [];
-          }
-        } else if (idle === 120) {
-          ctx.clearRect(0, 0, width, height);
-        }
-
-        requestAnimationFrame(renderCanvas);
-      }
-
-      requestAnimationFrame(renderCanvas);
+      videoObserver.observe(video);
     }
 
 
@@ -3041,39 +2952,39 @@
         nav_b2b: "B2B 采购",
         nav_about: "关于我们",
         nav_contact: "联系我们",
-        menu_label: "èœå•",
-        search_placeholder: "æœç´¢äº§å“æˆ– SKU...",
+        menu_label: "菜单",
+        search_placeholder: "搜索产品或 SKU...",
         hero_tagline: "Connected to the Future",
-        hero_subtitle: "ç‹¬ç«‹çº¿ç¼†ä¸Žè¿žæŽ¥æŠ€æœ¯å·¥ä½œå®¤ â€” æä¾›é«˜æ€§èƒ½è®¤è¯çº¿ç¼†ã€8K è§†é¢‘è½¬æŽ¥å™¨åŠä¼ä¸šçº§æœåŠ¡å™¨è¿žæŽ¥ç³»ç»Ÿã€‚",
-        hero_clients: "50+ ä¼ä¸šé‡‡è´­å®¢æˆ·ä¸Žå®˜æ–¹åˆ†é”€å•†",
-        hero_b2b_btn: "ç”³è¯· B2B é‡‡è´­",
-        hero_catalog_btn: "æµè§ˆå®Œæ•´ç›®å½•",
-        sec_marketplace_eyebrow: "å®˜æ–¹æ——èˆ°åº—å±•ç¤º",
-        sec_marketplace_title: "Howell å®˜æ–¹åœ¨çº¿å•†åŸŽ",
-        sec_marketplace_desc: "åœ¨æ‚¨é¦–é€‰çš„ç”µå•†å¹³å°ç›´æŽ¥è´­ä¹°å®˜æ–¹è®¤è¯åŽŸè£…æ­£å“ã€‚",
-        sec_categories_eyebrow: "æ ¸å¿ƒäº§å“ç³»åˆ—",
-        sec_categories_title: "ä¸»è¥çº¿ç¼†ä¸Žè½¬æŽ¥å™¨åˆ†ç±»",
-        sec_catalog_eyebrow: "å®˜æ–¹äº§å“ç›®å½•",
-        sec_catalog_title: "è®¤è¯çº¿ç¼†ä¸Žè¿žæŽ¥å™¨äº§å“ç›®å½•",
-        sec_catalog_desc: "Howell çŽ°è´§è®¤è¯äº§å“ï¼Œæ”¯æŒé›¶å”®å¿«æ·å‘è´§ä¸Žå¤§åž‹å·¥ç¨‹é‡‡è´­ã€‚",
-        sec_b2b_eyebrow: "ä¼ä¸šé‡‡è´­ä¸Žæ‰¹å‘",
-        sec_b2b_title: "Howell B2B ä¾›åº”é“¾ä¸Žå¤§å®—é‡‡è´­",
-        sec_b2b_desc: "å®˜æ–¹å·¥åŽ‚ç›´ä¾›çº¿ç¼†è§£å†³æ–¹æ¡ˆï¼ŒISO/CE åŒé‡è®¤è¯ï¼Œå®˜æ–¹è´¨ä¿ï¼Œå…¨å°å°¼ä¼˜å…ˆé…é€ã€‚",
-        btn_see_more: "æŸ¥çœ‹æ›´å¤šäº§å“",
-        btn_show_less: "æ”¶èµ·äº§å“åˆ—è¡¨",
-        showing_products: "æ˜¾ç¤º",
-        of_products: "å…±",
-        products_label: "ä»¶çŽ°è´§äº§å“",
-        contact_modal_eyebrow: "å®˜æ–¹è”ç³»æ–¹å¼ä¸Žæ¸ é“",
-        contact_modal_title: "è”ç³» HOWELL å°å°¼æ€»éƒ¨",
-        contact_modal_desc: "å®˜æ–¹å®¢æˆ·æœåŠ¡ã€æ€»éƒ¨åœ°å€åŠè®¤è¯æ²Ÿé€šæ¸ é“ã€‚",
-        address_label: "æ€»éƒ¨åœ°å€",
-        wa_label: "å®˜æ–¹ WhatsApp",
-        wa_btn: "WhatsApp åœ¨çº¿å’¨è¯¢",
-        email_label: "å®¢æœç”µå­é‚®ç®±",
-        email_btn: "å‘é€ç”µå­é‚®ä»¶",
-        medsos_label: "å®˜æ–¹ç¤¾äº¤åª’ä½“",
-        directions_btn: "æ‰“å¼€åœ°å›¾å¯¼èˆª"
+        hero_subtitle: "独立线缆与连接技术工作室 — 提供高性能认证线缆、8K 视频转接器及企业级服务器连接系统。",
+        hero_clients: "50+ 企业采购客户与官方分销商",
+        hero_b2b_btn: "申请 B2B 采购",
+        hero_catalog_btn: "浏览完整目录",
+        sec_marketplace_eyebrow: "官方旗舰店展示",
+        sec_marketplace_title: "Howell 官方在线商城",
+        sec_marketplace_desc: "在您首选的电商平台直接购买官方认证原装正品。",
+        sec_categories_eyebrow: "核心产品系列",
+        sec_categories_title: "主营线缆与转接器分类",
+        sec_catalog_eyebrow: "官方产品目录",
+        sec_catalog_title: "认证线缆与连接器产品目录",
+        sec_catalog_desc: "Howell 现货认证产品，支持零售快捷发货与大型工程采购。",
+        sec_b2b_eyebrow: "企业采购与批发",
+        sec_b2b_title: "Howell B2B 供应链与大宗采购",
+        sec_b2b_desc: "官方工厂直供线缆解决方案，ISO/CE 双重认证，官方质保，全印尼优先配送。",
+        btn_see_more: "查看更多产品",
+        btn_show_less: "收起产品列表",
+        showing_products: "显示",
+        of_products: "共",
+        products_label: "件现货产品",
+        contact_modal_eyebrow: "官方联系方式与渠道",
+        contact_modal_title: "联系 HOWELL 印尼总部",
+        contact_modal_desc: "官方客户服务、总部地址及认证沟通渠道。",
+        address_label: "总部地址",
+        wa_label: "官方 WhatsApp",
+        wa_btn: "WhatsApp 在线咨询",
+        email_label: "客服电子邮箱",
+        email_btn: "发送电子邮件",
+        medsos_label: "官方社交媒体",
+        directions_btn: "打开地图导航"
       }
     };
 
@@ -3105,6 +3016,7 @@
       if (!TRANSLATIONS[lang]) return;
       window.currentLanguage = lang;
       localStorage.setItem('howell_lang', lang);
+      document.documentElement.lang = lang;
 
       const flagsSvg = {
         id: `<svg class="w-4 h-3 rounded-sm overflow-hidden shrink-0 shadow-sm border border-white/20" viewBox="0 0 900 600"><rect width="900" height="300" fill="#E70011"/><rect y="300" width="900" height="300" fill="#FFFFFF"/></svg>`,
@@ -3423,6 +3335,7 @@
       initScrollReveals();
       initStatsCounterAnimation();
       initFloatingHeader();
+      initVideoViewportObserver();
       setLanguage(window.currentLanguage);
       renderCatalogGrid();
       if (typeof renderCategoryChips === 'function') {
