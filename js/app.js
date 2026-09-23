@@ -451,13 +451,11 @@ window.renderCatalog = function renderCatalog() {
             <div>
               <div class="flex items-center gap-2 mb-1">
                 <span class="text-[9px] font-black uppercase tracking-widest text-[#92400E]">${product.categoryName || 'HOWELL'}</span>
-                <span class="text-[10px] text-slate-400 font-mono">SKU: ${product.sku || '-'}</span>
               </div>
               <h3 class="text-[14px] sm:text-[16px] font-semibold text-slate-900 mt-1 hover:text-amber-600 transition-colors line-clamp-2 leading-snug">${product.name}</h3>
               <p class="text-xs text-slate-500 line-clamp-2 mt-1">${product.summary || ''}</p>
             </div>
-            <div class="mt-4 pt-2 flex items-center justify-between border-t border-slate-100">
-              <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">HOWELL Official Hardware</span>
+            <div class="mt-4 pt-2 flex items-center justify-end border-t border-slate-100">
               <span class="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors flex items-center gap-1">Lihat Detail &amp; Spesifikasi →</span>
             </div>
           </div>
@@ -492,18 +490,14 @@ window.renderCatalog = function renderCatalog() {
 
           <!-- Product Info -->
           <div class="p-3 flex flex-col gap-1.5 flex-1">
-            <!-- Category & SKU Row -->
-            <div class="flex items-center justify-between">
-              <span class="text-[9px] font-black uppercase tracking-widest" style="color:#92400E;">${product.categoryName || 'HOWELL'}</span>
-              <span class="text-[9.5px] font-mono text-slate-400 font-medium">SKU: ${product.sku || '-'}</span>
-            </div>
+            <!-- Category Row -->
+            <span class="text-[9px] font-black uppercase tracking-widest" style="color:#92400E;">${product.categoryName || 'HOWELL'}</span>
 
             <!-- Product Name -->
             <h3 class="text-[11px] sm:text-[12px] font-semibold text-slate-900 line-clamp-2 leading-snug flex-1" style="letter-spacing:-0.01em;">${product.name}</h3>
 
             <!-- Detail Link Row -->
-            <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-slate-100">
-              <span class="text-[9.5px] text-slate-400 font-medium">Official Product</span>
+            <div class="flex items-center justify-end mt-2 pt-1.5 border-t border-slate-100">
               <span class="text-[10px] font-bold text-slate-700 hover:text-amber-600 transition-colors flex items-center gap-0.5">Detail →</span>
             </div>
           </div>
@@ -590,8 +584,7 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
           <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
         </div>
         <div class="pt-3 pb-1 font-sans flex flex-col justify-between flex-1">
-          <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-amber-600 transition-colors mb-1.5">${product.name}</h3>
-          <div class="text-[11px] font-mono text-slate-400 font-medium mt-auto">SKU: ${product.sku || '-'}</div>
+          <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1a1a1a] line-clamp-2 leading-[1.35] hover:text-amber-600 transition-colors">${product.name}</h3>
         </div>
       </div>
     `;
