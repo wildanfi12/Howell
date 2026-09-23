@@ -476,6 +476,61 @@
       margin: 16px 0;
     }
 
+    /* Responsive Screen Styling */
+    @media screen and (max-width: 768px) {
+      .screen-toolbar {
+        padding: 12px 14px;
+      }
+      .toolbar-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .toolbar-actions {
+        width: 100%;
+      }
+      .btn-action {
+        flex: 1;
+        justify-content: center;
+        padding: 7px 12px;
+        font-size: 11px;
+      }
+      .toolbar-filters-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-select {
+        min-width: 100%;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+      .catalog-wrapper {
+        margin: 12px auto 24px auto;
+        padding: 18px 14px;
+      }
+      .header-box {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .header-right {
+        text-align: left;
+      }
+      .category-section {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .catalog-table {
+        min-width: 580px;
+      }
+      .col-sku {
+        white-space: nowrap;
+      }
+    }
+
     /* PRINT SPECIFIC STYLING */
     @media print {
       .screen-toolbar {
@@ -703,25 +758,27 @@
   </div>
 
   <!-- Load Master Product Data from products.js -->
-  <script src="js/products.js?v=20260922-v17-bizgo-sync"></script>
+    <!-- Load Master Product Data from official PDF source -->
+  <script src="js/pdf-catalog.js?v=20260923-pdf-source"></script>
+  <script src="js/products.js?v=20260923-pdf-source"></script>
 
   <script>
     // State management
     let currentCategory = 'all';
     let currentSearchQuery = '';
 
-    // Category Definitions matching ERP & Photo 5
+    // Category Definitions matching ERP & Master Howell Classification
     const CATEGORY_DEFS = [
-      { id: 'hdmi', title: '1. HDMI & VIDEO CABLES', shortTitle: 'HDMI & Video', filter: p => p.category === 'hdmi-video' },
-      { id: 'dp', title: '2. DISPLAYPORT (DP) 8K / 16K', shortTitle: 'DisplayPort', filter: p => p.category === 'displayport' },
-      { id: 'dvi-vga', title: '3. DVI & VGA CABLES', shortTitle: 'DVI & VGA', filter: p => p.category === 'dvi-vga' },
-      { id: 'usb', title: '4. USB & DATA CABLES', shortTitle: 'USB & Data', filter: p => p.category === 'computer-acc' && /Cable|Kabel/i.test(p.name) },
-      { id: 'lan', title: '5. PATCH CABLE & NETWORKING', shortTitle: 'Patch Cable / LAN', filter: p => p.category === 'patch-cable' },
-      { id: 'power', title: '6. POWER & PDU CABLES', shortTitle: 'Power & PDU', filter: p => p.category === 'power-cable' },
-      { id: 'audio', title: '7. AUDIO & INSTRUMENT CABLES', shortTitle: 'Audio Cables', filter: p => p.category === 'audio' },
-      { id: 'adapter', title: '8. ADAPTERS & CONVERTERS', shortTitle: 'Adapters & Converters', filter: p => p.category === 'adapter' },
-      { id: 'tws', title: '9. AUDIO & EARPHONES / TWS', shortTitle: 'Earphone & TWS', filter: p => p.category === 'earphone-tws' },
-      { id: 'charger', title: '10. CHARGERS & MOBILE ACCESSORIES', shortTitle: 'Chargers & Acc', filter: p => p.category === 'computer-acc' && !/Cable|Kabel/i.test(p.name) }
+      { id: 'hdmi', title: '1. HDMI & VIDEO CABLES', shortTitle: 'HDMI & Video', filter: r => r.category === 'hdmi' },
+      { id: 'dp', title: '2. DISPLAYPORT (DP) 8K / 16K', shortTitle: 'DisplayPort', filter: r => r.category === 'dp' },
+      { id: 'dvi-vga', title: '3. DVI & VGA CABLES', shortTitle: 'DVI & VGA', filter: r => r.category === 'dvi-vga' },
+      { id: 'usb', title: '4. USB & DATA CABLES', shortTitle: 'USB & Data', filter: r => r.category === 'usb' },
+      { id: 'lan', title: '5. PATCH CABLE & NETWORKING', shortTitle: 'Patch Cable / LAN', filter: r => r.category === 'lan' },
+      { id: 'power', title: '6. POWER & PDU CABLES', shortTitle: 'Power & PDU', filter: r => r.category === 'power' },
+      { id: 'audio', title: '7. AUDIO & INSTRUMENT CABLES', shortTitle: 'Audio Cables', filter: r => r.category === 'audio' },
+      { id: 'adapter', title: '8. ADAPTERS & CONVERTERS', shortTitle: 'Adapters & Converters', filter: r => r.category === 'adapter' },
+      { id: 'tws', title: '9. AUDIO & EARPHONES / TWS', shortTitle: 'Earphone & TWS', filter: r => r.category === 'tws' },
+      { id: 'charger', title: '10. CHARGERS & MOBILE ACCESSORIES', shortTitle: 'Chargers & Acc', filter: r => r.category === 'charger' }
     ];
 
     function escapeHtml(str) {
@@ -733,86 +790,31 @@
         .replace(/"/g, '&quot;');
     }
 
-    // Resolves Stock Qty from Master ERP BIZGO database (stockQty field)
-    function resolveCartonQty(product, itemSku, itemLen) {
-      // Strictly use HOWELL_SKU_STOCK (stockQty dari BIZGO ERP)
-      const stockMap = window.HOWELL_SKU_STOCK || (typeof HOWELL_SKU_STOCK !== 'undefined' ? HOWELL_SKU_STOCK : null);
-      if (stockMap) {
-        if (itemSku && stockMap[itemSku] !== undefined) return String(stockMap[itemSku]);
-        const cleanSku = (itemSku || '').trim();
-        if (cleanSku && stockMap[cleanSku] !== undefined) return String(stockMap[cleanSku]);
-        if (product.lengthSkuMap && itemLen && product.lengthSkuMap[itemLen] && stockMap[product.lengthSkuMap[itemLen]] !== undefined) {
-          return String(stockMap[product.lengthSkuMap[itemLen]]);
-        }
-        if (product.sku && stockMap[product.sku] !== undefined) return String(stockMap[product.sku]);
+    // Get catalog dataset from window.HOWELL_PDF_CATALOG (source of truth from PDF)
+    function getMasterCatalog() {
+      if (window.HOWELL_PDF_CATALOG && Array.isArray(window.HOWELL_PDF_CATALOG)) {
+        return window.HOWELL_PDF_CATALOG;
       }
-      return '0';
+      return [];
     }
 
-    // Formats product records into SKU variant rows
-    function formatProductRows(p) {
-      const lengths = p.variants && p.variants.lengths ? p.variants.lengths : [];
-      const sku = p.sku || '-';
-      const rangeMatch = sku.match(/^([A-Za-z0-9\-]+?)(\d+)\s*-\s*([A-Za-z0-9\-]+?)(\d+)$/);
-      const cleanName = p.name.replace(/\s*\([A-Z0-9\s\-\.]+\)$/i, '').trim();
-      const briefSpec = p.tagline || '';
+    // Update Category Select Dropdown with accurate counts
+    function updateCategorySelectOptions() {
+      const select = document.getElementById('category-select');
+      if (!select) return;
 
-      if (rangeMatch && lengths.length > 1) {
-        const prefix1 = rangeMatch[1], n1 = parseInt(rangeMatch[2], 10);
-        const prefix2 = rangeMatch[3], n2 = parseInt(rangeMatch[4], 10);
-        const pad = rangeMatch[2].length;
+      const allRows = getMasterCatalog();
+      const totalCount = allRows.length;
 
-        return lengths.map((len, idx) => {
-          let subSku;
-          if (p.lengthSkuMap && p.lengthSkuMap[len]) {
-            subSku = p.lengthSkuMap[len];
-          } else if (prefix1 === prefix2) {
-            subSku = prefix1 + String(n1 + idx).padStart(pad, '0');
-          } else {
-            subSku = sku;
-          }
-          return {
-            sku: subSku,
-            name: cleanName,
-            spec: briefSpec,
-            length: len,
-            qty: resolveCartonQty(p, subSku, len)
-          };
-        });
-      } else if (lengths.length > 1) {
-        return lengths.map(len => {
-          let subSku = sku;
-          if (p.lengthSkuMap && p.lengthSkuMap[len]) {
-            subSku = p.lengthSkuMap[len];
-          }
-          return {
-            sku: subSku,
-            name: cleanName,
-            spec: briefSpec,
-            length: len,
-            qty: resolveCartonQty(p, subSku, len)
-          };
-        });
-      } else {
-        let lenStr = '-';
-        if (lengths.length === 1) {
-          const l = lengths[0];
-          if (/^\d+(\.\d+)?\s*(m|meter|cm|ft)/i.test(l)) {
-            lenStr = l;
-          } else if (/^\d+\s*Pack/i.test(l)) {
-            lenStr = l;
-          } else {
-            lenStr = '-';
-          }
-        }
-        return [{
-          sku: sku,
-          name: cleanName,
-          spec: briefSpec,
-          length: lenStr,
-          qty: resolveCartonQty(p, sku, lengths[0] || lenStr)
-        }];
-      }
+      let optionsHtml = `<option value="all">Semua Kategori (10 Kategori • ${totalCount} SKU)</option>`;
+
+      CATEGORY_DEFS.forEach(cat => {
+        const catRows = allRows.filter(cat.filter);
+        optionsHtml += `<option value="${cat.id}">${escapeHtml(cat.title)} (${catRows.length} SKU)</option>`;
+      });
+
+      select.innerHTML = optionsHtml;
+      select.value = currentCategory;
     }
 
     // Render Quick Filter Chips
@@ -836,7 +838,7 @@
 
     // Main Render Function
     function renderCatalog() {
-      const allProducts = window.HOWELL_PRODUCTS || [];
+      const allRows = getMasterCatalog();
       const container = document.getElementById('catalog-content-container');
       const statsText = document.getElementById('toolbar-stats-text');
       const summaryMeta = document.getElementById('catalog-summary-meta');
@@ -853,38 +855,30 @@
       }
 
       const q = currentSearchQuery.trim().toLowerCase();
-      let totalDisplayedProducts = 0;
       let totalDisplayedRows = 0;
       let outputHtml = '';
 
       activeCategoryDefs.forEach(cat => {
-        const catProducts = allProducts.filter(cat.filter);
-        if (catProducts.length === 0) return;
+        const catRows = allRows.filter(cat.filter);
+        if (catRows.length === 0) return;
 
-        // Flatten products to SKU rows and apply search filter if present
+        // Apply live search filter if query is present
         let matchedCatRows = [];
-        let matchedProductIds = new Set();
-
-        catProducts.forEach(p => {
-          const rows = formatProductRows(p);
-          rows.forEach(r => {
-            if (!q || 
-                r.sku.toLowerCase().includes(q) || 
-                r.name.toLowerCase().includes(q) || 
-                r.spec.toLowerCase().includes(q) || 
-                r.length.toLowerCase().includes(q)) {
-              matchedCatRows.push(r);
-              matchedProductIds.add(p.id);
-            }
-          });
+        catRows.forEach(r => {
+          if (!q || 
+              r.sku.toLowerCase().includes(q) || 
+              r.name.toLowerCase().includes(q) || 
+              r.description.toLowerCase().includes(q) || 
+              r.length.toLowerCase().includes(q)) {
+            matchedCatRows.push(r);
+          }
         });
 
         if (matchedCatRows.length === 0) return;
 
-        totalDisplayedProducts += matchedProductIds.size;
         totalDisplayedRows += matchedCatRows.length;
 
-        // Render Section & Table matching Photo 5
+        // Render Section & Table matching official Howell format
         outputHtml += `
           <div class="category-section">
             <div class="category-header">
@@ -892,7 +886,7 @@
                 <span class="category-bullet">■</span>
                 <span>${escapeHtml(cat.title)}</span>
               </div>
-              <div class="category-count">${matchedProductIds.size} Produk (${matchedCatRows.length} SKU)</div>
+              <div class="category-count">${matchedCatRows.length} Produk (${matchedCatRows.length} SKU)</div>
             </div>
             <table class="catalog-table">
               <thead>
@@ -906,12 +900,13 @@
               <tbody>
                 ${matchedCatRows.map((row, idx) => {
                   const rowClass = idx % 2 === 0 ? 'row-odd' : 'row-even';
+                  const specDisplay = (row.description && row.description.trim()) ? row.description.trim() : '-';
                   return `
                     <tr class="${rowClass}">
                       <td class="col-sku">${escapeHtml(row.sku)}</td>
                       <td class="col-desc">
                         <div class="product-name">${escapeHtml(row.name)}</div>
-                        ${row.spec ? `<div class="product-spec">${escapeHtml(row.spec)}</div>` : ''}
+                        <div class="product-spec">${escapeHtml(specDisplay)}</div>
                       </td>
                       <td class="col-len">${escapeHtml(row.length)}</td>
                       <td class="col-qty">${escapeHtml(row.qty)}</td>
@@ -938,11 +933,11 @@
 
       // Update metadata & stats
       if (statsText) {
-        statsText.textContent = `${totalDisplayedProducts} Produk Terpilih • ${totalDisplayedRows} Baris SKU Aktif • Database BIZGO Terverifikasi`;
+        statsText.textContent = `${totalDisplayedRows} Produk Terpilih • ${totalDisplayedRows} Baris SKU Aktif • Sumber PDF Resmi Terverifikasi`;
       }
       if (summaryMeta) {
         summaryMeta.innerHTML = `
-          Total Terpilih: <strong>${totalDisplayedProducts} Produk (${totalDisplayedRows} SKU)</strong><br>
+          Total Terpilih: <strong>${totalDisplayedRows} Produk (${totalDisplayedRows} SKU)</strong><br>
           Garansi: <strong>12 Bulan Ganti Baru</strong>
         `;
       }
@@ -1012,8 +1007,6 @@
 
       if (catParam && (catParam === 'all' || CATEGORY_DEFS.some(c => c.id === catParam))) {
         currentCategory = catParam;
-        const select = document.getElementById('category-select');
-        if (select) select.value = catParam;
       }
 
       if (qParam) {
@@ -1022,6 +1015,7 @@
         if (input) input.value = qParam;
       }
 
+      updateCategorySelectOptions();
       renderCatalog();
 
       if (autoPrint === '1' || autoPrint === 'true') {
@@ -1030,6 +1024,7 @@
         }, 600);
       }
     });
+
   </script>
 </body>
 </html>

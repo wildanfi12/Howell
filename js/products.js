@@ -15,475 +15,389 @@ window.formatRupiah = function formatRupiah(amount) {
  * Extracted directly from PT. Howell Niaga Indonesia ERP Inventory Management System
  */
 const HOWELL_SKU_CARTON = {
-  // 1. HDMI 4K High Speed (H0103 - H0110)
-  "H0103": 125,   // 1.5M (BIZGO: 125)
-  "H0104": 100,   // 2M (BIZGO: 100)
-  "H0105": 75,    // 3M (BIZGO: 75)
-  "H0106": 50,    // 5M (BIZGO: 50)
-  "H0107": 25,    // 10M fallback
-  "H0108": 25,    // 10M (BIZGO: 25)
-  "H0109": 15,    // 15M (BIZGO: 15)
-  "H0110": 12,    // 20M (BIZGO: 12)
-
-  // 2. HDMI 4K Gold Premium Shell (H0203 - H0210)
-  "H0203": 120,   // 1.5M (BIZGO: 120)
-  "H0204": 100,   // 2M (BIZGO: 100)
-  "H0205": 70,    // 3M (BIZGO: 70)
-  "H0206": 40,    // 5M (BIZGO: 40)
-  "H0207": 25,    // 10M fallback
-  "H0208": 25,    // 10M (BIZGO: 25)
-  "H0209": 12,    // 15M (BIZGO: 12)
-  "H0210": 8,     // 20M (BIZGO: 8)
-
-  // 3. HDMI 4K Pure Copper Core (H0303 - H0310)
-  "H0303": 125,   // 1.5M (BIZGO: 125)
-  "H0304": 100,   // 2M (BIZGO: 100)
-  "H0305": 75,    // 3M (BIZGO: 75)
-  "H0306": 35,    // 5M (BIZGO: 35)
-  "H0307": 20,    // 10M fallback
-  "H0308": 20,    // 10M (BIZGO: 20)
-  "H0309": 15,    // 15M (BIZGO: 15)
-  "H0310": 8,     // 20M (BIZGO: 8)
-
-  // 4. HDMI 8K 60Hz Ultra Gold (H0403 - H0408)
-  "H0403": 96,    // 1.5M (BIZGO: 96)
-  "H0404": 96,    // 2M (BIZGO: 96)
-  "H0405": 51,    // 3M (BIZGO: 51)
-  "H0406": 51,    // 5M (BIZGO: 51)
-  "H0407": 51,    // 10M fallback
-  "H0408": 51,    // 10M (BIZGO: 51)
-
-  // 5. HDMI 8K 60Hz Ultra Core (H0503 - H0508)
-  "H0503": 96,    // 1.5M (BIZGO: 96)
-  "H0504": 96,    // 2M (BIZGO: 96)
-  "H0505": 51,    // 3M (BIZGO: 51)
-  "H0506": 51,    // 5M (BIZGO: 51)
-  "H0507": 15,    // 10M fallback
-  "H0508": 15,    // 10M (BIZGO: 15)
-
-  // 6. Active Optical Fiber HDMI 8K (H0601 - H0612)
-  "H0601": 51,    // 10M (BIZGO: 51)
-  "H0602": 51,    // 15M (BIZGO: 51)
-  "H0603": 15,    // 20M (BIZGO: 15)
-  "H0604": 15,    // 25M (BIZGO: 15)
-  "H0605": 15,    // 30M (BIZGO: 15)
-  "H0606": 10,    // 40M (BIZGO: 10)
-  "H0607": 10,    // 50M (BIZGO: 10)
-  "H0608": 6,     // 60M (BIZGO: 6)
-  "H0609": 6,     // 80M (BIZGO: 6)
-  "H0610": 6,     // 100M (BIZGO: 6)
-  "H0611": 2,     // 150M (BIZGO: 2)
-  "H0612": 2,     // 200M (BIZGO: 2)
-
-  // 7. Specialty HDMI
-  "H0703": 120,   // Slim 2M (BIZGO: 120)
-  "H0803": 65,    // 90D Angle 2M (BIZGO: 65)
-  "H0903": 96,    // Braided 2M (BIZGO: 96)
-  "H1003": 100,   // Slim 2M (BIZGO: 100)
-  "H1007": 12,    // Flat 20M (BIZGO: 12)
-  "H1101": 100,   // Slim 1M (BIZGO: 100)
-  "H1102": 100,   // Slim 2M (BIZGO: 100)
-  "H1103": 100,   // Zinc Alloy 2M (BIZGO: 100)
-  "H1182": 100,   // AM/AF 2M (BIZGO: 100)
-  "H1202": 100,
-  "H1303": 100,   // Armor 2M (BIZGO: 100)
-  "H1401": 80,    // Patch Jumper / M-F 0.5M (BIZGO: 80)
-  "H1402": 80,    // 2M (BIZGO: 80)
-  "H1431": 80,
-  "H1601": 120,   // Spring 1.5M (BIZGO: 120)
-  "H1603": 80,    // Pro 2M (BIZGO: 80)
-  "H1702": 100,
-  "H1703": 100,   // 24K Gold 2M (BIZGO: 100)
-  "H1803": 80,    // Dynamic HDR 2M (BIZGO: 80)
-  "H2001": 120,   // Portable 1.5M (BIZGO: 120)
-  "H2103": 100,   // Studio Broadcast 2M (BIZGO: 100)
-  "H2201": 100,   // 16K 1M (BIZGO: 100)
-  "H2202": 200,   // 16K 1.5M (BIZGO: 200)
-  "H2203": 200,   // 16K 2M (BIZGO: 200)
-  "H2204": 144,   // 16K 3M (BIZGO: 144)
-  "H2301": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2302": 12,    // 8K FO 30M (BIZGO: 12)
-  "H2303": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2401": 12,
-  "H2403": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2503": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2602": 12,
-  "H2603": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2701": 12,
-  "H2702": 12,
-  "H2703": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2803": 12,    // 8K FO 20M (BIZGO: 12)
-  "H2903": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3003": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3103": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3203": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3303": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3403": 12,    // 8K FO 20M (BIZGO: 12)
-  "H3503": 12,    // 8K FO 20M (BIZGO: 12)
-
-  // HDMI Micro / Mini
-  "DH0103": 120,  // Micro Slim 2M (BIZGO: 120)
-  "DH0203": 120,  // Micro Slim 2M (BIZGO: 120)
-  "DH0301": 120,  // Spring Micro 1.5M (BIZGO: 120)
-  "DH0401": 100,  // Micro 1M (BIZGO: 100)
-  "DH0402": 200,  // Micro 1.5M (BIZGO: 200)
-  "DH0403": 200,  // Micro 2M (BIZGO: 200)
-  "DH0404": 100,  // Micro 3M (BIZGO: 100)
-  "DH0405": 80,   // Micro 5M (BIZGO: 80)
-  "MH0101": 100,  // Mini 1M (BIZGO: 100)
-  "MH0102": 200,  // Mini 1.5M (BIZGO: 200)
-  "MH0103": 200,  // Mini 2M (BIZGO: 200)
-  "MH0104": 100,  // Mini 3M (BIZGO: 100)
-  "MH0105": 80,   // Mini 5M (BIZGO: 80)
-  "MH0301": 120,  // Spring Mini 1.5M (BIZGO: 120)
-
-  // HDMI Converters / Splitters
-  "HD0102": 120,  // Slim HDMI to DVI 2M (BIZGO: 120)
-  "HD0203": 65,   // HDMI to DVI 24+1 2M (BIZGO: 65)
-  "HS1401": 50,   // Splitter 1x4 (BIZGO: 50)
-  "HS1801": 25,   // Splitter 1x8 (BIZGO: 25)
-  "HS3101": 50,   // Switch 3x1 (BIZGO: 50)
-  "HS4101": 50,   // Switch 4x1 (BIZGO: 50)
-  "HS5101": 50,   // Switch 5x1 (BIZGO: 50)
-  "HSAB01": 50,   // Bi-Direction Switch (BIZGO: 50)
-  "HSAB02": 238,  // Bi-Direction Switch (BIZGO: 238)
-  "HNE001": 50,   // Network Extender 65m (BIZGO: 50)
-
-  // 8. DisplayPort (DP)
-  "DP0101": 12,   // 8K FO 10M (BIZGO: 12)
-  "DP0102": 12,   // 8K FO 15M (BIZGO: 12)
-  "DP0103": 12,   // 8K FO 20M (BIZGO: 12)
-  "DP0104": 12,   // 8K FO 30M (BIZGO: 12)
-  "DP0105": 12,   // 8K FO 50M (BIZGO: 12)
-  "DP0106": 12,   // 8K FO 100M (BIZGO: 12)
-  "DP0203": 12,   // 8K FO 20M (BIZGO: 12)
-  "DP0303": 80,   // 8K 2M (BIZGO: 80)
-  "DP0403": 80,   // 8K 2M (BIZGO: 80)
-  "DP0503": 80,   // 8K 2M (BIZGO: 80)
-  "DP0601": 100,  // 8K 1M (BIZGO: 100)
-  "DP0602": 100,  // 8K 1.5M (BIZGO: 100)
-  "DP0603": 100,  // 8K 2M (BIZGO: 100)
-  "DP0604": 80,   // 8K 3M (BIZGO: 80)
-  "DP0605": 80,   // 8K 5M (BIZGO: 80)
-  "DP0703": 80,   // Mini DP to DP 8K 2M (BIZGO: 80)
-  "DP0803": 80,   // DP to HDMI 4K 2M (BIZGO: 80)
-  "DP0903": 80,   // 16K DP 2M (BIZGO: 80)
-  "DP1006": 10,   // 8K DP 10M (BIZGO: 10)
-  "DP1101": 100,  // 16K DP 1M (BIZGO: 100)
-  "DP1102": 200,  // 16K DP 1.5M (BIZGO: 200)
-  "DP1103": 200,  // 16K DP 2M (BIZGO: 200)
-  "DP1104": 150,  // 16K DP 3M (BIZGO: 150)
-  "DP1203": 100,  // Mini DP 2M (BIZGO: 100)
-  "DP1303": 100,  // Mini DP 2M (BIZGO: 100)
-
-  // 9. DVI & VGA Cables
-  "DVI0103": 12,  // DVI FO 20M (BIZGO: 12)
-  "DVI0203": 12,  // DVI FO 20M (BIZGO: 12)
-  "DVI0303": 12,  // DVI FO 20M (BIZGO: 12)
-  "DVI0403": 12,  // DVI FO 20M (BIZGO: 12)
-  "DVI0501": 428, // DVI 24+1 1M (BIZGO: 428)
-  "DVI0502": 428, // DVI 24+1 1.5M (BIZGO: 428)
-  "DVI0503": 65,  // DVI 24+1 2M (BIZGO: 65)
-  "DVI0504": 428, // DVI 24+1 3M (BIZGO: 428)
-  "DVI0505": 428, // DVI 24+1 5M (BIZGO: 428)
-  "DVI0506": 428, // DVI 24+1 10M (BIZGO: 428)
-  "DVI0507": 428, // DVI 24+1 15M (BIZGO: 428)
-  "DVI0601": 100, // DVI 24+1 2M (BIZGO: 100)
-  "VGA0106": 18,  // Super VGA 3+6 10M (BIZGO: 18)
-  "VGA0108": 11,  // Super VGA 3+6 20M (BIZGO: 11)
-
-  // 10. Patch Cable & Networking
-  "N6A02": 200,   // Cat6 UTP 1M (BIZGO: 200)
-  "N6A03": 160,   // Cat6 UTP 1.5M (BIZGO: 160)
-  "N6A04": 125,   // Cat6 UTP 2M (BIZGO: 125)
-  "N6A05": 90,    // Cat6 UTP 3M (BIZGO: 90)
-  "N6A06": 60,    // Cat6 UTP 5M (BIZGO: 60)
-  "N6A07": 35,    // Cat6 UTP 10M (BIZGO: 35)
-  "N6A08": 25,    // Cat6 UTP 15M (BIZGO: 25)
-  "N6A09": 18,    // Cat6 UTP 20M (BIZGO: 18)
-  "N6A10": 16,    // Cat6 UTP 25M (BIZGO: 16)
-  "N6A11": 15,    // Cat6 UTP 30M (BIZGO: 15)
-
-  "N8A01": 150,   // Cat8 Flat Yellow 1M (BIZGO: 150)
-  "N8A02": 150,   // Cat8 Flat Yellow 1M (BIZGO: 150)
-  "N8A03": 150,   // Cat8 Flat Yellow 1.5M (BIZGO: 150)
-  "N8A04": 150,   // Cat8 Flat Yellow 2M (BIZGO: 150)
-  "N8A05": 150,   // Cat8 Flat Yellow 3M (BIZGO: 150)
-  "N8A06": 104,   // Cat8 Flat Yellow 5M (BIZGO: 104)
-  "N8A07": 46,    // Cat8 Flat Yellow 10M (BIZGO: 46)
-  "N8A08": 36,    // Cat8 Flat Yellow 15M (BIZGO: 36)
-
-  "N8C04": 80,    // Cat8 Flat FTP 3M (BIZGO: 80)
-  "N8D04": 80,    // Cat8 Flat FTP 3M (BIZGO: 80)
-
-  "N8B02": 120,   // Cat8 SFTP Black 1.5M (BIZGO: 120)
-  "N8B03": 120,   // Cat8 SFTP Black 1.5M (BIZGO: 120)
-  "N8B04": 100,   // Cat8 SFTP Black 2M (BIZGO: 100)
-  "N8B05": 70,    // Cat8 SFTP Black 3M (BIZGO: 70)
-  "N8B06": 50,    // Cat8 SFTP Black 5M (BIZGO: 50)
-  "N8B07": 30,    // Cat8 SFTP Black 10M (BIZGO: 30)
-  "N8B08": 30,    // Cat8 SFTP Black 10M (BIZGO: 30)
-
-  "N6101": 2,     // Bulk Roll UTP Cat6 305M (BIZGO: 2)
-  "N6201": 2,     // Bulk Roll FTP Cat6 305M (BIZGO: 2)
-  "RC01": 200,    // RJ45 Cat6 UTP Modular Plug (BIZGO: 200)
-  "RC02": 200,    // RJ45 Cat6 FTP Modular Plug (BIZGO: 200)
-  "RC01-50": 200,
-  "RC02-50": 200,
-
-  // 11. Power & PDU Cables
-  "POW-101": 100, // C5 1.2M (BIZGO: 100)
-  "POW-102": 85,  // C5 1.8M (BIZGO: 85)
-  "POW-201": 85,  // 90D C13 1.8M (BIZGO: 85)
-  "POW-202": 50,  // 90D C13 3M (BIZGO: 50)
-  "POW-301": 100, // C13 1.2M (BIZGO: 100)
-  "POW-302": 85,  // C13 1.8M (BIZGO: 85)
-  "POW-303": 85,  // C13 3M (BIZGO: 85)
-  "POW-304": 85,  // C13 5M (BIZGO: 85)
-  "POW-305": 85,  // C13 10M (BIZGO: 85)
-
-  // 12. Audio Cables
-  "AU0101": 379,  // DC6.35 to XLR F 1M (BIZGO: 379)
-  "AU0102": 379,  // DC6.35 to XLR F 1.5M (BIZGO: 379)
-  "AU0103": 140,  // DC6.35 to XLR F 2M (BIZGO: 140)
-  "AU0104": 379,  // DC6.35 to XLR F 3M (BIZGO: 379)
-  "AU0105": 379,  // DC6.35 to XLR F 5M (BIZGO: 379)
-  "AU0106": 379,  // DC6.35 to XLR F 8M (BIZGO: 379)
-  "AU0107": 379,  // DC6.35 to XLR F 10M (BIZGO: 379)
-
-  "AU0201": 380,  // DC6.35 to XLR M 1M (BIZGO: 380)
-  "AU0202": 380,  // DC6.35 to XLR M 1.5M (BIZGO: 380)
-  "AU0203": 125,  // DC6.35 to XLR M 2M (BIZGO: 125)
-  "AU0204": 380,  // DC6.35 to XLR M 3M (BIZGO: 380)
-  "AU0205": 380,  // DC6.35 to XLR M 5M (BIZGO: 380)
-  "AU0206": 380,  // DC6.35 to XLR M 8M (BIZGO: 380)
-  "AU0207": 380,  // DC6.35 to XLR M 10M (BIZGO: 380)
-
-  "AU0301": 381,  // DC3.5 to 6.35 1M (BIZGO: 381)
-  "AU0302": 382,  // DC3.5 to 6.35 1.5M (BIZGO: 382)
-  "AU0303": 140,  // DC3.5 to 6.35 2M (BIZGO: 140)
-  "AU0304": 384,  // DC3.5 to 6.35 3M (BIZGO: 384)
-  "AU0305": 385,  // DC3.5 to 6.35 5M (BIZGO: 385)
-  "AU0306": 386,  // DC3.5 to 6.35 8M (BIZGO: 386)
-  "AU0307": 387,  // DC3.5 to 6.35 10M (BIZGO: 387)
-
-  "AU0401": 388,  // TRS 6.35 1M (BIZGO: 388)
-  "AU0402": 389,  // TRS 6.35 1.5M (BIZGO: 389)
-  "AU0403": 140,  // TRS 6.35 2M (BIZGO: 140)
-  "AU0404": 391,  // TRS 6.35 3M (BIZGO: 391)
-  "AU0405": 392,  // TRS 6.35 5M (BIZGO: 392)
-  "AU0406": 393,  // TRS 6.35 8M (BIZGO: 393)
-  "AU0407": 394,  // TRS 6.35 10M (BIZGO: 394)
-
-  "AU0501": 100,  // 6.35 to 2RCA 1M (BIZGO: 100)
-  "AU0502": 100,  // 6.35 to 2RCA 1.5M (BIZGO: 100)
-  "AU0503": 140,  // 6.35 to 2RCA 2M (BIZGO: 140)
-  "AU0504": 50,   // 6.35 to 2RCA 3M (BIZGO: 50)
-  "AU0505": 50,   // 6.35 to 2RCA 5M (BIZGO: 50)
-
-  "AU0601": 45,   // DC3.5 F to 6.35 M 1M (BIZGO: 45)
-  "AU0602": 95,   // DC3.5 F to 6.35 M 1.5M (BIZGO: 95)
-  "AU0603": 150,  // DC3.5 F to 6.35 M 2M (BIZGO: 150)
-  "AU0604": 47,   // DC3.5 F to 6.35 M 3M (BIZGO: 47)
-  "AU0605": 47,   // DC3.5 F to 6.35 M 5M (BIZGO: 47)
-
-  "AU0701": 50,   // DC3.5 to 2x6.35 1M (BIZGO: 50)
-  "AU0702": 402,  // DC3.5 to 2x6.35 1.5M (BIZGO: 402)
-  "AU0703": 150,  // DC3.5 to 2x6.35 2M (BIZGO: 150)
-  "AU0704": 404,  // DC3.5 to 2x6.35 3M (BIZGO: 404)
-  "AU0705": 50,   // DC3.5 to 2x6.35 5M (BIZGO: 50)
-
-  "AU0801": 45,   // DC3.5 to 2RCA 1M (BIZGO: 45)
-  "AU0802": 95,   // DC3.5 to 2RCA 1.5M (BIZGO: 95)
-  "AU0803": 140,  // DC3.5 to 2RCA 2M (BIZGO: 140)
-  "AU0804": 47,   // DC3.5 to 2RCA 3M (BIZGO: 47)
-  "AU0805": 47,   // DC3.5 to 2RCA 5M (BIZGO: 47)
-  "AU0807": 47,   // DC3.5 to 2RCA 10M (BIZGO: 47)
-  "AU1520": 6,    // DC3.5 to 2RCA 80M (BIZGO: 6)
-
-  "AU0903": 140,  // RCA M-F 2M (BIZGO: 140)
-
-  "AU1001": 412,  // XLR M to F 1M (BIZGO: 412)
-  "AU1002": 413,  // XLR M to F 1.5M (BIZGO: 413)
-  "AU1003": 140,  // XLR M to F 2M (BIZGO: 140)
-  "AU1004": 415,  // XLR M to F 3M (BIZGO: 415)
-  "AU1005": 416,  // XLR M to F 5M (BIZGO: 416)
-  "AU1007": 418,  // XLR M to F 10M (BIZGO: 418)
-
-  "AU1101": 419,  // XLR M to F 1M (BIZGO: 419)
-  "AU1102": 420,  // XLR M to F 1.5M (BIZGO: 420)
-  "AU1103": 140,  // XLR M to F 2M (BIZGO: 140)
-  "AU1104": 422,  // XLR M to F 3M (BIZGO: 422)
-  "AU1105": 423,  // XLR M to F 5M (BIZGO: 423)
-  "AU1107": 425,  // XLR M to F 10M (BIZGO: 425)
-
-  "AU1201": 140,  // DC3.5 M to M 1M (BIZGO: 140)
-  "AU1202": 140,  // DC3.5 M to M 1.5M (BIZGO: 140)
-  "AU1203": 140,  // DC3.5 M to M 2M (BIZGO: 140)
-  "AU1204": 140,  // DC3.5 M to M 3M (BIZGO: 140)
-  "AU1205": 140,  // DC3.5 M to M 5M (BIZGO: 140)
-  "AU1206": 140,  // DC3.5 M to M 8M (BIZGO: 140)
-  "AU1207": 140,  // DC3.5 M to M 10M (BIZGO: 140)
-
-  "AU1301": 140,  // TS 6.35 1M (BIZGO: 140)
-  "AU1302": 140,  // TS 6.35 1.5M (BIZGO: 140)
-  "AU1303": 140,  // TS 6.35 2M (BIZGO: 140)
-  "AU1304": 140,  // TS 6.35 3M (BIZGO: 140)
-  "AU1305": 140,  // TS 6.35 5M (BIZGO: 140)
-  "AU1306": 140,  // TS 6.35 8M (BIZGO: 140)
-  "AU1307": 140,  // TS 6.35 10M (BIZGO: 140)
-
-  "AU1401": 100,  // Audio Optik 1M (BIZGO: 100)
-  "AU1403": 100,  // Audio Optik 2M (BIZGO: 100)
-  "AU1404": 100,  // Audio Optik 3M (BIZGO: 100)
-  "AU1405": 100,  // Audio Optik 5M (BIZGO: 100)
-  "AU1406": 100,  // Audio Optik 8M (BIZGO: 100)
-  "AU1407": 100,  // Audio Optik 10M (BIZGO: 100)
-
-  // 13. USB & Data Cables
-  "UBM101": 100,  // USB Printer 1M (BIZGO: 100)
-  "UBM102": 250,  // USB Printer 1.5M (BIZGO: 250)
-  "UBM103": 200,  // USB Printer 2M (BIZGO: 200)
-  "UBM104": 170,  // USB Printer 3M (BIZGO: 170)
-  "UBM105": 100,  // USB Printer 5M (BIZGO: 100)
-  "UBM107": 50,   // USB Printer 10M (BIZGO: 50)
-
-  "UMF101": 250,  // USB AM-AF 1M (BIZGO: 250)
-  "UMF102": 250,  // USB AM-AF 1.5M (BIZGO: 250)
-  "UMF103": 200,  // USB AM-AF 2M (BIZGO: 200)
-  "UMF104": 150,  // USB AM-AF 3M (BIZGO: 150)
-  "UMF105": 100,  // USB AM-AF 5M (BIZGO: 100)
-
-  "UMM101": 200,  // USB AM-AM 1M (BIZGO: 200)
-  "UMM102": 250,  // USB AM-AM 1.5M (BIZGO: 250)
-  "UMM103": 200,  // USB AM-AM 2M (BIZGO: 200)
-  "UMM104": 150,  // USB AM-AM 3M (BIZGO: 150)
-  "UMM105": 100,  // USB AM-AM 5M (BIZGO: 100)
-
-  "U5P101": 250,  // USB AM-Micro 1M (BIZGO: 250)
-  "U5P102": 250,  // USB AM-Micro 1.5M (BIZGO: 250)
-  "U5P103": 200,  // USB AM-Micro 2M (BIZGO: 200)
-  "U5P104": 170,  // USB AM-Micro 3M (BIZGO: 170)
-  "U5P105": 100,  // USB AM-Micro 5M (BIZGO: 100)
-
-  "UMI101": 200,  // USB AM-Mini 1M (BIZGO: 200)
-  "UMI102": 200,  // USB AM-Mini 1.5M (BIZGO: 200)
-  "UMI103": 200,  // USB AM-Mini 2M (BIZGO: 200)
-  "UMI104": 100,  // USB AM-Mini 3M (BIZGO: 100)
-  "UMI105": 100,  // USB AM-Mini 5M (BIZGO: 100)
-
-  "USB0101": 12,  // OP USB 15M (BIZGO: 12)
-  "USB0202": 10,  // OP USB 10M (BIZGO: 10)
-  "USB0203": 10,  // OP USB 15M (BIZGO: 10)
-  "USB0204": 10,  // OP USB 20M (BIZGO: 10)
-  "USB0205": 10,  // OP USB 25M (BIZGO: 10)
-  "USB0206": 12,  // OP USB 30M (BIZGO: 12)
-
-  // 14. Adapters & Converters
-  "ADP001": 200,  // 8K HDMI AF/AF (BIZGO: 200)
-  "ADP002": 200,  // 4K HDMI AF/AF (BIZGO: 200)
-  "ADP003": 200,  // 8K HDMI 90D (BIZGO: 200)
-  "ADP004": 200,  // 8K HDMI 270D (BIZGO: 200)
-  "ADP005": 200,  // 8K HDMI Left (BIZGO: 200)
-  "ADP006": 200,  // 8K HDMI Right (BIZGO: 200)
-  "ADP007": 200,  // 8K HDMI AM/AF (BIZGO: 200)
-  "ADP008": 200,  // 8K HDMI AM/AM (BIZGO: 200)
-  "ADP009": 200,  // 4K HDMI 90D (BIZGO: 200)
-  "ADP010": 200,  // 4K HDMI 270D (BIZGO: 200)
-  "ADP011": 200,  // 4K HDMI Left (BIZGO: 200)
-  "ADP012": 200,  // 4K HDMI Right (BIZGO: 200)
-  "ADP013": 200,  // 4K HDMI AM/AF (BIZGO: 200)
-  "ADP014": 200,  // 8K HDMI Mini (BIZGO: 200)
-  "ADP015": 200,  // 4K HDMI Mini (BIZGO: 200)
-  "ADP016": 200,  // 4K HDMI 3in1 (BIZGO: 200)
-  "ADP017": 200,  // 8K HDMI Micro (BIZGO: 200)
-  "ADP018": 200,  // 4K HDMI Micro (BIZGO: 200)
-  "ADP019": 200,  // USB 3.2 AM/AF (BIZGO: 200)
-  "ADP020": 200,  // USB 3.2 AM/AM (BIZGO: 200)
-  "ADP021": 200,  // USB 3.2 AF/AF (BIZGO: 200)
-  "ADP022": 200,  // USB 3.2 Right (BIZGO: 200)
-  "ADP023": 200,  // USB 3.2 Left (BIZGO: 200)
-  "ADP024": 200,  // USB 3.2 90D (BIZGO: 200)
-  "ADP025": 200,  // USB 3.2 270D (BIZGO: 200)
-  "ADP026": 200,  // USB 3.0 Keystone (BIZGO: 200)
-  "ADP027": 200,  // RJ45 Keystone (BIZGO: 200)
-  "ADP028": 200,  // Type-C Keystone (BIZGO: 200)
-  "ADP029": 200,  // RJ45 Coupler F/F (BIZGO: 200)
-  "ADP030": 200,  // RJ45 Coupler Aluminium (BIZGO: 200)
-  "ADP031": 200,  // RJ45 Splitter 1 to 2 (BIZGO: 200)
-  "ADP032": 200,  // Type-C AM/AM 40GB (BIZGO: 200)
-  "ADP033": 200,  // Type-C 90D (BIZGO: 200)
-  "ADP035": 200,  // USB 3.0 AF to Type-C AM (BIZGO: 200)
-  "ADP037": 200,  // DP AM to HDMI AF (BIZGO: 200)
-  "ADP038": 200,  // Mini DP to DP AF (BIZGO: 200)
-
-  "CDP013": 100,  // 8K Type-C to DP 2M (BIZGO: 100)
-  "CH0101": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
-  "CH0201": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
-  "CH0301": 12,   // 4K FO Type-C to HDMI 20M (BIZGO: 12)
-  "CH0403": 100,  // 4K@30 Type-C to HDMI 2M (BIZGO: 100)
-  "CH0503": 100,  // 4K Type-C to HDMI 2M (BIZGO: 100)
-  "CH0603": 100,  // 4K Right Angle Type-C to HDMI 2M (BIZGO: 100)
-  "CH0703": 100,  // 8K Type-C to HDMI 2M (BIZGO: 100)
-
-  "DK1301": 15,   // 13in1 USB-C Dock (BIZGO: 15)
-  "DK1501": 15,   // 15in1 USB-C Dock (BIZGO: 15)
-  "HUB801": 100,  // 8in1 USB-C Dock (BIZGO: 100)
-
-  "VD0101": 500,  // 4K DP EDID (BIZGO: 500)
-  "VD0201": 500,  // 4K HDMI EDID (BIZGO: 500)
-  "VC0302": 500,  // 4K HDMI Passthrough (BIZGO: 500)
-  "VC0101": 192,  // Video Capture Card 4K@30 (BIZGO: 192)
-  "VC0201": 114,  // Video Capture Card 4K@60 (BIZGO: 114)
-
-  "UEA001": 100,  // USB2.0 100Mbps Ethernet (BIZGO: 100)
-  "UEA002": 100,  // USB3.0 Gigabit Ethernet (BIZGO: 100)
-  "UEA003": 100,  // USB3.0 100Mbps Ethernet (BIZGO: 100)
-  "CEA001": 100,  // Type-C 100Mbps Ethernet (BIZGO: 100)
-  "CEA002": 100,  // Type-C Gigabit Ethernet (BIZGO: 100)
-  "CEA003": 100,  // Type-C Gigabit Ethernet (BIZGO: 100)
-
-  "LCP001": 20,   // Laptop Cooling Pad (BIZGO: 20)
-  "LCP002": 16,   // Laptop Cooling Pad (BIZGO: 16)
-  "LCP003": 30,   // Laptop Cooling Pad (BIZGO: 30)
-  "LCP004": 10,   // Laptop Stand (BIZGO: 10)
-
-  "MIC001": 50,   // USB Microphone (BIZGO: 50)
-  "MIC002": 40,   // USB Microphone (BIZGO: 40)
-  "MIC003": 10,   // USB Microphone (BIZGO: 10)
-  "MIC004": 50,   // USB Microphone (BIZGO: 50)
-
-  // 15. Earphones & TWS
-  "HW01": 50,     // Bluetooth Earphone HW01 (BIZGO: 50)
-  "HW02": 50,     // Bluetooth Earphone HW02 (BIZGO: 50)
-  "HW02-B": 50,   // Bluetooth Earphone HW02 Black (BIZGO: 50)
-  "HW02-W": 50,   // Bluetooth Earphone HW02 White (BIZGO: 50)
-  "HW03-B": 500,  // 3.5" Earphone Black (BIZGO: 500)
-  "HW03-W": 500,  // 3.5" Earphone White (BIZGO: 500)
-  "HW04": 500,    // 3.5" Earphone Black (BIZGO: 500)
-  "HW05": 500,    // 3.5" Earphone Black (BIZGO: 500)
-  "HW06": 200,    // Type-C Earphone (BIZGO: 200)
-  "HW07": 200,    // Type-C Earphone (BIZGO: 200)
-
-  // 16. Chargers & Cables
-  "HW-C01": 144,  // 12W Charger (BIZGO: 144)
-  "HW-C02A": 105, // 20W Charger + Cable (BIZGO: 105)
-  "HW-C03": 144,  // 30W Charger (BIZGO: 144)
-  "HW-C03A": 105, // 30W Charger + Cable (BIZGO: 105)
-  "HW-C04": 144,  // 65W Charger (BIZGO: 144)
-  "HW-C04+AC01": 100, // 65W Set (BIZGO: 100)
-  "CC01": 150,    // Car Charger (BIZGO: 150)
-  "CC02": 150,    // Car Charger (BIZGO: 150)
-  "AC01": 200,    // 4in1 USB Cable (BIZGO: 200)
-  "AC02": 150,    // USB A to C 1.2M (BIZGO: 150)
-  "AC02-20": 10,  // Toples USB 20pcs (BIZGO: 10)
-  "AC03": 250,    // USB A to C 1.2M (BIZGO: 250)
-  "AC04": 250,    // USB A to C 1.2M (BIZGO: 250)
-  "AC05": 250     // Type-C to Lightning (BIZGO: 250)
-,
-  // Composite / Series Multi-SKU Items
-  "HW03-W & HW03-B": 500, // Studio IEM Black & White (BIZGO: 500)
-  "ADP002 - ADP013": 200  // Display & Audio Adapter Series (BIZGO: 200)
+  "HW-C04+AC01": "100",
+  "VC0101": "192",
+  "VC0201": "114",
+  "DK1301": "15",
+  "DK1501": "15",
+  "DP0903": "80",
+  "DP1102": "0",
+  "DP1101": "0",
+  "DP1103": "0",
+  "DP1104": "0",
+  "H2202": "0",
+  "H2201": "0",
+  "H2203": "0",
+  "H2204": "0",
+  "WS2001": "100",
+  "HW03-B": "500",
+  "HW04": "500",
+  "HW05": "500",
+  "HW03-W": "500",
+  "AC01": "200",
+  "VD0101": "500",
+  "CH0101": "12",
+  "CH0201": "12",
+  "CH0301": "12",
+  "ADP010": "200",
+  "ADP009": "200",
+  "ADP016": "200",
+  "ADP002": "200",
+  "ADP013": "200",
+  "ADP018": "200",
+  "ADP015": "200",
+  "VD0201": "500",
+  "VD0202": "500",
+  "VD0301": "500",
+  "VD0302": "500",
+  "ADP011": "200",
+  "ADP012": "200",
+  "HS1401": "50",
+  "HS1801": "25",
+  "HS3101": "50",
+  "HS4101": "50",
+  "HS5101": "50",
+  "HD0203": "65",
+  "H0803": "65",
+  "H0103": "125",
+  "H0108": "25",
+  "H0109": "15",
+  "H0110": "12",
+  "H0104": "100",
+  "H0105": "75",
+  "H0106": "50",
+  "DH0203": "120",
+  "H0703": "120",
+  "DH0402": "0",
+  "DH0401": "0",
+  "DH0403": "0",
+  "DH0404": "0",
+  "DH0405": "0",
+  "MH0102": "0",
+  "MH0101": "0",
+  "MH0103": "0",
+  "MH0104": "0",
+  "MH0105": "0",
+  "DP1203": "100",
+  "H0303": "125",
+  "H0308": "20",
+  "H0309": "15",
+  "H0310": "8",
+  "H0304": "100",
+  "H0305": "75",
+  "H0306": "35",
+  "H0203": "120",
+  "H0208": "25",
+  "H0209": "12",
+  "H0210": "8",
+  "H0204": "100",
+  "H0205": "70",
+  "H0206": "40",
+  "CH0603": "100",
+  "H0903": "120",
+  "H1703": "100",
+  "H2103": "120",
+  "HD0102": "120",
+  "H2001": "120",
+  "DH0301": "120",
+  "MH0301": "120",
+  "CH0503": "100",
+  "CH0403": "100",
+  "HNE001": "50",
+  "HUB801": "100",
+  "DP1006": "10",
+  "DP0303": "80",
+  "DP0403": "80",
+  "DP0503": "80",
+  "DP0703": "80",
+  "DP0803": "80",
+  "DP0103": "12",
+  "DP0203": "12",
+  "H2303": "12",
+  "H2403": "12",
+  "H2503": "12",
+  "H2603": "12",
+  "H2703": "12",
+  "H2803": "12",
+  "H2903": "12",
+  "H3003": "12",
+  "H3103": "12",
+  "H3203": "12",
+  "H3303": "12",
+  "H3403": "12",
+  "H3503": "12",
+  "ADP004": "200",
+  "ADP003": "200",
+  "ADP001": "200",
+  "ADP007": "200",
+  "ADP008": "200",
+  "ADP017": "200",
+  "ADP014": "200",
+  "HSAB01": "50",
+  "HSAB02": "238",
+  "H1603": "80",
+  "H1803": "80",
+  "H1401": "80",
+  "ADP005": "200",
+  "ADP006": "200",
+  "DP0602": "0",
+  "DP0601": "0",
+  "DP0603": "0",
+  "DP0604": "0",
+  "DP0605": "0",
+  "DP1303": "100",
+  "H1003": "100",
+  "H1103": "100",
+  "H1303": "100",
+  "CDP013": "100",
+  "CH0703": "100",
+  "H0503": "96",
+  "H0508": "15",
+  "H0504": "96",
+  "H0505": "51",
+  "H0506": "51",
+  "H0610": "6",
+  "H0601": "51",
+  "H0611": "2",
+  "H0602": "51",
+  "H0612": "2",
+  "H0603": "15",
+  "H0604": "15",
+  "H0605": "15",
+  "H0606": "10",
+  "H0607": "10",
+  "H0608": "6",
+  "H0609": "6",
+  "H0403": "96",
+  "H0408": "51",
+  "H0404": "96",
+  "H0405": "51",
+  "H0406": "51",
+  "HP0101": "200",
+  "POW-201": "85",
+  "POW-202": "50",
+  "POW-301": "100",
+  "POW-302": "85",
+  "POW-305": "85",
+  "POW-303": "85",
+  "POW-304": "85",
+  "POW-101": "100",
+  "POW-102": "85",
+  "ADP037": "200",
+  "ADP038": "200",
+  "ADP035": "200",
+  "HW-C01": "144",
+  "HW-C02A": "105",
+  "HW-C03": "144",
+  "HW-C03A": "105",
+  "HW-C04": "144",
+  "AU0502": "0",
+  "AU0501": "0",
+  "AU0503": "140",
+  "AU0504": "0",
+  "AU0505": "0",
+  "AU0302": "382",
+  "AU0307": "387",
+  "AU0301": "381",
+  "AU0303": "140",
+  "AU0304": "384",
+  "AU0305": "385",
+  "AU0306": "386",
+  "AU0102": "379",
+  "AU0107": "379",
+  "AU0101": "379",
+  "AU0103": "140",
+  "AU0104": "379",
+  "AU0105": "379",
+  "AU0106": "379",
+  "AU0202": "380",
+  "AU0207": "380",
+  "AU0201": "380",
+  "AU0203": "125",
+  "AU0204": "380",
+  "AU0205": "380",
+  "AU0206": "380",
+  "AU0602": "0",
+  "AU0601": "0",
+  "AU0603": "150",
+  "AU0604": "0",
+  "AU0605": "0",
+  "AU0802": "0",
+  "AU0807": "0",
+  "AU0801": "0",
+  "AU0803": "140",
+  "AU0804": "0",
+  "AU0805": "0",
+  "AU1520": "6",
+  "AU0702": "402",
+  "AU0701": "0",
+  "AU0703": "150",
+  "AU0704": "404",
+  "AU0705": "0",
+  "AU1202": "140",
+  "AU1207": "140",
+  "AU1201": "140",
+  "AU1203": "140",
+  "AU1204": "140",
+  "AU1205": "140",
+  "AU1206": "140",
+  "AU0903": "140",
+  "AU0402": "389",
+  "AU0407": "394",
+  "AU0401": "388",
+  "AU0403": "140",
+  "AU0404": "391",
+  "AU0405": "392",
+  "AU0406": "393",
+  "AU1302": "140",
+  "AU1307": "140",
+  "AU1301": "140",
+  "AU1303": "140",
+  "AU1304": "140",
+  "AU1305": "140",
+  "AU1306": "140",
+  "AU1002": "413",
+  "AU1102": "420",
+  "AU1007": "418",
+  "AU1107": "425",
+  "AU1001": "412",
+  "AU1101": "419",
+  "AU1003": "140",
+  "AU1103": "140",
+  "AU1004": "415",
+  "AU1104": "422",
+  "AU1005": "416",
+  "AU1105": "423",
+  "AU1006": "417",
+  "AU1106": "424",
+  "N6A03": "160",
+  "N6A07": "35",
+  "N6A08": "25",
+  "N6A02": "200",
+  "N6A09": "18",
+  "N6A10": "16",
+  "N6A04": "125",
+  "N6A11": "15",
+  "N6A05": "90",
+  "N6A06": "60",
+  "N8A03": "150",
+  "N8A07": "46",
+  "N8A08": "36",
+  "N8A02": "150",
+  "N8A04": "150",
+  "N8A05": "150",
+  "N8A06": "104",
+  "N8C04": "80",
+  "N8D04": "80",
+  "N8B03": "120",
+  "N8B08": "30",
+  "N8B04": "100",
+  "N8B05": "70",
+  "N8B06": "50",
+  "RC02": "10,000",
+  "RC02-50": "10,000",
+  "RC01": "10,000",
+  "RC01-50": "500",
+  "DVI0502": "428",
+  "DVI0506": "428",
+  "DVI0507": "428",
+  "DVI0501": "428",
+  "DVI0503": "65",
+  "DVI0601": "100",
+  "DVI0504": "428",
+  "DVI0505": "428",
+  "HW01": "50",
+  "HW02-B": "50",
+  "HW02-W": "50",
+  "DVI0103": "12",
+  "DVI0203": "12",
+  "DVI0303": "12",
+  "DVI0403": "12",
+  "LCP004": "10",
+  "LCP005": "10",
+  "DH0103": "120",
+  "AU1402": "0",
+  "AU1407": "0",
+  "AU1401": "0",
+  "AU1403": "0",
+  "AU1404": "0",
+  "AU1405": "0",
+  "AU1406": "0",
+  "UBM102": "250",
+  "UBM107": "50",
+  "UBM101": "100",
+  "UBM103": "200",
+  "UBM104": "170",
+  "UBM105": "100",
+  "N6201": "2",
+  "N6201+RC02": "2",
+  "N6101": "2",
+  "N6101+RC01": "2",
+  "UMF102": "250",
+  "UMF101": "250",
+  "UMF103": "200",
+  "UMF104": "150",
+  "UMF105": "100",
+  "UMM102": "250",
+  "UMM101": "200",
+  "UMM103": "200",
+  "UMM104": "150",
+  "UMM105": "100",
+  "U5P102": "250",
+  "U5P101": "250",
+  "U5P103": "200",
+  "U5P104": "170",
+  "U5P105": "100",
+  "UMI102": "210",
+  "UMI101": "270",
+  "UMI103": "170",
+  "UMI104": "130",
+  "UMI105": "90",
+  "LCP001": "20",
+  "LCP002": "16",
+  "LCP003": "30",
+  "USB0202": "0",
+  "USB0101": "12",
+  "USB0203": "0",
+  "USB0204": "0",
+  "USB0205": "0",
+  "USB0206": "12",
+  "ADP029": "200",
+  "ADP030": "200",
+  "ADP031": "200",
+  "ADP027": "200",
+  "VGA0106": "18",
+  "VGA0108": "11",
+  "AC02-20": "10",
+  "CEA001": "100",
+  "ADP033": "200",
+  "ADP032": "200",
+  "HW06": "200",
+  "HW07": "200",
+  "CEA002": "100",
+  "CEA003": "100",
+  "ADP028": "200",
+  "MIC001": "50",
+  "MIC002": "40",
+  "MIC003": "10",
+  "MIC004": "50",
+  "ADP026": "200",
+  "ADP025": "200",
+  "ADP024": "200",
+  "ADP021": "200",
+  "ADP019": "200",
+  "ADP020": "200",
+  "ADP023": "200",
+  "ADP022": "200",
+  "AC02": "150",
+  "AC03": "250",
+  "AC04": "250",
+  "CC01": "250",
+  "CC02": "250",
+  "CEA004": "100",
+  "UEA001": "100",
+  "UEA003": "100",
+  "UEA002": "100"
 };
 
 window.HOWELL_SKU_CARTON = HOWELL_SKU_CARTON;
@@ -492,7 +406,7 @@ window.HOWELL_SKU_CARTON = HOWELL_SKU_CARTON;
  * HOWELL Official Master Catalog - Stock Qty Data from ERP BIZGO
  * Generated: 2026-09-22
  * Field: stockQty (jumlah stok aktual per SKU dari sistem ERP)
- * Used as QTY/KARTON value in print-catalog.html
+ * Inventory Stock Level reference (DO NOT use as Qty per Carton)
  */
 const HOWELL_SKU_STOCK = {
   "AC01": "0",
