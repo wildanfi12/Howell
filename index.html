@@ -334,43 +334,135 @@
       transform: translateY(-4px);
     }
 
-    /* Howell Service Row Hover Fill Effect */
-    .service-row-item {
+    /* Howell Category Ecosystem Interactive Accordion */
+    .category-accordion-item {
+      position: relative;
+      transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .category-accordion-item.active {
+      background-color: #fafaf9;
+    }
+    .category-accordion-trigger {
+      width: 100%;
       display: flex;
       align-items: center;
       gap: 1rem;
-      border-radius: 1.25rem;
-      padding-block: 1.5rem;
-      padding-inline: 1.5rem;
-      background: rgba(248, 248, 248, 0);
-      transition: all 0.35s cubic-bezier(0.24, 1, 0.32, 1);
+      padding: 1.5rem 0.875rem;
+      background: transparent;
+      border: none;
+      text-align: left;
       cursor: pointer;
+      position: relative;
+      transition: background-color 0.25s ease, padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .service-row-item:hover {
-      background: #000000;
+    @media (min-width: 640px) {
+      .category-accordion-trigger {
+        padding: 1.625rem 1.25rem;
+        gap: 1.25rem;
+      }
+    }
+    .category-accordion-trigger::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 22%;
+      bottom: 22%;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: #FFC700;
+      transform: scaleY(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .category-accordion-item:hover .category-accordion-trigger::before,
+    .category-accordion-item.active .category-accordion-trigger::before {
+      transform: scaleY(1);
+    }
+    .category-accordion-item:hover .category-accordion-trigger {
+      background-color: rgba(0, 0, 0, 0.015);
+    }
+    .category-accordion-item.active .category-accordion-trigger {
+      background-color: transparent;
+    }
+    .category-accordion-trigger .category-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      width: 2rem;
+      transition: color 0.3s ease;
+    }
+    .category-accordion-item.active .category-num,
+    .category-accordion-item:hover .category-num {
+      color: #b38600;
+    }
+    .category-accordion-trigger .category-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      transition: color 0.3s ease;
+    }
+    @media (min-width: 640px) {
+      .category-accordion-trigger .category-title {
+        font-size: 1.5rem;
+      }
+    }
+    .category-accordion-item.active .category-title {
+      color: #000000;
+    }
+    .category-accordion-trigger .category-subtext {
+      font-size: 0.75rem;
+      color: #64748b;
+      max-width: 20rem;
+      display: none;
+      transition: color 0.3s ease;
+    }
+    @media (min-width: 1024px) {
+      .category-accordion-trigger .category-subtext {
+        display: block;
+      }
+    }
+    .category-accordion-trigger .category-badge-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      background-color: #0a0a0a;
       color: #ffffff;
-      padding-left: 2rem;
-      padding-right: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .service-row-item:hover h3 {
-      color: #ffffff !important;
+    .category-accordion-item:hover .category-badge-btn,
+    .category-accordion-item.active .category-badge-btn {
+      background-color: #FFC700;
+      color: #000000;
     }
-    .service-row-item:hover p {
-      color: rgba(255, 255, 255, 0.7) !important;
+    .category-accordion-trigger .category-icon-arrow {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .service-row-item:hover span.font-mono {
-      color: #FFC700 !important;
+    .category-accordion-item.active .category-icon-arrow {
+      transform: rotate(180deg);
     }
-    .service-row-item .badge-arrow {
-      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-      background: #000000;
-      color: #ffffff;
+    .category-accordion-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .service-row-item:hover .badge-arrow {
-      transform: translateX(5px);
-      background: #FFC700 !important;
-      color: #000000 !important;
-      font-weight: 800;
+    .category-accordion-panel > div {
+      overflow: hidden;
+    }
+    .category-accordion-panel-inner {
+      padding-top: 0.5rem;
+      padding-bottom: 1.75rem;
+      padding-inline: 1rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    @media (min-width: 640px) {
+      .category-accordion-panel-inner {
+        padding-inline: 1.5rem;
+      }
     }
 
     /* Staggered Line & Word Reveal Overflow Containers */
@@ -879,49 +971,403 @@
         <div class="eyebrow mb-2">Category Ecosystem</div>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md">What we produce best.</h2>
 
-        <!-- Hover Fill Rows List -->
-        <ul class="border-t border-[#e6e5e2]">
+        <!-- Interactive Category Accordion List -->
+        <ul class="border-t border-[#e6e5e2]" id="category-accordion-list">
           
-          <li onclick="filterByCategory('patch-cable')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">01</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Patch Cable & Networking</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 01: Patch Cable & Networking -->
+          <li id="category-item-patch-cable" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('patch-cable')" 
+                    id="category-row-patch-cable" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-patch-cable" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">01</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">Patch Cable &amp; Networking</h3>
+              </div>
+              <p class="category-subtext">Cat6, Cat8 40Gbps SFTP, Bulk Rolls &amp; RJ45 Connectors.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-patch-cable" class="category-accordion-panel" role="region" aria-labelledby="category-row-patch-cable">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 01
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">Patch Cable &amp; Networking</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">9 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors &amp; Keystone Adapters.
+                      </p>
+                      <p class="text-slate-500">
+                        Solusi kabel jaringan berkecepatan tinggi hingga 40Gbps SFTP shielded dengan konduktor tembaga murni untuk instalasi server, data center, dan jaringan enterprise yang membutuhkan transmisi data stabil tanpa packet loss.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('patch-cable')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
-          <li onclick="filterByCategory('hdmi-video')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">02</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">HDMI 8K & DisplayPort</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 02: HDMI 8K & DisplayPort -->
+          <li id="category-item-hdmi-video" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('hdmi-video')" 
+                    id="category-row-hdmi-video" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-hdmi-video" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">02</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">HDMI 8K &amp; DisplayPort</h3>
+              </div>
+              <p class="category-subtext">Ultra Gold HDMI 2.1, Active Optic Fiber &amp; 16K DisplayPort.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-hdmi-video" class="category-accordion-panel" role="region" aria-labelledby="category-row-hdmi-video">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 02
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">HDMI 8K &amp; DisplayPort</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">49 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber &amp; 16K DisplayPort.
+                      </p>
+                      <p class="text-slate-500">
+                        Transmisi sinyal visual definisi tinggi dengan bandwidth hingga 48Gbps tanpa delay audio-video. Ideal untuk monitor gaming profesional, home theater, videowall, dan broadcast workstation.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('hdmi-video')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
-          <li onclick="filterByCategory('power-cable')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">03</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Heavy Duty Power & PDU</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 03: Heavy Duty Power & PDU -->
+          <li id="category-item-power-cable" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('power-cable')" 
+                    id="category-row-power-cable" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-power-cable" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">03</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">Heavy Duty Power &amp; PDU</h3>
+              </div>
+              <p class="category-subtext">AC Power C5, CPU C13, Server PDU C13-C14 &amp; C19-C20.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-power-cable" class="category-accordion-panel" role="region" aria-labelledby="category-row-power-cable">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 03
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">Heavy Duty Power &amp; PDU</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">3 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 &amp; CEE 7/7 Schuko.
+                      </p>
+                      <p class="text-slate-500">
+                        Kabel daya bersertifikasi standar industri dengan tembaga murni tebal dan insulasi tahan panas tinggi untuk workstation, server rack, UPS, dan infrastruktur listrik enterprise.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('power-cable')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
-          <li onclick="filterByCategory('usb-charging')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">04</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">USB & High-Speed Data</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Active Optic Extension, USB Type-C & High-Amp Charging.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 04: USB & High-Speed Data -->
+          <li id="category-item-usb-charging" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('usb-charging')" 
+                    id="category-row-usb-charging" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-usb-charging" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">04</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">USB &amp; High-Speed Data</h3>
+              </div>
+              <p class="category-subtext">Active Optic Extension, USB Type-C &amp; High-Amp Charging.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-usb-charging" class="category-accordion-panel" role="region" aria-labelledby="category-row-usb-charging">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 04
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">USB &amp; High-Speed Data</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">12 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension &amp; Hubs.
+                      </p>
+                      <p class="text-slate-500">
+                        Solusi transfer data kecepatan tinggi hingga 10Gbps dan pengisian daya pintar Power Delivery (PD) dengan pelindung kabel braided nilon yang tahan lebih dari 50.000 kali tekukan.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('usb-charging')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
-          <li onclick="filterByCategory('audio')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">05</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Audio Solutions & AUX</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 05: Audio Solutions & AUX -->
+          <li id="category-item-audio" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('audio')" 
+                    id="category-row-audio" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-audio" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">05</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">Audio Solutions &amp; AUX</h3>
+              </div>
+              <p class="category-subtext">3.5mm AUX, Optical Toslink, Dual 6.35mm &amp; XLR Mic Cables.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-audio" class="category-accordion-panel" role="region" aria-labelledby="category-row-audio">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 05
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">Audio Solutions &amp; AUX</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">11 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone &amp; Optical Toslink.
+                      </p>
+                      <p class="text-slate-500">
+                        Kabel audio fidelitas tinggi (Hi-Fi) bebas distorsi dengan konektor lapis emas 24K dan pelindung interferensi elektromagnetik ganda untuk studio rekaman, panggung, dan sistem home audio audiophile.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('audio')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
-          <li onclick="filterByCategory('adapter')" class="service-row-item border-b border-[#e6e5e2]">
-            <span class="w-8 text-xs font-medium text-slate-400 font-mono">06</span>
-            <h3 class="flex-1 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">Adapters & Converters</h3>
-            <p class="hidden lg:block max-w-xs text-xs text-slate-500">Multi-port Display Converters, Audio Splitters & Signal Hubs.</p>
-            <div class="badge-arrow w-10 h-10 rounded-full bg-[#0a0a0a] text-white flex items-center justify-center text-sm">↗</div>
+          <!-- Category 06: Adapters & Converters -->
+          <li id="category-item-adapter" class="category-accordion-item border-b border-[#e6e5e2]">
+            <button type="button" 
+                    onclick="toggleCategoryAccordion('adapter')" 
+                    id="category-row-adapter" 
+                    aria-expanded="false" 
+                    aria-controls="category-panel-adapter" 
+                    class="category-accordion-trigger group">
+              <span class="category-num">06</span>
+              <div class="flex-1 min-w-0 pr-2">
+                <h3 class="category-title">Adapters &amp; Converters</h3>
+              </div>
+              <p class="category-subtext">Multi-port Display Converters, Audio Splitters &amp; Signal Hubs.</p>
+              <div class="category-badge-btn" aria-label="Buka detail kategori">
+                <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Minimalist Expanding Information Panel -->
+            <div id="category-panel-adapter" class="category-accordion-panel" role="region" aria-labelledby="category-row-adapter">
+              <div>
+                <div class="category-accordion-panel-inner">
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
+                    <!-- Left: Identifier & Count -->
+                    <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 06
+                      </span>
+                      <div class="text-sm font-bold text-slate-900 pt-1">Adapters &amp; Converters</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">37 Produk Resmi</span>
+                        <span>•</span>
+                        <span>Garansi 12 Bulan</span>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Technical Description & Coverage -->
+                    <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                      <p class="font-semibold text-slate-800">
+                        Multi-port Display Converters, Type-C Hubs, Audio Splitters &amp; Video Signal Converters.
+                      </p>
+                      <p class="text-slate-500">
+                        Solusi konversi antarmuka lengkap antara USB-C, HDMI, DisplayPort, VGA, DVI, dan audio digital-analog untuk menghubungkan laptop modern dengan display proyektor dan monitor legacy.
+                      </p>
+                    </div>
+
+                    <!-- Right: Action CTA Button -->
+                    <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
+                      <button type="button" 
+                              onclick="filterByCategory('adapter')" 
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                        <span>Lihat Produk di Katalog</span>
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
 
         </ul>
@@ -2555,6 +3001,55 @@
 
     window.resumeBannerAutoplay = function() {
       isBannerAutoplayPaused = false;
+    };
+
+    /* ==========================================================================
+       CATEGORY ECOSYSTEM ACCORDION CONTROLLER (Single-Open Editorial Accordion)
+       ========================================================================== */
+    window.activeCategoryAccordion = null;
+
+    window.toggleCategoryAccordion = function(catId) {
+      const panel = document.getElementById(`category-panel-${catId}`);
+      const trigger = document.getElementById(`category-row-${catId}`);
+      const item = document.getElementById(`category-item-${catId}`);
+
+      if (!panel || !trigger) return;
+
+      const isCurrentlyOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      // Close previously opened category panel (single-open accordion behavior)
+      if (window.activeCategoryAccordion && window.activeCategoryAccordion !== catId) {
+        const prevCat = window.activeCategoryAccordion;
+        const prevPanel = document.getElementById(`category-panel-${prevCat}`);
+        const prevTrigger = document.getElementById(`category-row-${prevCat}`);
+        const prevItem = document.getElementById(`category-item-${prevCat}`);
+        if (prevPanel) {
+          prevPanel.style.gridTemplateRows = '0fr';
+        }
+        if (prevTrigger) {
+          prevTrigger.setAttribute('aria-expanded', 'false');
+          prevTrigger.classList.remove('active');
+        }
+        if (prevItem) {
+          prevItem.classList.remove('active');
+        }
+      }
+
+      if (isCurrentlyOpen) {
+        // Toggle close
+        panel.style.gridTemplateRows = '0fr';
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.classList.remove('active');
+        if (item) item.classList.remove('active');
+        window.activeCategoryAccordion = null;
+      } else {
+        // Toggle open
+        panel.style.gridTemplateRows = '1fr';
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.classList.add('active');
+        if (item) item.classList.add('active');
+        window.activeCategoryAccordion = catId;
+      }
     };
 
     /* ==========================================================================
