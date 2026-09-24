@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,12 @@
   <meta name="description" content="HOWELL (PT Howell Niaga Indonesia) delivers high-performance certified cabling, 8K video adapters, server power distribution, and enterprise connectivity systems — bold ideas, shipped with quiet precision." />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Preconnect & DNS-Prefetch for Speed -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://wildanfi12.github.io/Howell/" />
@@ -2012,7 +2018,7 @@
     <!-- Content Box -->
     <div onclick="event.stopPropagation()" class="max-w-6xl max-h-[90vh] p-2 sm:p-4 flex flex-col items-center justify-center relative">
       <div class="relative overflow-hidden rounded-2xl border border-white/20 bg-black/80 shadow-2xl p-3 max-h-[80vh] flex items-center justify-center">
-        <img id="zoom-modal-img" src="" alt="Zoom Photo" onclick="toggleZoomScale(this)" class="max-w-full max-h-[75vh] object-contain rounded-xl transition-transform duration-300 cursor-zoom-in" title="Klik foto untuk perbesar 2x / Zoom In">
+        <img id="zoom-modal-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Zoom Photo" onclick="toggleZoomScale(this)" class="max-w-full max-h-[75vh] object-contain rounded-xl transition-transform duration-300 cursor-zoom-in" title="Klik foto untuk perbesar 2x / Zoom In">
       </div>
       <div class="flex items-center gap-3 mt-4">
         <span id="zoom-modal-title" class="text-center text-xs sm:text-sm font-semibold text-white/90 bg-white/10 px-4 py-1.5 rounded-full border border-white/10"></span>
@@ -2045,15 +2051,44 @@
        1. GLOBAL STATE & LENIS SMOOTH SCROLL INITIALIZATION
        ========================================================================== */
     window.scrollTo(0, 0);
-    const LenisClass = window.Lenis || null;
-    const lenis = LenisClass ? new LenisClass({ smoothWheel: true }) : null;
 
+    // Clean up obsolete/unnecessary prototype cache from local/session storage
+    try {
+      ['howell_cart', 'howell_wishlist', 'howell_checkout', 'cart', 'howell_recent', 'howell_cached_products'].forEach(key => {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+      });
+    } catch (e) {}
+
+    const LenisClass = window.Lenis || null;
+    const lenis = LenisClass ? new LenisClass({
+      lerp: 0.09,
+      duration: 1.2,
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.2,
+      infinite: false
+    }) : null;
+    window.lenis = lenis;
+
+    let isRafRunning = true;
     if (lenis) {
       function raf(t) {
-        lenis.raf(t);
+        if (isRafRunning) {
+          lenis.raf(t);
+        }
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
+
+      document.addEventListener('visibilitychange', () => {
+        isRafRunning = !document.hidden;
+        if (document.hidden) {
+          lenis.stop();
+        } else if (scrollEnabled) {
+          lenis.start();
+        }
+      });
     }
 
     let scrollEnabled = true;
@@ -2080,11 +2115,16 @@
       const el = document.getElementById(id);
       if (!el) return;
       const header = document.getElementById('site-header');
-      const headerOffset = header ? header.offsetHeight : 80;
-      const top = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - headerOffset);
+      const headerOffset = header ? header.offsetHeight + 14 : 80;
+
       if (lenis && typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(top);
+        lenis.scrollTo(el, {
+          offset: -headerOffset,
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
       } else {
+        const top = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - headerOffset);
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
@@ -2158,61 +2198,7 @@
     }
 
 
-    /* ==========================================================================
-       5. LIVE LOCAL CLOCK & HERO CAROUSEL ENGINE
-       ========================================================================== */
-    function initLiveClock() {
-      const timeEl = document.getElementById('header-live-time');
-      const dateEl = document.getElementById('header-live-date');
-      const navTimeEl = document.getElementById('nav-overlay-time');
 
-      function updateClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12 || 12;
-
-        const timeStr = `${hours}:${minutes}${ampm}`;
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        const dateStr = `${now.getDate()} ${months[now.getMonth()]}, ${now.getFullYear()}`;
-
-        if (timeEl) timeEl.textContent = timeStr;
-        if (dateEl) dateEl.textContent = dateStr;
-        if (navTimeEl) navTimeEl.textContent = timeStr;
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    }
-
-    const HERO_CARD_ITEMS = [
-      { caption: "Flagship Hardware", title: "Cat8 SFTP 40Gbps Patch Cable", image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8B03 - N8B08.png" },
-      { caption: "8K Ultra Video", title: "HDMI 2.1 Ultra Gold Cable", image: "assets/Produk/Produk Batch 1/2. HDMI Cable/H0103 - H0110.png" },
-      { caption: "Server Power", title: "Cat8 Flat FTP Yellow Cable", image: "assets/Produk/Produk Batch 1/1. Patch Cable/N8A02 - N8A08.png" },
-      { caption: "Optic Fiber", title: "Active Optic Fiber Cable", image: "assets/Produk/Produk Batch 1/2. HDMI Cable/CH0101.png" }
-    ];
-    let heroCardIndex = 0;
-
-    window.cycleHeroCard = function(step = 1) {
-      heroCardIndex = (heroCardIndex + step + HERO_CARD_ITEMS.length) % HERO_CARD_ITEMS.length;
-      const item = HERO_CARD_ITEMS[heroCardIndex];
-
-      const captionEl = document.getElementById('hero-card-caption');
-      const titleEl = document.getElementById('hero-card-title');
-      const imgEl = document.getElementById('hero-card-img');
-      const dotsEl = document.getElementById('hero-card-dots');
-
-      if (captionEl) captionEl.textContent = item.caption;
-      if (titleEl) titleEl.textContent = item.title;
-      if (imgEl && item.image) imgEl.src = encodeURI(item.image);
-
-      if (dotsEl) {
-        dotsEl.innerHTML = HERO_CARD_ITEMS.map((_, i) => `
-          <span class="h-1 rounded-full transition-all ${i === heroCardIndex ? 'bg-white w-4' : 'bg-white/30 w-1.5'}"></span>
-        `).join('');
-      }
-    };
 
 
     /* ==========================================================================
@@ -2600,6 +2586,7 @@
       scrollToId('catalog-section');
     };
 
+    let searchDebounceTimer = null;
     window.handleSearchInput = function(query) {
       if (typeof state !== 'undefined') {
         state.searchQuery = query;
@@ -2608,9 +2595,13 @@
       const headInput = document.getElementById('header-search-input');
       if (catInput && catInput !== document.activeElement) catInput.value = query;
       if (headInput && headInput !== document.activeElement) headInput.value = query;
-      if (typeof renderCatalog === 'function') {
-        renderCatalog();
-      }
+
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        if (typeof renderCatalog === 'function') {
+          renderCatalog();
+        }
+      }, 120);
     };
 
     window.onHeaderSearchSubmit = function(e) {
@@ -3364,7 +3355,6 @@
 
     function initApp() {
       runIntroLoader();
-      initLiveClock();
       initScrollReveals();
       initStatsCounterAnimation();
       initFloatingHeader();
@@ -3401,7 +3391,7 @@
     });
   </script>
   <!-- ── Scroll to Top Button ── -->
-  <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Kembali ke atas" aria-label="Scroll to top">
+  <button id="scroll-top-btn" onclick="scrollToId('home')" title="Kembali ke atas" aria-label="Scroll to top">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
   <script>

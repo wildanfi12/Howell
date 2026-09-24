@@ -8,13 +8,24 @@
 // Smooth Scroll Navigation Helper
 // ============================================================
 window.scrollToId = function(id) {
+  if (typeof window.showFloatingHeader === 'function') {
+    window.showFloatingHeader();
+  }
   const el = document.getElementById(id);
   if (!el) return;
-  const headerOffset = document.getElementById('site-header')
-    ? document.getElementById('site-header').offsetHeight
-    : 80;
-  const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
-  window.scrollTo({ top, behavior: 'smooth' });
+  const header = document.getElementById('site-header');
+  const headerOffset = header ? header.offsetHeight + 14 : 80;
+
+  if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+    window.lenis.scrollTo(el, {
+      offset: -headerOffset,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
+  } else {
+    const top = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - headerOffset);
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
 
   if (id === 'stats-overview-section' || id === 'about-us') {
     setTimeout(() => {
@@ -193,7 +204,7 @@ function renderProductVisual(product, isLarge = false) {
     const safeTitle = (product.name || '').replace(/'/g, "\\'");
     return `
       <div class="relative w-full h-full flex items-center justify-center group/img overflow-hidden">
-        <img src="${encodedSrc}" alt="${product.name}" onclick="event.stopPropagation(); openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain ${pClass} transition-transform duration-500 group-hover/img:scale-105 cursor-zoom-in" title="Klik foto untuk perbesar / zoom">
+        <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" onclick="event.stopPropagation(); openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain ${pClass} transition-transform duration-500 group-hover/img:scale-105 cursor-zoom-in" title="Klik foto untuk perbesar / zoom">
         
         <!-- Hover Zoom Overlay Hint -->
         <div onclick="event.stopPropagation(); openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute inset-0 bg-black/50 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center text-white text-xs font-bold gap-1.5 backdrop-blur-[2px] cursor-pointer">
@@ -484,7 +495,7 @@ window.renderCatalog = function renderCatalog() {
           <!-- Main row (clickable) -->
           <div onclick="openProductDetail('${product.id}')" class="group flex flex-col sm:flex-row items-center gap-5 cursor-pointer p-4 hover:bg-slate-50/80 transition-colors duration-200 select-none pb-3">
             <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 bg-[#F8FAFC] rounded-[8px] border border-slate-200/60 overflow-hidden relative flex items-center justify-center p-3">
-              <img src="${encodedSrc}" alt="${product.name}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
+              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
             </div>
             <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
               <div>
@@ -552,7 +563,7 @@ window.renderCatalog = function renderCatalog() {
           <div style="cursor:pointer;" onclick="openProductDetail('${product.id}')">
             <!-- Image Wrapper -->
             <div class="card-img-wrap">
-              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" onerror="this.src='assets/howell-logo.png'">
+              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'">
               <!-- Quick View Button -->
               <button class="quick-view-btn" onclick="event.stopPropagation(); openProductDetail('${product.id}')" title="Lihat Detail">
                 <i data-lucide="eye" style="width:14px;height:14px;color:#0F172A;"></i>
@@ -1134,19 +1145,6 @@ window.setCatalogViewMode = setCatalogViewMode;
 window.filterByCategory = filterByCategory;
 window.resetFilters = resetFilters;
 window.closeModal = closeModal;
-window.addToCart = addToCart;
-window.updateCartQty = updateCartQty;
-window.removeFromCart = removeFromCart;
-window.clearCart = clearCart;
-window.toggleCartDrawer = toggleCartDrawer;
-window.renderCartDrawer = renderCartDrawer;
-window.openCheckoutModal = openCheckoutModal;
-window.handlePaymentMethodChange = handlePaymentMethodChange;
-window.copyBcaAccount = copyBcaAccount;
-window.backToCheckoutForm = backToCheckoutForm;
-window.confirmBcaPayment = confirmBcaPayment;
-window.submitQrisCheckout = submitQrisCheckout;
-window.confirmQrisPayment = confirmQrisPayment;
 window.openImageZoom = openImageZoom;
 window.openB2BModal = openB2BModal;
 window.toggleCatalogExpand = toggleCatalogExpand;
