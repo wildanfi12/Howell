@@ -1436,12 +1436,12 @@ button, a, input, select {
   -webkit-user-select: none;
 }
 
-/* Banner Image Full-Width Display (Spans Edge-to-Edge without Pillarboxing) */
+/* Banner Image Full-Width Display (Spans Edge-to-Edge without Pillarboxing or Cropping) */
 #active-store-showcase-img,
 #active-category-banner-img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
 }
 
