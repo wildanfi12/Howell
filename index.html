@@ -621,11 +621,10 @@
 
 
     <!-- ==================== CATEGORY BANNERS AUTOMATIC SHOWCASE ==================== -->
-    <section id="category-banners-section" class="bg-white py-12 lg:py-16">
-      <div class="shell">
-        
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+    <section id="category-banners-section" class="bg-white pt-10 sm:pt-14 pb-12 sm:pb-16 overflow-hidden">
+      <!-- Section Header & Filter Tabs (Aligned within Shell) -->
+      <div class="shell mb-6 sm:mb-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div class="eyebrow mb-2">Jelajahi Kategori</div>
             <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Temukan Produk yang Tepat.</h2>
@@ -645,48 +644,47 @@
             <button onclick="onCategoryTabClick('dvi-vga')" id="banner-tab-dvi-vga" class="banner-tab-btn">DVI &amp; VGA</button>
           </div>
         </div>
+      </div>
 
-        <!-- Banner Slider Display Container (Full Uncropped 16:9 Category Banners) -->
-        <div id="category-banner-slider-box" onmouseenter="pauseBannerAutoplay()" onmouseleave="resumeBannerAutoplay()" class="relative rounded-2xl sm:rounded-3xl bg-black shadow-2xl overflow-hidden group w-full border border-black/10">
-          
-          <!-- Clickable Active Banner Image Holder (Max 520px height so controls are never pushed below fold) -->
-          <div onclick="onCategoryBannerClick()" class="relative w-full overflow-hidden bg-black cursor-pointer flex items-center justify-center transition-transform" style="aspect-ratio: 16 / 9; max-height: 520px;" title="Klik banner untuk langsung ke katalog produk">
-            <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/3.png" alt="Category Banner" class="w-full h-full object-contain block select-none group-hover:scale-[1.015] transition-transform duration-500">
+      <!-- Full-Width Banner Slider Display (Spanning 100% Edge-to-Edge from Left to Right) -->
+      <div id="category-banner-slider-box" onmouseenter="pauseBannerAutoplay()" onmouseleave="resumeBannerAutoplay()" class="relative bg-black shadow-2xl overflow-hidden group w-full border-y border-black/10">
+        
+        <!-- Clickable Active Banner Image Holder -->
+        <div onclick="onCategoryBannerClick()" class="relative w-full overflow-hidden bg-black cursor-pointer flex items-center justify-center transition-transform aspect-[16/9] max-h-[680px] xl:max-h-[760px]" title="Klik banner untuk langsung ke katalog produk">
+          <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/6.png" alt="Category Banner" class="w-full h-full object-cover block select-none group-hover:scale-[1.01] transition-transform duration-500">
 
-            <!-- Top Left Category Badge -->
-            <div class="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-lg pointer-events-none">
-              <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
-              <span id="banner-badge-category" class="text-[#FFC700]">HDMI 8K &amp; Video Cables</span>
-            </div>
-
-            <!-- Bottom Right Floating Jump CTA Button -->
-            <div class="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20 flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-black/85 hover:bg-[#FFC700] text-white hover:text-black text-xs font-extrabold shadow-2xl backdrop-blur-md border border-white/20 hover:border-[#FFC700] transition-all hover:scale-105 pointer-events-none group-hover:scale-105">
-              <span id="banner-cta-text">Buka Produk di Katalog</span>
-              <i data-lucide="arrow-down-right" class="w-3.5 h-3.5 text-[#FFC700] group-hover:text-black"></i>
-            </div>
-
-            <!-- Floating Arrow Controls (Left & Right Edges) -->
-            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(-1);" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Previous Banner">
-              <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-            </button>
-            <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(1);" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-lg backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Next Banner">
-              <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-            </button>
+          <!-- Top Left Category Badge -->
+          <div class="absolute top-3 left-3 sm:top-6 sm:left-8 lg:left-12 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-bold text-white shadow-lg pointer-events-none">
+            <span class="w-2 h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
+            <span id="banner-badge-category" class="text-[#FFC700]">HDMI 8K &amp; Video Cables</span>
           </div>
 
-          <!-- Bottom Control Bar (Outside the image so it NEVER covers any photo content) -->
-          <div onclick="onCategoryBannerClick()" class="flex items-center justify-between px-4 sm:px-6 py-2.5 bg-[#111111] border-t border-white/10 text-xs cursor-pointer hover:bg-[#161616] transition-colors">
-            <div class="flex items-center gap-2">
-              <span id="active-banner-label" class="text-white font-bold text-xs sm:text-sm">HDMI 8K &amp; Video Cables</span>
-              <span class="text-[#FFC700] text-[11px] hidden sm:inline font-semibold">Lihat Katalog →</span>
-            </div>
-            <!-- Bottom Center Pagination Dots -->
-            <div id="banner-pagination-dots" class="flex items-center gap-1.5 sm:gap-2">
-              <!-- Dots rendered by JS -->
-            </div>
-            <span class="text-white/40 text-[10px] sm:text-[11px] hidden xs:inline">Klik banner untuk ke katalog</span>
+          <!-- Bottom Right Floating Jump CTA Button -->
+          <div class="absolute bottom-3 right-3 sm:bottom-6 sm:right-8 lg:right-12 z-20 flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-black/85 hover:bg-[#FFC700] text-white hover:text-black text-xs font-extrabold shadow-2xl backdrop-blur-md border border-white/20 hover:border-[#FFC700] transition-all hover:scale-105 pointer-events-none group-hover:scale-105">
+            <span id="banner-cta-text">Buka Produk di Katalog</span>
+            <i data-lucide="arrow-down-right" class="w-3.5 h-3.5 text-[#FFC700] group-hover:text-black"></i>
           </div>
 
+          <!-- Floating Arrow Controls (Left & Right Edges) -->
+          <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(-1);" class="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-xl backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Previous Banner">
+            <i data-lucide="chevron-left" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+          </button>
+          <button type="button" onclick="event.stopPropagation(); stepCategoryBanner(1);" class="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#FFC700] text-white hover:text-black shadow-xl backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/20" aria-label="Next Banner">
+            <i data-lucide="chevron-right" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+          </button>
+        </div>
+
+        <!-- Bottom Control Bar (Outside the image so it NEVER covers any photo content) -->
+        <div onclick="onCategoryBannerClick()" class="flex items-center justify-between px-4 sm:px-8 lg:px-12 py-3 bg-[#111111] border-t border-white/10 text-xs cursor-pointer hover:bg-[#161616] transition-colors">
+          <div class="flex items-center gap-2">
+            <span id="active-banner-label" class="text-white font-bold text-xs sm:text-sm">HDMI 8K &amp; Video Cables</span>
+            <span class="text-[#FFC700] text-[11px] hidden sm:inline font-semibold">Lihat Katalog →</span>
+          </div>
+          <!-- Bottom Center Pagination Dots -->
+          <div id="banner-pagination-dots" class="flex items-center gap-1.5 sm:gap-2">
+            <!-- Dots rendered by JS -->
+          </div>
+          <span class="text-white/40 text-[10px] sm:text-[11px] hidden xs:inline">Klik banner untuk ke katalog</span>
         </div>
 
       </div>
