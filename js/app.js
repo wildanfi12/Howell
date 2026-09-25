@@ -474,159 +474,38 @@ window.renderCatalog = function renderCatalog() {
   const displayed = shouldLimit ? filtered.slice(0, limit) : filtered;
 
   if (state.viewMode === 'list') {
-    catalogGrid.className = 'flex flex-col gap-4 w-full';
+    catalogGrid.className = 'flex flex-col gap-3 w-full';
     catalogGrid.innerHTML = displayed.map(product => {
       const encodedSrc = encodeURI(product.image);
-      const isExpanded = state.expandedCards.has(product.id);
-
-      // Build key specs
-      const specEntries = Object.entries(product.specs || {}).slice(0, 4);
-      const specHtml = specEntries.map(([k, v]) => `
-        <div class="flex items-center justify-between gap-4 py-1.5 border-b border-[#F2F2F7] last:border-0 text-xs">
-          <span class="text-[#86868B] font-medium">${k}</span>
-          <span class="text-[#1D1D1F] font-semibold text-right">${v}</span>
-        </div>
-      `).join('');
-
-      const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent('Halo HOWELL, saya tertarik dengan ' + product.name + ' (SKU: ' + (product.sku || '-') + '). Bisa minta informasi lebih lanjut?')}`;
 
       return `
-        <div class="bg-white rounded-[20px] border border-black/[0.08] hover:border-black/[0.14] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.06)] transition-all duration-300 overflow-hidden">
-          <!-- Main row (clickable) -->
-          <div onclick="openProductDetail('${product.id}')" class="group flex flex-col sm:flex-row items-center gap-5 cursor-pointer p-4 sm:p-5 hover:bg-[#FBFBFD] transition-colors duration-200 select-none">
-            <div class="w-28 h-28 sm:w-32 sm:h-32 shrink-0 bg-[#FBFBFD] rounded-[14px] overflow-hidden relative flex items-center justify-center p-3 border border-black/[0.03]">
-              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-[1.04] transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            </div>
-            <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
-              <div>
-                <span class="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
-                <h3 class="text-[14px] sm:text-[15px] font-semibold text-[#1D1D1F] mt-1 group-hover:text-[#0071E3] transition-colors line-clamp-2 leading-snug tracking-[-0.015em]">${product.name}</h3>
-                <p class="text-xs text-[#6E6E73] line-clamp-2 mt-1 leading-relaxed">${product.summary || ''}</p>
-              </div>
-              <div class="mt-3 flex items-center justify-between">
-                <button id="expand-btn-${product.id}" onclick="toggleCardExpand('${product.id}', event)"
-                  class="flex items-center gap-1.5 text-[12px] font-medium text-[#1D1D1F] hover:text-[#0071E3] transition-colors cursor-pointer select-none px-0 bg-transparent border-0">
-                  <span class="expand-label">${isExpanded ? 'Tutup Detail' : 'Spesifikasi'}</span>
-                  <svg class="w-3.5 h-3.5 text-[#86868B] transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#0071E3]' : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </button>
-                <span class="text-xs font-semibold text-[#0071E3] group-hover:text-[#0077ED] transition-colors flex items-center gap-1.5">
-                  <span>Detail</span>
-                  <span class="w-5 h-5 rounded-full bg-[#F5F5F7] group-hover:bg-[#0071E3] text-[#1D1D1F] group-hover:text-white flex items-center justify-center transition-all">
-                    <svg class="w-3 h-3 stroke-[2.2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  </span>
-                </span>
-              </div>
-            </div>
+        <div onclick="openProductDetail('${product.id}')" class="bg-white rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer group hover:shadow-lg flex items-center gap-4 p-3 sm:p-4">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-[#F5F5F7] rounded-xl overflow-hidden flex items-center justify-center p-3">
+            <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out">
           </div>
-
-          <!-- Expand Panel -->
-          <div id="expand-panel-${product.id}" class="list-card-expand-panel${isExpanded ? ' is-open' : ''}">
-            <div class="px-5 pb-5 pt-2 flex flex-col sm:flex-row gap-5 border-t border-[#F2F2F7] bg-[#FBFBFD]">
-              <!-- Specs table -->
-              ${specHtml ? `
-              <div class="flex-1 min-w-0">
-                <p class="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#86868B] mb-2">Spesifikasi Teknis</p>
-                <div>${specHtml}</div>
-              </div>` : ''}
-              <!-- CTA -->
-              <div class="flex flex-col gap-2 sm:w-44 shrink-0 justify-center">
-                <button type="button" onclick="openProductDetail('${product.id}')"
-                  class="w-full py-2.5 rounded-full text-xs font-semibold text-white cursor-pointer transition-all flex items-center justify-center gap-1.5 bg-[#1D1D1F] hover:bg-[#333336] shadow-xs">
-                  <span>Lihat Detail Lengkap</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5 stroke-[2]"></i>
-                </button>
-                <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
-                  class="w-full py-2 rounded-full text-xs font-medium text-[#1D1D1F] bg-white border border-[#D2D2D7] hover:bg-[#F5F5F7] cursor-pointer flex items-center justify-center gap-1.5 transition-colors">
-                  <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#34C759]"></i>
-                  <span>Tanya via WhatsApp</span>
-                </a>
-              </div>
-            </div>
+          <div class="flex-1 min-w-0">
+            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
+            <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug line-clamp-2 mt-0.5">${product.name}</h3>
           </div>
+          <svg class="w-4 h-4 text-[#C7C7CC] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </div>
       `;
     }).join('');
   } else {
-    // Grid View — Apple iPhone Showcase Architecture
-    catalogGrid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full items-stretch';
+    // Grid View — Minimal Product Card
+    catalogGrid.className = 'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full items-stretch';
     catalogGrid.innerHTML = displayed.map(product => {
       const encodedSrc = encodeURI(product.image);
-      const isExpanded = state.expandedCards.has(product.id);
-
-      // Build 3 key specs for quick preview
-      const specEntries = Object.entries(product.specs || {}).slice(0, 3);
-      const specHtml = specEntries.map(([k, v]) => `
-        <div class="flex items-start justify-between gap-2 text-[11px] py-1 border-b border-[#F2F2F7] last:border-0">
-          <span class="text-[#86868B] font-medium shrink-0">${k}</span>
-          <span class="text-[#1D1D1F] font-semibold text-right">${v}</span>
-        </div>
-      `).join('');
-
-      const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent('Halo HOWELL, saya tertarik dengan ' + product.name + ' (SKU: ' + (product.sku || '-') + '). Bisa minta informasi lebih lanjut?')}`;
 
       return `
-        <div class="product-card-pro flex flex-col bg-white rounded-[22px] border border-black/[0.08] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-black/[0.14] hover:shadow-[0_18px_36px_-8px_rgba(0,0,0,0.08)] group">
-          <!-- Clickable Top Area (Image & Content) -->
-          <div class="cursor-pointer flex flex-col flex-1 p-4 pb-0" onclick="openProductDetail('${product.id}')">
-            <!-- Image Wrapper (Spacious Apple Product Stage) -->
-            <div class="card-img-wrap relative w-full aspect-square bg-[#FBFBFD] rounded-[16px] flex items-center justify-center overflow-hidden p-5 mb-1.5 border border-black/[0.02]">
-              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'"
-                class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]">
-            </div>
-
-            <!-- Product Card Content -->
-            <div class="py-2.5 px-0.5 flex flex-col gap-1.5 flex-1">
-              <span class="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
-              <h3 class="text-[14px] font-semibold text-[#1D1D1F] leading-[1.38] tracking-[-0.015em] line-clamp-2 group-hover:text-[#0071E3] transition-colors">${product.name}</h3>
-              <div class="mt-auto pt-2 flex items-center justify-between">
-                <span class="text-[10px] font-mono text-[#6E6E73] bg-[#F5F5F7] px-2.5 py-0.5 rounded-full border border-black/[0.03] font-medium">SKU: ${product.sku || '-'}</span>
-              </div>
-            </div>
+        <div onclick="openProductDetail('${product.id}')" class="product-card-pro flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer group hover:shadow-lg">
+          <div class="w-full aspect-square bg-[#F5F5F7] flex items-center justify-center overflow-hidden p-6">
+            <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'"
+              class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105">
           </div>
-
-          <!-- Product Card Footer (Clean Apple Bottom Bar) -->
-          <div class="flex items-center justify-between px-4 py-2.5 border-t border-[#F2F2F7] bg-white">
-            <!-- Show More / Less Toggle Button (Apple SF Style) -->
-            <button id="expand-btn-${product.id}" onclick="event.stopPropagation(); toggleCardExpand('${product.id}', event)"
-              class="card-show-more-btn${isExpanded ? ' is-open' : ''} inline-flex items-center gap-1.5 text-[12px] font-medium text-[#1D1D1F] hover:text-[#0071E3] transition-colors cursor-pointer select-none bg-transparent border-0 p-0">
-              <span class="expand-label">${isExpanded ? 'Tutup Detail' : 'Spesifikasi'}</span>
-              <svg class="w-3.5 h-3.5 text-[#86868B] transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${isExpanded ? 'rotate-180 text-[#0071E3]' : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <!-- Secondary Quick Action Link (Apple Store Circular Chevron Button) -->
-            <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-              class="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#0071E3] hover:text-[#0077ED] transition-colors cursor-pointer group/btn" title="Lihat Spesifikasi Lengkap">
-              <span>Detail</span>
-              <span class="w-5 h-5 rounded-full bg-[#F5F5F7] group-hover/btn:bg-[#0071E3] text-[#1D1D1F] group-hover/btn:text-white flex items-center justify-center transition-all">
-                <svg class="w-3 h-3 stroke-[2.2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </span>
-            </button>
-          </div>
-
-          <!-- Inline Product Detail Expansion Accordion -->
-          <div id="expand-panel-${product.id}" class="card-expand-panel${isExpanded ? ' is-open' : ''}">
-            <div>
-              <div class="p-4 space-y-2.5 bg-[#FBFBFD] border-t border-[#F2F2F7]">
-                ${product.summary ? `<p class="text-[12px] text-[#6E6E73] leading-relaxed">${product.summary}</p>` : ''}
-                ${specHtml ? `
-                  <div class="space-y-1 pt-1.5 border-t border-[#E5E5EA]">
-                    <span class="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#86868B]">Spesifikasi Kunci</span>
-                    ${specHtml}
-                  </div>
-                ` : ''}
-                <div class="pt-2 border-t border-[#E5E5EA] flex flex-col gap-2">
-                  <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-                    class="w-full py-2.5 px-4 rounded-full text-[12.5px] font-semibold text-white bg-[#1D1D1F] hover:bg-[#333336] transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
-                    <span>Lihat Detail Lengkap</span>
-                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 stroke-[2]"></i>
-                  </button>
-                  <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                    class="w-full py-2 px-4 rounded-full text-[12px] font-medium text-[#1D1D1F] bg-white border border-[#D2D2D7] hover:bg-[#F5F5F7] transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
-                    <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#34C759]"></i>
-                    <span>Tanya via WhatsApp</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div class="px-3.5 py-3 flex flex-col gap-0.5">
+            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
+            <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug line-clamp-2">${product.name}</h3>
           </div>
         </div>
       `;
