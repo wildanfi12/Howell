@@ -46,7 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- HOWELL Premium Design System CSS -->
-  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-howell-tokens">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v4-minimal-cards">
 
   <!-- Tailwind CSS CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -448,7 +448,6 @@
       <nav class="hidden lg:flex items-center gap-7 xl:gap-8 select-none">
         <button onclick="scrollToId('home')" data-i18n="nav_home" class="nav-link text-[13px] font-medium text-white/85 hover:text-white transition-colors duration-150 cursor-pointer">Home</button>
         <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="nav-link text-[13px] font-medium text-white/85 hover:text-white transition-colors duration-150 cursor-pointer">Produk</button>
-        <button onclick="openCustomProductModal()" class="nav-link text-[13px] font-medium text-white/85 hover:text-white transition-colors duration-150 cursor-pointer">Custom Produk</button>
         <button onclick="scrollToId('about-us')" data-i18n="nav_about" class="nav-link text-[13px] font-medium text-white/85 hover:text-white transition-colors duration-150 cursor-pointer">Tentang Kami</button>
       </nav>
 
@@ -1906,16 +1905,6 @@
               </button>
             </li>
 
-            <li class="group">
-              <button onclick="openCustomProductModal(); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <span class="text-xs font-mono text-white/25 group-hover:text-white transition-colors w-6 shrink-0">05</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors">Custom Produk</span>
-                  <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
-                </div>
-                <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">Solusi Kustomisasi OEM/ODM &amp; Private Branding</p>
-              </button>
-            </li>
 
           </ul>
         </div>
@@ -2376,8 +2365,8 @@
 
 
   <!-- Master Products Dataset Bundle -->
-  <script src="js/products.js?v=20260923-apple-typography"></script>
-  <script src="js/app.js?v=20260923-apple-typography"></script>
+  <script src="js/products.js?v=20260925-v4-minimal-cards"></script>
+  <script src="js/app.js?v=20260925-v4-minimal-cards"></script>
 
   <!-- Lenis Smooth Scroll Script CDN -->
   <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
