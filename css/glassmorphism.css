@@ -4,54 +4,90 @@
    Design: Enterprise-grade, Apple-inspired, Signature Yellow
 /* ── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-  --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-text: var(--font-primary);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-apple: var(--font-primary);
 
-  /* Color Palette */
+  /* Howell Premium Product Showcase Design Tokens (v1.0.0) */
+  --color-howell-red: #D60000;
+  --color-howell-red-dark: #A80000;
+  --color-howell-red-light: #FFF0F0;
+  --color-howell-gold: #F2B903;
+  --color-howell-gold-dark: #C99400;
+
+  --color-canvas: #F7F7F8;
+  --color-surface-white: #FFFFFF;
+  --color-surface-soft: #F1F3F5;
+  --color-surface-muted: #E9EBEE;
+  --color-surface-dark: #101114;
+  --color-surface-charcoal: #1A1C20;
+
+  --color-text-primary: #17191D;
+  --color-text-secondary: #626975;
+  --color-text-tertiary: #8A909A;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border-subtle: #E5E7EB;
+  --color-border-strong: #D1D5DB;
+
+  --color-success: #16803C;
+  --color-warning: #B77900;
+  --color-overlay: rgba(16, 17, 20, 0.48);
+
+  /* Compatibility Palette Bindings */
   --bg-main: #FFFFFF;
-  --bg-surface: #F8FAFC;
+  --bg-surface: #F1F3F5;
   --bg-card: #FFFFFF;
-  --bg-header: rgba(8, 8, 8, 0.96);
-  --bg-header-scrolled: rgba(4, 4, 4, 0.99);
+  --bg-header: rgba(16, 17, 20, 0.94);
+  --bg-header-scrolled: rgba(16, 17, 20, 0.98);
 
-  --text-main: #0F172A;
-  --text-secondary: #475569;
-  --text-title: #020617;
-  --text-muted: #64748B;
+  --text-main: #17191D;
+  --text-secondary: #626975;
+  --text-title: #17191D;
+  --text-muted: #8A909A;
 
-  --color-yellow: #FFC700;
-  --color-yellow-dark: #E0B10D;
-  --color-yellow-hover: #D4A017;
-  --color-yellow-glow: rgba(255, 199, 0, 0.30);
-  --color-yellow-glow-sm: rgba(255, 199, 0, 0.15);
+  --color-red: #D60000;
+  --color-red-dark: #A80000;
+  --color-red-light: #FFF0F0;
+  --color-yellow: #F2B903;
+  --color-yellow-dark: #C99400;
+  --color-yellow-hover: #C99400;
+  --color-yellow-glow: rgba(242, 185, 3, 0.30);
+  --color-yellow-glow-sm: rgba(242, 185, 3, 0.15);
 
   /* Borders */
-  --border-glass: rgba(15, 23, 42, 0.10);
-  --border-hover: rgba(255, 199, 0, 0.60);
-  --border-card: rgba(15, 23, 42, 0.08);
+  --border-glass: rgba(16, 17, 20, 0.08);
+  --border-hover: #D60000;
+  --border-card: #E5E7EB;
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.07), 0 1px 4px rgba(15, 23, 42, 0.05);
-  --shadow-hover: 0 16px 40px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(255, 199, 0, 0.15);
-  --shadow-premium: 0 24px 60px rgba(15, 23, 42, 0.14);
-  --shadow-yellow: 0 8px 30px rgba(255, 199, 0, 0.40);
-  --shadow-yellow-sm: 0 4px 16px rgba(255, 199, 0, 0.25);
-  --shadow-inner: inset 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 2px 8px rgba(16, 17, 20, 0.04);
+  --shadow-subtle: 0 2px 12px rgba(16, 17, 20, 0.04);
+  --shadow-card: 0 2px 12px rgba(16, 17, 20, 0.04);
+  --shadow-hover: 0 8px 28px rgba(16, 17, 20, 0.08);
+  --shadow-card-hover: 0 8px 28px rgba(16, 17, 20, 0.08);
+  --shadow-floating: 0 12px 40px rgba(16, 17, 20, 0.12);
+  --shadow-premium: 0 16px 48px rgba(16, 17, 20, 0.12);
+  --shadow-red: 0 8px 30px rgba(214, 0, 0, 0.35);
+  --shadow-inner: inset 0 1px 3px rgba(16, 17, 20, 0.06);
 
   /* Radius */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-pill: 9999px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-xxl: 28px;
+  --radius-pill: 999px;
+  --radius-product-image: 12px;
+  --radius-product-card: 16px;
 
   /* Transitions */
-  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-spring: 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-fast: 160ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  --transition-smooth: 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  --transition-slow: 360ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 /* ── Base Reset ─────────────────────────────────────────────── */
@@ -401,62 +437,65 @@ p, span, li, a, input, textarea, select, button {
 
 /* ── Product Card Bespoke Architecture ──────────────────────── */
 .product-card-pro {
+  display: flex;
+  flex-direction: column;
   background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: transform 240ms cubic-bezier(0.2, 0.65, 0.3, 1), box-shadow 240ms cubic-bezier(0.2, 0.65, 0.3, 1), border-color 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  box-shadow: 0 2px 12px rgba(16, 17, 20, 0.04);
   position: relative;
 }
 
 .product-card-pro:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
-  border-color: rgba(15, 23, 42, 0.22);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(16, 17, 20, 0.08);
+  border-color: #D1D5DB;
 }
 
-/* Card Expand Panel (Show More / Less) */
+/* Card Expand Panel (Inline Accordion with Grid 0fr -> 1fr) */
 .card-expand-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.2, 0.65, 0.3, 1), opacity 280ms cubic-bezier(0.2, 0.65, 0.3, 1);
   opacity: 0;
-  background: #F8FAFC;
-  border-top: 1px solid transparent;
+  overflow: hidden;
+  background: #FFFFFF;
 }
 
 .card-expand-panel.is-open {
-  max-height: 440px;
+  grid-template-rows: 1fr;
   opacity: 1;
-  border-top-color: rgba(15, 23, 42, 0.06);
+}
+
+.card-expand-panel > div {
+  overflow: hidden;
 }
 
 .card-show-more-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 100%;
-  padding: 8px 12px 9px;
-  font-size: 11px;
+  justify-content: flex-start;
+  gap: 6px;
+  font-family: var(--font-primary, "Inter", sans-serif);
+  font-size: 13px;
   font-weight: 600;
-  color: #64748B;
+  color: #D60000;
   background: transparent;
   border: none;
   cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: color 0.18s, background 0.18s;
-  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 0;
+  transition: color 180ms ease;
 }
 
 .card-show-more-btn:hover {
-  color: #0F172A;
-  background: rgba(15, 23, 42, 0.02);
+  color: #A80000;
+  background: transparent;
 }
 
 .card-show-more-btn svg {
-  transition: transform 0.25s ease;
+  transition: transform 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .card-show-more-btn.is-open svg {
@@ -465,36 +504,45 @@ p, span, li, a, input, textarea, select, button {
 
 /* List card expand */
 .list-card-expand-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.2, 0.65, 0.3, 1), opacity 280ms cubic-bezier(0.2, 0.65, 0.3, 1);
   opacity: 0;
+  overflow: hidden;
+  background: #FFFFFF;
 }
 
 .list-card-expand-panel.is-open {
-  max-height: 400px;
+  grid-template-rows: 1fr;
   opacity: 1;
+}
+
+.list-card-expand-panel > div {
+  overflow: hidden;
 }
 
 .product-card-pro .card-img-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #F8FAFC;
+  background: #F1F3F5;
+  border-radius: 12px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .product-card-pro .card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 14px;
-  mix-blend-mode: multiply;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 360ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .product-card-pro:hover .card-img-wrap img {
-  transform: scale(1.04);
+  transform: scale(1.025);
 }
 
 .product-card-pro .card-actions {
@@ -1148,33 +1196,36 @@ p, span, li, a, input, textarea, select, button {
   border-radius: 4px;
 }
 
-/* ── Category Accordion Item Enhanced ─────────────────────────── */
+/* ── Category Accordion Item Enhanced (Howell Design Tokens v1.0.0) ── */
 .category-accordion-item {
   position: relative;
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  background-color: #FFFFFF;
+  transition: background-color 240ms cubic-bezier(0.2, 0.65, 0.3, 1), border-color 240ms ease;
 }
 
 .category-accordion-item.active {
-  background-color: #fafaf9;
+  background-color: #FFF0F0;
 }
 
 .category-accordion-trigger {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 0.875rem;
+  gap: 1.25rem;
+  padding: 1.25rem 1rem;
+  min-height: 80px;
   background: transparent;
   border: none;
   text-align: left;
   cursor: pointer;
   position: relative;
-  transition: background-color 0.25s ease;
+  transition: background-color 240ms ease;
 }
 
 @media (min-width: 640px) {
   .category-accordion-trigger {
-    padding: 1.625rem 1.25rem;
+    padding: 1.25rem 1.5rem;
+    min-height: 88px;
     gap: 1.25rem;
   }
 }
@@ -1183,13 +1234,12 @@ p, span, li, a, input, textarea, select, button {
   content: '';
   position: absolute;
   left: 0;
-  top: 22%;
-  bottom: 22%;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--color-yellow, #FFC700);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #D60000;
   transform: scaleY(0);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .category-accordion-item:hover .category-accordion-trigger::before,
@@ -1198,7 +1248,7 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .category-accordion-item:hover .category-accordion-trigger {
-  background-color: rgba(0, 0, 0, 0.015);
+  background-color: rgba(214, 0, 0, 0.02);
 }
 
 .category-accordion-item.active .category-accordion-trigger {
@@ -1206,44 +1256,46 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .category-accordion-trigger .category-num {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-mono, monospace);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: #8A909A;
   width: 2rem;
-  transition: color 0.3s ease;
+  transition: color 240ms ease;
 }
 
 .category-accordion-item.active .category-num,
 .category-accordion-item:hover .category-num {
-  color: #b38600;
+  color: #D60000;
 }
 
 .category-accordion-trigger .category-title {
   flex: 1;
+  font-family: var(--font-display, "Manrope", sans-serif);
   font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  transition: color 0.3s ease;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #17191D;
+  transition: color 240ms ease;
 }
 
 @media (min-width: 640px) {
   .category-accordion-trigger .category-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
 .category-accordion-item.active .category-title {
-  color: #000000;
+  color: #17191D;
 }
 
 .category-accordion-trigger .category-subtext {
-  font-size: 0.75rem;
-  color: #64748b;
-  max-width: 20rem;
+  font-family: var(--font-primary, "Inter", sans-serif);
+  font-size: 0.8125rem;
+  color: #626975;
+  max-width: 22rem;
   display: none;
-  transition: color 0.3s ease;
+  transition: color 240ms ease;
 }
 
 @media (min-width: 1024px) {
@@ -1253,26 +1305,26 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .category-accordion-trigger .category-badge-btn {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  background-color: #0a0a0a;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: #101114;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .category-accordion-item:hover .category-badge-btn,
 .category-accordion-item.active .category-badge-btn {
-  background-color: var(--color-yellow, #FFC700);
-  color: #000000;
+  background-color: #D60000;
+  color: #ffffff;
 }
 
 .category-accordion-trigger .category-icon-arrow {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 280ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .category-accordion-item.active .category-icon-arrow {
@@ -1282,7 +1334,9 @@ p, span, li, a, input, textarea, select, button {
 .category-accordion-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: grid-template-rows 280ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  background: #F7F7F8;
+  border-bottom: 1px solid #E5E7EB;
 }
 
 .category-accordion-panel > div {
@@ -1290,15 +1344,14 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .category-accordion-panel-inner {
-  padding-top: 0.5rem;
-  padding-bottom: 1.75rem;
-  padding-inline: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 24px 20px;
+  background: #F7F7F8;
+  border-top: 1px solid #E5E7EB;
 }
 
 @media (min-width: 640px) {
   .category-accordion-panel-inner {
-    padding-inline: 1.5rem;
+    padding: 32px 48px;
   }
 }
 
@@ -1362,42 +1415,42 @@ button, a, input, select {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ── Architectural Category Navigation Tabs ─────────────────── */
 .category-chip-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-primary, "Inter", sans-serif);
+  font-size: 13px;
+  font-weight: 500;
   white-space: nowrap;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  background: #F8FAFC;
-  color: #475569;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition: all 0.18s cubic-bezier(0.2, 0.65, 0.3, 1);
+  background: #FFFFFF;
+  color: #17191D;
+  border: 1px solid #D1D5DB;
   cursor: pointer;
   flex-shrink: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 .category-chip-btn:hover {
-  background: #0F172A;
-  color: #FFFFFF;
-  border-color: #0F172A;
+  background: #F1F3F5;
+  color: #17191D;
+  border-color: #D1D5DB;
 }
 .category-chip-btn:hover .cat-count-pill {
-  color: rgba(255, 255, 255, 0.65);
+  color: #626975;
 }
 .category-chip-btn.active {
-  background: #0F172A !important;
+  background: #D60000 !important;
   color: #FFFFFF !important;
-  border-color: #0F172A !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+  border-color: #D60000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(214, 0, 0, 0.22);
 }
 .category-chip-btn.active .cat-count-pill {
-  color: #FFC700 !important;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600;
 }
 
 /* ── Architectural Banner Tab Buttons ──────────────────────── */

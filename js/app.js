@@ -362,7 +362,7 @@ window.toggleCardExpand = function(productId, event) {
   // Update button label
   if (btn) {
     const label = btn.querySelector('.expand-label');
-    if (label) label.textContent = isExpanded ? 'Lihat Lebih' : 'Lebih Sedikit';
+    if (label) label.textContent = isExpanded ? 'Lihat Lebih' : 'Tutup Detail';
   }
 };
 
@@ -525,12 +525,11 @@ window.renderCatalog = function renderCatalog() {
               <!-- CTA -->
               <div class="flex flex-col gap-2 sm:w-44 shrink-0">
                 <button type="button" onclick="openProductDetail('${product.id}')"
-                  class="w-full py-2.5 rounded-[8px] text-xs font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
-                  style="background:#FFC700;">
+                  class="w-full py-2.5 rounded-full text-xs font-semibold text-white cursor-pointer transition-all flex items-center justify-center gap-1 bg-[#D60000] hover:bg-[#A80000]">
                   Lihat Detail Lengkap
                 </button>
                 <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
-                  class="w-full py-2.5 rounded-[8px] text-xs font-bold text-white cursor-pointer flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                  class="w-full py-2.5 rounded-full text-xs font-semibold text-[#17191D] bg-white border border-[#D1D5DB] hover:bg-[#F1F3F5] cursor-pointer flex items-center justify-center gap-1 transition-colors">
                   Tanya via WhatsApp
                 </a>
               </div>
@@ -540,8 +539,8 @@ window.renderCatalog = function renderCatalog() {
       `;
     }).join('');
   } else {
-    // Grid View — Corporate Showcase Style with Show More (Strictly 4 Cards Per Row Max)
-    catalogGrid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 w-full';
+    // Grid View — Howell Premium Product Showcase Design Tokens v1.0.0
+    catalogGrid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full items-stretch';
     catalogGrid.innerHTML = displayed.map(product => {
       const encodedSrc = encodeURI(product.image);
       const isExpanded = state.expandedCards.has(product.id);
@@ -549,68 +548,79 @@ window.renderCatalog = function renderCatalog() {
       // Build 3 key specs for quick preview
       const specEntries = Object.entries(product.specs || {}).slice(0, 3);
       const specHtml = specEntries.map(([k, v]) => `
-        <div class="flex items-start justify-between gap-2 text-[10px]">
-          <span class="text-slate-400 font-medium shrink-0">${k}</span>
-          <span class="text-slate-800 font-semibold text-right">${v}</span>
+        <div class="flex items-start justify-between gap-2 text-[11px] py-0.5">
+          <span class="text-[#8A909A] font-medium shrink-0">${k}</span>
+          <span class="text-[#17191D] font-semibold text-right">${v}</span>
         </div>
       `).join('');
 
       const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent('Halo HOWELL, saya tertarik dengan ' + product.name + ' (SKU: ' + (product.sku || '-') + '). Bisa minta informasi lebih lanjut?')}`;
 
       return `
-        <div class="product-card-pro flex flex-col">
-          <!-- Clickable top area (image + info) -->
-          <div style="cursor:pointer;" onclick="openProductDetail('${product.id}')">
+        <div class="product-card-pro flex flex-col bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden transition-all duration-240 hover:-translate-y-[3px] hover:border-[#D1D5DB] hover:shadow-[0_8px_28px_rgba(16,17,20,0.08)]">
+          <!-- Clickable Top Area (Image & Content) -->
+          <div class="cursor-pointer flex flex-col flex-1 p-3.5 pb-0" onclick="openProductDetail('${product.id}')">
             <!-- Image Wrapper -->
-            <div class="card-img-wrap">
-              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'">
+            <div class="card-img-wrap relative w-full aspect-square bg-[#F1F3F5] rounded-[12px] p-5 flex items-center justify-center overflow-hidden">
+              <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'"
+                class="w-full h-full object-contain transition-transform duration-360 ease-[cubic-bezier(0.2,0.65,0.3,1)] hover:scale-[1.025]"
+                style="transform: scale(0.88);">
               <!-- Quick View Button -->
-              <button class="quick-view-btn" onclick="event.stopPropagation(); openProductDetail('${product.id}')" title="Lihat Detail">
-                <i data-lucide="eye" style="width:14px;height:14px;color:#0F172A;"></i>
+              <button type="button" class="quick-view-btn absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 hover:bg-[#D60000] text-[#17191D] hover:text-white shadow-xs transition-colors flex items-center justify-center z-10 cursor-pointer"
+                onclick="event.stopPropagation(); openProductDetail('${product.id}')" title="Lihat Spesifikasi">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
               </button>
-              <!-- Hover Action -->
-              <div class="card-actions">
-                <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-                  class="w-full mx-1.5 py-2 rounded-[8px] text-[11px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1.5"
-                  style="background: #FFC700; box-shadow: 0 4px 12px rgba(255,199,0,0.3);">
-                  <i data-lucide="eye" style="width:13px;height:13px;"></i>
-                  Lihat Spesifikasi
-                </button>
-              </div>
             </div>
 
-            <!-- Product Info -->
-            <div class="p-3 flex flex-col gap-1.5">
-              <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-500">${product.categoryName || 'HOWELL'}</span>
-              <h3 class="text-[11.5px] sm:text-[12.5px] font-semibold text-slate-900 line-clamp-2 leading-snug tracking-tight">${product.name}</h3>
+            <!-- Product Card Content -->
+            <div class="py-3 px-1 flex flex-col gap-1.5 flex-1">
+              <span class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#8A909A]">${product.categoryName || 'HOWELL'}</span>
+              <h3 class="text-[14px] font-semibold text-[#17191D] leading-[1.4] tracking-[-0.025em] line-clamp-2 hover:text-[#D60000] transition-colors">${product.name}</h3>
+              <div class="mt-auto pt-1.5 flex items-center justify-between">
+                <span class="text-[10px] font-mono text-[#8A909A] bg-[#F1F3F5] px-2 py-0.5 rounded-[4px] font-medium">SKU: ${product.sku || '-'}</span>
+              </div>
             </div>
           </div>
 
-          <!-- Show More / Less Toggle Button -->
-          <button id="expand-btn-${product.id}" onclick="toggleCardExpand('${product.id}', event)"
-            class="card-show-more-btn${isExpanded ? ' is-open' : ''}">
-            <span class="expand-label">${isExpanded ? 'Lebih Sedikit' : 'Lihat Lebih'}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
+          <!-- Product Card Footer -->
+          <div class="flex items-center justify-between px-3.5 py-2.5 border-t border-[#E5E7EB] bg-white">
+            <!-- Show More / Less Toggle Button -->
+            <button id="expand-btn-${product.id}" onclick="event.stopPropagation(); toggleCardExpand('${product.id}', event)"
+              class="card-show-more-btn${isExpanded ? ' is-open' : ''} inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#D60000] hover:text-[#A80000] transition-colors cursor-pointer select-none bg-transparent border-0 p-0">
+              <span class="expand-label">${isExpanded ? 'Tutup Detail' : 'Lihat Lebih'}</span>
+              <svg class="w-3 h-3 transition-transform duration-240 ${isExpanded ? 'rotate-180' : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <!-- Secondary Quick Action Link -->
+            <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
+              class="inline-flex items-center gap-1 text-[12px] font-medium text-[#626975] hover:text-[#17191D] transition-colors cursor-pointer" title="Lihat Spesifikasi">
+              <span>Detail</span>
+              <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </button>
+          </div>
 
-          <!-- Expand Panel -->
+          <!-- Inline Product Detail Expansion Accordion -->
           <div id="expand-panel-${product.id}" class="card-expand-panel${isExpanded ? ' is-open' : ''}">
-            <div class="p-3 space-y-2">
-              <!-- Summary -->
-              ${product.summary ? `<p class="text-[10.5px] text-slate-500 leading-relaxed">${product.summary}</p>` : ''}
-              <!-- Specs -->
-              ${specHtml ? `<div class="space-y-1.5 pt-1 border-t border-slate-100">${specHtml}</div>` : ''}
-              <!-- CTA Buttons -->
-              <div class="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
-                <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
-                  class="w-full py-2 rounded-[8px] text-[10.5px] font-bold text-black cursor-pointer transition-all flex items-center justify-center gap-1"
-                  style="background:#FFC700;">
-                  Lihat Detail Lengkap
-                </button>
-                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                  class="w-full py-2 rounded-[8px] text-[10.5px] font-bold text-white cursor-pointer transition-all flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700">
-                  Tanya via WhatsApp
-                </a>
+            <div>
+              <div class="p-3.5 space-y-2.5 bg-white border-t border-[#E5E7EB]">
+                ${product.summary ? `<p class="text-[12px] text-[#626975] leading-relaxed">${product.summary}</p>` : ''}
+                ${specHtml ? `
+                  <div class="space-y-1 pt-1.5 border-t border-[#E5E7EB]">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.08em] text-[#8A909A]">Spesifikasi Kunci</span>
+                    ${specHtml}
+                  </div>
+                ` : ''}
+                <div class="pt-2 border-t border-[#E5E7EB] flex flex-col gap-2">
+                  <button type="button" onclick="event.stopPropagation(); openProductDetail('${product.id}')"
+                    class="w-full py-2.5 px-4 rounded-full text-[13px] font-semibold text-white bg-[#D60000] hover:bg-[#A80000] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
+                    <span>Lihat Detail Lengkap</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <a href="${waUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
+                    class="w-full py-2 px-4 rounded-full text-[12px] font-semibold text-[#17191D] bg-white border border-[#D1D5DB] hover:bg-[#F1F3F5] transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5 text-[#16803C]"></i>
+                    <span>Tanya via WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -626,21 +636,21 @@ window.renderCatalog = function renderCatalog() {
         const remaining = filtered.length - limit;
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
-            <button type="button" onclick="toggleCatalogExpand(true)" class="group px-7 py-3 rounded-[8px] border border-slate-900 bg-slate-900 hover:bg-black text-white text-xs sm:text-[13px] font-semibold shadow-xs hover:shadow-md transition-all flex items-center gap-2 select-none cursor-pointer">
+            <button type="button" onclick="toggleCatalogExpand(true)" class="group px-7 py-3 rounded-full border border-[#101114] bg-[#101114] hover:bg-[#2A2D33] text-white text-[13px] font-semibold shadow-xs hover:shadow-md transition-all flex items-center gap-2 select-none cursor-pointer">
               <span>Lihat ${remaining} Produk Lainnya</span>
               <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
             </button>
-            <span class="text-[11px] text-slate-400">Menampilkan ${limit} dari ${filtered.length} produk katalog HOWELL</span>
+            <span class="text-[11px] text-[#8A909A]">Menampilkan ${limit} dari ${filtered.length} produk katalog HOWELL</span>
           </div>
         `;
       } else {
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
-            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-7 py-2.5 rounded-[8px] border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-[13px] font-semibold shadow-xs transition-all flex items-center gap-2 select-none cursor-pointer">
+            <button type="button" onclick="toggleCatalogExpand(false)" class="group px-7 py-2.5 rounded-full border border-[#D1D5DB] bg-white hover:bg-[#F1F3F5] text-[#17191D] text-[13px] font-semibold shadow-xs transition-all flex items-center gap-2 select-none cursor-pointer">
               <span>Tampilkan Lebih Sedikit</span>
               <i data-lucide="chevron-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"></i>
             </button>
-            <span class="text-[11px] text-slate-400">Menampilkan seluruh ${filtered.length} produk katalog</span>
+            <span class="text-[11px] text-[#8A909A]">Menampilkan seluruh ${filtered.length} produk katalog</span>
           </div>
         `;
       }

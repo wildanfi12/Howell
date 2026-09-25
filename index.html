@@ -40,8 +40,13 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Google Fonts: Manrope (Display) & Inter (Text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
   <!-- HOWELL Premium Design System CSS -->
-  <link rel="stylesheet" href="css/glassmorphism.css?v=20260923-apple-typography">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-howell-tokens">
 
   <!-- Tailwind CSS CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -54,19 +59,39 @@
       theme: {
         extend: {
           colors: {
+            'howell-red': '#D60000',
+            'howell-red-dark': '#A80000',
+            'howell-red-light': '#FFF0F0',
+            'howell-gold': '#F2B903',
+            'howell-gold-dark': '#C99400',
+            'canvas': '#F7F7F8',
+            'surface-white': '#FFFFFF',
+            'surface-soft': '#F1F3F5',
+            'surface-muted': '#E9EBEE',
+            'surface-dark': '#101114',
+            'surface-charcoal': '#1A1C20',
+            'text-primary': '#17191D',
+            'text-secondary': '#626975',
+            'text-tertiary': '#8A909A',
+            'border-subtle': '#E5E7EB',
+            'border-strong': '#D1D5DB',
             howell: {
-              yellow: '#FFC700',
-              'yellow-hover': '#e6bc00',
-              'yellow-light': '#fff9db',
-              black: '#000000',
-              dark: '#0a0a0a',
-              darker: '#111111',
+              red: '#D60000',
+              'red-dark': '#A80000',
+              'red-light': '#FFF0F0',
+              yellow: '#F2B903',
+              'yellow-hover': '#C99400',
+              'yellow-light': '#FFF0F0',
+              black: '#101114',
+              dark: '#101114',
+              darker: '#1A1C20',
               white: '#ffffff',
             }
           },
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Segoe UI"', 'sans-serif'],
-            mono: ['"SFMono-Regular"', '"SF Mono"', 'Consolas', '"Liberation Mono"', 'monospace'],
+            display: ['Manrope', 'sans-serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
           }
         }
       }
@@ -332,137 +357,6 @@
     }
     .hover-lift:hover {
       transform: translateY(-4px);
-    }
-
-    /* Howell Category Ecosystem Interactive Accordion */
-    .category-accordion-item {
-      position: relative;
-      transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-    }
-    .category-accordion-item.active {
-      background-color: #fafaf9;
-    }
-    .category-accordion-trigger {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem 0.875rem;
-      background: transparent;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      position: relative;
-      transition: background-color 0.25s ease, padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @media (min-width: 640px) {
-      .category-accordion-trigger {
-        padding: 1.625rem 1.25rem;
-        gap: 1.25rem;
-      }
-    }
-    .category-accordion-trigger::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 22%;
-      bottom: 22%;
-      width: 3px;
-      border-radius: 0 3px 3px 0;
-      background: #FFC700;
-      transform: scaleY(0);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .category-accordion-item:hover .category-accordion-trigger::before,
-    .category-accordion-item.active .category-accordion-trigger::before {
-      transform: scaleY(1);
-    }
-    .category-accordion-item:hover .category-accordion-trigger {
-      background-color: rgba(0, 0, 0, 0.015);
-    }
-    .category-accordion-item.active .category-accordion-trigger {
-      background-color: transparent;
-    }
-    .category-accordion-trigger .category-num {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #94a3b8;
-      width: 2rem;
-      transition: color 0.3s ease;
-    }
-    .category-accordion-item.active .category-num,
-    .category-accordion-item:hover .category-num {
-      color: #b38600;
-    }
-    .category-accordion-trigger .category-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #0f172a;
-      transition: color 0.3s ease;
-    }
-    @media (min-width: 640px) {
-      .category-accordion-trigger .category-title {
-        font-size: 1.5rem;
-      }
-    }
-    .category-accordion-item.active .category-title {
-      color: #000000;
-    }
-    .category-accordion-trigger .category-subtext {
-      font-size: 0.75rem;
-      color: #64748b;
-      max-width: 20rem;
-      display: none;
-      transition: color 0.3s ease;
-    }
-    @media (min-width: 1024px) {
-      .category-accordion-trigger .category-subtext {
-        display: block;
-      }
-    }
-    .category-accordion-trigger .category-badge-btn {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 9999px;
-      background-color: #0a0a0a;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .category-accordion-item:hover .category-badge-btn,
-    .category-accordion-item.active .category-badge-btn {
-      background-color: #FFC700;
-      color: #000000;
-    }
-    .category-accordion-trigger .category-icon-arrow {
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .category-accordion-item.active .category-icon-arrow {
-      transform: rotate(180deg);
-    }
-    .category-accordion-panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .category-accordion-panel > div {
-      overflow: hidden;
-    }
-    .category-accordion-panel-inner {
-      padding-top: 0.5rem;
-      padding-bottom: 1.75rem;
-      padding-inline: 1rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    @media (min-width: 640px) {
-      .category-accordion-panel-inner {
-        padding-inline: 1.5rem;
-      }
     }
 
     /* Staggered Line & Word Reveal Overflow Containers */
@@ -948,7 +842,7 @@
 
           <!-- Right: Product Grid / List Area -->
           <div class="flex-1 w-full min-w-0">
-            <div id="product-catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6 w-full">
+            <div id="product-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full items-stretch">
               <!-- Rendered dynamically by JavaScript -->
             </div>
 
@@ -1002,7 +896,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 01
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 01
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">Patch Cable &amp; Networking</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1026,9 +920,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('patch-cable')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -1068,7 +962,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 02
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 02
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">HDMI 8K &amp; DisplayPort</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1092,9 +986,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('hdmi-video')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -1134,7 +1028,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 03
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 03
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">Heavy Duty Power &amp; PDU</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1158,9 +1052,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('power-cable')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -1200,7 +1094,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 04
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 04
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">USB &amp; High-Speed Data</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1224,9 +1118,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('usb-charging')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -1266,7 +1160,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 05
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 05
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">Audio Solutions &amp; AUX</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1290,9 +1184,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('audio')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
@@ -1332,7 +1226,7 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Category 06
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D60000]"></span> Category 06
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1">Adapters &amp; Converters</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2">
@@ -1356,9 +1250,9 @@
                     <div class="md:col-span-3 flex md:justify-end items-center pt-2 md:pt-0">
                       <button type="button" 
                               onclick="filterByCategory('adapter')" 
-                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0a0a0a] hover:bg-[#FFC700] text-white hover:text-black text-xs font-bold transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group/cta">
+                              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#D60000] hover:bg-[#A80000] text-white text-[13px] font-semibold transition-all duration-200 shadow-xs cursor-pointer group/cta">
                         <span>Lihat Produk di Katalog</span>
-                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#FFC700] group-hover/cta:text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
