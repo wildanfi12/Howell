@@ -494,7 +494,7 @@ window.renderCatalog = function renderCatalog() {
         <div class="bg-white border-b border-[#e5e5e5]">
           <!-- Main row (clickable) -->
           <div onclick="openProductDetail('${product.id}')" class="group flex flex-col sm:flex-row items-center gap-5 cursor-pointer p-4 hover:bg-slate-50/80 transition-colors duration-200 select-none pb-3">
-            <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 bg-[#F8FAFC] rounded-[8px] border border-slate-200/60 overflow-hidden relative flex items-center justify-center p-3">
+            <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 bg-transparent rounded-none border-0 overflow-hidden relative flex items-center justify-center p-1">
               <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300">
             </div>
             <div class="flex-1 flex flex-col justify-between h-full py-1 w-full">
@@ -557,19 +557,13 @@ window.renderCatalog = function renderCatalog() {
       const waUrl = `https://wa.me/6281188031976?text=${encodeURIComponent('Halo HOWELL, saya tertarik dengan ' + product.name + ' (SKU: ' + (product.sku || '-') + '). Bisa minta informasi lebih lanjut?')}`;
 
       return `
-        <div class="product-card-pro flex flex-col bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden transition-all duration-240 hover:-translate-y-[3px] hover:border-[#D1D5DB] hover:shadow-[0_8px_28px_rgba(16,17,20,0.08)]">
+        <div class="product-card-pro flex flex-col bg-white rounded-[16px] border border-[#ECECEC] overflow-hidden transition-all duration-240 hover:-translate-y-[2px] hover:border-[#DCDCDC] hover:shadow-[0_10px_24px_-4px_rgba(0,0,0,0.06)]">
           <!-- Clickable Top Area (Image & Content) -->
           <div class="cursor-pointer flex flex-col flex-1 p-3.5 pb-0" onclick="openProductDetail('${product.id}')">
-            <!-- Image Wrapper -->
-            <div class="card-img-wrap relative w-full aspect-square bg-[#F1F3F5] rounded-[12px] p-5 flex items-center justify-center overflow-hidden">
+            <!-- Image Wrapper (Clean, Minimalist, No Framing Border or Background) -->
+            <div class="card-img-wrap relative w-full aspect-square bg-transparent flex items-center justify-center overflow-hidden p-3">
               <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'"
-                class="w-full h-full object-contain transition-transform duration-360 ease-[cubic-bezier(0.2,0.65,0.3,1)] hover:scale-[1.025]"
-                style="transform: scale(0.88);">
-              <!-- Quick View Button -->
-              <button type="button" class="quick-view-btn absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 hover:bg-[#D60000] text-[#17191D] hover:text-white shadow-xs transition-colors flex items-center justify-center z-10 cursor-pointer"
-                onclick="event.stopPropagation(); openProductDetail('${product.id}')" title="Lihat Spesifikasi">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-              </button>
+                class="w-full h-full object-contain mix-blend-multiply transition-transform duration-360 ease-[cubic-bezier(0.2,0.65,0.3,1)] hover:scale-[1.04]">
             </div>
 
             <!-- Product Card Content -->
@@ -778,7 +772,7 @@ window.openProductDetail = function openProductDetail(productId) {
 
       <!-- Left Column: Single Large Product Image Only -->
       <div class="lg:col-span-6">
-        <div class="aspect-square w-full bg-[#F8FAFC] rounded-2xl overflow-hidden relative flex items-center justify-center p-8 sm:p-12 group/detailimg border border-slate-200/70">
+        <div class="aspect-square w-full bg-transparent rounded-2xl overflow-hidden relative flex items-center justify-center p-6 sm:p-8 group/detailimg border border-slate-100">
           <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain mix-blend-multiply cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
           <!-- Zoom button -->
           <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-[8px] bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-sm transition-all cursor-pointer border border-slate-200" title="Perbesar Foto">
