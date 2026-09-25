@@ -744,37 +744,37 @@
           
           <!-- Left: Filter Toggle & Count -->
           <div class="flex items-center gap-2.5">
-            <button type="button" onclick="toggleCatalogSidebar()" id="btn-toggle-filter" class="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-[8px] border border-slate-300 bg-white text-xs sm:text-[13px] font-semibold text-slate-800 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all select-none cursor-pointer shadow-xs">
-              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+            <button type="button" onclick="toggleCatalogSidebar()" id="btn-toggle-filter" class="flex items-center gap-2 px-4 py-2 rounded-full border border-[#D2D2D7] bg-white text-xs sm:text-[13px] font-semibold text-[#1D1D1F] hover:bg-[#F5F5F7] transition-all select-none cursor-pointer">
+              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
               <span id="filter-btn-text">Menyaring</span>
             </button>
-            <span id="catalog-count" class="text-xs sm:text-[13px] text-slate-800 font-semibold">137 produk</span>
+            <span id="catalog-count" class="text-xs sm:text-[13px] text-[#86868B] font-medium">137 produk</span>
           </div>
 
           <!-- Right: Sort By & View As & PDF -->
           <div class="flex items-center gap-2 sm:gap-3 ml-auto">
             <!-- Sort By Dropdown -->
             <div class="flex items-center gap-1 sm:gap-2 text-xs sm:text-[13px] text-slate-700">
-              <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-slate-300 rounded-[8px] px-3 py-1.5 sm:py-2 text-xs sm:text-[13px] font-medium text-slate-800 bg-white focus:outline-none focus:border-slate-900 cursor-pointer max-w-[145px] sm:max-w-none truncate shadow-xs">
+              <select id="catalog-sort-select" onchange="changeCatalogSort(this.value)" class="border border-[#D2D2D7] rounded-full px-3.5 py-1.5 sm:py-2 text-xs sm:text-[13px] font-medium text-[#1D1D1F] bg-white hover:border-[#86868B] focus:outline-none focus:ring-2 focus:ring-[#0071E3]/20 cursor-pointer max-w-[155px] sm:max-w-none truncate transition-all">
                 <option value="relevance">Paling relevan</option>
                 <option value="sku">Kode SKU: A-Z</option>
                 <option value="name">Abjad: A-Z</option>
               </select>
             </div>
 
-            <!-- View As (Desktop & Tablet) -->
-            <div class="hidden sm:flex items-center gap-1 border-l border-slate-200 pl-2 text-slate-700">
-              <button type="button" onclick="setCatalogViewMode('grid')" id="view-mode-grid-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-[6px] flex items-center justify-center bg-black text-[#FFC700] cursor-pointer transition-all shadow-sm" title="Tampilan Grid">
-                <i data-lucide="layout-grid" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+            <!-- View As (Apple Segmented Capsule) -->
+            <div class="hidden sm:flex items-center p-0.5 rounded-full bg-[#F5F5F7] border border-[#E5E5EA]">
+              <button type="button" onclick="setCatalogViewMode('grid')" id="view-mode-grid-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-white text-[#1D1D1F] shadow-xs cursor-pointer transition-all" title="Tampilan Grid">
+                <i data-lucide="layout-grid" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
               </button>
-              <button type="button" onclick="setCatalogViewMode('list')" id="view-mode-list-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-[6px] flex items-center justify-center bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer transition-all" title="Tampilan List">
-                <i data-lucide="list" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+              <button type="button" onclick="setCatalogViewMode('list')" id="view-mode-list-btn" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#86868B] hover:text-[#1D1D1F] cursor-pointer transition-all" title="Tampilan List">
+                <i data-lucide="list" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
               </button>
             </div>
 
             <!-- Print Catalog PDF -->
-            <a href="print-catalog.html" target="_blank" class="flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-[8px] border border-slate-900 bg-slate-900 text-white hover:bg-black hover:border-black text-xs font-semibold transition-all shadow-xs select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
-              <i data-lucide="printer" class="w-3.5 h-3.5 text-[#FFC700] group-hover:text-white transition-colors"></i>
+            <a href="print-catalog.html" target="_blank" class="flex items-center gap-1.5 px-4 py-1.5 sm:py-2 rounded-full border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] text-xs font-semibold transition-all select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
+              <i data-lucide="printer" class="w-3.5 h-3.5 text-[#86868B] group-hover:text-[#1D1D1F] transition-colors stroke-[1.75]"></i>
               <span class="hidden md:inline">Cetak PDF</span>
             </a>
           </div>
@@ -791,11 +791,11 @@
             <!-- Mobile/Tablet Drawer Header -->
             <div class="filter-drawer-header">
               <div class="flex items-center gap-2">
-                <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#FFC700]"></i>
-                <span class="text-sm font-extrabold text-white">Filter &amp; Menyaring</span>
+                <i data-lucide="sliders-horizontal" class="w-4 h-4 text-white stroke-[1.75]"></i>
+                <span class="text-sm font-bold text-white">Filter &amp; Menyaring</span>
               </div>
-              <button type="button" onclick="toggleCatalogSidebar(false)" class="w-8 h-8 rounded-full bg-white/10 text-white hover:bg-white/20 flex items-center justify-center cursor-pointer" title="Tutup Filter">
-                <i data-lucide="x" class="w-4 h-4"></i>
+              <button type="button" onclick="toggleCatalogSidebar(false)" class="w-7 h-7 rounded-full bg-white/10 text-white hover:bg-white/20 flex items-center justify-center cursor-pointer transition-colors" title="Tutup Filter">
+                <i data-lucide="x" class="w-4 h-4 stroke-[2]"></i>
               </button>
             </div>
 
@@ -803,25 +803,25 @@
               
 
               <!-- Accordion 2: Perangkat / Kategori -->
-              <div class="border-b border-[#e5e5e5] py-3.5">
-                <button type="button" onclick="toggleFilterAccordion('category')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
+              <div class="border-b border-[#F2F2F7] py-3.5">
+                <button type="button" onclick="toggleFilterAccordion('category')" class="w-full flex items-center justify-between text-[13.5px] font-semibold text-[#1D1D1F] select-none cursor-pointer py-1">
                   <span>Perangkat / Kategori</span>
-                  <span id="acc-icon-category" class="text-base font-light text-slate-500">-</span>
+                  <span id="acc-icon-category" class="text-xs font-medium text-[#86868B]">−</span>
                 </button>
-                <div id="acc-body-category" class="pt-2 pb-1 space-y-1.5 text-[13px] text-slate-600 max-h-64 overflow-y-auto pr-1">
+                <div id="acc-body-category" class="pt-2 pb-1 space-y-1 text-[13px] text-[#6E6E73] max-h-64 overflow-y-auto pr-1">
                   <!-- Category items rendered dynamically -->
                 </div>
               </div>
 
               <!-- Accordion 3: Ketersediaan -->
-              <div class="border-b border-[#e5e5e5] py-3.5">
-                <button type="button" onclick="toggleFilterAccordion('availability')" class="w-full flex items-center justify-between text-[14px] font-semibold text-slate-900 select-none cursor-pointer py-1">
+              <div class="border-b border-[#F2F2F7] py-3.5">
+                <button type="button" onclick="toggleFilterAccordion('availability')" class="w-full flex items-center justify-between text-[13.5px] font-semibold text-[#1D1D1F] select-none cursor-pointer py-1">
                   <span>Ketersediaan</span>
-                  <span id="acc-icon-availability" class="text-base font-light text-slate-500">-</span>
+                  <span id="acc-icon-availability" class="text-xs font-medium text-[#86868B]">−</span>
                 </button>
-                <div id="acc-body-availability" class="pt-2 pb-1 space-y-2 text-[13px] text-slate-600">
-                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-slate-950">
-                    <input type="checkbox" id="filter-stock-ready" onchange="applyAvailabilityFilter()" class="accent-black">
+                <div id="acc-body-availability" class="pt-2 pb-1 space-y-2 text-[13px] text-[#6E6E73]">
+                  <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#1D1D1F] transition-colors">
+                    <input type="checkbox" id="filter-stock-ready" onchange="applyAvailabilityFilter()" class="rounded-[4px] border-[#D2D2D7] text-[#0071E3] focus:ring-0 cursor-pointer">
                     <span>Ready Stock Jakarta (137)</span>
                   </label>
                 </div>
@@ -830,11 +830,11 @@
             </div>
 
             <!-- Mobile/Tablet Drawer Footer -->
-            <div class="filter-drawer-footer">
-              <button type="button" onclick="resetFilters(); toggleCatalogSidebar(false);" class="w-1/3 py-2.5 px-3 rounded-[8px] border border-slate-300 text-slate-700 text-xs font-bold text-center hover:bg-slate-100 transition-colors cursor-pointer">
+            <div class="filter-drawer-footer flex gap-2">
+              <button type="button" onclick="resetFilters(); toggleCatalogSidebar(false);" class="w-1/3 py-2.5 px-3 rounded-full border border-[#D2D2D7] text-[#1D1D1F] text-xs font-semibold text-center hover:bg-[#F5F5F7] transition-colors cursor-pointer">
                 Reset
               </button>
-              <button type="button" onclick="toggleCatalogSidebar(false);" class="w-2/3 py-2.5 px-3 rounded-[8px] bg-black text-[#FFC700] text-xs font-black text-center hover:bg-slate-900 shadow-md transition-colors cursor-pointer">
+              <button type="button" onclick="toggleCatalogSidebar(false);" class="w-2/3 py-2.5 px-3 rounded-full bg-[#1D1D1F] text-white text-xs font-semibold text-center hover:bg-[#333336] shadow-xs transition-colors cursor-pointer">
                 Terapkan Filter
               </button>
             </div>

@@ -511,23 +511,23 @@ p, span, li, a, input, textarea, select, button {
   box-shadow: var(--shadow-hover) !important;
 }
 
-/* ── Product Card Bespoke Architecture ──────────────────────── */
+/* ── Product Card Apple iPhone Bespoke Architecture ────────── */
 .product-card-pro {
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
-  border: 1px solid #ECECEC;
-  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 22px;
   overflow: hidden;
-  transition: transform 240ms cubic-bezier(0.2, 0.65, 0.3, 1), box-shadow 240ms cubic-bezier(0.2, 0.65, 0.3, 1), border-color 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 300ms cubic-bezier(0.25, 1, 0.5, 1), border-color 300ms ease;
+  box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
   position: relative;
 }
 
 .product-card-pro:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.06);
-  border-color: #DCDCDC;
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.14);
 }
 
 /* Card Expand Panel (Inline Accordion with Grid 0fr -> 1fr) */
@@ -554,10 +554,10 @@ p, span, li, a, input, textarea, select, button {
   align-items: center;
   justify-content: flex-start;
   gap: 6px;
-  font-family: var(--font-primary, "Inter", sans-serif);
-  font-size: 13px;
-  font-weight: 600;
-  color: #D60000;
+  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D1D1F;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -566,12 +566,12 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .card-show-more-btn:hover {
-  color: #A80000;
+  color: #0071E3;
   background: transparent;
 }
 
 .card-show-more-btn svg {
-  transition: transform 240ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  transition: transform 240ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-show-more-btn.is-open svg {
@@ -601,13 +601,19 @@ p, span, li, a, input, textarea, select, button {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  background: #FBFBFD;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 1.25rem;
+  overflow: hidden;
+  transition: background-color 300ms ease;
+}
+
+.product-card-pro:hover .card-img-wrap {
+  background: #F5F5F7;
 }
 
 .product-card-pro .card-img-wrap img {
@@ -615,11 +621,11 @@ p, span, li, a, input, textarea, select, button {
   height: 100%;
   object-fit: contain;
   mix-blend-mode: multiply;
-  transition: transform 360ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .product-card-pro:hover .card-img-wrap img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .product-card-pro .card-actions {
@@ -1496,38 +1502,44 @@ button, a, input, select {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.05rem;
   border-radius: 999px;
-  font-family: var(--font-primary, "Inter", sans-serif);
-  font-size: 13px;
+  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif);
+  font-size: 12.5px;
   font-weight: 500;
   white-space: nowrap;
-  transition: all 0.18s cubic-bezier(0.2, 0.65, 0.3, 1);
-  background: #FFFFFF;
-  color: #17191D;
-  border: 1px solid #D1D5DB;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  background: #F5F5F7;
+  color: #1D1D1F;
+  border: 1px solid rgba(0, 0, 0, 0.04);
   cursor: pointer;
   flex-shrink: 0;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 .category-chip-btn:hover {
-  background: #F1F3F5;
-  color: #17191D;
-  border-color: #D1D5DB;
+  background: #E8E8ED;
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.category-chip-btn .cat-count-pill {
+  font-size: 11px;
+  opacity: 0.55;
+  font-weight: 400;
 }
 .category-chip-btn:hover .cat-count-pill {
-  color: #626975;
+  opacity: 0.75;
 }
 .category-chip-btn.active {
-  background: #D60000 !important;
+  background: #1D1D1F !important;
   color: #FFFFFF !important;
-  border-color: #D60000 !important;
+  border-color: #1D1D1F !important;
   font-weight: 600 !important;
-  box-shadow: 0 4px 14px rgba(214, 0, 0, 0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
 }
 .category-chip-btn.active .cat-count-pill {
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 0.85 !important;
+  font-weight: 500;
 }
 
 /* ── Architectural Banner Tab Buttons ──────────────────────── */
@@ -1607,9 +1619,9 @@ button, a, input, select {
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 1.25rem;
-    background: #0a0a0a;
+    background: #1D1D1F;
     color: #ffffff;
-    border-bottom: 1px solid rgba(255, 199, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .filter-drawer-body {
