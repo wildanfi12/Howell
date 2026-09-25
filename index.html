@@ -46,7 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- HOWELL Premium Design System CSS -->
-  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v4-minimal-cards">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v5-custom-dropdown">
 
   <!-- Tailwind CSS CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1579,27 +1579,106 @@
 
         </div>
 
-        <!-- Custom Product Solution Minimalist Trigger Banner (Opens Popup Modal on Click) -->
-        <div id="custom-product-solution" onclick="openCustomProductModal()" 
-          class="mt-10 sm:mt-14 rounded-2xl p-6 sm:p-8 bg-[#101114] border border-white/10 hover:border-white/25 transition-all duration-300 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-5 cursor-pointer group shadow-sm">
-          <div class="max-w-2xl">
-            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 border border-white/15 text-white text-[10px] font-bold uppercase tracking-wider mb-2">
-              B2B OEM &amp; ODM Solution
-            </span>
-            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-white transition-colors">
-              Custom Product Solution
-            </h3>
-            <p class="text-xs sm:text-sm text-white/65 mt-1 leading-relaxed">
-              Kebutuhan kabel khusus, spesifikasi material, packaging retail, hingga branding private label untuk bisnis Anda. Klik untuk melihat detail solusi kustom.
-            </p>
+        <!-- Custom Product Solution Expandable Downward Dropdown -->
+        <div id="custom-product-solution" class="mt-10 sm:mt-14 rounded-2xl bg-[#101114] border border-white/10 hover:border-white/20 transition-all duration-300 text-white overflow-hidden shadow-sm">
+          
+          <!-- Trigger Bar (Clickable) -->
+          <div onclick="toggleCustomProductDropdown()" class="p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 cursor-pointer group select-none">
+            <div class="max-w-2xl">
+              <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 border border-white/15 text-white text-[10px] font-bold uppercase tracking-wider mb-2">
+                B2B OEM &amp; ODM Solution
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-white transition-colors">
+                Custom Product Solution
+              </h3>
+              <p class="text-xs sm:text-sm text-white/65 mt-1 leading-relaxed">
+                Kebutuhan kabel khusus, spesifikasi material, packaging retail, hingga branding private label untuk bisnis Anda. Klik untuk melihat detail solusi kustom.
+              </p>
+            </div>
+            <div class="shrink-0 flex items-center gap-3">
+              <button type="button" id="custom-product-toggle-btn" onclick="event.stopPropagation(); toggleCustomProductDropdown();"
+                class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-sm">
+                <span id="custom-product-toggle-text">Buka Solusi Custom</span>
+                <svg id="custom-product-chevron" class="w-4 h-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            </div>
           </div>
-          <div class="shrink-0 flex items-center gap-3">
-            <button type="button" onclick="event.stopPropagation(); openCustomProductModal();"
-              class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-sm">
-              <span>Buka Solusi Custom</span>
-              <span>→</span>
-            </button>
+
+          <!-- Expandable Dropdown Panel (Slides Downwards) -->
+          <div id="custom-product-dropdown-panel" class="custom-solution-expand-panel">
+            <div class="border-t border-white/10 bg-[#0d0e11] px-6 py-7 sm:px-8 sm:py-9">
+              
+              <!-- Intro description -->
+              <div class="max-w-3xl mb-7">
+                <p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-2">
+                  Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong class="text-white font-semibold">custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.
+                </p>
+                <p class="text-[11.5px] sm:text-xs text-white/55 leading-relaxed">
+                  Mulai dari custom desain, spesifikasi, warna, packaging, hingga branding produk dapat disesuaikan dengan kebutuhan dan identitas bisnis.
+                </p>
+              </div>
+
+              <!-- 5 Features Cards (No icons, clean typography, strict black/white/subtle yellow accents) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-8">
+                
+                <!-- 1. Desain -->
+                <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">01 / Desain</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Custom Desain &amp; Cetak</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.</p>
+                </div>
+
+                <!-- 2. Spesifikasi -->
+                <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">02 / Material</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Spesifikasi &amp; Material</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi &amp; sertifikasi industri.</p>
+                </div>
+
+                <!-- 3. Warna -->
+                <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">03 / Finishing</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Warna &amp; Finishing</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.</p>
+                </div>
+
+                <!-- 4. Packaging -->
+                <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">04 / Kemasan</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Custom Packaging</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.</p>
+                </div>
+
+                <!-- 5. Branding -->
+                <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all sm:col-span-2 lg:col-span-2">
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">05 / Private Label</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Branding &amp; Private Label</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.</p>
+                </div>
+
+              </div>
+
+              <!-- Action Footer -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-5 border-t border-white/10">
+                <p class="text-[11.5px] text-white/50">Konsultasikan kebutuhan OEM/ODM kabel &amp; aksesoris proyek Anda dengan tim teknis HOWELL.</p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                  <a href="https://wa.me/6281188031976?text=Halo%20PT%20Howell%20Niaga%20Indonesia%2C%20saya%20tertarik%20dengan%20layanan%20Custom%20Product%20Solution%20(OEM%2FODM)%20untuk%20kebutuhan%20bisnis%20kami.%20Mohon%20informasi%20lebih%20lanjut." target="_blank" rel="noopener noreferrer" 
+                    class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm">
+                    <span>Konsultasi via WhatsApp</span>
+                    <span>→</span>
+                  </a>
+                  <button type="button" onclick="openB2BModal('Konsultasi Custom Product Solution');"
+                    class="px-4 py-2.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-xs sm:text-sm font-semibold text-white transition-all cursor-pointer flex items-center justify-center gap-2">
+                    <span>Isi Formulir Penawaran B2B</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
           </div>
+
         </div>
 
       </div>
@@ -3062,24 +3141,37 @@
       modal.classList.remove('opacity-100');
     };
 
+    window.toggleCustomProductDropdown = function() {
+      const panel = document.getElementById('custom-product-dropdown-panel');
+      const btnText = document.getElementById('custom-product-toggle-text');
+      const chevron = document.getElementById('custom-product-chevron');
+      if (!panel) return;
+      
+      const isOpen = panel.classList.toggle('is-open');
+      if (btnText) {
+        btnText.textContent = isOpen ? 'Tutup Solusi Custom' : 'Buka Solusi Custom';
+      }
+      if (chevron) {
+        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    };
+
     window.openCustomProductModal = function() {
-      const modal = document.getElementById('custom-product-modal');
-      if (!modal) return;
-      stopScroll();
-      modal.classList.remove('hidden', 'pointer-events-none', 'opacity-0');
-      modal.classList.add('opacity-100');
-      if (window.lucide) window.lucide.createIcons();
+      const elem = document.getElementById('custom-product-solution');
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      const panel = document.getElementById('custom-product-dropdown-panel');
+      if (panel && !panel.classList.contains('is-open')) {
+        toggleCustomProductDropdown();
+      }
     };
 
     window.closeCustomProductModal = function() {
-      const modal = document.getElementById('custom-product-modal');
-      if (!modal) return;
-      startScroll();
-      modal.classList.add('pointer-events-none', 'opacity-0');
-      modal.classList.remove('opacity-100');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 300);
+      const panel = document.getElementById('custom-product-dropdown-panel');
+      if (panel && panel.classList.contains('is-open')) {
+        toggleCustomProductDropdown();
+      }
     };
 
     window.toggleInlineB2BForm = function(show, title = '') {
