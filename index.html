@@ -46,7 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- HOWELL Premium Design System CSS -->
-  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v5-custom-dropdown">
+  <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v6-smooth-dropdown">
 
   <!-- Tailwind CSS CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1599,7 +1599,7 @@
               <button type="button" id="custom-product-toggle-btn" onclick="event.stopPropagation(); toggleCustomProductDropdown();"
                 class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-sm">
                 <span id="custom-product-toggle-text">Buka Solusi Custom</span>
-                <svg id="custom-product-chevron" class="w-4 h-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="custom-product-chevron" class="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
@@ -3142,12 +3142,16 @@
     };
 
     window.toggleCustomProductDropdown = function() {
+      const container = document.getElementById('custom-product-solution');
       const panel = document.getElementById('custom-product-dropdown-panel');
       const btnText = document.getElementById('custom-product-toggle-text');
       const chevron = document.getElementById('custom-product-chevron');
       if (!panel) return;
       
       const isOpen = panel.classList.toggle('is-open');
+      if (container) {
+        container.classList.toggle('is-open', isOpen);
+      }
       if (btnText) {
         btnText.textContent = isOpen ? 'Tutup Solusi Custom' : 'Buka Solusi Custom';
       }
