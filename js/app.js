@@ -549,9 +549,13 @@ window.renderCatalog = function renderCatalog() {
 
 // Toggle Catalog See More
 function toggleCatalogExpand(expand) {
-  state.catalogExpanded = expand;
+  if (typeof expand === 'boolean') {
+    state.catalogExpanded = expand;
+  } else {
+    state.catalogExpanded = !state.catalogExpanded;
+  }
   renderCatalog();
-  if (!expand) {
+  if (!state.catalogExpanded) {
     scrollToId('catalog-section');
   }
 }
@@ -679,7 +683,7 @@ window.openProductDetail = function openProductDetail(productId) {
       <div class="lg:col-span-6 flex flex-col gap-4">
 
         <!-- Product Title -->
-        <h1 class="text-xl sm:text-2xl lg:text-[26px] font-bold text-slate-900 leading-snug tracking-tight">${product.name}</h1>
+        <h1 id="detail-modal-name" class="text-xl sm:text-2xl lg:text-[26px] font-bold text-slate-900 leading-snug tracking-tight">${product.name}</h1>
 
         <!-- Category Badge -->
         <div class="flex items-center gap-2 flex-wrap text-xs -mt-1">
