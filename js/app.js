@@ -1137,14 +1137,14 @@ function toggleVisiMisiDetail(type) {
     panel.classList.add('animate-visi-misi');
     card.setAttribute('aria-expanded', 'true');
     if (isVisi) {
-      card.classList.add('border-amber-500', 'ring-2', 'ring-amber-500/20');
+      card.classList.add('border-slate-400', 'shadow-md');
       if (badge) {
         badge.textContent = 'TUTUP DETAIL';
         badge.classList.remove('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
         badge.classList.add('bg-amber-500', 'text-white', 'border-amber-500');
       }
     } else {
-      card.classList.add('border-amber-500', 'ring-2', 'ring-amber-500/20');
+      card.classList.add('border-slate-400', 'shadow-md');
       if (badge) {
         badge.textContent = 'TUTUP DETAIL';
         badge.classList.remove('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
@@ -1156,14 +1156,14 @@ function toggleVisiMisiDetail(type) {
     panel.classList.remove('animate-visi-misi');
     card.setAttribute('aria-expanded', 'false');
     if (isVisi) {
-      card.classList.remove('border-amber-500', 'ring-2', 'ring-amber-500/20');
+      card.classList.remove('border-slate-400', 'shadow-md');
       if (badge) {
         badge.textContent = 'KLIK DETAIL';
         badge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
         badge.classList.remove('bg-amber-500', 'text-white', 'border-amber-500');
       }
     } else {
-      card.classList.remove('border-amber-500', 'ring-2', 'ring-amber-500/20');
+      card.classList.remove('border-slate-400', 'shadow-md');
       if (badge) {
         badge.textContent = 'KLIK DETAIL';
         badge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200/60');

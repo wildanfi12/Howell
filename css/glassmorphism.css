@@ -790,9 +790,8 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .btn-howell-glass:hover {
-  border-color: var(--color-yellow) !important;
-  background: rgba(255, 199, 0, 0.06) !important;
-  transform: scale(1.02);
+  border-color: #0F172A !important;
+  background: #E2E8F0 !important;
 }
 
 /* Shimmer CTA Button */
@@ -1059,9 +1058,9 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .payment-option-card.selected {
-  border-color: var(--color-yellow);
-  background: rgba(255, 199, 0, 0.05);
-  box-shadow: 0 0 0 1px var(--color-yellow), var(--shadow-yellow-sm);
+  border-color: #0F172A;
+  background: #F8FAFC;
+  box-shadow: 0 0 0 1px #0F172A;
 }
 
 .payment-option-card.selected::before {
@@ -1308,9 +1307,7 @@ p, span, li, a, input, textarea, select, button {
 
 /* ── Focus Visible Ring ─────────────────────────────────────── */
 *:focus-visible {
-  outline: 2px solid var(--color-yellow);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: none !important;
 }
 
 /* ── Category Accordion Item Enhanced (Howell Design Tokens v1.0.0) ── */

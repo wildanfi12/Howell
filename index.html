@@ -215,8 +215,7 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+      outline: none;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -305,8 +304,8 @@
       border: 1px solid rgba(255, 209, 0, 0.35);
     }
     .btn-pill-dark:hover {
-      border-color: #FFC700;
-      box-shadow: 0 0 20px rgba(255, 209, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
     .btn-pill-dark .btn-pill-badge {
       background: #FFC700;
@@ -319,7 +318,7 @@
       border: 1px solid #e5e5e5;
     }
     .btn-pill-light:hover {
-      border-color: #FFC700;
+      border-color: #111111;
     }
     .btn-pill-light .btn-pill-badge {
       background: #000000;
@@ -331,8 +330,8 @@
       color: #ffffff;
     }
     .btn-pill-outline:hover {
-      border-color: #FFC700;
-      color: #FFC700;
+      border-color: #ffffff;
+      color: #ffffff;
     }
     
     .btn-pill-badge {
@@ -612,7 +611,7 @@
             </div>
 
             <!-- Bottom Right Floating Jump CTA Button (Visible on tablet & desktop so it doesn't obstruct mobile banner text) -->
-            <div class="hidden sm:flex absolute bottom-4 right-4 sm:bottom-5 sm:right-6 lg:right-8 z-20 items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-black/85 hover:bg-[#FFC700] text-white hover:text-black text-xs font-extrabold shadow-2xl backdrop-blur-md border border-white/20 hover:border-[#FFC700] transition-all hover:scale-105 pointer-events-none group-hover:scale-105">
+            <div class="hidden sm:flex absolute bottom-4 right-4 sm:bottom-5 sm:right-6 lg:right-8 z-20 items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-black/85 hover:bg-[#FFC700] text-white hover:text-black text-xs font-extrabold shadow-2xl backdrop-blur-md border border-white/20 hover:border-white transition-all hover:scale-105 pointer-events-none group-hover:scale-105">
               <span id="banner-cta-text">Buka Produk di Katalog</span>
               <i data-lucide="arrow-down-right" class="w-3.5 h-3.5 text-[#FFC700] group-hover:text-black"></i>
             </div>
@@ -1348,23 +1347,23 @@
                 Filosofi layanan kami di jalin oleh 3 pilar yang tak tergoyahkan:
               </p>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-amber-400 transition-colors">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center font-mono">1</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">1</span>
                     <span class="font-bold text-xs text-slate-900">Kualitas Cermat</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug">Sebagai fondasi utama setiap produk.</p>
                 </div>
-                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-amber-400 transition-colors">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center font-mono">2</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">2</span>
                     <span class="font-bold text-xs text-slate-900">Integritas</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug">Sebagai panduan etika kerja dan bisnis.</p>
                 </div>
-                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-amber-400 transition-colors">
+                <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-700 font-black text-xs flex items-center justify-center font-mono">3</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">3</span>
                     <span class="font-bold text-xs text-slate-900">Kepercayaan</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug">Sebagai landasan setiap hubungan jangka panjang.</p>
@@ -1392,7 +1391,7 @@
                  tabindex="0" 
                  aria-expanded="false" 
                  aria-controls="visi-detail-panel"
-                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-amber-400 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
+                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
               
               <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
               
@@ -1464,7 +1463,7 @@
                  tabindex="0" 
                  aria-expanded="false" 
                  aria-controls="misi-detail-panel"
-                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-amber-400 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
+                 class="group p-8 sm:p-10 rounded-3xl bg-white border border-[#e6e5e2] hover:border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between cursor-pointer select-none">
               
               <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
               
@@ -1521,22 +1520,22 @@
                 </div>
 
                 <div class="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/20 transition-all">
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
                     <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">1. Produk Berkualitas Tinggi &amp; Harga Kompetitif</p>
                     <p class="text-[11.5px] text-slate-600 leading-relaxed">Melalui kontrol rantai pasok langsung dari pabrikasi berstandar internasional, Howell mampu menawarkan kabel performa tinggi (HDMI 8K, Active Optical, Audio Oxygen-Free) dengan efisiensi biaya terbaik untuk mendukung daya saing mitra ritel dan efisiensi pengadaan B2B.</p>
                   </div>
 
-                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/20 transition-all">
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
                     <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">2. Pelayanan Cepat, Tepat, dan Profesional</p>
                     <p class="text-[11.5px] text-slate-600 leading-relaxed">Mendukung ritme bisnis modern dengan pemrosesan pesanan yang sigap, akurasi spesifikasi teknis, serta garansi resmi 12 bulan ganti baru tanpa birokrasi berbelit demi kepuasan pelanggan.</p>
                   </div>
 
-                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/20 transition-all">
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
                     <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">3. Hubungan Jangka Panjang dengan Mitra &amp; Pelanggan</p>
                     <p class="text-[11.5px] text-slate-600 leading-relaxed">Menjadikan etika bisnis, transparansi harga, dan kehandalan pasokan sebagai fondasi kemitraan berkelanjutan bagi ratusan distributor, kontraktor instalasi, dan pelaku industri di seluruh Indonesia.</p>
                   </div>
 
-                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/20 transition-all">
+                  <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
                     <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">4. Berinovasi Mengikuti Perkembangan Pasar &amp; Teknologi</p>
                     <p class="text-[11.5px] text-slate-600 leading-relaxed">Selalu berada di garis depan evolusi konektivitas digital dengan menghadirkan solusi kabel HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN Fast Charger, hingga hybrid active fiber untuk instalasi jarak jauh.</p>
                   </div>
@@ -1668,7 +1667,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           
           <!-- Card 1: B2B Form Trigger -->
-          <div onclick="toggleInlineB2BForm(true, 'Penawaran Wholesale')" class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-[#FFC700] cursor-pointer group transition-all">
+          <div onclick="toggleInlineB2BForm(true, 'Penawaran Wholesale')" class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-slate-300 hover:shadow-lg cursor-pointer group transition-all">
             <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-[#FFC700] mb-6 shadow-sm group-hover:scale-105 transition-transform">
               <i data-lucide="file-text" class="w-6 h-6"></i>
             </div>
@@ -1676,14 +1675,14 @@
             <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               Ajukan permintaan harga khusus grosir, penawaran proyek korporat, dan pengadaan instansi.
             </p>
-            <div class="mt-6 flex items-center gap-2 text-xs font-bold text-black group-hover:text-[#FFC700] transition-colors">
+            <div class="mt-6 flex items-center gap-2 text-xs font-bold text-black group-hover:text-slate-700 transition-colors">
               <span>Buka Formulir</span>
               <span>→</span>
             </div>
           </div>
 
           <!-- Card 3: Marketplace Stores -->
-          <div class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-[#FFC700] transition-all flex flex-col justify-between">
+          <div class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-slate-300 hover:shadow-lg transition-all flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-[#FFC700] mb-6 shadow-sm">
                 <i data-lucide="shopping-bag" class="w-6 h-6"></i>
@@ -1890,7 +1889,7 @@
           </div>
         </div>
       </div>
-      <button onclick="toggleNavMenu(false)" class="flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 text-xs uppercase tracking-wider text-white/80 hover:border-[#FFC700] hover:text-[#FFC700] hover:bg-white/5 transition-all cursor-pointer shadow-sm">
+      <button onclick="toggleNavMenu(false)" class="flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 text-xs uppercase tracking-wider text-white/80 hover:border-white/50 hover:text-white hover:bg-white/5 transition-all cursor-pointer shadow-sm">
         <i data-lucide="x" class="w-4 h-4"></i>
         <span class="font-bold">Close</span>
       </button>
