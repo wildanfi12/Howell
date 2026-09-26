@@ -1885,7 +1885,7 @@
 
 
   <!-- ==================== 9. NAV MENU OVERLAY (Apple-Style Full-Screen Split Layout) ==================== -->
-  <div id="nav-menu-overlay" class="fixed inset-0 z-[115] flex flex-col text-white transition-all duration-400 opacity-0 pointer-events-none" style="background: linear-gradient(145deg, #070708 0%, #0d0d10 100%); backdrop-filter: saturate(180%) blur(20px);">
+  <div id="nav-menu-overlay" class="fixed inset-0 z-[115] flex flex-col text-white transition-all duration-400 opacity-0 pointer-events-none" style="background: linear-gradient(145deg, #070708 0%, #0d0d10 100%); backdrop-filter: saturate(180%) blur(20px); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
     
     <!-- Top Bar — Logo + Brand Badges + Close -->
     <div class="shell flex items-center justify-between py-4 sm:py-5 border-b border-white/10 shrink-0">
@@ -1911,56 +1911,71 @@
         
         <!-- Left Column: Primary Navigation with Subtitles & Numbering -->
         <div class="lg:col-span-6 flex flex-col justify-center">
-          <div class="text-[10px] uppercase tracking-widest text-[#FFC700] font-bold mb-3 flex items-center gap-2">
-            <span class="w-2 h-0.5 bg-[#FFC700]"></span>
+          <div class="text-[11px] uppercase tracking-[0.2em] text-[#FFC700] font-bold mb-5 sm:mb-6 flex items-center gap-2.5">
+            <span class="w-3 h-0.5 bg-[#FFC700] rounded-full inline-block"></span>
             <span>Main Navigation</span>
           </div>
-          <ul class="space-y-2 sm:space-y-3">
+          <ul class="space-y-4 sm:space-y-5">
             
             <li class="group">
-              <button onclick="scrollToId('home'); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <span class="text-xs font-mono text-white/25 group-hover:text-[#FFC700] transition-colors w-6 shrink-0">01</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_home">Home</span>
-                  <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
+              <button onclick="scrollToId('home'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
+                <div class="flex items-start gap-4 sm:gap-5">
+                  <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">01</span>
+                  <div class="flex flex-col">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_home">Home</span>
+                      <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed">Showroom Resmi &amp; Penawaran Unggulan</p>
+                  </div>
                 </div>
-                <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">Showroom Resmi &amp; Penawaran Unggulan</p>
               </button>
             </li>
 
             <li class="group">
-              <button onclick="scrollToId('catalog-section'); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <span class="text-xs font-mono text-white/25 group-hover:text-[#FFC700] transition-colors w-6 shrink-0">02</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_products">Produk</span>
-                  <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
+              <button onclick="scrollToId('catalog-section'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
+                <div class="flex items-start gap-4 sm:gap-5">
+                  <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">02</span>
+                  <div class="flex flex-col">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_products">Produk</span>
+                      <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed">137+ Produk Bersertifikasi &amp; Spesifikasi Lengkap</p>
+                  </div>
                 </div>
-                <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">137+ Produk Bersertifikasi &amp; Spesifikasi Lengkap</p>
               </button>
             </li>
 
             <li class="group">
-              <button onclick="scrollToId('about-us'); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <span class="text-xs font-mono text-white/25 group-hover:text-[#FFC700] transition-colors w-6 shrink-0">03</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_about">Tentang Kami</span>
-                  <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
+              <button onclick="scrollToId('about-us'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
+                <div class="flex items-start gap-4 sm:gap-5">
+                  <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">03</span>
+                  <div class="flex flex-col">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_about">Tentang Kami</span>
+                      <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed">Profil Howell Sejak 2009 &amp; 3 Pilar Layanan</p>
+                  </div>
                 </div>
-                <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">Profil Howell Sejak 2009 &amp; 3 Pilar Layanan</p>
               </button>
             </li>
 
             <li class="group">
-              <button onclick="openSupportModal(); toggleNavMenu(false);" class="w-full text-left py-2 group-hover:translate-x-1.5 transition-transform duration-200 cursor-pointer">
-                <div class="flex items-center gap-3 sm:gap-4">
-                  <span class="text-xs font-mono text-white/25 group-hover:text-[#FFC700] transition-colors w-6 shrink-0">04</span>
-                  <span class="text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-white/70 group-hover:text-white transition-colors" data-i18n="nav_contact">Kontak &amp; Dukungan</span>
-                  <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-black">.</span>
+              <button onclick="openSupportModal(); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
+                <div class="flex items-start gap-4 sm:gap-5">
+                  <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">04</span>
+                  <div class="flex flex-col">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_contact">Kontak &amp; Dukungan</span>
+                      <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed">Layanan Pengadaan B2B, Tender &amp; Dukungan Teknis</p>
+                  </div>
                 </div>
-                <p class="text-[11px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors pl-9 sm:pl-10 mt-0.5">Layanan Pengadaan B2B, Tender &amp; Dukungan Teknis</p>
               </button>
             </li>
-
 
           </ul>
         </div>
@@ -3346,7 +3361,7 @@
         nav_categories: "Kategori",
         nav_b2b: "B2B Supply",
         nav_about: "Tentang Kami",
-        nav_contact: "Kontak",
+        nav_contact: "Kontak & Dukungan",
         menu_label: "Menu",
         search_placeholder: "Cari produk atau SKU...",
         hero_tagline: "Connected to the Future",
@@ -3388,7 +3403,7 @@
         nav_categories: "Categories",
         nav_b2b: "B2B Supply",
         nav_about: "About Us",
-        nav_contact: "Contact Us",
+        nav_contact: "Contact & Support",
         menu_label: "Menu",
         search_placeholder: "Search product or SKU...",
         hero_tagline: "Connected to the Future",
