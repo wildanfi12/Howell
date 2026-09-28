@@ -614,11 +614,6 @@
           <div onclick="onCategoryBannerClick()" class="relative w-full overflow-hidden bg-black cursor-pointer flex items-center justify-center transition-transform aspect-[16/9]" title="Klik banner untuk langsung ke katalog produk">
             <img id="active-category-banner-img" src="assets/Banner/9. HDMI/Landscape/6.png" alt="Category Banner" class="w-full h-full object-contain block select-none group-hover:scale-[1.01] transition-transform duration-500">
 
-            <!-- Top Left Category Badge -->
-            <div class="absolute top-2.5 left-2.5 sm:top-5 sm:left-6 lg:left-8 z-20 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-bold text-white shadow-lg pointer-events-none">
-              <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FFC700] animate-pulse"></span>
-              <span id="banner-badge-category" class="text-[#FFC700]">HDMI 8K &amp; Video Cables</span>
-            </div>
 
             <!-- Bottom Right Floating Jump CTA Button (Visible on tablet & desktop so it doesn't obstruct mobile banner text) -->
             <div class="hidden sm:flex absolute bottom-4 right-4 sm:bottom-5 sm:right-6 lg:right-8 z-20 items-center gap-2 px-4 py-2 sm:py-2.5 rounded-full bg-black/85 hover:bg-[#FFC700] text-white hover:text-black text-xs font-extrabold shadow-2xl backdrop-blur-md border border-white/20 hover:border-white transition-all hover:scale-105 pointer-events-none group-hover:scale-105">
@@ -2874,7 +2869,6 @@
       const imgEl = document.getElementById('active-category-banner-img');
       const labelEl = document.getElementById('active-banner-label');
       const dotsEl = document.getElementById('banner-pagination-dots');
-      const badgeCatEl = document.getElementById('banner-badge-category');
       const ctaTextEl = document.getElementById('banner-cta-text');
 
       if (imgEl && bannerData.images[activeBannerSlideIndex]) {
@@ -2887,10 +2881,6 @@
 
       if (labelEl) {
         labelEl.textContent = bannerData.name;
-      }
-
-      if (badgeCatEl) {
-        badgeCatEl.textContent = bannerData.name;
       }
 
       if (ctaTextEl) {
