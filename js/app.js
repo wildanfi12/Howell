@@ -1114,26 +1114,7 @@ function switchDetailTab(tab) {
   });
 }
 
-window.closeModal = function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    if (typeof window.popModalStack === 'function') {
-      window.popModalStack(modalId);
-    }
-    modal.style.pointerEvents = 'none';
-    modal.style.opacity = '0';
-    modal.classList.add('pointer-events-none', 'opacity-0');
-    modal.classList.remove('opacity-100');
-    setTimeout(() => {
-      modal.style.display = 'none';
-      modal.classList.add('hidden');
-    }, 300);
-    const otherOpen = document.querySelector('#product-detail-modal:not(.opacity-0):not(.hidden), #b2b-kerjasama-modal:not(.opacity-0):not(.hidden), #support-howell-modal:not(.hidden), #qris-checkout-modal:not(.opacity-0):not(.hidden)');
-    if (!otherOpen && typeof startScroll === 'function') {
-      startScroll();
-    }
-  }
-};
+// closeModal is defined authoritatively in index.html inline script
 
 window.backToCartFromCheckout = function backToCartFromCheckout() {
   const modal = document.getElementById('qris-checkout-modal');

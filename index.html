@@ -1960,7 +1960,7 @@
               </li>
 
               <li class="group">
-                <button onclick="openSupportModal(); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
+                <button onclick="toggleNavMenu(false); setTimeout(function(){ openSupportModal(); }, 150);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
                   <div class="flex items-start gap-4 sm:gap-5">
                     <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">04</span>
                     <div class="flex flex-col">
@@ -1985,10 +1985,10 @@
               <div class="flex items-center justify-between mb-3">
                 <span class="text-[10px] uppercase tracking-widest text-[#FFC700] font-bold flex items-center gap-1.5">
                   <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-                  Kategori Produk Populer
+                  <span data-i18n="nav_cat_popular_label">Kategori Produk Populer</span>
                 </span>
-                <button onclick="toggleNavMenu(false); filterByCategory('all');" class="text-[11px] text-white/50 hover:text-[#FFC700] transition-colors cursor-pointer">
-                  Lihat Semua (9) →
+                <button onclick="toggleNavMenu(false); filterByCategory('all');" class="text-[11px] text-white/50 hover:text-[#FFC700] transition-colors cursor-pointer" data-i18n="nav_view_all_cats">
+                  <span data-i18n="nav_view_all_cats">Lihat Semua (9) →</span>
                 </button>
               </div>
               
@@ -2017,34 +2017,21 @@
                   <div class="font-bold text-[11px] sm:text-xs">USB &amp; Charging</div>
                   <div class="text-[9.5px] text-white/40 group-hover:text-black/70">12 Produk</div>
                 </button>
+                <button onclick="toggleNavMenu(false); filterByCategory('audio');" class="p-2.5 rounded-xl bg-white/5 hover:bg-[#FFC700] hover:text-black border border-white/8 transition-all text-left group cursor-pointer">
+                  <div class="font-bold text-[11px] sm:text-xs">Audio &amp; Instrument</div>
+                  <div class="text-[9.5px] text-white/40 group-hover:text-black/70">11 Produk</div>
+                </button>
+                <button onclick="toggleNavMenu(false); filterByCategory('dvi-vga');" class="p-2.5 rounded-xl bg-white/5 hover:bg-[#FFC700] hover:text-black border border-white/8 transition-all text-left group cursor-pointer">
+                  <div class="font-bold text-[11px] sm:text-xs">DVI &amp; VGA</div>
+                  <div class="text-[9.5px] text-white/40 group-hover:text-black/70">8 Produk</div>
+                </button>
+                <button onclick="toggleNavMenu(false); filterByCategory('earphone-tws');" class="p-2.5 rounded-xl bg-white/5 hover:bg-[#FFC700] hover:text-black border border-white/8 transition-all text-left group cursor-pointer">
+                  <div class="font-bold text-[11px] sm:text-xs">Earphones &amp; TWS</div>
+                  <div class="text-[9.5px] text-white/40 group-hover:text-black/70">8 Produk</div>
+                </button>
               </div>
             </div>
 
-            <!-- Box 2: Official Catalog & Print Action Card -->
-            <div class="rounded-2xl bg-gradient-to-r from-white/[0.04] to-transparent border border-white/10 p-4 sm:p-5 flex items-center justify-between gap-4">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-[#FFC700]/15 border border-[#FFC700]/30 text-[#FFC700] flex items-center justify-center shrink-0">
-                  <i data-lucide="printer" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <h4 class="text-xs sm:text-sm font-bold text-white">Katalog Inventaris &amp; Cetak PDF</h4>
-                  <p class="text-[11px] text-white/50">Dokumen master spesifikasi dan cetak inventaris resmi.</p>
-                </div>
-              </div>
-              <a href="print-catalog.html" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-[#FFC700] hover:text-black text-white text-xs font-bold transition-all shrink-0 flex items-center gap-1.5" title="Buka Dokumen Master Katalog Cetak PDF">
-                <span>Buka</span>
-                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
-
-            <!-- Box 3: Office & B2B Info -->
-            <div class="flex items-center justify-between text-[11px] text-white/45 px-2">
-              <span class="flex items-center gap-1.5">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#FFC700]"></i>
-                Pluit Raya, Penjaringan, Jakarta Utara
-              </span>
-              <span>Senin – Sabtu (09.00 – 17.00)</span>
-            </div>
 
           </div>
 
@@ -2055,7 +2042,7 @@
           
           <!-- Official Store Channels -->
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
-            <div class="text-[10px] text-white/40 uppercase tracking-widest font-semibold">Official Store Channels:</div>
+            <div class="text-[10px] text-white/40 uppercase tracking-widest font-semibold" data-i18n="nav_store_channels">Official Store Channels:</div>
             <div class="grid grid-cols-3 gap-2 w-full sm:w-auto">
               <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-[11px] font-semibold border border-white/10 transition-all">
                 <img src="assets/shopee-logo.webp" alt="Shopee" class="w-3.5 h-3.5 object-contain">
@@ -2085,7 +2072,7 @@
             <div class="flex items-center gap-2 w-full sm:w-auto">
               <a href="https://wa.me/6281188031976" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-600 hover:text-white text-xs font-bold transition-all cursor-pointer">
                 <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                <span>WhatsApp CS</span>
+                <span data-i18n="nav_wa_cs">WhatsApp CS</span>
               </a>
               <button onclick="toggleNavMenu(false); openB2BModal();" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-black text-xs font-bold transition-all shadow-md shrink-0 flex items-center justify-center gap-1.5 cursor-pointer" data-i18n="hero_b2b_btn">
                 Start a Project →
@@ -3313,10 +3300,13 @@
 
     window.openSupportModal = function() {
       const modal = document.getElementById('support-howell-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        if (window.lucide) lucide.createIcons();
-      }
+      if (!modal) return;
+      stopScroll();
+      modal.style.display = '';
+      modal.style.pointerEvents = '';
+      modal.style.opacity = '';
+      modal.classList.remove('hidden', 'pointer-events-none', 'opacity-0');
+      if (window.lucide) lucide.createIcons();
     };
 
     window.showToast = function(message, title = "HOWELL Catalog", icon = "check-circle") {
@@ -3368,6 +3358,15 @@
         btn_contact_us: "Hubungi Kami",
         nav_official_store_label: "Official Store Howell",
         nav_b2b_project_btn: "Start a Project →",
+        nav_cat_popular_label: "Kategori Produk Populer",
+        nav_view_all_cats: "Lihat Semua (9) →",
+        nav_catalog_print_title: "Katalog Inventaris & Cetak PDF",
+        nav_catalog_print_desc: "Dokumen master spesifikasi dan cetak inventaris resmi.",
+        nav_catalog_print_btn: "Buka",
+        nav_office_address: "Pluit Raya, Penjaringan, Jakarta Utara",
+        nav_office_hours: "Senin – Sabtu (09.00 – 17.00)",
+        nav_store_channels: "Official Store Channels:",
+        nav_wa_cs: "WhatsApp CS",
 
         hero_rating: "★ 4.9/5 Official Store Rating (Shopee, Tokopedia, TikTok)",
         hero_tagline: "CONNECTED TO THE FUTURE",
@@ -3503,6 +3502,15 @@
         btn_contact_us: "Contact Us",
         nav_official_store_label: "Howell Official Stores",
         nav_b2b_project_btn: "Start a Project →",
+        nav_cat_popular_label: "Popular Product Categories",
+        nav_view_all_cats: "View All (9) →",
+        nav_catalog_print_title: "Inventory Catalog & Print PDF",
+        nav_catalog_print_desc: "Master specification document and official inventory print.",
+        nav_catalog_print_btn: "Open",
+        nav_office_address: "Pluit Raya, Penjaringan, North Jakarta",
+        nav_office_hours: "Mon – Sat (09:00 – 17:00)",
+        nav_store_channels: "Official Store Channels:",
+        nav_wa_cs: "WhatsApp CS",
 
         hero_rating: "★ 4.9/5 Official Store Rating (Shopee, Tokopedia, TikTok)",
         hero_tagline: "CONNECTED TO THE FUTURE",
@@ -3638,6 +3646,15 @@
         btn_contact_us: "联系我们",
         nav_official_store_label: "Howell 官方电商平台",
         nav_b2b_project_btn: "发起项目合作 →",
+        nav_cat_popular_label: "热门产品分类",
+        nav_view_all_cats: "查看全部 (9) →",
+        nav_catalog_print_title: "产品目录与 PDF 打印",
+        nav_catalog_print_desc: "产品规格主文档及官方库存清单打印。",
+        nav_catalog_print_btn: "打开",
+        nav_office_address: "雅加达北区，Pluit Raya",
+        nav_office_hours: "周一至周六 (09:00 – 17:00)",
+        nav_store_channels: "官方销售渠道：",
+        nav_wa_cs: "WhatsApp 客服",
 
         hero_rating: "★ 4.9/5 官方旗舰店高评分 (Shopee, Tokopedia, TikTok)",
         hero_tagline: "CONNECTED TO THE FUTURE",
