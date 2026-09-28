@@ -424,7 +424,9 @@ window.renderCatalog = function renderCatalog() {
 
   // Update live count
   if (countEl) {
-    countEl.textContent = `${filtered.length} produk`;
+    const curL = window.currentLanguage || 'id';
+    const unitText = curL === 'zh' ? ' 款产品' : (curL === 'en' ? ' products' : ' produk');
+    countEl.textContent = `${filtered.length}${unitText}`;
   }
 
   if (typeof renderCategoryChips === 'function') {
@@ -796,9 +798,8 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Social Share -->
         <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
           <span class="font-semibold text-slate-700">${txtShareLabel}</span>
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke Facebook"><i data-lucide="facebook" class="w-3.5 h-3.5"></i></button>
-            <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke X"><i data-lucide="twitter" class="w-3.5 h-3.5"></i></button>
+            <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke Facebook"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+            <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke X"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
             <button type="button" onclick="shareProduct('whatsapp')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke WhatsApp"><i data-lucide="phone" class="w-3.5 h-3.5"></i></button>
             <button type="button" onclick="shareProduct('copy')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Salin Tautan"><i data-lucide="link" class="w-3.5 h-3.5"></i></button>
           </div>
@@ -1233,6 +1234,35 @@ window.heroVideoController = (function() {
     video.addEventListener('ended', function() {
       video.currentTime = 0;
       video.play().catch(function() {});
+    });
+
+    // Performance & Battery Optimization: Pause video when scrolled out of view
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            if (!video.paused) video.pause();
+          } else {
+            if (!isPausedByUser && video.paused) {
+              video.play().catch(function() {});
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      videoObserver.observe(video);
+    }
+
+    // Pause video when browser tab is inactive / hidden
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        if (!video.paused) video.pause();
+      } else {
+        const rect = video.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!isPausedByUser && isInView && video.paused) {
+          video.play().catch(function() {});
+        }
+      }
     });
   }
 
