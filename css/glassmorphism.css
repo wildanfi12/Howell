@@ -1615,9 +1615,10 @@ button, a, input, select {
     max-height: 100vh !important;
     background: #ffffff !important;
     z-index: 220 !important;
-    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: none !important;
+    visibility: hidden !important;
     transform: translateX(-100%) !important;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease, box-shadow 0.35s ease !important;
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
@@ -1625,7 +1626,9 @@ button, a, input, select {
   }
 
   #catalog-filter-sidebar.open {
+    visibility: visible !important;
     transform: translateX(0%) !important;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.35) !important;
   }
 
   #catalog-filter-backdrop {
