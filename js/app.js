@@ -302,9 +302,11 @@ window.renderCategoryChips = function renderCategoryChips() {
   const allCount = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.length : 137;
   const isAllActive = !state.activeCategory || state.activeCategory === 'all';
 
+  const currentLang = window.currentLanguage || 'id';
+  const allChipLabel = currentLang === 'zh' ? '全部' : (currentLang === 'en' ? 'All' : 'Semua');
   let html = `
     <button type="button" onclick="filterByCategory('all')" class="category-chip-btn ${isAllActive ? 'active' : ''}">
-      <span>Semua</span>
+      <span>${allChipLabel}</span>
       <span class="cat-count-pill ml-1">(${allCount})</span>
     </button>
   `;
@@ -435,7 +437,7 @@ window.renderCatalog = function renderCatalog() {
     const allCount = HOWELL_PRODUCTS.length;
     catContainer.innerHTML = `
       <button type="button" onclick="filterByCategory('all')" class="w-full flex items-center justify-between py-1 text-left text-[13px] transition-colors ${state.activeCategory === 'all' ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'}">
-        <span>Semua Produk</span>
+        <span>${(window.currentLanguage === 'zh' ? '全部产品' : (window.currentLanguage === 'en' ? 'All Products' : 'Semua Produk'))}</span>
         <span class="text-[11px] text-slate-400">(${allCount})</span>
       </button>
       ${HOWELL_CATEGORIES.map(cat => {
@@ -453,14 +455,18 @@ window.renderCatalog = function renderCatalog() {
 
   if (filtered.length === 0) {
     catalogGrid.className = 'col-span-full py-16 text-center';
+    const curL = window.currentLanguage || 'id';
+    const emptyTitle = curL === 'zh' ? '未找到符合条件的产品' : (curL === 'en' ? 'No Matching Products Found' : 'Tidak Ada Produk yang Sesuai');
+    const emptyDesc = curL === 'zh' ? '请尝试调整搜索关键词或选择其他产品分类。' : (curL === 'en' ? 'Try adjusting your search query or selected product category.' : 'Coba sesuaikan pencarian atau kategori produk Anda.');
+    const resetText = curL === 'zh' ? '重置筛选条件' : (curL === 'en' ? 'Reset Filters' : 'Reset Filter');
     catalogGrid.innerHTML = `
       <div class="py-16 text-center rounded-2xl p-8 border border-slate-200 font-sans max-w-md mx-auto">
         <div class="w-14 h-14 rounded-full bg-slate-100 mx-auto flex items-center justify-center text-slate-400 mb-4">
           <i data-lucide="search-x" class="w-7 h-7"></i>
         </div>
-        <h3 class="text-base font-bold text-slate-900">Tidak Ada Produk yang Sesuai</h3>
-        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan pencarian atau kategori produk Anda.</p>
-        <button onclick="resetFilters()" class="mt-4 px-5 py-2 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-all cursor-pointer">Reset Filter</button>
+        <h3 class="text-base font-bold text-slate-900">${emptyTitle}</h3>
+        <p class="text-xs text-slate-500 mt-1">${emptyDesc}</p>
+        <button onclick="resetFilters()" class="mt-4 px-5 py-2 rounded-full bg-black text-white text-xs font-semibold hover:bg-slate-800 transition-all cursor-pointer">${resetText}</button>
       </div>
     `;
     if (loadMoreBox) loadMoreBox.innerHTML = '';
@@ -517,23 +523,29 @@ window.renderCatalog = function renderCatalog() {
     if (filtered.length > limit) {
       if (shouldLimit) {
         const remaining = filtered.length - limit;
+        const curL = window.currentLanguage || 'id';
+        const seeMoreText = curL === 'zh' ? `查看其余 ${remaining} 款产品` : (curL === 'en' ? `See ${remaining} More Products` : `Lihat ${remaining} Produk Lainnya`);
+        const showingOfText = curL === 'zh' ? `显示 ${limit} / ${filtered.length} 款 HOWELL 目录产品` : (curL === 'en' ? `Showing ${limit} of ${filtered.length} HOWELL catalog products` : `Menampilkan ${limit} dari ${filtered.length} produk katalog HOWELL`);
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
             <button type="button" onclick="toggleCatalogExpand(true)" class="group px-7 py-2.5 rounded-full border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] text-[13px] font-semibold transition-all flex items-center gap-2 select-none cursor-pointer">
-              <span>Lihat ${remaining} Produk Lainnya</span>
+              <span>${seeMoreText}</span>
               <i data-lucide="chevron-down" class="w-4 h-4 text-[#86868B] group-hover:translate-y-0.5 transition-transform stroke-[1.75]"></i>
             </button>
-            <span class="text-[11px] text-[#86868B]">Menampilkan ${limit} dari ${filtered.length} produk katalog HOWELL</span>
+            <span class="text-[11px] text-[#86868B]">${showingOfText}</span>
           </div>
         `;
       } else {
+        const curL = window.currentLanguage || 'id';
+        const showLessText = curL === 'zh' ? '收起产品列表' : (curL === 'en' ? 'Show Less' : 'Tampilkan Lebih Sedikit');
+        const showingAllText = curL === 'zh' ? `显示全部 ${filtered.length} 款产品` : (curL === 'en' ? `Showing all ${filtered.length} catalog products` : `Menampilkan seluruh ${filtered.length} produk katalog`);
         loadMoreBox.innerHTML = `
           <div class="flex flex-col items-center gap-2 pt-4">
             <button type="button" onclick="toggleCatalogExpand(false)" class="group px-7 py-2.5 rounded-full border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] text-[13px] font-semibold transition-all flex items-center gap-2 select-none cursor-pointer">
-              <span>Tampilkan Lebih Sedikit</span>
+              <span>${showLessText}</span>
               <i data-lucide="chevron-up" class="w-4 h-4 text-[#86868B] group-hover:-translate-y-0.5 transition-transform stroke-[1.75]"></i>
             </button>
-            <span class="text-[11px] text-[#86868B]">Menampilkan seluruh ${filtered.length} produk katalog</span>
+            <span class="text-[11px] text-[#86868B]">${showingAllText}</span>
           </div>
         `;
       }
@@ -641,15 +653,36 @@ window.openProductDetail = function openProductDetail(productId) {
 
   const encodedSrc = encodeURI(product.image);
   const safeTitle = (product.name || '').replace(/'/g, "\\'");
-  const waMsg = `Halo HOWELL, saya tertarik dengan produk ${product.name} (SKU: ${product.sku || '-'})` + (state.activeLength !== 'Standard' ? ` varian panjang ${state.activeLength}` : '') + `. Mohon informasi spesifikasi & ketersediaan stok.`;
+  const curL = window.currentLanguage || 'id';
+  const waMsg = curL === 'zh' 
+    ? `您好 HOWELL，我对贵司产品 ${product.name} (SKU: ${product.sku || '-'}` + (state.activeLength !== 'Standard' ? ` 规格长度 ${state.activeLength}` : '') + `) 很感兴趣，请问是否有现货及详细工程报价？`
+    : (curL === 'en'
+      ? `Hello HOWELL, I am interested in ${product.name} (SKU: ${product.sku || '-'}` + (state.activeLength !== 'Standard' ? ` length variant ${state.activeLength}` : '') + `). Please share technical specs and availability.`
+      : `Halo HOWELL, saya tertarik dengan produk ${product.name} (SKU: ${product.sku || '-'}` + (state.activeLength !== 'Standard' ? ` varian panjang ${state.activeLength}` : '') + `). Mohon informasi spesifikasi & ketersediaan stok.`);
   const waInquiryUrl = `https://wa.me/6281188031976?text=${encodeURIComponent(waMsg)}`;
+
+  const txtBack = curL === 'zh' ? '返回产品目录' : (curL === 'en' ? 'Back to Product Catalog' : 'Kembali ke Katalog Produk');
+  const txtZoomHint = curL === 'zh' ? '点击图片查看大图' : (curL === 'en' ? 'Click image to zoom' : 'Klik foto untuk perbesar gambar');
+  const txtLengthLabel = curL === 'zh' ? '线长规格可选：' : (curL === 'en' ? 'Length Variants:' : 'Pilihan Varian Panjang:');
+  const txtWaBtn = curL === 'zh' ? '通过 WhatsApp 咨询产品' : (curL === 'en' ? 'Product Inquiry via WhatsApp' : 'Konsultasi Produk via WhatsApp');
+  const txtB2bBtn = curL === 'zh' ? '申请 B2B 企业工程报价' : (curL === 'en' ? 'B2B & Corporate Project Inquiries' : 'Permintaan Penawaran B2B & Proyek Korporat');
+  const txtStoreLabel = curL === 'zh' ? '官方直营电商店铺：' : (curL === 'en' ? 'Available on Official Stores:' : 'Tersedia di Toko Online Resmi:');
+  const txtQualityTitle = curL === 'zh' ? '品质保障与官方正品' : (curL === 'en' ? 'Quality Guarantee & Official Distribution' : 'Jaminan Mutu & Distribusi Resmi');
+  const txtQualityDesc = curL === 'zh' 
+    ? '由 <strong>PT Howell Niaga Indonesia</strong> 官方直供。全线缆及适配器均通过严苛 QC 检测，采用 100% 高纯度无氧铜 (OFC)，并享有官方 12 个月换新质保。'
+    : (curL === 'en'
+      ? 'Distributed officially by <strong>PT Howell Niaga Indonesia</strong>. All cables and adapters undergo strict QC testing, feature 100% oxygen-free copper (OFC), and include a 12-month official replacement warranty.'
+      : 'Didistribusikan resmi oleh <strong>PT Howell Niaga Indonesia</strong>. Seluruh kabel dan adaptor melewati pengujian QC ketat, 100% tembaga bebas oksigen (OFC), dan bergaransi resmi 12 bulan tukar baru.');
+  const txtShareLabel = curL === 'zh' ? '分享产品：' : (curL === 'en' ? 'Share Product:' : 'Bagikan Produk:');
+  const txtTabSpecs = curL === 'zh' ? '技术规格' : (curL === 'en' ? 'Technical Specs' : 'Spesifikasi Teknis');
+  const txtTabDesc = curL === 'zh' ? '产品亮点与概述' : (curL === 'en' ? 'Overview & Features' : 'Ikhtisar & Fitur');
 
   containerEl.innerHTML = `
     <!-- Top Back Navigation & Breadcrumbs -->
     <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
       <button type="button" onclick="closeModal('product-detail-modal'); scrollToId('catalog-section');" class="inline-flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-black px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer shadow-xs">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        <span>Kembali ke Katalog Produk</span>
+        <span>${txtBack}</span>
       </button>
       <div class="text-xs text-slate-500 flex items-center gap-1.5 font-medium flex-wrap">
         <button type="button" onclick="closeModal('product-detail-modal'); scrollToId('home');" class="hover:text-black cursor-pointer">Home</button>
@@ -674,7 +707,7 @@ window.openProductDetail = function openProductDetail(productId) {
         </div>
         <!-- Hint -->
         <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
-          <span>Klik foto untuk perbesar gambar</span>
+          <span>${txtZoomHint}</span>
           <span class="font-mono text-[11px] text-slate-400">HOWELL</span>
         </div>
       </div>
@@ -704,7 +737,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Length Variant Selector (if applicable) -->
         ${product.variants?.lengths ? `
           <div>
-            <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Pilihan Varian Panjang:</label>
+            <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">${txtLengthLabel}</label>
             <div class="flex flex-wrap gap-2" id="detail-length-pills">
               ${product.variants.lengths.map(len => `
                 <button type="button" onclick="selectVariantLength('${len}')" data-variant-length="${len}" class="px-3.5 py-2 rounded-[8px] text-xs font-bold border transition-all cursor-pointer ${state.activeLength === len ? 'bg-[#FFC700] text-slate-950 border-[#FFC700] shadow-xs' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'}">
@@ -720,7 +753,7 @@ window.openProductDetail = function openProductDetail(productId) {
           <a id="detail-wa-inquiry-btn" href="${waInquiryUrl}" target="_blank" rel="noopener noreferrer" 
             class="w-full h-12 rounded-[8px] bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-sm transition-all select-none cursor-pointer">
             <i data-lucide="phone" class="w-4 h-4"></i>
-            <span>Konsultasi Produk via WhatsApp</span>
+            <span>${txtWaBtn}</span>
             <span class="text-xs opacity-75">→</span>
           </a>
 
@@ -728,13 +761,13 @@ window.openProductDetail = function openProductDetail(productId) {
           <button type="button" onclick="closeModal('product-detail-modal'); openB2BModal();" 
             class="w-full h-11 rounded-[8px] bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all select-none cursor-pointer">
             <i data-lucide="building-2" class="w-4 h-4 text-[#FFC700]"></i>
-            <span>Permintaan Penawaran B2B &amp; Proyek Korporat</span>
+            <span>${txtB2bBtn}</span>
           </button>
         </div>
 
         <!-- Official Online Channels -->
         <div class="space-y-2 pt-1">
-          <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Tersedia di Toko Online Resmi:</label>
+          <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">${txtStoreLabel}</label>
           <div class="grid grid-cols-3 gap-2">
             <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-[8px] bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 text-orange-600 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all">
               <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
@@ -755,16 +788,14 @@ window.openProductDetail = function openProductDetail(productId) {
         <div class="p-4 rounded-2xl bg-[#f8f9fa] border border-slate-200 space-y-2">
           <div class="flex items-center gap-2">
             <i data-lucide="award" class="w-4 h-4 text-[#FFC700]"></i>
-            <h4 class="text-xs font-bold text-slate-900">Jaminan Mutu &amp; Distribusi Resmi</h4>
+            <h4 class="text-xs font-bold text-slate-900">${txtQualityTitle}</h4>
           </div>
-          <p class="text-[11px] text-slate-500 leading-relaxed">
-            Didistribusikan resmi oleh <strong>PT Howell Niaga Indonesia</strong>. Seluruh kabel dan adaptor melewati pengujian QC ketat, 100% tembaga bebas oksigen (OFC), dan bergaransi resmi 12 bulan tukar baru.
-          </p>
+          <p class="text-[11px] text-slate-500 leading-relaxed">${txtQualityDesc}</p>
         </div>
 
         <!-- Social Share -->
         <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
-          <span class="font-semibold text-slate-700">Bagikan Produk:</span>
+          <span class="font-semibold text-slate-700">${txtShareLabel}</span>
           <div class="flex items-center gap-2">
             <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke Facebook"><i data-lucide="facebook" class="w-3.5 h-3.5"></i></button>
             <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke X"><i data-lucide="twitter" class="w-3.5 h-3.5"></i></button>
@@ -779,8 +810,8 @@ window.openProductDetail = function openProductDetail(productId) {
     <!-- Bottom Section: Specifications, Overview & Warranty Tabs -->
     <div class="mt-10 pt-8 border-t border-slate-200">
       <div class="flex border-b border-slate-200 gap-6 text-sm font-semibold mb-6">
-        <button type="button" onclick="switchDetailTab('specs')" id="tab-btn-specs" class="pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer">Spesifikasi Teknis</button>
-        <button type="button" onclick="switchDetailTab('desc')" id="tab-btn-desc" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer">Ikhtisar &amp; Fitur</button>
+        <button type="button" onclick="switchDetailTab('specs')" id="tab-btn-specs" class="pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer">${txtTabSpecs}</button>
+        <button type="button" onclick="switchDetailTab('desc')" id="tab-btn-desc" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer">${txtTabDesc}</button>
       </div>
 
       <!-- Tab: Spesifikasi -->
