@@ -448,7 +448,12 @@
     .company-meta {
       font-size: 10.5px;
       color: #4b5563;
-      line-height: 1.5;
+      line-height: 1.55;
+      text-align: justify;
+      text-align-last: justify;
+      text-justify: inter-word;
+      max-width: 425px;
+      display: inline-block;
     }
 
     .header-right {
@@ -693,6 +698,11 @@
       }
       .header-right {
         text-align: left;
+      }
+      .company-meta {
+        max-width: 100%;
+        text-align: left;
+        text-align-last: auto;
       }
       .category-section {
         overflow-x: auto;
