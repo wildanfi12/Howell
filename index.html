@@ -39,11 +39,7 @@
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Google Fonts: Manrope (Display) & Inter (Text) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Typography: Apple System & SF Pro Fonts Only -->
 
   <!-- HOWELL Premium Design System CSS -->
   <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v6-smooth-dropdown">
@@ -89,9 +85,9 @@
             }
           },
           fontFamily: {
-            display: ['Manrope', 'sans-serif'],
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Segoe UI"', 'sans-serif'],
+            display: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
+            sans: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
+            mono: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
           }
         }
       }
@@ -129,8 +125,10 @@
     }
 
     :root {
-      --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-      --font-mono: var(--font-primary);
+      --font-primary: -apple-system, "SF Pro Display", "SF Pro Text";
+      --font-display: -apple-system, "SF Pro Display", "SF Pro Text";
+      --font-apple: -apple-system, "SF Pro Display", "SF Pro Text";
+      --font-mono: -apple-system, "SF Pro Display", "SF Pro Text";
       --background: #ffffff;
       --foreground: #111111;
       --ink: #0a0a0a;
