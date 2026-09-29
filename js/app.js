@@ -824,7 +824,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Hint -->
         <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
           <span>${txtZoomHint}</span>
-          <span class="font-mono text-[11px] text-slate-400">HOWELL</span>
+          <span class="text-[11px] font-bold text-slate-400">HOWELL</span>
         </div>
       </div>
 
@@ -933,7 +933,7 @@ window.openProductDetail = function openProductDetail(productId) {
       <div id="tab-content-specs" class="space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           ${Object.entries(product.specs || {}).map(([key, val]) => {
-            const isMono = /SKU|Model|Part|Code|Barcode/i.test(key);
+            const isMono = false;
             return `
             <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
               <span class="text-slate-500 font-semibold">${key}:</span>

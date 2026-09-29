@@ -91,7 +91,7 @@
           fontFamily: {
             display: ['Manrope', 'sans-serif'],
             sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+            mono: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Segoe UI"', 'sans-serif'],
           }
         }
       }
@@ -130,7 +130,7 @@
 
     :root {
       --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-      --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+      --font-mono: var(--font-primary);
       --background: #ffffff;
       --foreground: #111111;
       --ink: #0a0a0a;
@@ -173,16 +173,15 @@
       font-weight: 400;
     }
 
-    /* Precision Monospace for SKU & Technical Specs */
+    /* Number & SKU typography matching primary website font */
     .font-mono,
     .sku-badge,
     .sku-code,
     .sku-text,
     .tech-mono,
     .model-number {
-      font-family: var(--font-mono) !important;
-      font-feature-settings: "tnum" 1, "zero" 1;
-      letter-spacing: -0.02em;
+      font-family: var(--font-primary) !important;
+      letter-spacing: inherit;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -855,7 +854,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_patch_cable">Patch Cable &amp; Networking</div>
@@ -920,7 +919,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_hdmi_video">HDMI 8K &amp; DisplayPort</div>
@@ -985,7 +984,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_power_cable">Heavy Duty Power &amp; PDU</div>
@@ -1050,7 +1049,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_usb_charging">USB &amp; High-Speed Data</div>
@@ -1115,7 +1114,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_audio">Audio Solutions &amp; AUX</div>
@@ -1180,7 +1179,7 @@
                   <div class="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start pt-3">
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
-                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_adapter">Adapters &amp; Converters</div>
@@ -1334,21 +1333,21 @@
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">1</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-bold">1</span>
                     <span class="font-bold text-xs text-slate-900" data-i18n="pillar_1_title">Kualitas Cermat</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug" data-i18n="pillar_1_desc">Sebagai fondasi utama setiap produk.</p>
                 </div>
                 <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">2</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-bold">2</span>
                     <span class="font-bold text-xs text-slate-900" data-i18n="pillar_2_title">Integritas</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug" data-i18n="pillar_2_desc">Sebagai panduan etika kerja dan bisnis.</p>
                 </div>
                 <div class="p-3 rounded-xl bg-[#f8f8f8] border border-slate-200/70 hover:border-slate-300 transition-colors">
                   <div class="flex items-center gap-2 mb-1">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-mono">3</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center font-bold">3</span>
                     <span class="font-bold text-xs text-slate-900" data-i18n="pillar_3_title">Kepercayaan</span>
                   </div>
                   <p class="text-[11px] text-slate-600 leading-snug" data-i18n="pillar_3_desc">Sebagai landasan setiap hubungan jangka panjang.</p>
@@ -1463,19 +1462,19 @@
                 
                 <ol class="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
                   <li class="flex items-start gap-3">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">1</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-bold">1</span>
                     <span data-i18n="misi_item_1">Menyediakan produk berkualitas tinggi dengan harga kompetitif.</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">2</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-bold">2</span>
                     <span data-i18n="misi_item_2">Memberikan pelayanan yang cepat, tepat, dan profesional.</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">3</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-bold">3</span>
                     <span data-i18n="misi_item_3">Menjalin hubungan jangka panjang dengan mitra bisnis dan pelanggan.</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-mono">4</span>
+                    <span class="w-5 h-5 rounded-full bg-slate-900 text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 font-bold">4</span>
                     <span data-i18n="misi_item_4">Terus berinovasi mengikuti perkembangan pasar dan teknologi.</span>
                   </li>
                 </ol>
@@ -1575,35 +1574,35 @@
                 
                 <!-- 1. Desain -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card1_tag">01 / Desain</span>
+                  <span class="text-[10px] font-bold text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card1_tag">01 / Desain</span>
                   <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card1_title">Custom Desain &amp; Cetak</h4>
                   <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card1_desc">Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.</p>
                 </div>
 
                 <!-- 2. Spesifikasi -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card2_tag">02 / Material</span>
+                  <span class="text-[10px] font-bold text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card2_tag">02 / Material</span>
                   <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card2_title">Spesifikasi &amp; Material</h4>
                   <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card2_desc">Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi &amp; sertifikasi industri.</p>
                 </div>
 
                 <!-- 3. Warna -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card3_tag">03 / Finishing</span>
+                  <span class="text-[10px] font-bold text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card3_tag">03 / Finishing</span>
                   <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card3_title">Warna &amp; Finishing</h4>
                   <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card3_desc">Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.</p>
                 </div>
 
                 <!-- 4. Packaging -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card4_tag">04 / Kemasan</span>
+                  <span class="text-[10px] font-bold text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card4_tag">04 / Kemasan</span>
                   <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card4_title">Custom Packaging</h4>
                   <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card4_desc">Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.</p>
                 </div>
 
                 <!-- 5. Branding -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all sm:col-span-2 lg:col-span-2">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card5_tag">05 / Private Label</span>
+                  <span class="text-[10px] font-bold text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card5_tag">05 / Private Label</span>
                   <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card5_title">Branding &amp; Private Label</h4>
                   <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card5_desc">Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.</p>
                 </div>
@@ -1872,7 +1871,7 @@
               <li class="group">
                 <button onclick="scrollToId('home'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
                   <div class="flex items-start gap-4 sm:gap-5">
-                    <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">01</span>
+                    <span class="text-xs sm:text-sm font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">01</span>
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_home">Home</span>
@@ -1887,7 +1886,7 @@
               <li class="group">
                 <button onclick="scrollToId('catalog-section'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
                   <div class="flex items-start gap-4 sm:gap-5">
-                    <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">02</span>
+                    <span class="text-xs sm:text-sm font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">02</span>
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_products">Produk</span>
@@ -1902,7 +1901,7 @@
               <li class="group">
                 <button onclick="scrollToId('about-us'); toggleNavMenu(false);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
                   <div class="flex items-start gap-4 sm:gap-5">
-                    <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">03</span>
+                    <span class="text-xs sm:text-sm font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">03</span>
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_about">Tentang Kami</span>
@@ -1917,7 +1916,7 @@
               <li class="group">
                 <button onclick="toggleNavMenu(false); setTimeout(function(){ openSupportModal(); }, 150);" class="w-full text-left py-1 group-hover:translate-x-2 transition-all duration-300 cursor-pointer block">
                   <div class="flex items-start gap-4 sm:gap-5">
-                    <span class="text-xs sm:text-sm font-mono font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">04</span>
+                    <span class="text-xs sm:text-sm font-semibold text-white/35 group-hover:text-[#FFC700] transition-colors mt-2 sm:mt-2.5 shrink-0 w-6">04</span>
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_contact">Kontak &amp; Dukungan</span>

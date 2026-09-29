@@ -12,7 +12,7 @@
   <style>
     :root {
       --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-      --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+      --font-mono: var(--font-primary);
     }
 
     *, *::before, *::after {
@@ -459,11 +459,10 @@
     }
 
     td.col-sku {
-      font-family: var(--font-mono);
+      font-family: var(--font-primary);
       font-weight: 600;
       color: #111827;
-      letter-spacing: -0.02em;
-      font-feature-settings: "tnum" 1, "zero" 1;
+      letter-spacing: normal;
     }
 
     .col-desc {
