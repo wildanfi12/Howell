@@ -1144,45 +1144,20 @@ function toggleVisiMisiDetail(type) {
   if (!panel || !card) return;
 
   const isHidden = panel.classList.contains('hidden');
+  const chevron = badge ? badge.querySelector('svg') : null;
 
   if (isHidden) {
     panel.classList.remove('hidden');
     panel.classList.add('animate-visi-misi');
     card.setAttribute('aria-expanded', 'true');
-    if (isVisi) {
-      card.classList.add('border-slate-400', 'shadow-md');
-      if (badge) {
-        badge.textContent = 'TUTUP DETAIL';
-        badge.classList.remove('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
-        badge.classList.add('bg-amber-500', 'text-white', 'border-amber-500');
-      }
-    } else {
-      card.classList.add('border-slate-400', 'shadow-md');
-      if (badge) {
-        badge.textContent = 'TUTUP DETAIL';
-        badge.classList.remove('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
-        badge.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
-      }
-    }
+    card.classList.add('border-slate-400', 'shadow-md');
+    if (chevron) chevron.style.transform = 'rotate(180deg)';
   } else {
     panel.classList.add('hidden');
     panel.classList.remove('animate-visi-misi');
     card.setAttribute('aria-expanded', 'false');
-    if (isVisi) {
-      card.classList.remove('border-slate-400', 'shadow-md');
-      if (badge) {
-        badge.textContent = 'KLIK DETAIL';
-        badge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
-        badge.classList.remove('bg-amber-500', 'text-white', 'border-amber-500');
-      }
-    } else {
-      card.classList.remove('border-slate-400', 'shadow-md');
-      if (badge) {
-        badge.textContent = 'KLIK DETAIL';
-        badge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200/60');
-        badge.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-      }
-    }
+    card.classList.remove('border-slate-400', 'shadow-md');
+    if (chevron) chevron.style.transform = 'rotate(0deg)';
   }
 }
 
