@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOWELL Official Product Catalog &amp; Inventory - Cetak / Simpan PDF</title>
+  <title id="doc-meta-title">HOWELL Official Product Catalog &amp; Inventory - Cetak / Simpan PDF</title>
   <meta name="description" content="HOWELL Official Master Product Catalog and Inventory Data Sheet. PT Howell Niaga Indonesia.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wildanfi12.github.io/Howell/print-catalog.html">
@@ -97,6 +97,38 @@
       flex-wrap: wrap;
     }
 
+    /* Language Switcher Pills */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 9999px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      color: #ffffff;
+    }
+    .lang-btn.active {
+      background: #FFC700;
+      color: #000000;
+      font-weight: 800;
+    }
+
     .btn-action {
       display: inline-flex;
       align-items: center;
@@ -109,6 +141,7 @@
       text-decoration: none;
       transition: all 0.15s ease;
       border: none;
+      font-family: inherit;
     }
 
     .btn-print-primary {
@@ -239,6 +272,7 @@
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.15s;
+      font-family: inherit;
     }
     .chip-btn:hover {
       background: #334155;
@@ -261,7 +295,7 @@
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* Catalog Header (Photo 5 Inspiration) */
+    /* Catalog Header */
     .header-box {
       border-bottom: 3px solid #111827;
       padding-bottom: 18px;
@@ -323,7 +357,6 @@
       break-inside: auto;
     }
 
-    /* Category Header (Photo 5: Dark container, yellow left border, yellow square bullet) */
     .category-header {
       background: #111116;
       color: #ffffff;
@@ -363,7 +396,7 @@
       letter-spacing: 0.2px;
     }
 
-    /* Catalog Table (Photo 5: Yellow thead, white borders, alternating rows) */
+    /* Catalog Table */
     .catalog-table {
       width: 100%;
       border-collapse: collapse;
@@ -404,7 +437,7 @@
       break-inside: avoid !important;
     }
 
-    /* Alternating rows: Odd white, Even cool light grey #ECEFF1 */
+    /* Alternating rows */
     .catalog-table tr.row-odd td {
       background-color: #FFFFFF !important;
     }
@@ -677,30 +710,37 @@
   <!-- Screen-only Interactive Header Toolbar -->
   <div class="screen-toolbar">
     <div class="toolbar-container">
-      <!-- Top Row: Brand, Info, and Action Buttons -->
+      <!-- Top Row: Brand, Info, Language Switcher and Action Buttons -->
       <div class="toolbar-top-row">
         <div class="toolbar-brand">
           <span class="toolbar-brand-badge">HOWELL ERP</span>
           <div>
-            <div class="toolbar-title">Katalog Inventaris &amp; Qty/Karton Resmi HOWELL</div>
+            <div class="toolbar-title" id="toolbar-title-text">Katalog Inventaris &amp; Qty/Karton Resmi HOWELL</div>
             <div class="toolbar-stats" id="toolbar-stats-text">Memuat database produk...</div>
           </div>
         </div>
 
         <div class="toolbar-actions">
+          <!-- Language Switcher -->
+          <div class="lang-switcher" aria-label="Pilih Bahasa / Select Language">
+            <button type="button" id="print-lang-id" class="lang-btn active" onclick="setCatalogLanguage('id')">ID</button>
+            <button type="button" id="print-lang-en" class="lang-btn" onclick="setCatalogLanguage('en')">EN</button>
+            <button type="button" id="print-lang-zh" class="lang-btn" onclick="setCatalogLanguage('zh')">中文</button>
+          </div>
+
           <button type="button" class="btn-action btn-print-primary" onclick="triggerPrint()">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            Cetak / Simpan PDF
+            <span id="btn-print-label">Cetak / Simpan PDF</span>
           </button>
 
           <button type="button" class="btn-action btn-print-all" onclick="printAllCategories()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-            Cetak Semua (10 Kategori)
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            <span id="btn-print-all-label">Cetak Semua (10 Kategori)</span>
           </button>
 
           <a href="index.html" class="btn-action btn-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            Kembali ke Website
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span id="btn-back-label">Kembali ke Website</span>
           </a>
         </div>
       </div>
@@ -708,19 +748,9 @@
       <!-- Filters & Live Search Row -->
       <div class="toolbar-filters-row">
         <div class="filter-group">
-          <label for="category-select" class="filter-label">Filter Kategori:</label>
+          <label for="category-select" class="filter-label" id="filter-label-text">Filter Kategori:</label>
           <select id="category-select" class="filter-select" onchange="onCategorySelectChange(this.value)">
-            <option value="all">Semua Kategori (10 Kategori • 192 SKU)</option>
-            <option value="hdmi">1. HDMI &amp; Video Cables (39 Produk • 72 SKU)</option>
-            <option value="dp">2. DisplayPort (DP) 8K / 16K (10 Produk • 10 SKU)</option>
-            <option value="dvi-vga">3. DVI &amp; VGA Cables (8 Produk • 8 SKU)</option>
-            <option value="usb">4. USB &amp; Data Cables (7 Produk • 7 SKU)</option>
-            <option value="lan">5. Patch Cable &amp; Networking (9 Produk • 28 SKU)</option>
-            <option value="power">6. Power &amp; PDU Cables (3 Produk • 6 SKU)</option>
-            <option value="audio">7. Audio &amp; Instrument Cables (11 Produk • 11 SKU)</option>
-            <option value="adapter">8. Adapters &amp; Converters (37 Produk • 37 SKU)</option>
-            <option value="tws">9. Audio &amp; Earphones / TWS (8 Produk • 8 SKU)</option>
-            <option value="charger">10. Chargers &amp; Mobile Accessories (5 Produk • 5 SKU)</option>
+            <!-- Populated dynamically with localized titles -->
           </select>
         </div>
 
@@ -742,18 +772,18 @@
     <!-- Official Document Header -->
     <div class="header-box">
       <div>
-        <div class="brand-title">HOWELL INDONESIA</div>
-        <div class="catalog-subtitle">KATALOG RESMI PRODUK &amp; SPESIFIKASI TEKNIS (INVENTORY CATALOG)</div>
-        <div class="company-meta">
+        <div class="brand-title" id="doc-brand-title">HOWELL INDONESIA</div>
+        <div class="catalog-subtitle" id="doc-catalog-subtitle">KATALOG RESMI PRODUK &amp; SPESIFIKASI TEKNIS (INVENTORY CATALOG)</div>
+        <div class="company-meta" id="doc-company-meta">
           <strong>PT Howell Niaga Indonesia</strong> • Distributor Resmi Sejak 2009<br>
           Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>
           WhatsApp CS: +62 811-8803-1976 | Website: www.howell.co.id
         </div>
       </div>
       <div class="header-right">
-        <div class="edition-badge" id="catalog-date-badge">EDISI RESMI • 22 SEPTEMBER 2026</div>
+        <div class="edition-badge" id="catalog-date-badge">EDISI RESMI • 29 SEPTEMBER 2026</div>
         <div class="header-summary-text" id="catalog-summary-meta">
-          Total Terpilih: <strong>137 Produk (192 SKU)</strong><br>
+          Total Terpilih: <strong>399 Produk (399 SKU)</strong><br>
           Garansi: <strong>12 Bulan Ganti Baru</strong>
         </div>
       </div>
@@ -766,39 +796,166 @@
 
     <!-- Official Document Footer -->
     <div class="catalog-footer">
-      <div>
+      <div id="doc-footer-left">
         &copy; <span id="copyright-year">2026</span> PT Howell Niaga Indonesia. Seluruh hak cipta dilindungi undang-undang.<br>
         Dokumen Master Katalog Resmi untuk Keperluan Pengadaan Tender, Proyek B2B, dan Mitra Distribusi.
       </div>
-      <div style="text-align:right;">
+      <div style="text-align:right;" id="doc-footer-right">
         Customer Support WhatsApp: <strong>+62 811-8803-1976</strong><br>
         Website Resmi: <strong>www.howell.co.id</strong>
       </div>
     </div>
   </div>
 
-  <!-- Load Master Product Data from products.js -->
-    <!-- Load Master Product Data from official PDF source -->
-  <script src="js/pdf-catalog.js?v=20260923-apple-typography"></script>
-  <script src="js/products.js?v=20260923-apple-typography"></script>
+  <!-- Load Master Product Data from official PDF source -->
+  <script src="js/pdf-catalog.js?v=20260929"></script>
+  <script src="js/products.js?v=20260929"></script>
 
   <script>
     // State management
     let currentCategory = 'all';
     let currentSearchQuery = '';
+    let currentLanguage = 'id';
+
+    // Comprehensive Multilingual Dictionary for Print Catalog
+    const PRINT_TRANSLATIONS = {
+      id: {
+        page_title: "HOWELL Official Product Catalog & Inventory - Cetak / Simpan PDF",
+        toolbar_title: "Katalog Inventaris & Qty/Karton Resmi HOWELL",
+        stats_loading: "Memuat database produk...",
+        stats_summary: (count) => `${count} Produk Terpilih • ${count} Baris SKU Aktif • Sumber PDF Resmi Terverifikasi`,
+        btn_print: "Cetak / Simpan PDF",
+        btn_print_all: "Cetak Semua (10 Kategori)",
+        btn_back: "Kembali ke Website",
+        filter_label: "Filter Kategori:",
+        opt_all: (count) => `Semua Kategori (10 Kategori • ${count} SKU)`,
+        chip_all: "Semua Kategori",
+        search_ph: "Pencarian cepat SKU, Nama, atau Spesifikasi...",
+        search_clear_title: "Hapus pencarian",
+        brand_title: "HOWELL INDONESIA",
+        doc_subtitle: "KATALOG RESMI PRODUK & SPESIFIKASI TEKNIS (INVENTORY CATALOG)",
+        company_meta: `<strong>PT Howell Niaga Indonesia</strong> • Distributor Resmi Sejak 2009<br>Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>WhatsApp CS: +62 811-8803-1976 | Website: www.howell.co.id`,
+        edition_prefix: "EDISI RESMI • ",
+        header_summary: (count) => `Total Terpilih: <strong>${count} Produk (${count} SKU)</strong><br>Garansi: <strong>12 Bulan Ganti Baru</strong>`,
+        col_sku: "SKU",
+        col_name: "PRODUCT NAME",
+        col_length: "LENGTH",
+        col_qty: "QTY/KARTON",
+        cat_count: (count) => `${count} Produk (${count} SKU)`,
+        no_results_title: "Tidak ada produk yang cocok",
+        no_results_desc: (q) => `Tidak ditemukan SKU atau produk yang sesuai dengan pencarian "${q}".`,
+        btn_reset_search: "Reset Pencarian",
+        footer_left: (year) => `&copy; <span>${year}</span> PT Howell Niaga Indonesia. Seluruh hak cipta dilindungi undang-undang.<br>Dokumen Master Katalog Resmi untuk Keperluan Pengadaan Tender, Proyek B2B, dan Mitra Distribusi.`,
+        footer_right: `Customer Support WhatsApp: <strong>+62 811-8803-1976</strong><br>Website Resmi: <strong>www.howell.co.id</strong>`,
+        categories: {
+          hdmi: { title: "1. HDMI & VIDEO CABLES", short: "HDMI & Video" },
+          dp: { title: "2. DISPLAYPORT (DP) 8K / 16K", short: "DisplayPort" },
+          'dvi-vga': { title: "3. DVI & VGA CABLES", short: "DVI & VGA" },
+          usb: { title: "4. USB & DATA CABLES", short: "USB & Data" },
+          lan: { title: "5. PATCH CABLE & NETWORKING", short: "Patch Cable / LAN" },
+          power: { title: "6. POWER & PDU CABLES", short: "Power & PDU" },
+          audio: { title: "7. AUDIO & INSTRUMENT CABLES", short: "Audio Cables" },
+          adapter: { title: "8. ADAPTERS & CONVERTERS", short: "Adapters & Converters" },
+          tws: { title: "9. AUDIO & EARPHONES / TWS", short: "Earphone & TWS" },
+          charger: { title: "10. CHARGERS & MOBILE ACCESSORIES", short: "Chargers & Acc" }
+        }
+      },
+      en: {
+        page_title: "HOWELL Official Product Catalog & Inventory - Print / Save PDF",
+        toolbar_title: "HOWELL Official Inventory & Packaging Catalog",
+        stats_loading: "Loading product database...",
+        stats_summary: (count) => `${count} Products Selected • ${count} Active SKU Lines • Official Verified Data`,
+        btn_print: "Print / Save PDF",
+        btn_print_all: "Print All (10 Categories)",
+        btn_back: "Back to Website",
+        filter_label: "Filter Category:",
+        opt_all: (count) => `All Categories (10 Categories • ${count} SKUs)`,
+        chip_all: "All Categories",
+        search_ph: "Quick search SKU, Name, or Specification...",
+        search_clear_title: "Clear search",
+        brand_title: "HOWELL INDONESIA",
+        doc_subtitle: "OFFICIAL PRODUCT SPECIFICATIONS & INVENTORY CATALOG",
+        company_meta: `<strong>PT Howell Niaga Indonesia</strong> • Official Distributor Since 2009<br>Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, North Jakarta 14440<br>WhatsApp Support: +62 811-8803-1976 | Website: www.howell.co.id`,
+        edition_prefix: "OFFICIAL EDITION • ",
+        header_summary: (count) => `Total Selected: <strong>${count} Products (${count} SKUs)</strong><br>Warranty: <strong>12-Month Official Replacement</strong>`,
+        col_sku: "SKU",
+        col_name: "PRODUCT NAME",
+        col_length: "LENGTH",
+        col_qty: "QTY/CARTON",
+        cat_count: (count) => `${count} Products (${count} SKUs)`,
+        no_results_title: "No matching products found",
+        no_results_desc: (q) => `No SKU or product found matching your search "${q}".`,
+        btn_reset_search: "Reset Search",
+        footer_left: (year) => `&copy; <span>${year}</span> PT Howell Niaga Indonesia. All rights reserved.<br>Official Master Catalog Document for Procurement, B2B Projects, and Distribution Partners.`,
+        footer_right: `Customer Support WhatsApp: <strong>+62 811-8803-1976</strong><br>Official Website: <strong>www.howell.co.id</strong>`,
+        categories: {
+          hdmi: { title: "1. HDMI & VIDEO CABLES", short: "HDMI & Video" },
+          dp: { title: "2. DISPLAYPORT (DP) 8K / 16K", short: "DisplayPort" },
+          'dvi-vga': { title: "3. DVI & VGA CABLES", short: "DVI & VGA" },
+          usb: { title: "4. USB & DATA CABLES", short: "USB & Data" },
+          lan: { title: "5. PATCH CABLE & NETWORKING", short: "Patch Cable / LAN" },
+          power: { title: "6. POWER & PDU CABLES", short: "Power & PDU" },
+          audio: { title: "7. AUDIO & INSTRUMENT CABLES", short: "Audio Cables" },
+          adapter: { title: "8. ADAPTERS & CONVERTERS", short: "Adapters & Converters" },
+          tws: { title: "9. AUDIO & EARPHONES / TWS", short: "Earphone & TWS" },
+          charger: { title: "10. CHARGERS & MOBILE ACCESSORIES", short: "Chargers & Acc" }
+        }
+      },
+      zh: {
+        page_title: "HOWELL 官方产品目录与库存清单 - 打印 / 保存 PDF",
+        toolbar_title: "HOWELL 官方产品目录与包装箱规清单",
+        stats_loading: "正在加载产品数据库...",
+        stats_summary: (count) => `已筛选 ${count} 款产品 • ${count} 行有效 SKU • 官方认证数据源`,
+        btn_print: "打印 / 保存为 PDF",
+        btn_print_all: "全部打印 (10 大分类)",
+        btn_back: "返回官方网站",
+        filter_label: "分类筛选:",
+        opt_all: (count) => `全部产品类别 (10 大类 • ${count} 个 SKU)`,
+        chip_all: "全部分类",
+        search_ph: "快速搜索 SKU、产品名称或规格...",
+        search_clear_title: "清除搜索",
+        brand_title: "HOWELL INDONESIA (豪威科技)",
+        doc_subtitle: "官方产品技术规格与库存清单 (MASTER INVENTORY CATALOG)",
+        company_meta: `<strong>PT Howell Niaga Indonesia</strong> • 官方独家总代理 (始于 2009 年)<br>Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Jakarta Utara 14440<br>商务咨询 WhatsApp: +62 811-8803-1976 | 官方网址: www.howell.co.id`,
+        edition_prefix: "官方正版发布 • ",
+        header_summary: (count) => `当前筛选: <strong>${count} 款产品 (${count} 个 SKU)</strong><br>质保承诺: <strong>12 个月官方免费换新</strong>`,
+        col_sku: "SKU 编码",
+        col_name: "产品名称与技术规格",
+        col_length: "规格长度",
+        col_qty: "装箱数 (QTY/箱)",
+        cat_count: (count) => `${count} 款产品 (${count} 个 SKU)`,
+        no_results_title: "未找到匹配的产品",
+        no_results_desc: (q) => `未找到与搜索词 “${q}” 相关的 SKU 或产品。`,
+        btn_reset_search: "重置搜索",
+        footer_left: (year) => `&copy; <span>${year}</span> PT Howell Niaga Indonesia. 版权所有 翻印必究。<br>官方正品主目录清单，适用于企业大宗集采、政府采购招投标及渠道分销合作。`,
+        footer_right: `专属商务客服 WhatsApp: <strong>+62 811-8803-1976</strong><br>官方网站: <strong>www.howell.co.id</strong>`,
+        categories: {
+          hdmi: { title: "1. HDMI 与高清视频线缆", short: "HDMI 与视频" },
+          dp: { title: "2. DISPLAYPORT (DP) 8K / 16K 高清线", short: "DisplayPort" },
+          'dvi-vga': { title: "3. DVI 与 VGA 工程线缆", short: "DVI & VGA" },
+          usb: { title: "4. USB 快充与高速数据线", short: "USB & 数据线" },
+          lan: { title: "5. 网络跳线与综合布线", short: "网络跳线 / LAN" },
+          power: { title: "6. 重型电源线与 PDU 线缆", short: "电源线 & PDU" },
+          audio: { title: "7. 专业音频与乐器线缆", short: "音频线缆" },
+          adapter: { title: "8. 转接器与信号转换器", short: "转接器与转换头" },
+          tws: { title: "9. TWS 蓝牙耳机与音频外设", short: "耳机 & TWS" },
+          charger: { title: "10. 充电器与数码周边配件", short: "充电器与配件" }
+        }
+      }
+    };
 
     // Category Definitions matching ERP & Master Howell Classification
     const CATEGORY_DEFS = [
-      { id: 'hdmi', title: '1. HDMI & VIDEO CABLES', shortTitle: 'HDMI & Video', filter: r => r.category === 'hdmi' },
-      { id: 'dp', title: '2. DISPLAYPORT (DP) 8K / 16K', shortTitle: 'DisplayPort', filter: r => r.category === 'dp' },
-      { id: 'dvi-vga', title: '3. DVI & VGA CABLES', shortTitle: 'DVI & VGA', filter: r => r.category === 'dvi-vga' },
-      { id: 'usb', title: '4. USB & DATA CABLES', shortTitle: 'USB & Data', filter: r => r.category === 'usb' },
-      { id: 'lan', title: '5. PATCH CABLE & NETWORKING', shortTitle: 'Patch Cable / LAN', filter: r => r.category === 'lan' },
-      { id: 'power', title: '6. POWER & PDU CABLES', shortTitle: 'Power & PDU', filter: r => r.category === 'power' },
-      { id: 'audio', title: '7. AUDIO & INSTRUMENT CABLES', shortTitle: 'Audio Cables', filter: r => r.category === 'audio' },
-      { id: 'adapter', title: '8. ADAPTERS & CONVERTERS', shortTitle: 'Adapters & Converters', filter: r => r.category === 'adapter' },
-      { id: 'tws', title: '9. AUDIO & EARPHONES / TWS', shortTitle: 'Earphone & TWS', filter: r => r.category === 'tws' },
-      { id: 'charger', title: '10. CHARGERS & MOBILE ACCESSORIES', shortTitle: 'Chargers & Acc', filter: r => r.category === 'charger' }
+      { id: 'hdmi', key: 'hdmi', filter: r => r.category === 'hdmi' },
+      { id: 'dp', key: 'dp', filter: r => r.category === 'dp' },
+      { id: 'dvi-vga', key: 'dvi-vga', filter: r => r.category === 'dvi-vga' },
+      { id: 'usb', key: 'usb', filter: r => r.category === 'usb' },
+      { id: 'lan', key: 'lan', filter: r => r.category === 'lan' },
+      { id: 'power', key: 'power', filter: r => r.category === 'power' },
+      { id: 'audio', key: 'audio', filter: r => r.category === 'audio' },
+      { id: 'adapter', key: 'adapter', filter: r => r.category === 'adapter' },
+      { id: 'tws', key: 'tws', filter: r => r.category === 'tws' },
+      { id: 'charger', key: 'charger', filter: r => r.category === 'charger' }
     ];
 
     function escapeHtml(str) {
@@ -810,6 +967,20 @@
         .replace(/"/g, '&quot;');
     }
 
+    function getT() {
+      return PRINT_TRANSLATIONS[currentLanguage] || PRINT_TRANSLATIONS.id;
+    }
+
+    function getCategoryTitle(catId) {
+      const t = getT();
+      return (t.categories[catId] && t.categories[catId].title) || catId;
+    }
+
+    function getCategoryShort(catId) {
+      const t = getT();
+      return (t.categories[catId] && t.categories[catId].short) || catId;
+    }
+
     // Get catalog dataset from window.HOWELL_PDF_CATALOG (source of truth from PDF)
     function getMasterCatalog() {
       if (window.HOWELL_PDF_CATALOG && Array.isArray(window.HOWELL_PDF_CATALOG)) {
@@ -818,19 +989,115 @@
       return [];
     }
 
-    // Update Category Select Dropdown with accurate counts
+    // Set Language handler
+    function setCatalogLanguage(lang) {
+      if (!PRINT_TRANSLATIONS[lang]) return;
+      currentLanguage = lang;
+      try {
+        localStorage.setItem('howell_lang', lang);
+      } catch (e) {}
+
+      document.documentElement.lang = lang;
+
+      // Update URL search param without reloading page
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        window.history.replaceState({}, '', url);
+      } catch (e) {}
+
+      // Update active state on language buttons
+      ['id', 'en', 'zh'].forEach(l => {
+        const btn = document.getElementById('print-lang-' + l);
+        if (btn) {
+          if (l === lang) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+
+      const t = getT();
+
+      // Update static toolbar & document elements
+      const metaTitle = document.getElementById('doc-meta-title');
+      if (metaTitle) metaTitle.textContent = t.page_title;
+
+      const tbTitle = document.getElementById('toolbar-title-text');
+      if (tbTitle) tbTitle.textContent = t.toolbar_title;
+
+      const btnPrintLabel = document.getElementById('btn-print-label');
+      if (btnPrintLabel) btnPrintLabel.textContent = t.btn_print;
+
+      const btnPrintAllLabel = document.getElementById('btn-print-all-label');
+      if (btnPrintAllLabel) btnPrintAllLabel.textContent = t.btn_print_all;
+
+      const btnBackLabel = document.getElementById('btn-back-label');
+      if (btnBackLabel) btnBackLabel.textContent = t.btn_back;
+
+      const filterLabel = document.getElementById('filter-label-text');
+      if (filterLabel) filterLabel.textContent = t.filter_label;
+
+      const searchInput = document.getElementById('catalog-search-input');
+      if (searchInput) searchInput.placeholder = t.search_ph;
+
+      const searchClear = document.getElementById('search-clear-btn');
+      if (searchClear) searchClear.title = t.search_clear_title;
+
+      const docBrand = document.getElementById('doc-brand-title');
+      if (docBrand) docBrand.textContent = t.brand_title;
+
+      const docSubtitle = document.getElementById('doc-catalog-subtitle');
+      if (docSubtitle) docSubtitle.textContent = t.doc_subtitle;
+
+      const docCompany = document.getElementById('doc-company-meta');
+      if (docCompany) docCompany.innerHTML = t.company_meta;
+
+      const docFooterLeft = document.getElementById('doc-footer-left');
+      const year = new Date().getFullYear();
+      if (docFooterLeft) docFooterLeft.innerHTML = t.footer_left(year);
+
+      const docFooterRight = document.getElementById('doc-footer-right');
+      if (docFooterRight) docFooterRight.innerHTML = t.footer_right;
+
+      // Update date badge with localized date
+      updateDateBadge();
+
+      // Refresh category dropdown, chips and catalog sheet
+      updateCategorySelectOptions();
+      renderCategoryChips();
+      renderCatalog();
+    }
+
+    function updateDateBadge() {
+      const dateBadge = document.getElementById('catalog-date-badge');
+      if (!dateBadge) return;
+      const t = getT();
+      const now = new Date();
+      let formattedDate = '';
+      if (currentLanguage === 'zh') {
+        formattedDate = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+      } else if (currentLanguage === 'en') {
+        formattedDate = now.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+      } else {
+        formattedDate = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
+      dateBadge.textContent = t.edition_prefix + formattedDate.toUpperCase();
+    }
+
+    // Update Category Select Dropdown with accurate counts and localized titles
     function updateCategorySelectOptions() {
       const select = document.getElementById('category-select');
       if (!select) return;
 
       const allRows = getMasterCatalog();
       const totalCount = allRows.length;
+      const t = getT();
 
-      let optionsHtml = `<option value="all">Semua Kategori (10 Kategori • ${totalCount} SKU)</option>`;
+      let optionsHtml = `<option value="all">${t.opt_all(totalCount)}</option>`;
 
       CATEGORY_DEFS.forEach(cat => {
         const catRows = allRows.filter(cat.filter);
-        optionsHtml += `<option value="${cat.id}">${escapeHtml(cat.title)} (${catRows.length} SKU)</option>`;
+        const localizedTitle = getCategoryTitle(cat.id);
+        optionsHtml += `<option value="${cat.id}">${escapeHtml(localizedTitle)} (${catRows.length} SKU)</option>`;
       });
 
       select.innerHTML = optionsHtml;
@@ -842,14 +1109,16 @@
       const bar = document.getElementById('category-chips-bar');
       if (!bar) return;
 
+      const t = getT();
       const chipsHtml = [
-        `<button type="button" class="chip-btn ${currentCategory === 'all' ? 'active' : ''}" onclick="onCategorySelectChange('all')">Semua Kategori</button>`
+        `<button type="button" class="chip-btn ${currentCategory === 'all' ? 'active' : ''}" onclick="onCategorySelectChange('all')">${escapeHtml(t.chip_all)}</button>`
       ];
 
       CATEGORY_DEFS.forEach(cat => {
         const isActive = currentCategory === cat.id ? 'active' : '';
+        const shortName = getCategoryShort(cat.id);
         chipsHtml.push(
-          `<button type="button" class="chip-btn ${isActive}" onclick="onCategorySelectChange('${cat.id}')">${escapeHtml(cat.shortTitle)}</button>`
+          `<button type="button" class="chip-btn ${isActive}" onclick="onCategorySelectChange('${cat.id}')">${escapeHtml(shortName)}</button>`
         );
       });
 
@@ -863,6 +1132,7 @@
       const statsText = document.getElementById('toolbar-stats-text');
       const summaryMeta = document.getElementById('catalog-summary-meta');
       const searchClearBtn = document.getElementById('search-clear-btn');
+      const t = getT();
 
       if (searchClearBtn) {
         searchClearBtn.style.display = currentSearchQuery ? 'block' : 'none';
@@ -897,6 +1167,7 @@
         if (matchedCatRows.length === 0) return;
 
         totalDisplayedRows += matchedCatRows.length;
+        const localizedCatTitle = getCategoryTitle(cat.id);
 
         // Render Section & Table matching official Howell format
         outputHtml += `
@@ -904,17 +1175,17 @@
             <div class="category-header">
               <div class="category-title">
                 <span class="category-bullet">■</span>
-                <span>${escapeHtml(cat.title)}</span>
+                <span>${escapeHtml(localizedCatTitle)}</span>
               </div>
-              <div class="category-count">${matchedCatRows.length} Produk (${matchedCatRows.length} SKU)</div>
+              <div class="category-count">${t.cat_count(matchedCatRows.length)}</div>
             </div>
             <table class="catalog-table">
               <thead>
                 <tr>
-                  <th class="col-sku">SKU</th>
-                  <th class="col-desc">PRODUCT NAME</th>
-                  <th class="col-len">LENGTH</th>
-                  <th class="col-qty">QTY/KARTON</th>
+                  <th class="col-sku">${escapeHtml(t.col_sku)}</th>
+                  <th class="col-desc">${escapeHtml(t.col_name)}</th>
+                  <th class="col-len">${escapeHtml(t.col_length)}</th>
+                  <th class="col-qty">${escapeHtml(t.col_qty)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -942,9 +1213,9 @@
       if (totalDisplayedRows === 0) {
         outputHtml = `
           <div class="no-results">
-            <p style="font-size:14px; font-weight:700; color:#1e293b; margin-bottom:6px;">Tidak ada produk yang cocok</p>
-            <p>Tidak ditemukan SKU atau produk yang sesuai dengan pencarian "${escapeHtml(currentSearchQuery)}".</p>
-            <button type="button" class="btn-action btn-print-primary" style="margin-top:14px;" onclick="clearSearch()">Reset Pencarian</button>
+            <p style="font-size:14px; font-weight:700; color:#1e293b; margin-bottom:6px;">${escapeHtml(t.no_results_title)}</p>
+            <p>${escapeHtml(t.no_results_desc(currentSearchQuery))}</p>
+            <button type="button" class="btn-action btn-print-primary" style="margin-top:14px;" onclick="clearSearch()">${escapeHtml(t.btn_reset_search)}</button>
           </div>
         `;
       }
@@ -953,13 +1224,10 @@
 
       // Update metadata & stats
       if (statsText) {
-        statsText.textContent = `${totalDisplayedRows} Produk Terpilih • ${totalDisplayedRows} Baris SKU Aktif • Sumber PDF Resmi Terverifikasi`;
+        statsText.textContent = t.stats_summary(totalDisplayedRows);
       }
       if (summaryMeta) {
-        summaryMeta.innerHTML = `
-          Total Terpilih: <strong>${totalDisplayedRows} Produk (${totalDisplayedRows} SKU)</strong><br>
-          Garansi: <strong>12 Bulan Ganti Baru</strong>
-        `;
+        summaryMeta.innerHTML = t.header_summary(totalDisplayedRows);
       }
 
       renderCategoryChips();
@@ -1009,18 +1277,22 @@
 
     // Initialization on Page Load
     window.addEventListener('DOMContentLoaded', () => {
-      // Set date
-      const dateBadge = document.getElementById('catalog-date-badge');
-      const yearSpan = document.getElementById('copyright-year');
-      const now = new Date();
-      if (yearSpan) yearSpan.textContent = now.getFullYear();
-      if (dateBadge) {
-        const formattedDate = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-        dateBadge.textContent = `EDISI RESMI • ${formattedDate.toUpperCase()}`;
+      // Check language from URL params, or localStorage, or default to 'id'
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      let initialLang = 'id';
+      if (langParam && ['id', 'en', 'zh'].includes(langParam)) {
+        initialLang = langParam;
+      } else {
+        try {
+          const stored = localStorage.getItem('howell_lang');
+          if (stored && ['id', 'en', 'zh'].includes(stored)) {
+            initialLang = stored;
+          }
+        } catch (e) {}
       }
 
-      // Check URL parameters (e.g. ?cat=hdmi or ?q=H0103 or ?autoprint=1)
-      const urlParams = new URLSearchParams(window.location.search);
+      // Check URL filter parameters (e.g. ?cat=hdmi or ?q=H0103 or ?autoprint=1)
       const catParam = urlParams.get('cat');
       const qParam = urlParams.get('q');
       const autoPrint = urlParams.get('autoprint');
@@ -1035,8 +1307,8 @@
         if (input) input.value = qParam;
       }
 
-      updateCategorySelectOptions();
-      renderCatalog();
+      // Apply initial language & render
+      setCatalogLanguage(initialLang);
 
       if (autoPrint === '1' || autoPrint === 'true') {
         setTimeout(() => {

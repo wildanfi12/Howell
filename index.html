@@ -746,7 +746,7 @@
             </div>
 
             <!-- Print Catalog PDF -->
-            <a href="print-catalog.html" target="_blank" class="flex items-center gap-1.5 px-4 py-1.5 sm:py-2 rounded-full border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] text-xs font-semibold transition-all select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
+            <a href="print-catalog.html" target="_blank" onclick="this.href='print-catalog.html?lang='+(window.currentLanguage||localStorage.getItem('howell_lang')||'id')" class="flex items-center gap-1.5 px-4 py-1.5 sm:py-2 rounded-full border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] text-xs font-semibold transition-all select-none cursor-pointer group" title="Cetak atau Unduh PDF Seluruh Katalog HOWELL">
               <i data-lucide="printer" class="w-3.5 h-3.5 text-[#86868B] group-hover:text-[#1D1D1F] transition-colors stroke-[1.75]"></i>
               <span class="hidden md:inline" data-i18n="catalog_btn_pdf">Cetak PDF</span>
             </a>

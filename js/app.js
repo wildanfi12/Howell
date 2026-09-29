@@ -662,6 +662,10 @@ function toggleCatalogExpand(expand) {
 function printCatalogPDF(cat = 'all', autoPrint = false) {
   let url = 'print-catalog.html';
   const params = [];
+  const curL = window.currentLanguage || localStorage.getItem('howell_lang') || 'id';
+  if (curL) {
+    params.push(`lang=${encodeURIComponent(curL)}`);
+  }
   if (cat && cat !== 'all') {
     params.push(`cat=${encodeURIComponent(cat)}`);
   }
