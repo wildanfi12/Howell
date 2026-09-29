@@ -39,7 +39,8 @@
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Typography: Apple System & SF Pro Fonts Only -->
+    <!-- SF Pro Web Fonts CDN (Supports 300 Light, 400 Regular, 500 Medium, 600 Semibold, 700 Bold, 800 Heavy, 900 Black) -->
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
 
   <!-- HOWELL Premium Design System CSS -->
   <link rel="stylesheet" href="css/glassmorphism.css?v=20260925-v6-smooth-dropdown">
@@ -85,9 +86,18 @@
             }
           },
           fontFamily: {
-            display: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
-            sans: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
-            mono: ['-apple-system', '"SF Pro Display"', '"SF Pro Text"'],
+            display: ['"SF Pro Display"', '"SF Pro Text"', 'sans-serif'],
+            sans: ['"SF Pro Text"', '"SF Pro Display"', 'sans-serif'],
+            mono: ['"SF Pro Text"', '"SF Pro Display"', 'sans-serif'],
+          },
+          fontWeight: {
+            light: '300',
+            normal: '400',
+            medium: '500',
+            semibold: '600',
+            bold: '700',
+            extrabold: '800',
+            black: '900',
           }
         }
       }
@@ -125,10 +135,10 @@
     }
 
     :root {
-      --font-primary: -apple-system, "SF Pro Display", "SF Pro Text";
-      --font-display: -apple-system, "SF Pro Display", "SF Pro Text";
-      --font-apple: -apple-system, "SF Pro Display", "SF Pro Text";
-      --font-mono: -apple-system, "SF Pro Display", "SF Pro Text";
+      --font-display: "SF Pro Display", "SF Pro Text", sans-serif;
+      --font-primary: "SF Pro Text", "SF Pro Display", sans-serif;
+      --font-apple: "SF Pro Display", "SF Pro Text", sans-serif;
+      --font-mono: "SF Pro Text", "SF Pro Display", sans-serif;
       --background: #ffffff;
       --foreground: #111111;
       --ink: #0a0a0a;
