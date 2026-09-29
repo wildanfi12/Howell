@@ -926,8 +926,6 @@
       id: {
         page_title: "HOWELL Official Product Catalog & Inventory - Cetak / Simpan PDF",
         toolbar_title: "Katalog Inventaris & Qty/Karton Resmi HOWELL",
-        stats_loading: "Memuat database produk...",
-        stats_summary: (count) => `${count} Produk Terpilih • ${count} Baris SKU Aktif • Sumber PDF Resmi Terverifikasi`,
         btn_print: "Cetak / Simpan PDF",
         btn_print_all: "Cetak Semua (10 Kategori)",
         btn_back: "Kembali ke Website",
@@ -967,8 +965,6 @@
       en: {
         page_title: "HOWELL Official Product Catalog & Inventory - Print / Save PDF",
         toolbar_title: "HOWELL Official Inventory & Packaging Catalog",
-        stats_loading: "Loading product database...",
-        stats_summary: (count) => `${count} Products Selected • ${count} Active SKU Lines • Official Verified Data`,
         btn_print: "Print / Save PDF",
         btn_print_all: "Print All (10 Categories)",
         btn_back: "Back to Website",
@@ -1008,8 +1004,6 @@
       zh: {
         page_title: "HOWELL 官方产品目录与库存清单 - 打印 / 保存 PDF",
         toolbar_title: "HOWELL 官方产品目录与包装箱规清单",
-        stats_loading: "正在加载产品数据库...",
-        stats_summary: (count) => `已筛选 ${count} 款产品 • ${count} 行有效 SKU • 官方认证数据源`,
         btn_print: "打印 / 保存为 PDF",
         btn_print_all: "全部打印 (10 大分类)",
         btn_back: "返回官方网站",
@@ -1233,7 +1227,6 @@
     function renderCatalog() {
       const allRows = getMasterCatalog();
       const container = document.getElementById('catalog-content-container');
-      const statsText = document.getElementById('toolbar-stats-text');
       const summaryMeta = document.getElementById('catalog-summary-meta');
       const searchClearBtn = document.getElementById('search-clear-btn');
       const t = getT();
@@ -1327,9 +1320,6 @@
       container.innerHTML = outputHtml;
 
       // Update metadata & stats
-      if (statsText) {
-        statsText.textContent = t.stats_summary(totalDisplayedRows);
-      }
       if (summaryMeta) {
         summaryMeta.innerHTML = t.header_summary(totalDisplayedRows);
       }
