@@ -823,8 +823,8 @@
     <section id="services" class="bg-white py-16 lg:py-24">
       <div class="shell">
         
-        <div class="eyebrow mb-2">Category Ecosystem</div>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md">What we produce best.</h2>
+        <div class="eyebrow mb-2" data-i18n="cat_eco_eyebrow">Category Ecosystem</div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md" data-i18n="cat_eco_title">What we produce best.</h2>
 
         <!-- Interactive Category Accordion List -->
         <ul class="border-t border-[#e6e5e2]" id="category-accordion-list">
@@ -838,9 +838,9 @@
                     aria-controls="category-panel-patch-cable" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">Patch Cable &amp; Networking</h3>
+                <h3 class="category-title" data-i18n="cat_title_patch_cable">Patch Cable &amp; Networking</h3>
               </div>
-              <p class="category-subtext">Cat6, Cat8 40Gbps SFTP, Bulk Rolls &amp; RJ45 Connectors.</p>
+              <p class="category-subtext" data-i18n="cat_sub_patch_cable">Cat6, Cat8 40Gbps SFTP, Bulk Rolls &amp; RJ45 Connectors.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -856,10 +856,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">Patch Cable &amp; Networking</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_patch_cable">Patch Cable &amp; Networking</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_patch_cable">
                         <span class="font-semibold text-slate-700">9 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -868,10 +868,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_patch_cable">
                         Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors &amp; Keystone Adapters.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_patch_cable">
                         Solusi kabel jaringan berkecepatan tinggi hingga 40Gbps SFTP shielded dengan konduktor tembaga murni untuk instalasi server, data center, dan jaringan enterprise yang membutuhkan transmisi data stabil tanpa packet loss.
                       </p>
                     </div>
@@ -881,7 +881,7 @@
                       <button type="button" 
                               onclick="filterByCategory('patch-cable')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -903,9 +903,9 @@
                     aria-controls="category-panel-hdmi-video" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">HDMI 8K &amp; DisplayPort</h3>
+                <h3 class="category-title" data-i18n="cat_title_hdmi_video">HDMI 8K &amp; DisplayPort</h3>
               </div>
-              <p class="category-subtext">Ultra Gold HDMI 2.1, Active Optic Fiber &amp; 16K DisplayPort.</p>
+              <p class="category-subtext" data-i18n="cat_sub_hdmi_video">Ultra Gold HDMI 2.1, Active Optic Fiber &amp; 16K DisplayPort.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -921,10 +921,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">HDMI 8K &amp; DisplayPort</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_hdmi_video">HDMI 8K &amp; DisplayPort</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_hdmi_video">
                         <span class="font-semibold text-slate-700">49 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -933,10 +933,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_hdmi_video">
                         Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber &amp; 16K DisplayPort.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_hdmi_video">
                         Transmisi sinyal visual definisi tinggi dengan bandwidth hingga 48Gbps tanpa delay audio-video. Ideal untuk monitor gaming profesional, home theater, videowall, dan broadcast workstation.
                       </p>
                     </div>
@@ -946,7 +946,7 @@
                       <button type="button" 
                               onclick="filterByCategory('hdmi-video')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -968,9 +968,9 @@
                     aria-controls="category-panel-power-cable" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">Heavy Duty Power &amp; PDU</h3>
+                <h3 class="category-title" data-i18n="cat_title_power_cable">Heavy Duty Power &amp; PDU</h3>
               </div>
-              <p class="category-subtext">AC Power C5, CPU C13, Server PDU C13-C14 &amp; C19-C20.</p>
+              <p class="category-subtext" data-i18n="cat_sub_power_cable">AC Power C5, CPU C13, Server PDU C13-C14 &amp; C19-C20.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -986,10 +986,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">Heavy Duty Power &amp; PDU</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_power_cable">Heavy Duty Power &amp; PDU</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_power_cable">
                         <span class="font-semibold text-slate-700">3 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -998,10 +998,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_power_cable">
                         AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 &amp; CEE 7/7 Schuko.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_power_cable">
                         Kabel daya bersertifikasi standar industri dengan tembaga murni tebal dan insulasi tahan panas tinggi untuk workstation, server rack, UPS, dan infrastruktur listrik enterprise.
                       </p>
                     </div>
@@ -1011,7 +1011,7 @@
                       <button type="button" 
                               onclick="filterByCategory('power-cable')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -1033,9 +1033,9 @@
                     aria-controls="category-panel-usb-charging" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">USB &amp; High-Speed Data</h3>
+                <h3 class="category-title" data-i18n="cat_title_usb_charging">USB &amp; High-Speed Data</h3>
               </div>
-              <p class="category-subtext">Active Optic Extension, USB Type-C &amp; High-Amp Charging.</p>
+              <p class="category-subtext" data-i18n="cat_sub_usb_charging">Active Optic Extension, USB Type-C &amp; High-Amp Charging.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1051,10 +1051,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">USB &amp; High-Speed Data</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_usb_charging">USB &amp; High-Speed Data</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_usb_charging">
                         <span class="font-semibold text-slate-700">12 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -1063,10 +1063,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_usb_charging">
                         USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension &amp; Hubs.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_usb_charging">
                         Solusi transfer data kecepatan tinggi hingga 10Gbps dan pengisian daya pintar Power Delivery (PD) dengan pelindung kabel braided nilon yang tahan lebih dari 50.000 kali tekukan.
                       </p>
                     </div>
@@ -1076,7 +1076,7 @@
                       <button type="button" 
                               onclick="filterByCategory('usb-charging')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -1098,9 +1098,9 @@
                     aria-controls="category-panel-audio" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">Audio Solutions &amp; AUX</h3>
+                <h3 class="category-title" data-i18n="cat_title_audio">Audio Solutions &amp; AUX</h3>
               </div>
-              <p class="category-subtext">3.5mm AUX, Optical Toslink, Dual 6.35mm &amp; XLR Mic Cables.</p>
+              <p class="category-subtext" data-i18n="cat_sub_audio">3.5mm AUX, Optical Toslink, Dual 6.35mm &amp; XLR Mic Cables.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1116,10 +1116,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">Audio Solutions &amp; AUX</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_audio">Audio Solutions &amp; AUX</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_audio">
                         <span class="font-semibold text-slate-700">11 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -1128,10 +1128,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_audio">
                         3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone &amp; Optical Toslink.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_audio">
                         Kabel audio fidelitas tinggi (Hi-Fi) bebas distorsi dengan konektor lapis emas 24K dan pelindung interferensi elektromagnetik ganda untuk studio rekaman, panggung, dan sistem home audio audiophile.
                       </p>
                     </div>
@@ -1141,7 +1141,7 @@
                       <button type="button" 
                               onclick="filterByCategory('audio')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -1163,9 +1163,9 @@
                     aria-controls="category-panel-adapter" 
                     class="category-accordion-trigger group">
               <div class="flex-1 min-w-0 pr-2">
-                <h3 class="category-title">Adapters &amp; Converters</h3>
+                <h3 class="category-title" data-i18n="cat_title_adapter">Adapters &amp; Converters</h3>
               </div>
-              <p class="category-subtext">Multi-port Display Converters, Audio Splitters &amp; Signal Hubs.</p>
+              <p class="category-subtext" data-i18n="cat_sub_adapter">Multi-port Display Converters, Audio Splitters &amp; Signal Hubs.</p>
               <div class="category-badge-btn" aria-label="Buka detail kategori">
                 <svg class="category-icon-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1181,10 +1181,10 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-mono font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> Kategori
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
-                      <div class="text-sm font-bold text-slate-900 pt-1">Adapters &amp; Converters</div>
-                      <div class="text-xs text-slate-500 flex items-center gap-2">
+                      <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_adapter">Adapters &amp; Converters</div>
+                      <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_adapter">
                         <span class="font-semibold text-slate-700">37 Produk Resmi</span>
                         <span>•</span>
                         <span>Garansi 12 Bulan</span>
@@ -1193,10 +1193,10 @@
 
                     <!-- Middle: Technical Description & Coverage -->
                     <div class="md:col-span-6 space-y-2 text-xs sm:text-[13px] leading-relaxed text-slate-600">
-                      <p class="font-semibold text-slate-800">
+                      <p class="font-semibold text-slate-800" data-i18n="cat_desc_title_adapter">
                         Multi-port Display Converters, Type-C Hubs, Audio Splitters &amp; Video Signal Converters.
                       </p>
-                      <p class="text-slate-500">
+                      <p class="text-slate-500" data-i18n="cat_desc_body_adapter">
                         Solusi konversi antarmuka lengkap antara USB-C, HDMI, DisplayPort, VGA, DVI, dan audio digital-analog untuk menghubungkan laptop modern dengan display proyektor dan monitor legacy.
                       </p>
                     </div>
@@ -1206,7 +1206,7 @@
                       <button type="button" 
                               onclick="filterByCategory('adapter')" 
                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#FFC700] hover:bg-[#FFE066] text-[#1D1D1F] text-[13px] font-bold transition-all duration-200 shadow-xs cursor-pointer group/cta">
-                        <span>Lihat Produk di Katalog</span>
+                        <span data-i18n="cat_btn_catalog">Lihat Produk di Katalog</span>
                         <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 text-[#1D1D1F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
@@ -1396,7 +1396,7 @@
               </div>
 
               <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>● VISI PERUSAHAAN</span>
+                <span data-i18n="visi_footer_left">● VISI PERUSAHAAN</span>
                 <span>EST. 2009</span>
               </div>
             </div>
@@ -1406,30 +1406,30 @@
               <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-amber-400/60 shadow-lg">
                 <div class="flex items-center justify-between pb-4 mb-5 border-b border-amber-100">
                   <div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block mb-0.5">DETAIL ARTI &amp; SASARAN</span>
-                    <h4 class="text-lg font-extrabold text-slate-900">Arah Strategis VISI Howell</h4>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block mb-0.5" data-i18n="visi_panel_eyebrow">DETAIL ARTI &amp; SASARAN</span>
+                    <h4 class="text-lg font-extrabold text-slate-900" data-i18n="visi_panel_title">Arah Strategis VISI Howell</h4>
                   </div>
                   <button type="button" 
                           onclick="toggleVisiMisiDetail('visi')" 
-                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none">
+                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none" data-i18n="btn_close">
                     Tutup
                   </button>
                 </div>
 
                 <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
                   <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/15">
-                    <p class="font-bold text-slate-900 mb-1.5 text-sm sm:text-base">"Menjadi perusahaan trading terdepan di Indonesia dengan reputasi yang unggul, terpercaya, dan berstandar internasional."</p>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Visi ini merupakan kompas jangka panjang PT Howell Niaga Indonesia untuk memantapkan posisi sebagai pemimpin ekosistem distribusi connectivity hardware, kabel audio-video resolusi tinggi, dan peripheral teknologi informasi terpercaya di seluruh pelosok nusantara.</p>
+                    <p class="font-bold text-slate-900 mb-1.5 text-sm sm:text-base" data-i18n="visi_quote">"Menjadi perusahaan trading terdepan di Indonesia dengan reputasi yang unggul, terpercaya, dan berstandar internasional."</p>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" data-i18n="visi_narrative">Visi ini merupakan kompas jangka panjang PT Howell Niaga Indonesia untuk memantapkan posisi sebagai pemimpin ekosistem distribusi connectivity hardware, kabel audio-video resolusi tinggi, dan peripheral teknologi informasi terpercaya di seluruh pelosok nusantara.</p>
                   </div>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                     <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/80">
-                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5">Reputasi Unggul &amp; Terpercaya</p>
-                      <p class="text-[11.5px] text-slate-600 leading-relaxed">Dibangun sejak 2009 melalui integritas pasokan, jaminan produk asli bergaransi 12 bulan tukar baru, dan kepercayaan dari ribuan mitra ritel, korporasi tender, serta institusi pemerintah.</p>
+                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5" data-i18n="visi_subcard1_title">Reputasi Unggul &amp; Terpercaya</p>
+                      <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="visi_subcard1_desc">Dibangun sejak 2009 melalui integritas pasokan, jaminan produk asli bergaransi 12 bulan tukar baru, dan kepercayaan dari ribuan mitra ritel, korporasi tender, serta institusi pemerintah.</p>
                     </div>
                     <div class="p-4 rounded-2xl border border-slate-100 bg-slate-50/80">
-                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5">Standar Kualitas Internasional</p>
-                      <p class="text-[11.5px] text-slate-600 leading-relaxed">Seluruh produk Howell mengadopsi spesifikasi ketat sertifikasi internasional (HDMI ATC, DisplayPort VESA, CE, RoHS) dengan bahan tembaga murni untuk daya tahan transmisi optimal.</p>
+                      <p class="font-bold text-slate-900 text-xs sm:text-sm mb-1.5" data-i18n="visi_subcard2_title">Standar Kualitas Internasional</p>
+                      <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="visi_subcard2_desc">Seluruh produk Howell mengadopsi spesifikasi ketat sertifikasi internasional (HDMI ATC, DisplayPort VESA, CE, RoHS) dengan bahan tembaga murni untuk daya tahan transmisi optimal.</p>
                     </div>
                   </div>
                 </div>
@@ -1482,8 +1482,8 @@
               </div>
 
               <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span>● 4 PILAR EKSEKUSI</span>
-                <span>KUALITAS &amp; INTEGRITAS</span>
+                <span data-i18n="misi_footer_left">● 4 PILAR EKSEKUSI</span>
+                <span data-i18n="misi_footer_right">KUALITAS &amp; INTEGRITAS</span>
               </div>
             </div>
 
@@ -1492,35 +1492,35 @@
               <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-amber-400/60 shadow-lg">
                 <div class="flex items-center justify-between pb-4 mb-5 border-b border-amber-100">
                   <div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block mb-0.5">DETAIL OPERASIONAL</span>
-                    <h4 class="text-lg font-extrabold text-slate-900">4 Pilar Misi Howell</h4>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-amber-600 block mb-0.5" data-i18n="misi_panel_eyebrow">DETAIL OPERASIONAL</span>
+                    <h4 class="text-lg font-extrabold text-slate-900" data-i18n="misi_panel_title">4 Pilar Misi Howell</h4>
                   </div>
                   <button type="button" 
                           onclick="toggleVisiMisiDetail('misi')" 
-                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none">
+                          class="text-xs font-bold text-slate-600 hover:text-black px-3.5 py-1.5 rounded-full border border-slate-200 hover:bg-slate-100 transition-colors cursor-pointer select-none" data-i18n="btn_close">
                     Tutup
                   </button>
                 </div>
 
                 <div class="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                   <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
-                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">1. Produk Berkualitas Tinggi &amp; Harga Kompetitif</p>
-                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Melalui kontrol rantai pasok langsung dari pabrikasi berstandar internasional, Howell mampu menawarkan kabel performa tinggi (HDMI 8K, Active Optical, Audio Oxygen-Free) dengan efisiensi biaya terbaik untuk mendukung daya saing mitra ritel dan efisiensi pengadaan B2B.</p>
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm" data-i18n="misi_detail_1_title">1. Produk Berkualitas Tinggi &amp; Harga Kompetitif</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="misi_detail_1_desc">Melalui kontrol rantai pasok langsung dari pabrikasi berstandar internasional, Howell mampu menawarkan kabel performa tinggi (HDMI 8K, Active Optical, Audio Oxygen-Free) dengan efisiensi biaya terbaik untuk mendukung daya saing mitra ritel dan efisiensi pengadaan B2B.</p>
                   </div>
 
                   <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
-                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">2. Pelayanan Cepat, Tepat, dan Profesional</p>
-                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Mendukung ritme bisnis modern dengan pemrosesan pesanan yang sigap, akurasi spesifikasi teknis, serta garansi resmi 12 bulan ganti baru tanpa birokrasi berbelit demi kepuasan pelanggan.</p>
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm" data-i18n="misi_detail_2_title">2. Pelayanan Cepat, Tepat, dan Profesional</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="misi_detail_2_desc">Mendukung ritme bisnis modern dengan pemrosesan pesanan yang sigap, akurasi spesifikasi teknis, serta garansi resmi 12 bulan ganti baru tanpa birokrasi berbelit demi kepuasan pelanggan.</p>
                   </div>
 
                   <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
-                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">3. Hubungan Jangka Panjang dengan Mitra &amp; Pelanggan</p>
-                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Menjadikan etika bisnis, transparansi harga, dan kehandalan pasokan sebagai fondasi kemitraan berkelanjutan bagi ratusan distributor, kontraktor instalasi, dan pelaku industri di seluruh Indonesia.</p>
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm" data-i18n="misi_detail_3_title">3. Hubungan Jangka Panjang dengan Mitra &amp; Pelanggan</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="misi_detail_3_desc">Menjadikan etika bisnis, transparansi harga, dan kehandalan pasokan sebagai fondasi kemitraan berkelanjutan bagi ratusan distributor, kontraktor instalasi, dan pelaku industri di seluruh Indonesia.</p>
                   </div>
 
                   <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 hover:bg-slate-100/50 transition-all">
-                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm">4. Berinovasi Mengikuti Perkembangan Pasar &amp; Teknologi</p>
-                    <p class="text-[11.5px] text-slate-600 leading-relaxed">Selalu berada di garis depan evolusi konektivitas digital dengan menghadirkan solusi kabel HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN Fast Charger, hingga hybrid active fiber untuk instalasi jarak jauh.</p>
+                    <p class="font-bold text-slate-900 mb-1 text-xs sm:text-sm" data-i18n="misi_detail_4_title">4. Berinovasi Mengikuti Perkembangan Pasar &amp; Teknologi</p>
+                    <p class="text-[11.5px] text-slate-600 leading-relaxed" data-i18n="misi_detail_4_desc">Selalu berada di garis depan evolusi konektivitas digital dengan menghadirkan solusi kabel HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN Fast Charger, hingga hybrid active fiber untuk instalasi jarak jauh.</p>
                   </div>
                 </div>
               </div>
@@ -1562,10 +1562,10 @@
               
               <!-- Intro description -->
               <div class="max-w-3xl mb-7">
-                <p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-2">
+                <p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-2" data-i18n="custom_intro_1">
                   Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong class="text-white font-semibold">custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.
                 </p>
-                <p class="text-[11.5px] sm:text-xs text-white/55 leading-relaxed">
+                <p class="text-[11.5px] sm:text-xs text-white/55 leading-relaxed" data-i18n="custom_intro_2">
                   Mulai dari custom desain, spesifikasi, warna, packaging, hingga branding produk dapat disesuaikan dengan kebutuhan dan identitas bisnis.
                 </p>
               </div>
@@ -1575,53 +1575,53 @@
                 
                 <!-- 1. Desain -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">01 / Desain</span>
-                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Custom Desain &amp; Cetak</h4>
-                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.</p>
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card1_tag">01 / Desain</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card1_title">Custom Desain &amp; Cetak</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card1_desc">Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.</p>
                 </div>
 
                 <!-- 2. Spesifikasi -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">02 / Material</span>
-                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Spesifikasi &amp; Material</h4>
-                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi &amp; sertifikasi industri.</p>
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card2_tag">02 / Material</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card2_title">Spesifikasi &amp; Material</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card2_desc">Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi &amp; sertifikasi industri.</p>
                 </div>
 
                 <!-- 3. Warna -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">03 / Finishing</span>
-                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Warna &amp; Finishing</h4>
-                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.</p>
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card3_tag">03 / Finishing</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card3_title">Warna &amp; Finishing</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card3_desc">Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.</p>
                 </div>
 
                 <!-- 4. Packaging -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">04 / Kemasan</span>
-                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Custom Packaging</h4>
-                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.</p>
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card4_tag">04 / Kemasan</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card4_title">Custom Packaging</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card4_desc">Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.</p>
                 </div>
 
                 <!-- 5. Branding -->
                 <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/20 transition-all sm:col-span-2 lg:col-span-2">
-                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1">05 / Private Label</span>
-                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1">Branding &amp; Private Label</h4>
-                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed">Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.</p>
+                  <span class="text-[10px] font-mono text-[#FFC700] uppercase tracking-wider block mb-1" data-i18n="custom_card5_tag">05 / Private Label</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white mb-1" data-i18n="custom_card5_title">Branding &amp; Private Label</h4>
+                  <p class="text-[11px] sm:text-xs text-white/60 leading-relaxed" data-i18n="custom_card5_desc">Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.</p>
                 </div>
 
               </div>
 
               <!-- Action Footer -->
               <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-5 border-t border-white/10">
-                <p class="text-[11.5px] text-white/50">Konsultasikan kebutuhan OEM/ODM kabel &amp; aksesoris proyek Anda dengan tim teknis HOWELL.</p>
+                <p class="text-[11.5px] text-white/50" data-i18n="custom_footer_text">Konsultasikan kebutuhan OEM/ODM kabel &amp; aksesoris proyek Anda dengan tim teknis HOWELL.</p>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
                   <a href="https://wa.me/6281188031976?text=Halo%20PT%20Howell%20Niaga%20Indonesia%2C%20saya%20tertarik%20dengan%20layanan%20Custom%20Product%20Solution%20(OEM%2FODM)%20untuk%20kebutuhan%20bisnis%20kami.%20Mohon%20informasi%20lebih%20lanjut." target="_blank" rel="noopener noreferrer" 
                     class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm">
-                    <span>Konsultasi via WhatsApp</span>
+                    <span data-i18n="custom_btn_wa">Konsultasi via WhatsApp</span>
                     <span>→</span>
                   </a>
                   <button type="button" onclick="openB2BModal('Konsultasi Custom Product Solution');"
                     class="px-4 py-2.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-xs sm:text-sm font-semibold text-white transition-all cursor-pointer flex items-center justify-center gap-2">
-                    <span>Isi Formulir Penawaran B2B</span>
+                    <span data-i18n="custom_btn_form">Isi Formulir Penawaran B2B</span>
                   </button>
                 </div>
               </div>
@@ -1697,57 +1697,57 @@
           <button onclick="toggleInlineB2BForm(false)" class="absolute top-6 right-6 text-white/50 hover:text-[#FFC700] text-xl">✕</button>
           
           <div class="max-w-xl mb-8">
-            <span class="eyebrow light mb-2 block"><span class="text-[#FFC700]">Direct WhatsApp Inquiry</span></span>
-            <h3 class="text-2xl font-semibold text-white">Formulir Kerjasama B2B Howell</h3>
-            <p class="text-xs text-white/60 mt-1">Isi data di bawah ini untuk terhubung langsung dengan tim B2B Howell via WhatsApp.</p>
+            <span class="eyebrow light mb-2 block"><span class="text-[#FFC700]" data-i18n="b2b_inline_eyebrow">Direct WhatsApp Inquiry</span></span>
+            <h3 class="text-2xl font-semibold text-white" data-i18n="b2b_inline_title">Formulir Kerjasama B2B Howell</h3>
+            <p class="text-xs text-white/60 mt-1" data-i18n="b2b_inline_subtitle">Isi data di bawah ini untuk terhubung langsung dengan tim B2B Howell via WhatsApp.</p>
           </div>
 
           <form onsubmit="handleB2BSubmit(event, 'inline')" class="space-y-4 max-w-3xl">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Nama Perusahaan / Toko *</label>
-                <input type="text" id="b2b-inline-perusahaan" required placeholder="PT / CV / Toko Anda" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_company">Nama Perusahaan / Toko *</label>
+                <input type="text" id="b2b-inline-perusahaan" required placeholder="PT / CV / Toko Anda" data-i18n-ph="b2b_ph_company" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">PIC / Penanggung Jawab *</label>
-                <input type="text" id="b2b-inline-pic" required placeholder="Nama Lengkap" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_pic">PIC / Penanggung Jawab *</label>
+                <input type="text" id="b2b-inline-pic" required placeholder="Nama Lengkap" data-i18n-ph="b2b_ph_pic" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Kota *</label>
-                <input type="text" id="b2b-inline-kota" required placeholder="Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_city">Kota *</label>
+                <input type="text" id="b2b-inline-kota" required placeholder="Jakarta" data-i18n-ph="b2b_ph_city" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Provinsi *</label>
-                <input type="text" id="b2b-inline-provinsi" required placeholder="DKI Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_province">Provinsi *</label>
+                <input type="text" id="b2b-inline-provinsi" required placeholder="DKI Jakarta" data-i18n-ph="b2b_ph_province" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Kode Pos</label>
-                <input type="text" id="b2b-inline-kodepos" placeholder="14440" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_postal">Kode Pos</label>
+                <input type="text" id="b2b-inline-kodepos" placeholder="14440" data-i18n-ph="b2b_ph_postal" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Nomor Telp. / WhatsApp *</label>
-                <input type="tel" id="b2b-inline-telp" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_phone">Nomor Telp. / WhatsApp *</label>
+                <input type="tel" id="b2b-inline-telp" required placeholder="08123456789" data-i18n-ph="b2b_ph_phone" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
               <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1">Email Perusahaan *</label>
-                <input type="email" id="b2b-inline-email" required placeholder="perusahaan@domain.com" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
+                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_email">Email Perusahaan *</label>
+                <input type="email" id="b2b-inline-email" required placeholder="perusahaan@domain.com" data-i18n-ph="b2b_ph_email" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-medium text-white/70 uppercase mb-1">Catatan Kebutuhan Proyek (Opsional)</label>
-              <textarea id="b2b-inline-catatan" rows="2" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]"></textarea>
+              <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_notes">Catatan Kebutuhan Proyek (Opsional)</label>
+              <textarea id="b2b-inline-catatan" rows="2" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." data-i18n-ph="b2b_ph_notes" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]"></textarea>
             </div>
 
             <button type="submit" class="btn-pill group cursor-pointer mt-2" aria-label="Kirim Form via WhatsApp">
               <span class="btn-pill-inner bg-[#FFC700] hover:bg-white text-black font-extrabold has-arrow shadow-lg shadow-[#FFC700]/25 hover:shadow-white/20 transition-all duration-300">
-                <span>Kirim Form via WhatsApp</span>
+                <span data-i18n="b2b_inline_submit">Kirim Form via WhatsApp</span>
                 <span class="btn-pill-badge bg-black text-[#FFC700] group-hover:text-white transition-colors duration-300 font-black">💬</span>
               </span>
             </button>
@@ -1795,10 +1795,10 @@
         <div>
           <span class="block text-xs uppercase tracking-wider text-white/40 mb-4 font-semibold" data-i18n="footer_col_company">Company</span>
           <ul class="space-y-3 text-xs text-white/70">
-            <li><button onclick="scrollToId('about-us')" class="hover:text-white transition-colors">Tentang Kami (About Us)</button></li>
-            <li><button onclick="scrollToId('collaboration-section')" class="hover:text-white transition-colors">B2B & Enterprise</button></li>
-            <li><button onclick="scrollToId('catalog-section')" class="hover:text-white transition-colors">Products Catalog</button></li>
-            <li><button onclick="openSupportModal()" class="hover:text-white transition-colors">Headquarters & Support</button></li>
+            <li><button onclick="scrollToId('about-us')" class="hover:text-white transition-colors" data-i18n="nav_about">Tentang Kami</button></li>
+            <li><button onclick="scrollToId('collaboration-section')" class="hover:text-white transition-colors" data-i18n="footer_link_b2b">B2B & Enterprise</button></li>
+            <li><button onclick="scrollToId('catalog-section')" class="hover:text-white transition-colors" data-i18n="nav_products">Products Catalog</button></li>
+            <li><button onclick="openSupportModal()" class="hover:text-white transition-colors" data-i18n="footer_link_support">Headquarters & Support</button></li>
           </ul>
         </div>
 
@@ -1806,10 +1806,10 @@
         <div>
           <span class="block text-xs uppercase tracking-wider text-white/40 mb-4 font-semibold" data-i18n="footer_col_categories">Categories</span>
           <ul class="space-y-3 text-xs text-white/70">
-            <li><button onclick="filterByCategory('patch-cable')" class="hover:text-white transition-colors">Patch Cable & Networking</button></li>
-            <li><button onclick="filterByCategory('hdmi-video')" class="hover:text-white transition-colors">HDMI 8K & DisplayPort</button></li>
-            <li><button onclick="filterByCategory('power-cable')" class="hover:text-white transition-colors">Power & PDU Cables</button></li>
-            <li><button onclick="filterByCategory('usb-charging')" class="hover:text-white transition-colors">USB & Fast Data</button></li>
+            <li><button onclick="filterByCategory('patch-cable')" class="hover:text-white transition-colors" data-i18n="cat_title_patch_cable">Patch Cable & Networking</button></li>
+            <li><button onclick="filterByCategory('hdmi-video')" class="hover:text-white transition-colors" data-i18n="cat_title_hdmi_video">HDMI 8K & DisplayPort</button></li>
+            <li><button onclick="filterByCategory('power-cable')" class="hover:text-white transition-colors" data-i18n="cat_title_power_cable">Power & PDU Cables</button></li>
+            <li><button onclick="filterByCategory('usb-charging')" class="hover:text-white transition-colors" data-i18n="cat_title_usb_charging">USB & Fast Data</button></li>
           </ul>
         </div>
 
@@ -2063,44 +2063,44 @@
 
         <form onsubmit="handleB2BSubmit(event, 'modal')" class="space-y-4">
           <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Nama Perusahaan / Toko *</label>
-            <input type="text" id="b2b-modal-perusahaan" required placeholder="PT / CV / Toko Anda" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_company">Nama Perusahaan / Toko *</label>
+            <input type="text" id="b2b-modal-perusahaan" required placeholder="PT / CV / Toko Anda" data-i18n-ph="b2b_ph_company" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Kota *</label>
-              <input type="text" id="b2b-modal-kota" required placeholder="Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_city">Kota *</label>
+              <input type="text" id="b2b-modal-kota" required placeholder="Jakarta" data-i18n-ph="b2b_ph_city" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
             </div>
             <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Provinsi *</label>
-              <input type="text" id="b2b-modal-provinsi" required placeholder="DKI Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_province">Provinsi *</label>
+              <input type="text" id="b2b-modal-provinsi" required placeholder="DKI Jakarta" data-i18n-ph="b2b_ph_province" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
             </div>
             <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Kode Pos</label>
-              <input type="text" id="b2b-modal-kodepos" placeholder="14440" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_postal">Kode Pos</label>
+              <input type="text" id="b2b-modal-kodepos" placeholder="14440" data-i18n-ph="b2b_ph_postal" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">PIC / Penanggung Jawab *</label>
-              <input type="text" id="b2b-modal-pic" required placeholder="Nama Lengkap" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_pic">PIC / Penanggung Jawab *</label>
+              <input type="text" id="b2b-modal-pic" required placeholder="Nama Lengkap" data-i18n-ph="b2b_ph_pic" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
             </div>
             <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Nomor Telp. / WhatsApp *</label>
-              <input type="tel" id="b2b-modal-telp" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_phone">Nomor Telp. / WhatsApp *</label>
+              <input type="tel" id="b2b-modal-telp" required placeholder="08123456789" data-i18n-ph="b2b_ph_phone" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Email Perusahaan *</label>
-            <input type="email" id="b2b-modal-email" required placeholder="you@company.com" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_email">Email Perusahaan *</label>
+            <input type="email" id="b2b-modal-email" required placeholder="you@company.com" data-i18n-ph="b2b_ph_email" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
           </div>
 
           <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1">Catatan Kebutuhan / Detail SKU</label>
-            <textarea id="b2b-modal-catatan" rows="3" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400 resize-none"></textarea>
+            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_modal_notes">Catatan Kebutuhan / Detail SKU</label>
+            <textarea id="b2b-modal-catatan" rows="3" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." data-i18n-ph="b2b_ph_notes" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400 resize-none"></textarea>
           </div>
 
           <div class="flex items-center justify-between pt-2">
@@ -3353,7 +3353,104 @@
         footer_col_company: "Company",
         footer_col_categories: "Categories",
         footer_col_channels: "Official Channels",
-        footer_rights: "© 2026 PT Howell Niaga Indonesia. All rights reserved."
+        footer_rights: "© 2026 PT Howell Niaga Indonesia. All rights reserved.",
+        cat_eco_eyebrow: "EKOSISTEM KATEGORI",
+        cat_eco_title: "Produk Terbaik Kami.",
+        cat_title_patch_cable: "Patch Cable & Networking",
+        cat_sub_patch_cable: "Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.",
+        cat_badge_label: "Kategori",
+        cat_meta_patch_cable: "9 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_patch_cable: "Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors & Keystone Adapters.",
+        cat_desc_body_patch_cable: "Solusi kabel jaringan berkecepatan tinggi hingga 40Gbps SFTP shielded dengan konduktor tembaga murni untuk instalasi server, data center, dan jaringan enterprise yang membutuhkan transmisi data stabil tanpa packet loss.",
+        cat_title_hdmi_video: "HDMI 8K & DisplayPort",
+        cat_sub_hdmi_video: "Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.",
+        cat_meta_hdmi_video: "49 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_hdmi_video: "Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber & 16K DisplayPort.",
+        cat_desc_body_hdmi_video: "Transmisi sinyal visual definisi tinggi dengan bandwidth hingga 48Gbps tanpa delay audio-video. Ideal untuk monitor gaming profesional, home theater, videowall, dan broadcast workstation.",
+        cat_title_power_cable: "Heavy Duty Power & PDU",
+        cat_sub_power_cable: "AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.",
+        cat_meta_power_cable: "3 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_power_cable: "AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 & CEE 7/7 Schuko.",
+        cat_desc_body_power_cable: "Kabel daya bersertifikasi standar industri dengan tembaga murni tebal dan insulasi tahan panas tinggi untuk workstation, server rack, UPS, dan infrastruktur listrik enterprise.",
+        cat_title_usb_charging: "USB & High-Speed Data",
+        cat_sub_usb_charging: "Active Optic Extension, USB Type-C & High-Amp Charging.",
+        cat_meta_usb_charging: "12 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_usb_charging: "USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension & Hubs.",
+        cat_desc_body_usb_charging: "Solusi transfer data kecepatan tinggi hingga 10Gbps dan pengisian daya pintar Power Delivery (PD) dengan pelindung kabel braided nilon yang tahan lebih dari 50.000 kali tekukan.",
+        cat_title_audio: "Audio Solutions & AUX",
+        cat_sub_audio: "3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.",
+        cat_meta_audio: "11 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_audio: "3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone & Optical Toslink.",
+        cat_desc_body_audio: "Kabel audio fidelitas tinggi (Hi-Fi) bebas distorsi dengan konektor lapis emas 24K dan pelindung interferensi elektromagnetik ganda untuk studio rekaman, panggung, dan sistem home audio audiophile.",
+        cat_title_adapter: "Adapters & Converters",
+        cat_sub_adapter: "Multi-port Display Converters, Audio Splitters & Signal Hubs.",
+        cat_meta_adapter: "37 Produk Resmi • Garansi 12 Bulan",
+        cat_desc_title_adapter: "Multi-port Display Converters, Type-C Hubs, Audio Splitters & Video Signal Converters.",
+        cat_desc_body_adapter: "Solusi konversi antarmuka lengkap antara USB-C, HDMI, DisplayPort, VGA, DVI, dan audio digital-analog untuk menghubungkan laptop modern dengan display proyektor dan monitor legacy.",
+        cat_btn_catalog: "Lihat Produk di Katalog",
+        visi_footer_left: "● VISI PERUSAHAAN",
+        visi_panel_eyebrow: "DETAIL ARTI & SASARAN",
+        visi_panel_title: "Arah Strategis VISI Howell",
+        visi_narrative: "Visi ini merupakan kompas jangka panjang PT Howell Niaga Indonesia untuk memantapkan posisi sebagai pemimpin ekosistem distribusi connectivity hardware, kabel audio-video resolusi tinggi, dan peripheral teknologi informasi terpercaya di seluruh pelosok nusantara.",
+        visi_subcard1_title: "Reputasi Unggul & Terpercaya",
+        visi_subcard1_desc: "Dibangun sejak 2009 melalui integritas pasokan, jaminan produk asli bergaransi 12 bulan tukar baru, dan kepercayaan dari ribuan mitra ritel, korporasi tender, serta institusi pemerintah.",
+        visi_subcard2_title: "Standar Kualitas Internasional",
+        visi_subcard2_desc: "Seluruh produk Howell mengadopsi spesifikasi ketat sertifikasi internasional (HDMI ATC, DisplayPort VESA, CE, RoHS) dengan bahan tembaga murni untuk daya tahan transmisi optimal.",
+        misi_footer_left: "● 4 PILAR EKSEKUSI",
+        misi_footer_right: "KUALITAS & INTEGRITAS",
+        misi_panel_eyebrow: "DETAIL OPERASIONAL",
+        misi_panel_title: "4 Pilar Misi Howell",
+        misi_detail_1_title: "1. Produk Berkualitas Tinggi & Harga Kompetitif",
+        misi_detail_1_desc: "Melalui kontrol rantai pasok langsung dari pabrikasi berstandar internasional, Howell mampu menawarkan kabel performa tinggi (HDMI 8K, Active Optical, Audio Oxygen-Free) dengan efisiensi biaya terbaik untuk mendukung daya saing mitra ritel dan efisiensi pengadaan B2B.",
+        misi_detail_2_title: "2. Pelayanan Cepat, Tepat, dan Profesional",
+        misi_detail_2_desc: "Mendukung ritme bisnis modern dengan pemrosesan pesanan yang sigap, akurasi spesifikasi teknis, serta garansi resmi 12 bulan ganti baru tanpa birokrasi berbelit demi kepuasan pelanggan.",
+        misi_detail_3_title: "3. Hubungan Jangka Panjang dengan Mitra & Pelanggan",
+        misi_detail_3_desc: "Menjadikan etika bisnis, transparansi harga, dan kehandalan pasokan sebagai fondasi kemitraan berkelanjutan bagi ratusan distributor, kontraktor instalasi, dan pelaku industri di seluruh Indonesia.",
+        misi_detail_4_title: "4. Berinovasi Mengikuti Perkembangan Pasar & Teknologi",
+        misi_detail_4_desc: "Selalu berada di garis depan evolusi konektivitas digital dengan menghadirkan solusi kabel HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN Fast Charger, hingga hybrid active fiber untuk instalasi jarak jauh.",
+        custom_intro_1: "Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong class=\"text-white font-semibold\">custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.",
+        custom_intro_2: "Mulai dari custom desain, spesifikasi, warna, packaging, hingga branding produk dapat disesuaikan dengan kebutuhan dan identitas bisnis.",
+        custom_card1_tag: "01 / Desain",
+        custom_card1_title: "Custom Desain & Cetak",
+        custom_card1_desc: "Molding bentuk shell konektor, relief logo timbul, dan panjang kabel kustom hingga 100M.",
+        custom_card2_tag: "02 / Material",
+        custom_card2_title: "Spesifikasi & Material",
+        custom_card2_desc: "Inti tembaga murni OFC 99.9%, fiber optik aktif, rating daya tinggi & sertifikasi industri.",
+        custom_card3_tag: "03 / Finishing",
+        custom_card3_title: "Warna & Finishing",
+        custom_card3_desc: "Pilihan warna kabel pantone khusus, braided nylon tahan gesek, dan anodized metal shell.",
+        custom_card4_tag: "04 / Kemasan",
+        custom_card4_title: "Custom Packaging",
+        custom_card4_desc: "Desain kemasan retail gift box, blister pack, hang tag, serta barcode SKU bisnis Anda.",
+        custom_card5_tag: "05 / Private Label",
+        custom_card5_title: "Branding & Private Label",
+        custom_card5_desc: "Laser printing logo dan identitas merek perusahaan Anda langsung pada bodi kabel dan aksesoris dengan presisi tinggi.",
+        custom_footer_text: "Konsultasikan kebutuhan OEM/ODM kabel & aksesoris proyek Anda dengan tim teknis HOWELL.",
+        custom_btn_wa: "Konsultasi via WhatsApp",
+        custom_btn_form: "Isi Formulir Penawaran B2B",
+        b2b_inline_eyebrow: "Direct WhatsApp Inquiry",
+        b2b_inline_title: "Formulir Kerjasama B2B Howell",
+        b2b_inline_subtitle: "Isi data di bawah ini untuk terhubung langsung dengan tim B2B Howell via WhatsApp.",
+        b2b_field_company: "Nama Perusahaan / Toko *",
+        b2b_ph_company: "PT / CV / Toko Anda",
+        b2b_field_pic: "PIC / Penanggung Jawab *",
+        b2b_ph_pic: "Nama Lengkap",
+        b2b_field_city: "Kota *",
+        b2b_ph_city: "Jakarta",
+        b2b_field_province: "Provinsi *",
+        b2b_ph_province: "DKI Jakarta",
+        b2b_field_postal: "Kode Pos",
+        b2b_ph_postal: "14440",
+        b2b_field_phone: "Nomor Telp. / WhatsApp *",
+        b2b_ph_phone: "08123456789",
+        b2b_field_email: "Email Perusahaan *",
+        b2b_ph_email: "perusahaan@domain.com",
+        b2b_field_notes: "Catatan Kebutuhan Proyek (Opsional)",
+        b2b_modal_notes: "Catatan Kebutuhan / Detail SKU",
+        b2b_ph_notes: "Sebutkan SKU produk atau perkiraan kuantitas...",
+        b2b_inline_submit: "Kirim Form via WhatsApp",
+        footer_link_b2b: "B2B & Enterprise",
+        footer_link_support: "Headquarters & Support",
       },
       en: {
         nav_home: "Home",
@@ -3496,7 +3593,104 @@
         footer_col_company: "Company",
         footer_col_categories: "Categories",
         footer_col_channels: "Official Channels",
-        footer_rights: "© 2026 PT Howell Niaga Indonesia. All rights reserved."
+        footer_rights: "© 2026 PT Howell Niaga Indonesia. All rights reserved.",
+        cat_eco_eyebrow: "Category Ecosystem",
+        cat_eco_title: "What we produce best.",
+        cat_title_patch_cable: "Patch Cable & Networking",
+        cat_sub_patch_cable: "Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.",
+        cat_badge_label: "Category",
+        cat_meta_patch_cable: "9 Certified Products • 12-Month Warranty",
+        cat_desc_title_patch_cable: "Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors & Keystone Adapters.",
+        cat_desc_body_patch_cable: "High-speed network cabling up to 40Gbps SFTP shielded with pure copper conductors for server installations, data centers, and enterprise networks demanding zero packet loss.",
+        cat_title_hdmi_video: "HDMI 8K & DisplayPort",
+        cat_sub_hdmi_video: "Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.",
+        cat_meta_hdmi_video: "49 Certified Products • 12-Month Warranty",
+        cat_desc_title_hdmi_video: "Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber & 16K DisplayPort.",
+        cat_desc_body_hdmi_video: "High-definition visual signal transmission with up to 48Gbps bandwidth and zero audio-video lag. Ideal for pro gaming displays, home theaters, videowalls, and broadcast workstations.",
+        cat_title_power_cable: "Heavy Duty Power & PDU",
+        cat_sub_power_cable: "AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.",
+        cat_meta_power_cable: "3 Certified Products • 12-Month Warranty",
+        cat_desc_title_power_cable: "AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 & CEE 7/7 Schuko.",
+        cat_desc_body_power_cable: "Industry-certified heavy-duty power cables built with thick pure copper conductors and high-heat insulation for workstations, server racks, UPS units, and enterprise electrical infrastructure.",
+        cat_title_usb_charging: "USB & High-Speed Data",
+        cat_sub_usb_charging: "Active Optic Extension, USB Type-C & High-Amp Charging.",
+        cat_meta_usb_charging: "12 Certified Products • 12-Month Warranty",
+        cat_desc_title_usb_charging: "USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension & Hubs.",
+        cat_desc_body_usb_charging: "High-speed data transfer up to 10Gbps and intelligent Power Delivery (PD) charging with reinforced braided nylon jackets tested for over 50,000 bend cycles.",
+        cat_title_audio: "Audio Solutions & AUX",
+        cat_sub_audio: "3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.",
+        cat_meta_audio: "11 Certified Products • 12-Month Warranty",
+        cat_desc_title_audio: "3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone & Optical Toslink.",
+        cat_desc_body_audio: "Distortion-free Hi-Fi audio cables featuring 24K gold-plated connectors and dual EMI shielding for recording studios, live stages, and audiophile home sound systems.",
+        cat_title_adapter: "Adapters & Converters",
+        cat_sub_adapter: "Multi-port Display Converters, Audio Splitters & Signal Hubs.",
+        cat_meta_adapter: "37 Certified Products • 12-Month Warranty",
+        cat_desc_title_adapter: "Multi-port Display Converters, Type-C Hubs, Audio Splitters & Video Signal Converters.",
+        cat_desc_body_adapter: "Comprehensive interface conversion between USB-C, HDMI, DisplayPort, VGA, DVI, and digital-analog audio to bridge modern laptops with legacy projectors and displays.",
+        cat_btn_catalog: "View Products in Catalog",
+        visi_footer_left: "● CORPORATE VISION",
+        visi_panel_eyebrow: "STRATEGIC PURPOSE & OBJECTIVES",
+        visi_panel_title: "Howell Strategic Vision",
+        visi_narrative: "This vision serves as PT Howell Niaga Indonesia's long-term compass to solidify its leadership across the connectivity hardware distribution ecosystem, high-resolution audio-video cabling, and trusted IT peripherals throughout the nation.",
+        visi_subcard1_title: "Excellence & Trusted Reputation",
+        visi_subcard1_desc: "Built since 2009 on supply integrity, genuine products backed by a 12-month direct replacement warranty, and the trust of thousands of retail partners, corporate tenders, and government institutions.",
+        visi_subcard2_title: "International Quality Standards",
+        visi_subcard2_desc: "All Howell products comply with stringent international certification standards (HDMI ATC, DisplayPort VESA, CE, RoHS) using pure copper conductors for optimal signal endurance.",
+        misi_footer_left: "● 4 EXECUTION PILLARS",
+        misi_footer_right: "QUALITY & INTEGRITY",
+        misi_panel_eyebrow: "OPERATIONAL DETAILS",
+        misi_panel_title: "Howell's 4 Mission Pillars",
+        misi_detail_1_title: "1. High Quality Products & Competitive Pricing",
+        misi_detail_1_desc: "Through direct supply chain management with international standard manufacturing, Howell delivers high-performance cabling (HDMI 8K, Active Optical, Oxygen-Free Audio) at optimal cost efficiency to empower retail partners and enterprise B2B procurement.",
+        misi_detail_2_title: "2. Fast, Accurate, and Professional Service",
+        misi_detail_2_desc: "Supporting modern business agility with responsive order fulfillment, rigorous technical accuracy, and an official 12-month direct replacement warranty without complicated bureaucracy.",
+        misi_detail_3_title: "3. Long-Term Partnerships with Clients & Partners",
+        misi_detail_3_desc: "Upholding business ethics, pricing transparency, and supply reliability as the foundation for enduring partnerships with hundreds of distributors, system integrators, and enterprises across Indonesia.",
+        misi_detail_4_title: "4. Continuous Innovation with Market & Tech Evolution",
+        misi_detail_4_desc: "Staying at the forefront of digital connectivity evolution by introducing HDMI 2.1 48Gbps, DisplayPort 2.0 16K, USB4, GaN fast charging, and hybrid active optical fiber for long-distance installations.",
+        custom_intro_1: "Beyond supplying standard electronics and connectivity accessories, Howell offers end-to-end <strong class=\"text-white font-semibold\">custom product</strong> manufacturing tailored to your business needs.",
+        custom_intro_2: "From custom mold design, technical specifications, custom colors, retail packaging, to private-label branding, everything can be configured to match your corporate identity.",
+        custom_card1_tag: "01 / Design",
+        custom_card1_title: "Custom Mold & Design",
+        custom_card1_desc: "Custom connector housing molds, embossed logo relief, and bespoke cable lengths up to 100M.",
+        custom_card2_tag: "02 / Material",
+        custom_card2_title: "Specifications & Materials",
+        custom_card2_desc: "99.9% pure OFC copper cores, active optical fiber, heavy-duty power ratings & industrial certifications.",
+        custom_card3_tag: "03 / Finishing",
+        custom_card3_title: "Colors & Exterior Finishing",
+        custom_card3_desc: "Custom Pantone color matching, abrasion-resistant braided nylon, and anodized aluminum shells.",
+        custom_card4_tag: "04 / Packaging",
+        custom_card4_title: "Custom Packaging",
+        custom_card4_desc: "Retail gift box packaging design, blister packs, branded hang tags, and merchant SKU barcodes.",
+        custom_card5_tag: "05 / Private Label",
+        custom_card5_title: "Branding & Private Label",
+        custom_card5_desc: "High-precision laser engraved branding and corporate logos applied directly to cable bodies and connectors.",
+        custom_footer_text: "Consult your OEM/ODM cabling and project hardware specifications directly with Howell's engineering team.",
+        custom_btn_wa: "Consult via WhatsApp",
+        custom_btn_form: "Fill B2B Quote Form",
+        b2b_inline_eyebrow: "Direct WhatsApp Inquiry",
+        b2b_inline_title: "Howell B2B Partnership Form",
+        b2b_inline_subtitle: "Fill in the details below to connect directly with Howell's B2B team via WhatsApp.",
+        b2b_field_company: "Company / Store Name *",
+        b2b_ph_company: "Your Company / Business Name",
+        b2b_field_pic: "Contact Person / PIC *",
+        b2b_ph_pic: "Full Name",
+        b2b_field_city: "City *",
+        b2b_ph_city: "City",
+        b2b_field_province: "Province / State *",
+        b2b_ph_province: "Province / State",
+        b2b_field_postal: "Postal Code",
+        b2b_ph_postal: "Postal Code",
+        b2b_field_phone: "Phone / WhatsApp Number *",
+        b2b_ph_phone: "Phone / WhatsApp",
+        b2b_field_email: "Company Email *",
+        b2b_ph_email: "company@domain.com",
+        b2b_field_notes: "Project Requirements & Notes (Optional)",
+        b2b_modal_notes: "Requirements / SKU Details",
+        b2b_ph_notes: "Specify product SKUs or estimated order quantity...",
+        b2b_inline_submit: "Submit Form via WhatsApp",
+        footer_link_b2b: "B2B & Enterprise",
+        footer_link_support: "Headquarters & Support",
       },
       zh: {
         nav_home: "首页",
@@ -3639,7 +3833,104 @@
         footer_col_company: "关于公司",
         footer_col_categories: "产品分类",
         footer_col_channels: "官方渠道",
-        footer_rights: "© 2026 PT Howell Niaga Indonesia. 版权所有。"
+        footer_rights: "© 2026 PT Howell Niaga Indonesia. 版权所有。",
+        cat_eco_eyebrow: "核心产品生态",
+        cat_eco_title: "我们引以为傲的精工之作",
+        cat_title_patch_cable: "网络跳线与布线系统",
+        cat_sub_patch_cable: "Cat6/Cat8 40Gbps 双屏蔽网线、工程箱线及 RJ45 水晶头。",
+        cat_badge_label: "产品分类",
+        cat_meta_patch_cable: "9 款官方认证产品 • 12 个月质保",
+        cat_desc_title_patch_cable: "Cat6/Cat8 工程跳线、大盘箱线、RJ45 连接头及屏蔽模块。",
+        cat_desc_body_patch_cable: "高达 40Gbps 传输速率的 SFTP 双层屏蔽纯铜网线方案，专为服务器机房、数据中心及对稳定性有严苛要求的企业网络而打造。",
+        cat_title_hdmi_video: "HDMI 8K 与 DisplayPort",
+        cat_sub_hdmi_video: "Ultra Gold HDMI 2.1、有源光纤线及 16K DisplayPort。",
+        cat_meta_hdmi_video: "49 款官方认证产品 • 12 个月质保",
+        cat_desc_title_hdmi_video: "Ultra Gold HDMI 2.1 8K@60Hz、4K@120Hz HDR、有源光纤线及 16K DisplayPort。",
+        cat_desc_body_hdmi_video: "高达 48Gbps 超高带宽的高清音视频信号传输，零延迟无损画质。适用于专业电竞屏、家庭影院、多屏拼接墙及广电级工作站。",
+        cat_title_power_cable: "重型电源线与 PDU 线缆",
+        cat_sub_power_cable: "AC 电源线 C5、电脑 C13、服务器机柜 PDU C13-C14 及 C19-C20。",
+        cat_meta_power_cable: "3 款官方认证产品 • 12 个月质保",
+        cat_desc_title_power_cable: "AC 电源线 C5、主机 C13、服务器 PDU C13-C14、重型 C19-C20 及欧标 CEE 7/7 插头。",
+        cat_desc_body_power_cable: "工业级高规格电源线，加厚高纯度纯铜导体与耐高温阻燃绝缘外被，专为工程工作站、机柜 PDU、UPS 不间断电源及企业供电系统打造。",
+        cat_title_usb_charging: "USB 与高速数据传输",
+        cat_sub_usb_charging: "有源光纤延长线、USB Type-C 及大电流快充线。",
+        cat_meta_usb_charging: "12 款官方认证产品 • 12 个月质保",
+        cat_desc_title_usb_charging: "USB 3.2 Gen 2、Type-C 100W PD 快充、有源光纤延长线及集线器。",
+        cat_desc_body_usb_charging: "高达 10Gbps 的极速数据传输与智能 PD 大功率快充方案，坚韧编织线身，耐受 50,000+ 次弯折测试。",
+        cat_title_audio: "音频连接方案与 AUX 线",
+        cat_sub_audio: "3.5mm AUX、光纤音频线、双 6.35mm 及 XLR 麦克风线。",
+        cat_meta_audio: "11 款官方认证产品 • 12 个月质保",
+        cat_desc_title_audio: "3.5mm AUX、镀金 2RCA、双 6.35mm 乐器音频线、XLR 麦克风线及数字光纤线。",
+        cat_desc_body_audio: "无损高保真 Hi-Fi 音频线，24K 镀金接头与双重电磁抗干扰屏蔽，专为录音室、舞台演出及发烧级家庭音响系统打造。",
+        cat_title_adapter: "转接器与信号转换器",
+        cat_sub_adapter: "多屏显示转接头、音频分线器及信号拓展坞。",
+        cat_meta_adapter: "37 款官方认证产品 • 12 个月质保",
+        cat_desc_title_adapter: "多接口显示转接器、Type-C 拓展坞、音频分配器及视频信号转换盒。",
+        cat_desc_body_adapter: "全规格接口转换方案，覆盖 USB-C、HDMI、DisplayPort、VGA、DVI 及数模音频转换，无缝连接现代轻薄本与各类投影仪及显示屏设备。",
+        cat_btn_catalog: "在产品目录中查看",
+        visi_footer_left: "● 企业愿景",
+        visi_panel_eyebrow: "战略方向与核心目标",
+        visi_panel_title: "Howell 战略愿景解析",
+        visi_narrative: "这一愿景是 PT Howell Niaga Indonesia 确立全国领先互联硬件分销生态、高规格音视频线缆及可信赖 IT 外设首选供应商的长期行动指南。",
+        visi_subcard1_title: "卓越信誉与深受信赖",
+        visi_subcard1_desc: "始于 2009 年，凭借严苛供应链、100% 正品保障、12 个月换新质保，赢得了数千家零售伙伴、企业大宗投标及政府机构的深度信赖。",
+        visi_subcard2_title: "国际权威品质认证",
+        visi_subcard2_desc: "所有 Howell 产品均严格遵循国际标准认证（HDMI ATC、DisplayPort VESA、CE、RoHS），采用高纯度无氧铜导体，确保极佳的信号稳定性与耐用度。",
+        misi_footer_left: "● 四大执行支柱",
+        misi_footer_right: "品质与诚信",
+        misi_panel_eyebrow: "运营详情",
+        misi_panel_title: "Howell 四大使命支柱",
+        misi_detail_1_title: "1. 卓越品质与具备竞争力的价格",
+        misi_detail_1_desc: "通过国际化标准工厂直接供应链管理，Howell 提供高品质线缆（HDMI 8K、有源光纤、无氧铜音频），具备卓越成本效益，赋能零售伙伴与企业大宗采购。",
+        misi_detail_2_title: "2. 迅速、精准与专业的技术服务",
+        misi_detail_2_desc: "以迅速敏捷的订单处理、严谨的技术参数支持以及 12 个月官方快速换新质保，全力满足现代化企业快节奏的业务需求。",
+        misi_detail_3_title: "3. 与合作伙伴及客户建立长期共赢关系",
+        misi_detail_3_desc: "坚持诚信经营、价格透明与稳定供货，作为与印尼数百家分销商、系统集成商及企业客户构建长久稳固合作关系的基石。",
+        misi_detail_4_title: "4. 紧随前沿技术与市场趋势持续创新",
+        misi_detail_4_desc: "始终屹立于数字化互联技术前沿，推出 HDMI 2.1 48Gbps、DisplayPort 2.0 16K、USB4、GaN 氮化镓快充以及用于远距离工程安装的混合有源光纤解决方案。",
+        custom_intro_1: "除提供标准化电子与连接配件外，Howell 还提供全方位<strong class=\"text-white font-semibold\">定制产品解决方案</strong>，满足多样化商业需求。",
+        custom_intro_2: "从模具设计、参数规格、线身配色、零售包装到自主品牌 OEM/ODM 贴牌，均可根据您的品牌定位量身定制。",
+        custom_card1_tag: "01 / 模具设计",
+        custom_card1_title: "定制模具与开模",
+        custom_card1_desc: "定制接头外壳模具、浮雕企业标识及最长达 100 米的定制线长。",
+        custom_card2_tag: "02 / 线芯材质",
+        custom_card2_title: "规格与核心材质",
+        custom_card2_desc: "99.9% 高纯度无氧铜芯、有源光纤、高负载功率规格及权威工业认证。",
+        custom_card3_tag: "03 / 外观工艺",
+        custom_card3_title: "外观配色与表面工艺",
+        custom_card3_desc: "Pantone 专色配色定制、高强度耐磨编织外被及阳极氧化铝合金外壳。",
+        custom_card4_tag: "04 / 包装方案",
+        custom_card4_title: "定制零售包装",
+        custom_card4_desc: "精美彩盒礼盒包装、吸塑封装、吊牌设计及企业专属 SKU 条码定制。",
+        custom_card5_tag: "05 / 品牌贴牌",
+        custom_card5_title: "品牌标识与私标定制",
+        custom_card5_desc: "高精度激光雕刻企业标识，直接在接头外壳及线身上印制专属品牌 LOGO。",
+        custom_footer_text: "与 Howell 资深工程技术团队深入沟通您的 OEM/ODM 线缆定制及工程项目需求。",
+        custom_btn_wa: "通过 WhatsApp 咨询",
+        custom_btn_form: "填写 B2B 报价申请表",
+        b2b_inline_eyebrow: "WhatsApp 极速咨询",
+        b2b_inline_title: "Howell B2B 商业合作表单",
+        b2b_inline_subtitle: "请填写以下信息，我们将通过 WhatsApp 直接与您的企业对接。",
+        b2b_field_company: "公司 / 店铺名称 *",
+        b2b_ph_company: "您的企业 / 公司 / 店铺名称",
+        b2b_field_pic: "负责人 / 联系人 *",
+        b2b_ph_pic: "联系人全名",
+        b2b_field_city: "城市 *",
+        b2b_ph_city: "城市名称",
+        b2b_field_province: "省份 / 地区 *",
+        b2b_ph_province: "省份 / 地区",
+        b2b_field_postal: "邮政编码",
+        b2b_ph_postal: "邮编",
+        b2b_field_phone: "电话 / WhatsApp 号码 *",
+        b2b_ph_phone: "电话 / WhatsApp 号码",
+        b2b_field_email: "企业电子邮箱 *",
+        b2b_ph_email: "company@domain.com",
+        b2b_field_notes: "项目需求描述（选填）",
+        b2b_modal_notes: "需求描述 / SKU 型号明细",
+        b2b_ph_notes: "请注明所需产品型号、SKU 或预估采购数量...",
+        b2b_inline_submit: "通过 WhatsApp 提交申请",
+        footer_link_b2b: "企业与大宗采购",
+        footer_link_support: "总部与客户服务",
       }
     };
 
@@ -3705,7 +3996,12 @@
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
-          el.textContent = TRANSLATIONS[lang][key];
+          const val = TRANSLATIONS[lang][key];
+          if (val.includes('<') && val.includes('>')) {
+            el.innerHTML = val;
+          } else {
+            el.textContent = val;
+          }
         }
       });
 
@@ -3727,12 +4023,18 @@
           : (TRANSLATIONS[lang].custom_toggle_btn || 'Buka Solusi Custom');
       }
 
-      // Refresh catalog cards & category chips with localized strings
-      if (typeof renderCatalogGrid === 'function') {
-        renderCatalogGrid();
+      // Refresh catalog cards, category chips & cards with localized strings
+      if (typeof window.renderCatalog === 'function') {
+        window.renderCatalog();
       }
-      if (typeof renderCategoryChips === 'function') {
-        renderCategoryChips();
+      if (typeof window.renderCategoryChips === 'function') {
+        window.renderCategoryChips();
+      }
+      if (typeof window.renderCategoryCards === 'function') {
+        window.renderCategoryCards();
+      }
+      if (typeof window.renderFeaturedProducts === 'function') {
+        window.renderFeaturedProducts();
       }
     };
 

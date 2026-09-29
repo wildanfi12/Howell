@@ -1,3 +1,55 @@
+
+// ============================================================
+// Multi-Language Category Dictionary (ID, EN, ZH)
+// ============================================================
+const CATEGORY_I18N = {
+  id: {
+    'patch-cable': 'Patch Cable & Networking',
+    'hdmi-video': 'HDMI & Video Cables',
+    'displayport': 'DisplayPort 8K / 16K',
+    'dvi-vga': 'Kabel DVI & VGA',
+    'audio': 'Kabel Audio & Instrumen',
+    'power-cable': 'Kabel Daya & PDU',
+    'adapter': 'Adapters & Converters',
+    'computer-acc': 'Chargers & Mobile Acc',
+    'earphone-tws': 'Audio & Earphones'
+  },
+  en: {
+    'patch-cable': 'Patch Cable & Networking',
+    'hdmi-video': 'HDMI & Video Cables',
+    'displayport': 'DisplayPort 8K / 16K',
+    'dvi-vga': 'DVI & VGA Cables',
+    'audio': 'Audio & Instrument Cables',
+    'power-cable': 'Power & PDU Cables',
+    'adapter': 'Adapters & Converters',
+    'computer-acc': 'Chargers & Mobile Acc',
+    'earphone-tws': 'Audio & Earphones'
+  },
+  zh: {
+    'patch-cable': '网络跳线与布线系统',
+    'hdmi-video': 'HDMI 与高清视频线',
+    'displayport': 'DisplayPort 8K / 16K 高清线',
+    'dvi-vga': 'DVI 与 VGA 工程线缆',
+    'audio': '专业音频与乐器线缆',
+    'power-cable': '重型电源线与 PDU 线缆',
+    'adapter': '转接器与信号转换器',
+    'computer-acc': '充电器与数码配件',
+    'earphone-tws': 'TWS 蓝牙耳机与音频'
+  }
+};
+
+function getCategoryName(catId, lang) {
+  const l = lang || window.currentLanguage || 'id';
+  if (CATEGORY_I18N[l] && CATEGORY_I18N[l][catId]) {
+    return CATEGORY_I18N[l][catId];
+  }
+  if (CATEGORY_I18N['en'] && CATEGORY_I18N['en'][catId]) {
+    return CATEGORY_I18N['en'][catId];
+  }
+  return catId;
+}
+window.getCategoryName = getCategoryName;
+
 /**
  * HOWELL Official Showcase Catalog Controller
  * Brand: HOWELL (PT Howell Niaga Indonesia) - Est. 2009
@@ -316,7 +368,7 @@ window.renderCategoryChips = function renderCategoryChips() {
     const isActive = state.activeCategory === cat.id;
     html += `
       <button type="button" onclick="filterByCategory('${cat.id}')" class="category-chip-btn ${isActive ? 'active' : ''}">
-        <span>${cat.name}</span>
+        <span>${getCategoryName(cat.id, currentLang)}</span>
         <span class="cat-count-pill ml-1">(${count})</span>
       </button>
     `;
@@ -447,7 +499,7 @@ window.renderCatalog = function renderCatalog() {
         const isActive = state.activeCategory === cat.id;
         return `
           <button type="button" onclick="filterByCategory('${cat.id}')" class="w-full flex items-center justify-between py-1 text-left text-[13px] transition-colors ${isActive ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'}">
-            <span class="truncate">${cat.name}</span>
+            <span class="truncate">${getCategoryName(cat.id, window.currentLanguage || 'id')}</span>
             <span class="text-[11px] text-slate-400 shrink-0 ml-1">(${count})</span>
           </button>
         `;
@@ -492,7 +544,7 @@ window.renderCatalog = function renderCatalog() {
             <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out">
           </div>
           <div class="flex-1 min-w-0">
-            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
+            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${getCategoryName(product.category, window.currentLanguage || 'id') || product.categoryName || 'HOWELL'}</span>
             <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug line-clamp-2 mt-0.5">${product.name}</h3>
           </div>
           <svg class="w-4 h-4 text-[#C7C7CC] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -512,7 +564,7 @@ window.renderCatalog = function renderCatalog() {
               class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105">
           </div>
           <div class="px-3.5 py-3 flex flex-col gap-0.5">
-            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${product.categoryName || 'HOWELL'}</span>
+            <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${getCategoryName(product.category, window.currentLanguage || 'id') || product.categoryName || 'HOWELL'}</span>
             <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug line-clamp-2">${product.name}</h3>
           </div>
         </div>
@@ -617,6 +669,7 @@ window.renderFeaturedProducts = function renderFeaturedProducts() {
 };
 
 window.renderCategoryCards = function renderCategoryCards() {
+  const curL = window.currentLanguage || "id";
   const categoryContainer = document.getElementById('category-cards-grid');
   if (!categoryContainer) return;
 
@@ -626,11 +679,11 @@ window.renderCategoryCards = function renderCategoryCards() {
         <div class="w-11 h-11 rounded-2xl bg-amber-100 text-[#997600] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="${cat.icon}" class="w-5 h-5"></i>
         </div>
-        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#b88e00] transition-colors tracking-tight">${cat.name}</h3>
+        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#b88e00] transition-colors tracking-tight">${getCategoryName(cat.id, curL)}</h3>
         <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${cat.desc}</p>
       </div>
       <div class="mt-6 flex items-center justify-between text-xs font-bold text-[#b88e00]">
-        <span>${cat.count} SKUs Available</span>
+        <span>${cat.count} ${curL==='zh'?'款认证现货':(curL==='en'?'SKUs Available':'SKU Tersedia')}</span>
         <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
       </div>
     </div>
@@ -689,7 +742,7 @@ window.openProductDetail = function openProductDetail(productId) {
       <div class="text-xs text-slate-500 flex items-center gap-1.5 font-medium flex-wrap">
         <button type="button" onclick="closeModal('product-detail-modal'); scrollToId('home');" class="hover:text-black cursor-pointer">Home</button>
         <span class="opacity-40">/</span>
-        <button type="button" onclick="closeModal('product-detail-modal'); filterByCategory('${product.category}'); scrollToId('catalog-section');" class="hover:text-black cursor-pointer">${product.categoryName}</button>
+        <button type="button" onclick="closeModal('product-detail-modal'); filterByCategory('${product.category}'); scrollToId('catalog-section');" class="hover:text-black cursor-pointer">${getCategoryName(product.category, curL) || product.categoryName}</button>
         <span class="opacity-40">/</span>
         <span class="text-slate-700 truncate max-w-xs sm:max-w-md">${product.name}</span>
       </div>
@@ -723,7 +776,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Category Badge -->
         <div class="flex items-center gap-2 flex-wrap text-xs -mt-1">
           <span class="font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-[6px] border border-slate-200">
-            ${product.categoryName || 'HOWELL'}
+            ${getCategoryName(product.category, curL) || product.categoryName || 'HOWELL'}
           </span>
         </div>
 
