@@ -12,6 +12,7 @@ const CATEGORY_I18N = {
     'power-cable': 'Kabel Daya & PDU',
     'adapter': 'Adapters & Converters',
     'computer-acc': 'Chargers & Mobile Acc',
+    'usb-charging': 'USB & Fast Data',
     'earphone-tws': 'Audio & Earphones'
   },
   en: {
@@ -23,6 +24,7 @@ const CATEGORY_I18N = {
     'power-cable': 'Power & PDU Cables',
     'adapter': 'Adapters & Converters',
     'computer-acc': 'Chargers & Mobile Acc',
+    'usb-charging': 'USB & Fast Data',
     'earphone-tws': 'Audio & Earphones'
   },
   zh: {
@@ -34,6 +36,7 @@ const CATEGORY_I18N = {
     'power-cable': '重型电源线与 PDU 线缆',
     'adapter': '转接器与信号转换器',
     'computer-acc': '充电器与数码配件',
+    'usb-charging': 'USB 与极速数据线',
     'earphone-tws': 'TWS 蓝牙耳机与音频'
   }
 };
