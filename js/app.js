@@ -170,17 +170,46 @@ const showToast = (message, title = "HOWELL Catalog", icon = "check-circle") => 
   }, 3500);
 };
 
+const TOAST_I18N = {
+  id: {
+    fav_remove: "Dihapus dari daftar favorit",
+    fav_remove_title: "Favorit",
+    fav_add: (name) => `"${name}" disimpan ke favorit`,
+    fav_add_title: "Produk Tersimpan",
+    copy_success: "Tautan produk berhasil disalin!",
+    copy_title: "Berbagi Produk",
+  },
+  en: {
+    fav_remove: "Removed from saved products",
+    fav_remove_title: "Favorites",
+    fav_add: (name) => `"${name}" saved to favorites`,
+    fav_add_title: "Saved Product",
+    copy_success: "Product link copied to clipboard!",
+    copy_title: "Share Product",
+  },
+  zh: {
+    fav_remove: "已从收藏夹移除",
+    fav_remove_title: "我的收藏",
+    fav_add: (name) => `"${name}" 已加入收藏夹`,
+    fav_add_title: "已保存产品",
+    copy_success: "产品链接已成功复制！",
+    copy_title: "分享产品",
+  }
+};
+
 // Wishlist System
 const wishlistSystem = {
   toggle(productId) {
+    const curL = window.currentLanguage || localStorage.getItem('howell_lang') || 'id';
+    const t = TOAST_I18N[curL] || TOAST_I18N.id;
     const idx = state.wishlist.indexOf(productId);
     const product = HOWELL_PRODUCTS.find(p => p.id === productId);
     if (idx > -1) {
       state.wishlist.splice(idx, 1);
-      showToast("Removed from saved products", "Favorites", "heart-off");
+      showToast(t.fav_remove, t.fav_remove_title, "heart-off");
     } else {
       state.wishlist.push(productId);
-      showToast(`"${product?.name}" saved to favorites`, "Saved Product", "heart");
+      showToast(t.fav_add(product?.name || ''), t.fav_add_title, "heart");
     }
     renderCatalog();
     renderFeaturedProducts();
@@ -718,6 +747,7 @@ window.openProductDetail = function openProductDetail(productId) {
 
   const txtBack = curL === 'zh' ? '返回产品目录' : (curL === 'en' ? 'Back to Product Catalog' : 'Kembali ke Katalog Produk');
   const txtZoomHint = curL === 'zh' ? '点击图片查看大图' : (curL === 'en' ? 'Click image to zoom' : 'Klik foto untuk perbesar gambar');
+  const txtZoomBtn = curL === 'zh' ? '放大图片' : (curL === 'en' ? 'Zoom Image' : 'Perbesar Foto');
   const txtLengthLabel = curL === 'zh' ? '线长规格可选：' : (curL === 'en' ? 'Length Variants:' : 'Pilihan Varian Panjang:');
   const txtWaBtn = curL === 'zh' ? '通过 WhatsApp 咨询产品' : (curL === 'en' ? 'Product Inquiry via WhatsApp' : 'Konsultasi Produk via WhatsApp');
   const txtB2bBtn = curL === 'zh' ? '申请 B2B 企业工程报价' : (curL === 'en' ? 'B2B & Corporate Project Inquiries' : 'Permintaan Penawaran B2B & Proyek Korporat');
@@ -729,8 +759,32 @@ window.openProductDetail = function openProductDetail(productId) {
       ? 'Distributed officially by <strong>PT Howell Niaga Indonesia</strong>. All cables and adapters undergo strict QC testing, feature 100% oxygen-free copper (OFC), and include a 12-month official replacement warranty.'
       : 'Didistribusikan resmi oleh <strong>PT Howell Niaga Indonesia</strong>. Seluruh kabel dan adaptor melewati pengujian QC ketat, 100% tembaga bebas oksigen (OFC), dan bergaransi resmi 12 bulan tukar baru.');
   const txtShareLabel = curL === 'zh' ? '分享产品：' : (curL === 'en' ? 'Share Product:' : 'Bagikan Produk:');
+  const txtShareFb = curL === 'zh' ? '分享到 Facebook' : (curL === 'en' ? 'Share to Facebook' : 'Share ke Facebook');
+  const txtShareTw = curL === 'zh' ? '分享到 X' : (curL === 'en' ? 'Share to X' : 'Share ke X');
+  const txtShareWa = curL === 'zh' ? '分享到 WhatsApp' : (curL === 'en' ? 'Share to WhatsApp' : 'Share ke WhatsApp');
+  const txtShareCopy = curL === 'zh' ? '复制产品链接' : (curL === 'en' ? 'Copy Link' : 'Salin Tautan');
   const txtTabSpecs = curL === 'zh' ? '技术规格' : (curL === 'en' ? 'Technical Specs' : 'Spesifikasi Teknis');
   const txtTabDesc = curL === 'zh' ? '产品亮点与概述' : (curL === 'en' ? 'Overview & Features' : 'Ikhtisar & Fitur');
+  const txtHighlightsTitle = curL === 'zh' ? 'HOWELL 核心产品优势：' : (curL === 'en' ? 'Key HOWELL Advantages:' : 'Keunggulan Kunci HOWELL:');
+  const txtHighlights = curL === 'zh' ? [
+    '采用高纯度无氧铜 (OFC) 导体，信号传输零衰减。',
+    '双层全屏蔽结构，强力抗电磁与射频干扰 (EMI/RFI)。',
+    '镀金抗氧化触点，耐插拔寿命突破 10,000 次。',
+    'PT Howell Niaga Indonesia 严苛出厂质检认证，品质保障。'
+  ] : (curL === 'en' ? [
+    'Certified oxygen-free high-purity copper conductor (OFC / pure copper).',
+    'Dual-layer shielding against electromagnetic and radio interference (EMI/RFI shielding).',
+    'Gold-plated contacts engineered for oxidation resistance and 10,000+ insertion cycles.',
+    'Strict international QC testing certified by PT Howell Niaga Indonesia.'
+  ] : [
+    'Material konduktor tembaga murni bersertifikasi bebas oksigen (OFC / pure copper).',
+    'Pelindung ganda anti-interferensi elektromagnetik & radio (EMI/RFI shielding).',
+    'Konektor kontak berlapis emas tahan oksidasi hingga lebih dari 10.000 kali pemasangan.',
+    'Lolos sertifikasi QC ketat berstandar internasional dari PT Howell Niaga Indonesia.'
+  ]);
+  const txtLearnMore = curL === 'zh' ? '展开详情 ▾' : (curL === 'en' ? 'Learn More ▾' : 'Pelajari Selengkapnya ▾');
+  const txtShowLess = curL === 'zh' ? '收起详情 ▲' : (curL === 'en' ? 'Show Less ▲' : 'Lebih sedikit ▲');
+  const txtMobileWa = curL === 'zh' ? 'WhatsApp 咨询' : (curL === 'en' ? 'WhatsApp Consultation' : 'Konsultasi WhatsApp');
 
   containerEl.innerHTML = `
     <!-- Top Back Navigation & Breadcrumbs -->
@@ -756,7 +810,7 @@ window.openProductDetail = function openProductDetail(productId) {
         <div class="aspect-square w-full bg-transparent rounded-2xl overflow-hidden relative flex items-center justify-center p-6 sm:p-8 group/detailimg border border-slate-100">
           <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain mix-blend-multiply cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
           <!-- Zoom button -->
-          <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-[8px] bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-sm transition-all cursor-pointer border border-slate-200" title="Perbesar Foto">
+          <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-[8px] bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-sm transition-all cursor-pointer border border-slate-200" title="${txtZoomBtn}">
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </button>
         </div>
@@ -785,7 +839,7 @@ window.openProductDetail = function openProductDetail(productId) {
           <span id="detail-short-desc">${(product.summary || product.tagline || '').substring(0, 130)}${(product.summary || '').length > 130 ? '…' : ''}</span>
           ${(product.summary || '').length > 130 ? `
             <span id="detail-full-desc" class="hidden"> ${product.summary}</span>
-            <button type="button" onclick="(function(){var s=document.getElementById('detail-short-desc'),f=document.getElementById('detail-full-desc'),b=this;if(f.classList.contains('hidden')){f.classList.remove('hidden');s.classList.add('hidden');b.textContent='Lebih sedikit ▲';}else{f.classList.add('hidden');s.classList.remove('hidden');b.textContent='Pelajari Selengkapnya ▾';}}).call(this)" class="text-slate-900 font-semibold underline cursor-pointer ml-1 hover:text-[#b88e00] transition-colors">Pelajari Selengkapnya ▾</button>
+            <button type="button" onclick="(function(){var s=document.getElementById('detail-short-desc'),f=document.getElementById('detail-full-desc'),b=this;if(f.classList.contains('hidden')){f.classList.remove('hidden');s.classList.add('hidden');b.textContent='${txtShowLess}';}else{f.classList.add('hidden');s.classList.remove('hidden');b.textContent='${txtLearnMore}';}}).call(this)" class="text-slate-900 font-semibold underline cursor-pointer ml-1 hover:text-[#b88e00] transition-colors">${txtLearnMore}</button>
           ` : ''}
         </div>
 
@@ -851,10 +905,10 @@ window.openProductDetail = function openProductDetail(productId) {
         <!-- Social Share -->
         <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
           <span class="font-semibold text-slate-700">${txtShareLabel}</span>
-            <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke Facebook"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-            <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke X"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
-            <button type="button" onclick="shareProduct('whatsapp')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Share ke WhatsApp"><i data-lucide="phone" class="w-3.5 h-3.5"></i></button>
-            <button type="button" onclick="shareProduct('copy')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="Salin Tautan"><i data-lucide="link" class="w-3.5 h-3.5"></i></button>
+            <button type="button" onclick="shareProduct('facebook')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="${txtShareFb}"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+            <button type="button" onclick="shareProduct('twitter')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-black hover:text-white flex items-center justify-center transition-all cursor-pointer" title="${txtShareTw}"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button type="button" onclick="shareProduct('whatsapp')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="${txtShareWa}"><i data-lucide="phone" class="w-3.5 h-3.5"></i></button>
+            <button type="button" onclick="shareProduct('copy')" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all cursor-pointer" title="${txtShareCopy}"><i data-lucide="link" class="w-3.5 h-3.5"></i></button>
           </div>
         </div>
 
@@ -887,12 +941,9 @@ window.openProductDetail = function openProductDetail(productId) {
       <div id="tab-content-desc" class="hidden text-xs sm:text-sm text-slate-700 leading-relaxed space-y-4">
         <p>${product.description || product.summary}</p>
         <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-          <h5 class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-2">Keunggulan Kunci HOWELL:</h5>
+          <h5 class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-2">${txtHighlightsTitle}</h5>
           <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
-            <li>Material konduktor tembaga murni bersertifikasi bebas oksigen (OFC / pure copper).</li>
-            <li>Pelindung ganda anti-interferensi elektromagnetik &amp; radio (EMI/RFI shielding).</li>
-            <li>Konektor kontak berlapis emas tahan oksidasi hingga lebih dari 10.000 kali pemasangan.</li>
-            <li>Lolos sertifikasi QC ketat berstandar internasional dari PT Howell Niaga Indonesia.</li>
+            ${txtHighlights.map(h => `<li>${h}</li>`).join('')}
           </ul>
         </div>
       </div>
@@ -903,7 +954,7 @@ window.openProductDetail = function openProductDetail(productId) {
       <div class="flex items-center gap-2">
         <a id="mobile-detail-wa-btn" href="${waInquiryUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 h-11 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
           <i data-lucide="phone" class="w-4 h-4"></i>
-          <span>Konsultasi WhatsApp</span>
+          <span>${txtMobileWa}</span>
         </a>
         <a href="https://shopee.co.id/howellcable?categoryId=100013&entryPoint=ShopByPDP&itemId=49006388534" target="_blank" rel="noopener noreferrer" class="h-11 px-3 rounded-xl bg-orange-50 border border-orange-200 text-orange-600 font-bold text-xs flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-transform" title="Shopee">
           <img src="assets/shopee-logo.webp" alt="Shopee" class="w-4 h-4 object-contain">
@@ -936,6 +987,8 @@ function toggleMarketplaceOptions() {
 }
 
 function shareProduct(platform) {
+  const curL = window.currentLanguage || localStorage.getItem('howell_lang') || 'id';
+  const t = TOAST_I18N[curL] || TOAST_I18N.id;
   const product = state.activeProductDetail;
   const url = window.location.href;
   const title = product ? product.name : 'HOWELL Official Products';
@@ -948,9 +1001,9 @@ function shareProduct(platform) {
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
   } else if (platform === 'copy') {
     navigator.clipboard?.writeText(url).then(() => {
-      showToast('Tautan produk berhasil disalin!', 'Berbagi Produk', 'link');
+      showToast(t.copy_success, t.copy_title, 'link');
     }).catch(() => {
-      showToast('Tautan produk disalin!', 'Berbagi Produk', 'link');
+      showToast(t.copy_success, t.copy_title, 'link');
     });
   }
 }
@@ -1077,7 +1130,9 @@ function openB2BModal(productName = '') {
 
   if (productName) {
     const inputEl = document.getElementById('b2b-modal-catatan') || document.getElementById('b2b-product-input');
-    if (inputEl) inputEl.value = `Inquiry untuk produk: ${productName}`;
+    const curL = window.currentLanguage || localStorage.getItem('howell_lang') || 'id';
+    const prefix = curL === 'zh' ? '产品咨询：' : (curL === 'en' ? 'Product inquiry for: ' : 'Inquiry untuk produk: ');
+    if (inputEl) inputEl.value = `${prefix}${productName}`;
   }
 }
 
@@ -1131,42 +1186,6 @@ window.openImageZoom = openImageZoom;
 window.openB2BModal = openB2BModal;
 window.toggleCatalogExpand = toggleCatalogExpand;
 window.printCatalogPDF = printCatalogPDF;
-
-function shareProduct(platform) {
-  const product = state.activeProductDetail;
-  const url = window.location.href;
-  const title = product ? product.name : 'HOWELL Official Products';
-
-  if (platform === 'facebook') {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-  } else if (platform === 'twitter') {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
-  } else if (platform === 'whatsapp') {
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
-  } else if (platform === 'copy') {
-    navigator.clipboard?.writeText(url).then(() => {
-      showToast('Tautan produk berhasil disalin!', 'Berbagi Produk', 'link');
-    }).catch(() => {
-      showToast('Tautan produk disalin!', 'Berbagi Produk', 'link');
-    });
-  }
-}
-
-function switchDetailTab(tab) {
-  state.activeDetailTab = tab;
-  ['desc', 'specs', 'warranty'].forEach(t => {
-    const btn = document.getElementById(`tab-btn-${t}`);
-    const content = document.getElementById(`tab-content-${t}`);
-
-    if (t === tab) {
-      if (btn) btn.className = 'pb-3 border-b-2 border-black text-black font-bold transition-colors select-none cursor-pointer';
-      if (content) content.classList.remove('hidden');
-    } else {
-      if (btn) btn.className = 'pb-3 border-b-2 border-transparent text-slate-500 hover:text-black transition-colors select-none cursor-pointer';
-      if (content) content.classList.add('hidden');
-    }
-  });
-}
 
 // closeModal is defined authoritatively in index.html inline script
 
