@@ -84,9 +84,9 @@
             }
           },
           fontFamily: {
-            display: ['"SF Pro Display"', '"SF Pro Text"', 'sans-serif'],
-            sans: ['"SF Pro Text"', '"SF Pro Display"', 'sans-serif'],
-            mono: ['"SF Pro Text"', '"SF Pro Display"', 'sans-serif'],
+            display: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            mono: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
           },
           fontWeight: {
             light: '300',
@@ -133,10 +133,67 @@
     }
 
     :root {
-      --font-display: "SF Pro Display", "SF Pro Text", sans-serif;
-      --font-primary: "SF Pro Text", "SF Pro Display", sans-serif;
-      --font-apple: "SF Pro Display", "SF Pro Text", sans-serif;
-      --font-mono: "SF Pro Text", "SF Pro Display", sans-serif;
+      /* ── Apple-Inspired Typography System Tokens ──────────────── */
+      --font-family-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-family-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      --font-family-mono: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+
+      --font-display: var(--font-family-display);
+      --font-primary: var(--font-family-body);
+      --font-apple: var(--font-family-display);
+      --font-mono: var(--font-family-mono);
+      --font-sans: var(--font-family-body);
+
+      /* Fluid Typographic Proportions (Apple Human Interface Guidelines Scale) */
+      --text-hero: clamp(2.35rem, 5.5vw + 0.5rem, 5.25rem);       /* 38px -> 84px */
+      --text-hero-sub: clamp(1.0625rem, 1.6vw + 0.25rem, 1.5rem);  /* 17px -> 24px */
+      --text-h1: clamp(2rem, 4vw, 3.5rem);                         /* 32px -> 56px */
+      --text-h2: clamp(1.625rem, 2.8vw, 2.5rem);                   /* 26px -> 40px */
+      --text-h3: clamp(1.2rem, 1.8vw, 1.625rem);                   /* 19px -> 26px */
+      --text-h4: clamp(1rem, 1.3vw, 1.2rem);                       /* 16px -> 19px */
+      --text-body-lg: 1.0625rem;                                   /* 17px */
+      --text-body: 0.9375rem;                                      /* 15px - Apple Standard Body */
+      --text-body-sm: 0.8125rem;                                   /* 13px - Secondary Body / Nav */
+      --text-caption: 0.75rem;                                     /* 12px - Badges / Footnotes */
+      --text-micro: 0.6875rem;                                     /* 11px - Micro Specs / Numbers */
+      --text-nano: 0.625rem;                                       /* 10px - Eyebrow Tags */
+
+      /* Line Heights (Sculptural Leading) */
+      --leading-hero: 1.05;
+      --leading-h1: 1.1;
+      --leading-h2: 1.18;
+      --leading-h3: 1.25;
+      --leading-h4: 1.32;
+      --leading-body: 1.52;
+      --leading-snug: 1.38;
+      --leading-tight: 1.25;
+      --leading-relaxed: 1.6;
+
+      /* Optical Letter Spacing (Apple Precision Tracking) */
+      --tracking-hero: -0.028em;
+      --tracking-h1: -0.024em;
+      --tracking-h2: -0.02em;
+      --tracking-h3: -0.015em;
+      --tracking-h4: -0.01em;
+      --tracking-body: -0.011em;
+      --tracking-nav: -0.01em;
+      --tracking-btn: -0.01em;
+      --tracking-eyebrow: 0.05em;   /* Open tracking on uppercase kickers */
+      --tracking-badge: 0.025em;
+
+      /* Weights (Refined Structural Hierarchy) */
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+
+      /* Neutral Tone Palette for Typography */
+      --text-color-primary: #1d1d1f;        /* Apple Soft Charcoal */
+      --text-color-secondary: #6e6e73;      /* Apple Slate Supporting */
+      --text-color-tertiary: #86868b;       /* Apple Muted Gray */
+      --text-color-inverse: #f5f5f7;        /* Clean White on Dark */
+      --text-color-inverse-sub: rgba(255, 255, 255, 0.78);
+      --text-color-inverse-muted: rgba(255, 255, 255, 0.52);
       --background: #ffffff;
       --foreground: #111111;
       --ink: #0a0a0a;
@@ -706,7 +763,7 @@
         <!-- Section Header -->
         <div class="mb-5">
           <div class="eyebrow mb-1" data-i18n="sec_catalog_eyebrow">Official Product Catalog</div>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900" data-i18n="sec_catalog_title">Katalog Kabel &amp; Konektivitas Resmi</h2>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-slate-900" data-i18n="sec_catalog_title">Katalog Kabel &amp; Konektivitas Resmi</h2>
           <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="sec_catalog_desc">137 kabel, adapter, dan solusi konektivitas bersertifikasi resmi.</p>
         </div>
 

@@ -597,7 +597,7 @@ window.renderCatalog = function renderCatalog() {
           </div>
           <div class="px-3.5 py-3 flex flex-col gap-0.5">
             <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${getCategoryName(product.category, window.currentLanguage || 'id') || product.categoryName || 'HOWELL'}</span>
-            <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug line-clamp-2">${product.name}</h3>
+            <h3 class="text-[13px] sm:text-[14px] font-semibold text-[#1D1D1F] leading-snug tracking-[-0.012em] line-clamp-2">${product.name}</h3>
           </div>
         </div>
       `;
