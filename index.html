@@ -2025,7 +2025,7 @@
 
   <!-- ==================== CUSTOM PRODUCT SOLUTION POPUP MODAL ==================== -->
   <div id="custom-product-modal" class="fixed inset-0 z-[115] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none hidden" role="dialog" aria-modal="true" onclick="if(event.target === this) closeCustomProductModal()">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#101114] border border-white/10 text-white p-6 sm:p-8 lg:p-9 shadow-2xl transition-all duration-300 transform translate-y-2">
+    <div onclick="event.stopPropagation()" data-lenis-prevent class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#101114] border border-white/10 text-white p-6 sm:p-8 lg:p-9 shadow-2xl transition-all duration-300 transform translate-y-2">
       
       <!-- Close Button -->
       <button type="button" onclick="closeCustomProductModal()" class="absolute right-5 top-5 w-8 h-8 rounded-full bg-white/10 text-white/70 hover:text-white hover:bg-white/20 flex items-center justify-center cursor-pointer transition-colors" title="Tutup">
@@ -2109,7 +2109,7 @@
 
   <!-- ==================== 10. REQUEST MODAL (B2B Kerjasama Modal Dialog) ==================== -->
   <div id="b2b-kerjasama-modal" class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none" role="dialog" aria-modal="true">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 transition-all duration-300 transform translate-y-6">
+    <div onclick="event.stopPropagation()" data-lenis-prevent class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 transition-all duration-300 transform translate-y-6">
       
       <!-- Close Button -->
       <button onclick="closeB2BModal()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center">
@@ -2183,7 +2183,7 @@
 
   <!-- ==================== 11. PRODUCT DETAIL MODAL (CableTime Style) ==================== -->
   <div id="product-detail-modal" onclick="closeModal('product-detail-modal')" class="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/60 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none font-sans">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-6xl rounded-2xl bg-white border border-[#e5e5e5] p-6 sm:p-10 shadow-2xl text-slate-900 max-h-[92vh] overflow-y-auto">
+    <div onclick="event.stopPropagation()" data-lenis-prevent class="relative w-full max-w-6xl rounded-2xl bg-white border border-[#e5e5e5] p-6 sm:p-10 shadow-2xl text-slate-900 max-h-[92vh] overflow-y-auto">
       
       <button onclick="closeModal('product-detail-modal')" class="absolute right-4 top-4 sm:right-6 sm:top-6 w-9 h-9 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all z-30 cursor-pointer" title="Tutup Modal (ESC)">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -2198,7 +2198,7 @@
 
   <!-- ==================== 12. HEADQUARTERS & SUPPORT MODAL ==================== -->
   <div id="support-howell-modal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md hidden">
-    <div onclick="event.stopPropagation()" class="relative w-full max-w-2xl rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 max-h-[90vh] overflow-y-auto">
+    <div onclick="event.stopPropagation()" data-lenis-prevent class="relative w-full max-w-2xl rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 max-h-[90vh] overflow-y-auto">
       
       <button onclick="closeModal('support-howell-modal')" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center">
         <i data-lucide="x" class="w-4 h-4"></i>
