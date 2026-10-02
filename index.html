@@ -2153,7 +2153,7 @@
 
       <!-- Action Button -->
       <div>
-        <a id="email-modal-send-btn" href="mailto:nick@howellcable.com?subject=Inquiry%20Kerjasama%20B2B%20Howell" onclick="handleEmailSendClick(event)" class="flex items-center justify-center gap-2.5 p-3.5 rounded-xl bg-slate-900 text-white hover:bg-black text-xs font-bold transition-all cursor-pointer shadow-xs">
+        <a id="email-modal-send-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=nick@howellcable.com&su=Inquiry%20Kerjasama%20B2B%20Howell" target="_blank" rel="noopener noreferrer" onclick="handleEmailSendClick(event)" class="flex items-center justify-center gap-2.5 p-3.5 rounded-xl bg-slate-900 text-white hover:bg-black text-xs font-bold transition-all cursor-pointer shadow-xs">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <span id="email-modal-send-btn-text">Kirim Email</span>
         </a>
@@ -3297,7 +3297,7 @@
       if (textEl) textEl.textContent = email;
       if (tagEl) tagEl.textContent = label ? ('OFFICIAL ' + label.toUpperCase() + ' EMAIL') : 'OFFICIAL EMAIL';
       if (sendBtn) {
-        sendBtn.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject);
+        sendBtn.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email) + '&su=' + encodeURIComponent(subject);
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3319,9 +3319,7 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).catch(() => {});
       }
-      if (typeof window.showToast === 'function') {
-        window.showToast('Membuka email... Alamat ' + email + ' telah disalin!', 'Kirim Email');
-      }
+      // Let the link navigate naturally (no preventDefault)
     };
 
     window.closeEmailModal = function() {
