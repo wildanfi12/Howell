@@ -3319,6 +3319,14 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).catch(() => {});
       }
+      const btnText = document.getElementById('email-modal-send-btn-text');
+      if (btnText) {
+        const orig = btnText.textContent;
+        btnText.textContent = '✓ Membuka Email...';
+        setTimeout(() => {
+          if (btnText) btnText.textContent = orig;
+        }, 3000);
+      }
       // Let the link navigate naturally (no preventDefault)
     };
 
