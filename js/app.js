@@ -1149,7 +1149,9 @@ function openB2BModal(productName = '') {
       waLink.href = 'https://wa.me/6285771666931?text=' + msg;
     }
     if (emailLink) {
-      emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry B2B - ' + productName);
+      const subj = 'Inquiry B2B - ' + productName;
+      emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent(subj);
+      emailLink.setAttribute('onclick', "openEmailModal(event, 'nick@howellcable.com', '" + subj.replace(/'/g, "\'") + "', 'Sales B2B')");
     }
   } else {
     if (tag) tag.classList.add('hidden');
@@ -1158,6 +1160,7 @@ function openB2BModal(productName = '') {
     }
     if (emailLink) {
       emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry Kerjasama B2B Howell');
+      emailLink.setAttribute('onclick', "openEmailModal(event, 'nick@howellcable.com', 'Inquiry Kerjasama B2B Howell', 'Sales B2B')");
     }
   }
 }
