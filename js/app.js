@@ -1135,11 +1135,30 @@ function openB2BModal(productName = '') {
   modal.classList.remove('hidden', 'pointer-events-none', 'opacity-0');
   modal.classList.add('opacity-100');
 
+  const tag = document.getElementById('b2b-modal-inquiry-tag');
+  const waLink = document.getElementById('b2b-modal-wa-link');
+  const emailLink = document.getElementById('b2b-modal-email-link');
+
   if (productName) {
-    const inputEl = document.getElementById('b2b-modal-catatan') || document.getElementById('b2b-product-input');
-    const curL = window.currentLanguage || localStorage.getItem('howell_lang') || 'id';
-    const prefix = curL === 'zh' ? '产品咨询：' : (curL === 'en' ? 'Product inquiry for: ' : 'Inquiry untuk produk: ');
-    if (inputEl) inputEl.value = `${prefix}${productName}`;
+    if (tag) {
+      tag.textContent = 'Inquiry: ' + productName;
+      tag.classList.remove('hidden');
+    }
+    if (waLink) {
+      const msg = encodeURIComponent('Halo Sales B2B Howell, saya tertarik untuk penawaran produk: ' + productName + '.');
+      waLink.href = 'https://wa.me/6285771666931?text=' + msg;
+    }
+    if (emailLink) {
+      emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry B2B - ' + productName);
+    }
+  } else {
+    if (tag) tag.classList.add('hidden');
+    if (waLink) {
+      waLink.href = 'https://wa.me/6285771666931?text=' + encodeURIComponent('Halo Sales B2B Howell, saya ingin berkonsultasi mengenai kerjasama / pengadaan B2B.');
+    }
+    if (emailLink) {
+      emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry Kerjasama B2B Howell');
+    }
   }
 }
 

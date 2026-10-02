@@ -1711,16 +1711,41 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           
-          <!-- Card 1: B2B Form Trigger -->
-          <div onclick="toggleInlineB2BForm(true, 'Penawaran Wholesale')" class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-slate-300 hover:shadow-lg cursor-pointer group transition-all">
+          <!-- Card 1: Direct B2B Contact -->
+          <div class="hover-lift p-8 rounded-2xl bg-[#f8f8f8] border border-[#e6e5e2] hover:border-slate-300 hover:shadow-lg transition-all flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900" data-i18n="collab_card1_title">Hubungi Sales B2B</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                <span data-i18n="collab_card1_desc">Konsultasikan kebutuhan proyek, penawaran harga khusus grosir, dan pengadaan instansi langsung dengan tim Sales B2B Howell:</span>
+              </p>
+            </div>
 
-            <h3 class="text-xl font-semibold text-slate-900 group-hover:text-black transition-colors" data-i18n="collab_card1_title">Isi Form Kerjasama B2B</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              <span data-i18n="collab_card1_desc">Ajukan permintaan harga khusus grosir, penawaran proyek korporat, dan pengadaan instansi.</span>
-            </p>
-            <div class="mt-6 flex items-center gap-2 text-xs font-bold text-black group-hover:text-slate-700 transition-colors">
-              <span data-i18n="collab_card1_btn">Buka Formulir</span>
-              <span>→</span>
+            <div class="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-2.5">
+              <a href="https://wa.me/6285771666931?text=Halo%20Sales%20B2B%20Howell%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kerjasama%20%2F%20pengadaan%20B2B." target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 hover:border-[#25D366] hover:bg-emerald-50/50 text-xs font-bold text-slate-800 transition-all shadow-xs group/btn">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Contact WhatsApp Sales B2B</div>
+                    <div class="font-bold text-slate-900 text-xs sm:text-sm">0857-7166-6931</div>
+                  </div>
+                </div>
+                <span class="text-xs font-semibold text-emerald-600 group-hover/btn:translate-x-0.5 transition-transform">Chat WhatsApp →</span>
+              </a>
+
+              <a href="mailto:nick@howellcable.com?subject=Inquiry%20Kerjasama%20B2B%20Howell" class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 hover:border-black hover:bg-slate-50 text-xs font-bold text-slate-800 transition-all shadow-xs group/btn">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-black/5 text-slate-900 flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Email Sales B2B</div>
+                    <div class="font-bold text-slate-900 text-xs sm:text-sm">nick@howellcable.com</div>
+                  </div>
+                </div>
+                <span class="text-xs font-semibold text-slate-700 group-hover/btn:translate-x-0.5 transition-transform">Kirim Email →</span>
+              </a>
             </div>
           </div>
 
@@ -1752,68 +1777,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Inline B2B Form Card (Hidden by default, unhides when clicked) -->
-        <div id="kerjasama-form-card" class="hidden rounded-2xl bg-[#0a0a0a] p-8 sm:p-12 text-white relative transition-all duration-300 border border-white/10">
-          <button onclick="toggleInlineB2BForm(false)" class="absolute top-6 right-6 text-white/50 hover:text-[#FFC700] text-xl">✕</button>
-          
-          <div class="max-w-xl mb-8">
-            <span class="eyebrow light mb-2 block"><span class="text-[#FFC700]" data-i18n="b2b_inline_eyebrow">Direct WhatsApp Inquiry</span></span>
-            <h3 class="text-2xl font-semibold text-white" data-i18n="b2b_inline_title">Formulir Kerjasama B2B Howell</h3>
-            <p class="text-xs text-white/60 mt-1" data-i18n="b2b_inline_subtitle">Isi data di bawah ini untuk terhubung langsung dengan tim B2B Howell via WhatsApp.</p>
-          </div>
-
-          <form onsubmit="handleB2BSubmit(event, 'inline')" class="space-y-4 max-w-3xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_company">Nama Perusahaan / Toko *</label>
-                <input type="text" id="b2b-inline-perusahaan" required placeholder="PT / CV / Toko Anda" data-i18n-ph="b2b_ph_company" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_pic">PIC / Penanggung Jawab *</label>
-                <input type="text" id="b2b-inline-pic" required placeholder="Nama Lengkap" data-i18n-ph="b2b_ph_pic" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_city">Kota *</label>
-                <input type="text" id="b2b-inline-kota" required placeholder="Jakarta" data-i18n-ph="b2b_ph_city" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_province">Provinsi *</label>
-                <input type="text" id="b2b-inline-provinsi" required placeholder="DKI Jakarta" data-i18n-ph="b2b_ph_province" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_postal">Kode Pos</label>
-                <input type="text" id="b2b-inline-kodepos" placeholder="14440" data-i18n-ph="b2b_ph_postal" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_phone">Nomor Telp. / WhatsApp *</label>
-                <input type="tel" id="b2b-inline-telp" required placeholder="08123456789" data-i18n-ph="b2b_ph_phone" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_email">Email Perusahaan *</label>
-                <input type="email" id="b2b-inline-email" required placeholder="perusahaan@domain.com" data-i18n-ph="b2b_ph_email" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]">
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-medium text-white/70 uppercase mb-1" data-i18n="b2b_field_notes">Catatan Kebutuhan Proyek (Opsional)</label>
-              <textarea id="b2b-inline-catatan" rows="2" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." data-i18n-ph="b2b_ph_notes" class="w-full px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/40 text-xs focus:outline-none focus:border-[#FFC700]"></textarea>
-            </div>
-
-            <button type="submit" class="btn-pill group cursor-pointer mt-2" aria-label="Kirim Form via WhatsApp">
-              <span class="btn-pill-inner bg-[#FFC700] hover:bg-white text-black font-extrabold has-arrow shadow-lg shadow-[#FFC700]/25 hover:shadow-white/20 transition-all duration-300">
-                <span data-i18n="b2b_inline_submit">Kirim Form via WhatsApp</span>
-                <span class="btn-pill-badge bg-black text-[#FFC700] group-hover:text-white transition-colors duration-300 font-black">💬</span>
-              </span>
-            </button>
-          </form>
         </div>
 
       </div>
@@ -2108,73 +2071,61 @@
 
 
   <!-- ==================== 10. REQUEST MODAL (B2B Kerjasama Modal Dialog) ==================== -->
-  <div id="b2b-kerjasama-modal" class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none" role="dialog" aria-modal="true">
+  <div id="b2b-kerjasama-modal" class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none" role="dialog" aria-modal="true" onclick="if(event.target === this) closeB2BModal()">
     <div onclick="event.stopPropagation()" data-lenis-prevent class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-[#e6e5e2] text-slate-900 transition-all duration-300 transform translate-y-6">
       
       <!-- Close Button -->
-      <button onclick="closeB2BModal()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center">
+      <button onclick="closeB2BModal()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-[#f1f0ee] text-slate-600 hover:bg-[#e3e2df] hover:text-black flex items-center justify-center cursor-pointer">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
-      <!-- Form View -->
+      <!-- Direct Contact View -->
       <div id="b2b-modal-form-view">
         <div class="mb-6">
-          <div class="eyebrow mb-1" data-i18n="b2b_modal_eyebrow">Formulir B2B</div>
-          <h3 id="b2b-modal-title" class="text-2xl font-semibold tracking-tight text-slate-900" data-i18n="b2b_modal_title">Tell us what you're building.</h3>
+          <div class="eyebrow mb-1">Sales &amp; Enterprise</div>
+          <h3 id="b2b-modal-title" class="text-2xl font-semibold tracking-tight text-slate-900">Hubungi Tim Sales B2B</h3>
+          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+            Hubungi langsung tim sales B2B Howell untuk penawaran harga grosir, proyek korporat, dan pengadaan instansi resmi.
+          </p>
+          <div id="b2b-modal-inquiry-tag" class="hidden mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold"></div>
         </div>
 
-        <form onsubmit="handleB2BSubmit(event, 'modal')" class="space-y-4">
-          <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_company">Nama Perusahaan / Toko *</label>
-            <input type="text" id="b2b-modal-perusahaan" required placeholder="PT / CV / Toko Anda" data-i18n-ph="b2b_ph_company" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_city">Kota *</label>
-              <input type="text" id="b2b-modal-kota" required placeholder="Jakarta" data-i18n-ph="b2b_ph_city" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+        <div class="space-y-3">
+          <!-- WhatsApp Sales B2B -->
+          <a id="b2b-modal-wa-link" href="https://wa.me/6285771666931?text=Halo%20Sales%20B2B%20Howell%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kerjasama%20%2F%20pengadaan%20B2B." target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 rounded-2xl bg-[#f8f8f8] border border-slate-200 hover:border-[#25D366] hover:bg-emerald-50/40 transition-all group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Contact WhatsApp Sales B2B</div>
+                <div class="font-bold text-slate-900 text-sm">0857-7166-6931</div>
+                <div class="text-[11px] text-emerald-600 font-medium">Respons Cepat (Senin - Sabtu)</div>
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_province">Provinsi *</label>
-              <input type="text" id="b2b-modal-provinsi" required placeholder="DKI Jakarta" data-i18n-ph="b2b_ph_province" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_postal">Kode Pos</label>
-              <input type="text" id="b2b-modal-kodepos" placeholder="14440" data-i18n-ph="b2b_ph_postal" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
-            </div>
-          </div>
+            <span class="text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">Chat WhatsApp →</span>
+          </a>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_pic">PIC / Penanggung Jawab *</label>
-              <input type="text" id="b2b-modal-pic" required placeholder="Nama Lengkap" data-i18n-ph="b2b_ph_pic" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
+          <!-- Email Sales B2B -->
+          <a id="b2b-modal-email-link" href="mailto:nick@howellcable.com?subject=Inquiry%20Kerjasama%20B2B%20Howell" class="flex items-center justify-between p-4 rounded-2xl bg-[#f8f8f8] border border-slate-200 hover:border-black hover:bg-slate-100 transition-all group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-black/5 text-slate-900 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Email Sales B2B</div>
+                <div class="font-bold text-slate-900 text-sm">nick@howellcable.com</div>
+                <div class="text-[11px] text-slate-500 font-medium">Proposal, Tender & Surat Penawaran</div>
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_phone">Nomor Telp. / WhatsApp *</label>
-              <input type="tel" id="b2b-modal-telp" required placeholder="08123456789" data-i18n-ph="b2b_ph_phone" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
-            </div>
-          </div>
+            <span class="text-xs font-bold text-slate-900 group-hover:translate-x-1 transition-transform">Kirim Email →</span>
+          </a>
+        </div>
 
-          <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_field_email">Email Perusahaan *</label>
-            <input type="email" id="b2b-modal-email" required placeholder="you@company.com" data-i18n-ph="b2b_ph_email" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400">
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium text-slate-500 uppercase mb-1" data-i18n="b2b_modal_notes">Catatan Kebutuhan / Detail SKU</label>
-            <textarea id="b2b-modal-catatan" rows="3" placeholder="Sebutkan SKU produk atau perkiraan kuantitas..." data-i18n-ph="b2b_ph_notes" class="w-full px-4 py-2.5 rounded-xl border border-[#e6e5e2] bg-[#f1f0ee]/50 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-slate-400 resize-none"></textarea>
-          </div>
-
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-[0.75rem] text-slate-400" data-i18n="b2b_modal_subtitle">Direct response via WhatsApp.</span>
-            <button type="submit" class="btn-pill">
-              <span class="btn-pill-inner btn-pill-dark has-arrow">
-                <span data-i18n="b2b_modal_btn">Send via WhatsApp</span>
-                <span class="btn-pill-badge up-right">→</span>
-              </span>
-            </button>
-          </div>
-        </form>
+        <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+          <span>PT Howell Niaga Indonesia</span>
+          <button type="button" onclick="closeB2BModal()" class="text-xs font-bold text-slate-700 hover:text-black cursor-pointer">Tutup</button>
+        </div>
       </div>
 
     </div>
@@ -2219,7 +2170,7 @@
             <span data-i18n="address_label">Alamat Kantor Pusat</span>
           </div>
           <p class="font-semibold text-slate-900 leading-relaxed">
-            Blk. G, Jl. Pluit Raya No.Kav 19 7-8, Penjaringan, Kecamatan Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14440
+            Jl. Pluit Raya Kav 19 Blok G No. 7-8 RT.7/RW.7, Penjaringan, Kecamatan Penjaringan, Jakarta Utara, DKI Jakarta 14440
           </p>
         </div>
 
@@ -2250,6 +2201,28 @@
             <a href="mailto:customerservice@howellcable.com" class="mt-3 inline-flex items-center gap-1.5 font-semibold text-slate-900 border border-slate-300 bg-white px-4 py-2 rounded-xl text-xs hover:bg-slate-100 transition-all w-fit">
               <span data-i18n="email_btn">Kirim Email</span>
               <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- B2B Sales Direct Card -->
+        <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-300/40 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0">
+              <i data-lucide="briefcase" class="w-4 h-4 text-amber-600"></i>
+            </div>
+            <div>
+              <div class="text-[10px] text-amber-700 font-semibold uppercase tracking-wider">Kontak Sales B2B &amp; Proyek Korporat</div>
+              <div class="font-bold text-slate-900 text-xs sm:text-sm">WhatsApp: 0857-7166-6931 • Email: nick@howellcable.com</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <a href="https://wa.me/6285771666931?text=Halo%20Sales%20B2B%20Howell%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kerjasama%20%2F%20pengadaan%20B2B." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-black bg-[#FFC700] hover:bg-[#FFE066] px-3.5 py-1.5 rounded-lg text-xs transition-all shadow-xs">
+              <span>Chat B2B</span>
+              <span>→</span>
+            </a>
+            <a href="mailto:nick@howellcable.com?subject=Inquiry%20Kerjasama%20B2B%20Howell" class="inline-flex items-center gap-1 font-semibold text-slate-700 border border-slate-300 bg-white hover:bg-slate-50 px-3 py-1.5 rounded-lg text-xs transition-all">
+              <span>Email</span>
             </a>
           </div>
         </div>
@@ -3040,9 +3013,30 @@
       modal.classList.remove('pointer-events-none', 'opacity-0');
       modal.classList.add('opacity-100');
 
+      const tag = document.getElementById('b2b-modal-inquiry-tag');
+      const waLink = document.getElementById('b2b-modal-wa-link');
+      const emailLink = document.getElementById('b2b-modal-email-link');
+
       if (productName) {
-        const notes = document.getElementById('b2b-modal-catatan');
-        if (notes) notes.value = `Inquiry untuk produk: ${productName}`;
+        if (tag) {
+          tag.textContent = 'Inquiry: ' + productName;
+          tag.classList.remove('hidden');
+        }
+        if (waLink) {
+          const msg = encodeURIComponent('Halo Sales B2B Howell, saya tertarik untuk penawaran produk: ' + productName + '.');
+          waLink.href = 'https://wa.me/6285771666931?text=' + msg;
+        }
+        if (emailLink) {
+          emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry B2B - ' + productName);
+        }
+      } else {
+        if (tag) tag.classList.add('hidden');
+        if (waLink) {
+          waLink.href = 'https://wa.me/6285771666931?text=' + encodeURIComponent('Halo Sales B2B Howell, saya ingin berkonsultasi mengenai kerjasama / pengadaan B2B.');
+        }
+        if (emailLink) {
+          emailLink.href = 'mailto:nick@howellcable.com?subject=' + encodeURIComponent('Inquiry Kerjasama B2B Howell');
+        }
       }
     };
 
@@ -3399,8 +3393,8 @@
     "collab_eyebrow": "Kemitraan & Korporasi",
     "collab_title": "Bermitra dengan HOWELL",
     "collab_desc": "Dukungan resmi untuk pengadaan B2B, proyek korporasi, distributor grosir, dan mitra ritel.",
-    "collab_card1_title": "Isi Form Kerjasama B2B",
-    "collab_card1_desc": "Ajukan permintaan harga khusus grosir, penawaran proyek korporat, dan pengadaan instansi.",
+    "collab_card1_title": "Hubungi Sales B2B",
+    "collab_card1_desc": "Konsultasikan kebutuhan proyek, penawaran harga khusus grosir, dan pengadaan instansi langsung dengan tim Sales B2B Howell:",
     "collab_card1_btn": "Buka Formulir →",
     "collab_card2_title": "Official E-Commerce",
     "collab_card2_desc": "Dapatkan produk eceran original bergaransi resmi langsung dari official store Howell di platform pilihan Anda:",
@@ -3643,8 +3637,8 @@
     "collab_eyebrow": "Enterprise & Partnerships",
     "collab_title": "Partner with HOWELL",
     "collab_desc": "Official support for B2B procurement, corporate projects, wholesale distributors, and retail partners.",
-    "collab_card1_title": "Submit B2B Inquiry Form",
-    "collab_card1_desc": "Request wholesale volume discounts, corporate project quotes, and government procurement support.",
+    "collab_card1_title": "Contact B2B Sales",
+    "collab_card1_desc": "Direct consultation for wholesale volume discounts, corporate projects, and government procurement:",
     "collab_card1_btn": "Open Form →",
     "collab_card2_title": "Official E-Commerce",
     "collab_card2_desc": "Purchase authentic Howell products with official warranty directly from our official stores on your preferred platform:",
