@@ -499,11 +499,19 @@ window.renderCatalog = function renderCatalog() {
     filtered = filtered.filter(p => (p.stockQty && p.stockQty > 0) || p.readyStock !== false);
   }
 
-  // Sorting logic (Name, SKU)
-  if (state.sortBy === 'name') {
+  // Sorting logic (Relevance, Name, SKU, Price, Rating)
+  if (state.sortBy === 'name' || state.sortBy === 'name-asc') {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (state.sortBy === 'name-desc') {
+    filtered.sort((a, b) => b.name.localeCompare(a.name));
   } else if (state.sortBy === 'sku') {
     filtered.sort((a, b) => (a.sku || '').localeCompare(b.sku || ''));
+  } else if (state.sortBy === 'price-asc') {
+    filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+  } else if (state.sortBy === 'price-desc') {
+    filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+  } else if (state.sortBy === 'rating' || state.sortBy === 'rating-desc') {
+    filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
   }
 
   // Update live count

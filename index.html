@@ -511,14 +511,14 @@
     <div class="floating-nav-island pointer-events-auto mx-auto flex items-center justify-center rounded-full relative">
       
       <!-- Primary Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-0 select-none">
+      <nav class="hidden md:flex items-center gap-0 select-none">
         <button onclick="scrollToId('home')" data-i18n="nav_home" class="nav-link cursor-pointer">Home</button>
         <button onclick="scrollToId('catalog-section')" data-i18n="nav_products" class="nav-link cursor-pointer">Produk</button>
         <button onclick="scrollToId('about-us')" data-i18n="nav_about" class="nav-link cursor-pointer">Tentang Kami</button>
       </nav>
 
       <!-- Subtle Vertical Divider (Desktop) -->
-      <div class="nav-divider hidden lg:block"></div>
+      <div class="nav-divider hidden md:block"></div>
 
       <!-- Controls: Search, Lang, Hubungi Kami, Menu -->
       <div class="flex items-center gap-1 shrink-0">
@@ -534,7 +534,7 @@
         </form>
 
         <!-- Language Selector -->
-        <div class="relative hidden sm:block">
+        <div class="relative">
           <button id="lang-selector-btn" onclick="toggleLangDropdown(event)" 
             class="header-lang-btn cursor-pointer" aria-label="Select Language">
             <svg class="w-3 h-3 text-slate-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -582,7 +582,7 @@
             <line x1="4" y1="12" x2="20" y2="12"></line>
             <line x1="4" y1="17" x2="20" y2="17"></line>
           </svg>
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-700 hidden sm:inline" data-i18n="menu_label">MENU</span>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-700 inline" data-i18n="menu_label">MENU</span>
         </button>
       </div>
 
@@ -2946,6 +2946,9 @@
     window.handleSearchInput = function(query) {
       if (typeof state !== 'undefined') {
         state.searchQuery = query;
+        if (query && query.trim() !== '') {
+          state.catalogExpanded = true;
+        }
       }
       const catInput = document.getElementById('catalog-search-input');
       const headInput = document.getElementById('header-search-input');
@@ -3277,6 +3280,12 @@
 
 
     window.openEmailModal = function(e, email = 'nick@howellcable.com', subject = 'Inquiry Kerjasama B2B Howell', label = 'Sales B2B') {
+      if (typeof e === 'string' && e.includes('@')) {
+        label = subject || 'Sales B2B';
+        subject = email || 'Inquiry Kerjasama B2B Howell';
+        email = e;
+        e = null;
+      }
       if (e && e.preventDefault) e.preventDefault();
       const modal = document.getElementById('email-action-modal');
       if (!modal) {
