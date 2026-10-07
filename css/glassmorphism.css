@@ -643,52 +643,25 @@ p, span, li, a, input, textarea, select, button {
   box-shadow: 0 0 0 2px rgba(255, 199, 0, 0.18) !important;
 }
 
-/* ── Language Button (Seamless Island Action) ── */
-.header-lang-btn {
-  height: 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0 8px;
-  border-radius: 9999px;
-  background: transparent !important;
-  border: none !important;
-  color: #374151 !important;
-  transition: background 0.12s ease, color 0.12s ease;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-.header-lang-btn:hover,
-.header-lang-btn:active {
-  background: #F3F4F6 !important;
-  color: #111827 !important;
-}
-.header-lang-text {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #374151;
-}
-
-/* ── Menu Button (Seamless Island Action) ── */
+/* ── Menu Button ── */
 .header-menu-btn {
   height: 30px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 0 9px;
+  padding: 0 10px;
   border-radius: 9999px;
-  background: transparent !important;
-  border: none !important;
+  background: #F8FAFC !important;
+  border: 1px solid #E5E7EB !important;
   color: #374151 !important;
-  transition: background 0.12s ease, color 0.12s ease;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
   box-sizing: border-box;
   white-space: nowrap;
 }
 .header-menu-btn:hover,
 .header-menu-btn:active {
-  background: #F3F4F6 !important;
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
   color: #111827 !important;
 }
 .header-menu-btn span {
@@ -697,6 +670,35 @@ p, span, li, a, input, textarea, select, button {
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+  color: #374151;
+}
+
+/* ── Language Button (Far Right) ── */
+.header-lang-btn {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  background: #F8FAFC !important;
+  border: 1px solid #E5E7EB !important;
+  color: #374151 !important;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.header-lang-btn:hover,
+.header-lang-btn:active {
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #111827 !important;
+}
+.header-lang-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: #374151;
 }
 
@@ -715,16 +717,16 @@ p, span, li, a, input, textarea, select, button {
     font-size: 0.78rem !important;
   }
   .header-search-box {
-    width: 7.25rem !important;
+    width: 7rem !important;
   }
   .header-search-box:focus {
     width: 9rem !important;
   }
+  .header-menu-btn {
+    padding: 0 9px !important;
+  }
   .header-lang-btn {
     padding: 0 7px !important;
-  }
-  .header-menu-btn {
-    padding: 0 8px !important;
   }
 }
 
@@ -736,7 +738,7 @@ p, span, li, a, input, textarea, select, button {
   }
   .floating-nav-island {
     padding: 3px 4px !important;
-    gap: 1px !important;
+    gap: 2px !important;
     max-width: calc(100vw - 12px) !important;
     box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.09),
@@ -754,8 +756,8 @@ p, span, li, a, input, textarea, select, button {
   }
   .header-search-box {
     height: 28px !important;
-    width: 4.25rem !important;
-    padding-left: 1.5rem !important;
+    width: 3.8rem !important;
+    padding-left: 1.45rem !important;
     padding-right: 0.35rem !important;
     font-size: 10.5px !important;
   }
@@ -765,25 +767,21 @@ p, span, li, a, input, textarea, select, button {
   .header-search-box:focus {
     width: 6.5rem !important;
   }
-  .header-lang-btn {
-    height: 28px !important;
-    padding: 0 4px !important;
-    gap: 2px !important;
-  }
-  .header-lang-text {
-    font-size: 10px !important;
-  }
-  .nav-control-divider {
-    height: 12px !important;
-    margin: 0 1px !important;
-  }
   .header-menu-btn {
     height: 28px !important;
-    padding: 0 5px !important;
+    padding: 0 6px !important;
     gap: 3px !important;
   }
   .header-menu-btn span {
     font-size: 9.5px !important;
+  }
+  .header-lang-btn {
+    height: 28px !important;
+    padding: 0 5px !important;
+    gap: 2.5px !important;
+  }
+  .header-lang-text {
+    font-size: 10px !important;
   }
 }
 
@@ -793,16 +791,16 @@ p, span, li, a, input, textarea, select, button {
     font-size: 10.5px !important;
   }
   .header-search-box {
-    width: 3.5rem !important;
-    padding-left: 1.4rem !important;
+    width: 3.4rem !important;
+    padding-left: 1.35rem !important;
   }
   .header-search-box:focus {
     width: 5.5rem !important;
   }
-  .header-lang-btn {
-    padding: 0 3px !important;
-  }
   .header-menu-btn {
+    padding: 0 4.5px !important;
+  }
+  .header-lang-btn {
     padding: 0 4px !important;
   }
 }
