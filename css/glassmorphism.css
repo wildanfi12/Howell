@@ -546,40 +546,35 @@ p, span, li, a, input, textarea, select, button {
   border-radius: 9999px;
   position: relative;
   
-  /* ── iOS 26/27 Liquid Glass ── */
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(16px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  /* ── Solid White Navbar ── */
+  background: #FFFFFF !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   
-  border: 1px solid rgba(255, 255, 255, 0.30) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.05) !important;
     
   transform: translateZ(0);
   transition: all 0.3s ease;
 }
 
-/* Top highlight arc */
+/* Remove top highlight arc (was for glass effect) */
 .floating-nav-island::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 20px; right: 20px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-  pointer-events: none;
+  display: none;
 }
 
-/* Scrolled state */
+/* Scrolled state — stays white with slightly stronger shadow */
 #site-header.header--scrolled .floating-nav-island,
 .glass-header.scrolled .floating-nav-island {
-  background: rgba(255, 255, 255, 0.22) !important;
-  backdrop-filter: blur(20px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
+  background: #FFFFFF !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.40) !important;
+    0 6px 28px rgba(0, 0, 0, 0.10),
+    0 1px 4px rgba(0, 0, 0, 0.06) !important;
 }
 
 @media (max-width: 640px) {
@@ -593,10 +588,10 @@ p, span, li, a, input, textarea, select, button {
   }
 }
 
-/* ── Nav Links (White on glass) ── */
+/* ── Nav Links (Dark on white) ── */
 .nav-link {
-  color: rgba(255, 255, 255, 0.90) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: rgba(15, 23, 42, 0.80) !important;
+  text-shadow: none;
   padding: 0.35rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.8125rem;
@@ -607,8 +602,8 @@ p, span, li, a, input, textarea, select, button {
 }
 
 .nav-link:hover {
-  color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.12) !important;
+  color: #0F172A !important;
+  background: rgba(0, 0, 0, 0.05) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
@@ -634,27 +629,27 @@ p, span, li, a, input, textarea, select, button {
 
 /* ── Controls inside Island ── */
 .floating-nav-island input#header-search-input {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(255, 255, 255, 0.20) !important;
-  color: #FFFFFF !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #0F172A !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 .floating-nav-island input#header-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: rgba(15, 23, 42, 0.40) !important;
 }
 .floating-nav-island input#header-search-input:focus {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 199, 0, 0.5) !important;
-  box-shadow: none !important;
+  background: #FFFFFF !important;
+  border-color: rgba(255, 199, 0, 0.7) !important;
+  box-shadow: 0 0 0 2px rgba(255, 199, 0, 0.15) !important;
 }
 
 .floating-nav-island #lang-selector-btn,
 .floating-nav-island button[onclick*="toggleNavMenu"] {
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(255, 255, 255, 0.20) !important;
-  color: #FFFFFF !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #0F172A !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -662,8 +657,8 @@ p, span, li, a, input, textarea, select, button {
 }
 .floating-nav-island #lang-selector-btn:hover,
 .floating-nav-island button[onclick*="toggleNavMenu"]:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.30) !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.20) !important;
   box-shadow: none !important;
   transform: none !important;
 }
@@ -679,6 +674,7 @@ p, span, li, a, input, textarea, select, button {
   box-shadow: 0 4px 12px rgba(255, 199, 0, 0.35) !important;
   transform: translateY(-1px) !important;
 }
+
 
 /* ── Glass Panels & Cards ───────────────────────────────────── */
 .glass-panel {
