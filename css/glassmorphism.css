@@ -709,99 +709,98 @@ p, span, li, a, input, textarea, select, button {
     padding: 0 1rem !important;
   }
   .floating-nav-island {
-    padding: 4px 6px !important;
-    gap: 2px !important;
+    padding: 4px 8px !important;
+    gap: 3px !important;
   }
   .nav-link {
-    padding: 0 0.65rem !important;
-    font-size: 0.78rem !important;
+    padding: 0 0.85rem !important;
+    font-size: 0.8125rem !important;
   }
   .header-search-box {
-    width: 7rem !important;
+    width: 7.25rem !important;
   }
   .header-search-box:focus {
-    width: 9rem !important;
+    width: 9.5rem !important;
   }
   .header-menu-btn {
-    padding: 0 9px !important;
+    padding: 0 10px !important;
   }
   .header-lang-btn {
-    padding: 0 7px !important;
+    padding: 0 8px !important;
   }
 }
 
-/* ── Responsive Scaling: Mobile (≤ 640px) ── */
+/* ── Responsive Scaling: Mobile (≤ 640px) - Spacious & Not Cramped ── */
 @media (max-width: 640px) {
   #site-header {
     top: 0.85rem !important;
-    padding: 0 0.25rem !important;
+    padding: 0 0.5rem !important;
   }
   .floating-nav-island {
-    padding: 3px 4px !important;
-    gap: 2px !important;
-    max-width: calc(100vw - 12px) !important;
+    padding: 3.5px 6px !important;
+    gap: 2.5px !important;
     box-shadow:
-      0 4px 16px rgba(0, 0, 0, 0.09),
+      0 4px 18px rgba(0, 0, 0, 0.08),
       0 1px 3px rgba(0, 0, 0, 0.04) !important;
   }
   .nav-link {
-    height: 28px !important;
-    padding: 0 5px !important;
-    font-size: 11px !important;
-    letter-spacing: -0.02em !important;
+    height: 30px !important;
+    padding: 0 7px !important;
+    font-size: 11.5px !important;
+    letter-spacing: -0.01em !important;
   }
   .nav-divider {
-    height: 12px !important;
-    margin: 0 2px !important;
+    height: 14px !important;
+    margin: 0 3px !important;
   }
   .header-search-box {
-    height: 28px !important;
-    width: 3.8rem !important;
-    padding-left: 1.45rem !important;
-    padding-right: 0.35rem !important;
-    font-size: 10.5px !important;
+    height: 30px !important;
+    width: 4.2rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 0.4rem !important;
+    font-size: 11px !important;
   }
   .header-search-box::placeholder {
-    font-size: 10.5px !important;
+    font-size: 11px !important;
   }
   .header-search-box:focus {
-    width: 6.5rem !important;
+    width: 6.8rem !important;
   }
   .header-menu-btn {
-    height: 28px !important;
+    height: 30px !important;
+    padding: 0 7px !important;
+    gap: 3.5px !important;
+  }
+  .header-menu-btn span {
+    font-size: 10px !important;
+  }
+  .header-lang-btn {
+    height: 30px !important;
     padding: 0 6px !important;
     gap: 3px !important;
   }
-  .header-menu-btn span {
-    font-size: 9.5px !important;
-  }
-  .header-lang-btn {
-    height: 28px !important;
-    padding: 0 5px !important;
-    gap: 2.5px !important;
-  }
   .header-lang-text {
-    font-size: 10px !important;
+    font-size: 10.5px !important;
   }
 }
 
 @media (max-width: 375px) {
   .nav-link {
-    padding: 0 3.5px !important;
-    font-size: 10.5px !important;
+    padding: 0 5px !important;
+    font-size: 11px !important;
   }
   .header-search-box {
-    width: 3.4rem !important;
-    padding-left: 1.35rem !important;
+    width: 3.8rem !important;
+    padding-left: 1.4rem !important;
   }
   .header-search-box:focus {
-    width: 5.5rem !important;
+    width: 5.8rem !important;
   }
   .header-menu-btn {
-    padding: 0 4.5px !important;
+    padding: 0 5.5px !important;
   }
   .header-lang-btn {
-    padding: 0 4px !important;
+    padding: 0 5px !important;
   }
 }
 
