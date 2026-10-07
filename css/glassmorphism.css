@@ -702,6 +702,29 @@ p, span, li, a, input, textarea, select, button {
   color: #374151;
 }
 
+/* ── Language Corner (separate pill, top-right) ── */
+.lang-corner {
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  pointer-events: auto;
+}
+.lang-corner .header-lang-btn {
+  height: 40px;
+  padding: 0 14px;
+  gap: 6px;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+.lang-corner .header-lang-btn:hover {
+  background: #F8FAFC !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+.lang-corner .header-lang-text { font-size: 11.5px; }
+
 /* ── Responsive Scaling: Tablet (641px - 1023px) ── */
 @media (min-width: 641px) and (max-width: 1023px) {
   #site-header {
@@ -710,98 +733,77 @@ p, span, li, a, input, textarea, select, button {
   }
   .floating-nav-island {
     padding: 4px 8px !important;
-    gap: 3px !important;
+    gap: 4px !important;
   }
   .nav-link {
     padding: 0 0.85rem !important;
     font-size: 0.8125rem !important;
   }
-  .header-search-box {
-    width: 7.25rem !important;
-  }
-  .header-search-box:focus {
-    width: 9.5rem !important;
-  }
-  .header-menu-btn {
-    padding: 0 10px !important;
-  }
-  .header-lang-btn {
-    padding: 0 8px !important;
-  }
+  .header-search-box { width: 7.5rem !important; }
+  .header-search-box:focus { width: 9.5rem !important; }
+  .header-menu-btn { padding: 0 11px !important; }
+  .lang-corner { right: 1rem; }
 }
 
-/* ── Responsive Scaling: Mobile (≤ 640px) - Spacious & Not Cramped ── */
+/* ── Responsive Scaling: Mobile (≤ 640px) ── */
 @media (max-width: 640px) {
   #site-header {
     top: 0.85rem !important;
-    padding: 0 0.5rem !important;
+    padding: 0 0.75rem !important;
+    justify-content: flex-start !important;
   }
   .floating-nav-island {
-    padding: 3.5px 6px !important;
-    gap: 2.5px !important;
+    margin: 0 !important;
+    padding: 4px 6px !important;
+    gap: 3px !important;
     box-shadow:
       0 4px 18px rgba(0, 0, 0, 0.08),
       0 1px 3px rgba(0, 0, 0, 0.04) !important;
   }
   .nav-link {
     height: 30px !important;
-    padding: 0 7px !important;
-    font-size: 11.5px !important;
+    padding: 0 8px !important;
+    font-size: 12px !important;
     letter-spacing: -0.01em !important;
   }
   .nav-divider {
     height: 14px !important;
-    margin: 0 3px !important;
+    margin: 0 2px !important;
   }
   .header-search-box {
     height: 30px !important;
-    width: 4.2rem !important;
-    padding-left: 1.5rem !important;
+    width: 4.5rem !important;
+    padding-left: 1.55rem !important;
     padding-right: 0.4rem !important;
-    font-size: 11px !important;
+    font-size: 11.5px !important;
   }
-  .header-search-box::placeholder {
-    font-size: 11px !important;
-  }
-  .header-search-box:focus {
-    width: 6.8rem !important;
-  }
+  .header-search-box::placeholder { font-size: 11.5px !important; }
+  .header-search-box:focus { width: 6.5rem !important; }
   .header-menu-btn {
     height: 30px !important;
-    padding: 0 7px !important;
-    gap: 3.5px !important;
+    padding: 0 9px !important;
+    gap: 4px !important;
   }
-  .header-menu-btn span {
-    font-size: 10px !important;
+  .header-menu-btn span { font-size: 10.5px !important; }
+
+  .lang-corner { right: 0.75rem; }
+  .lang-corner .header-lang-btn {
+    height: 40px !important;
+    padding: 0 11px !important;
+    gap: 4px !important;
   }
-  .header-lang-btn {
-    height: 30px !important;
-    padding: 0 6px !important;
-    gap: 3px !important;
-  }
-  .header-lang-text {
-    font-size: 10.5px !important;
-  }
+  .lang-corner .header-lang-btn svg:last-child { display: none; }
+  .lang-corner .header-lang-text { font-size: 11px !important; }
 }
 
-@media (max-width: 375px) {
-  .nav-link {
-    padding: 0 5px !important;
-    font-size: 11px !important;
-  }
-  .header-search-box {
-    width: 3.8rem !important;
-    padding-left: 1.4rem !important;
-  }
-  .header-search-box:focus {
-    width: 5.8rem !important;
-  }
-  .header-menu-btn {
-    padding: 0 5.5px !important;
-  }
-  .header-lang-btn {
-    padding: 0 5px !important;
-  }
+@media (max-width: 380px) {
+  #site-header { padding: 0 0.6rem !important; }
+  .lang-corner { right: 0.6rem; }
+  .nav-link { padding: 0 6px !important; font-size: 11.5px !important; }
+  .header-search-box { width: 3.6rem !important; padding-left: 1.45rem !important; }
+  .header-search-box:focus { width: 5.5rem !important; }
+  .header-menu-btn { padding: 0 7px !important; }
+  .lang-corner .header-lang-btn { padding: 0 9px !important; }
 }
 
 /* ── Glass Panels & Cards ───────────────────────────────────── */
