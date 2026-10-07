@@ -507,7 +507,7 @@
 
 
   <!-- ==================== HEADER (Minimalist Floating Island Navigation) ==================== -->
-  <header id="site-header" class="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none transition-all duration-300">
+  <header id="site-header" class="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
     <div class="floating-nav-island pointer-events-auto mx-auto flex items-center justify-center rounded-full relative">
       
       <!-- Primary Navigation Links -->
@@ -4467,8 +4467,8 @@
 
         const scrollDelta = currentScrollY - lastScrollY;
 
-        // Filter out micro-jitter
-        if (Math.abs(scrollDelta) < SCROLL_THRESHOLD) {
+        // Filter out micro-jitter (hide needs a deliberate scroll, show reacts quickly)
+        if ((scrollDelta > 0 && scrollDelta < 14) || (scrollDelta < 0 && scrollDelta > -6)) {
           return;
         }
 
