@@ -517,6 +517,8 @@ p, span, li, a, input, textarea, select, button {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   display: flex !important;
   justify-content: center !important;
   padding: 0 1rem !important;
@@ -2067,12 +2069,7 @@ button, a, input, select {
 
 /* ── Mobile Anti-Flicker & Performance Optimization ──────────── */
 @media (max-width: 768px) {
-  #site-header,
-  .glass-header {
-    backdrop-filter: blur(14px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
-  }
-  
+    
   /* Prevent touch hover layer recalculation */
   .glass-card:hover,
   .product-card-pro:hover {
