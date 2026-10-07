@@ -536,13 +536,14 @@ p, span, li, a, input, textarea, select, button {
 
 .floating-nav-island {
   pointer-events: auto;
-  width: 100%;
-  max-width: 1140px;
+  width: auto;
+  max-width: fit-content;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  padding: 0.5rem 1.25rem;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 9999px;
   position: relative;
   
@@ -551,10 +552,10 @@ p, span, li, a, input, textarea, select, button {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   
-  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
   box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.08),
-    0 1px 4px rgba(0, 0, 0, 0.05) !important;
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04) !important;
     
   transform: translateZ(0);
   transition: all 0.3s ease;
@@ -592,7 +593,7 @@ p, span, li, a, input, textarea, select, button {
 .nav-link {
   color: rgba(15, 23, 42, 0.80) !important;
   text-shadow: none;
-  padding: 0.35rem 0.75rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 9999px;
   font-size: 0.8125rem;
   font-weight: 500 !important;
