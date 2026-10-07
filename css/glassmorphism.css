@@ -541,18 +541,18 @@ p, span, li, a, input, textarea, select, button {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 4px 4px;
+  padding: 4px 6px;
   border-radius: 9999px;
   position: relative;
   background: #FFFFFF !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(0, 0, 0, 0.11) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
   box-shadow:
-    0 2px 16px rgba(0, 0, 0, 0.07),
+    0 4px 20px rgba(0, 0, 0, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.04) !important;
   transform: translateZ(0);
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .floating-nav-island::before {
@@ -564,9 +564,9 @@ p, span, li, a, input, textarea, select, button {
   background: #FFFFFF !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  border-color: rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(0, 0, 0, 0.16) !important;
   box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.10),
+    0 8px 24px rgba(0, 0, 0, 0.10),
     0 2px 4px rgba(0, 0, 0, 0.05) !important;
 }
 
@@ -598,28 +598,35 @@ p, span, li, a, input, textarea, select, button {
   display: none !important;
 }
 
-/* ── Divider ── */
+/* ── Dividers ── */
 .nav-divider {
   width: 1px;
   height: 14px;
   flex-shrink: 0;
-  background: #D1D5DB;
-  border-radius: 1px;
+  background: #E5E7EB;
+  margin: 0 4px;
+}
+
+.nav-control-divider {
+  width: 1px;
+  height: 14px;
+  flex-shrink: 0;
+  background: #E5E7EB;
   margin: 0 2px;
 }
 
 /* ── Search Box ── */
 .header-search-box {
   height: 30px;
-  width: 7rem;
+  width: 7.25rem;
   padding: 0 0.65rem 0 1.85rem;
   border-radius: 9999px;
-  background: #F9FAFB !important;
+  background: #F8FAFC !important;
   border: 1px solid #E5E7EB !important;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", sans-serif !important;
   font-size: 0.75rem !important;
   color: #111827 !important;
-  transition: width 0.2s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: width 0.2s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   box-sizing: border-box;
 }
 .header-search-box::placeholder {
@@ -627,31 +634,31 @@ p, span, li, a, input, textarea, select, button {
   font-size: 0.75rem !important;
 }
 .header-search-box:focus {
-  width: 9.5rem;
+  width: 10rem;
   outline: none;
   background: #FFFFFF !important;
   border-color: #FFC700 !important;
   box-shadow: 0 0 0 2px rgba(255, 199, 0, 0.18) !important;
 }
 
-/* ── Language Button ── */
+/* ── Language Button (Seamless Island Action) ── */
 .header-lang-btn {
   height: 30px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 0 8px 0 8px;
+  padding: 0 8px;
   border-radius: 9999px;
-  background: #F9FAFB !important;
-  border: 1px solid #E5E7EB !important;
+  background: transparent !important;
+  border: none !important;
   color: #374151 !important;
-  transition: background 0.12s ease, border-color 0.12s ease;
+  transition: background 0.12s ease, color 0.12s ease;
   box-sizing: border-box;
   white-space: nowrap;
 }
-.header-lang-btn:hover {
+.header-lang-btn:hover,
+.header-lang-btn:active {
   background: #F3F4F6 !important;
-  border-color: #D1D5DB !important;
   color: #111827 !important;
 }
 .header-lang-text {
@@ -662,24 +669,24 @@ p, span, li, a, input, textarea, select, button {
   color: #374151;
 }
 
-/* ── Menu Button ── */
+/* ── Menu Button (Seamless Island Action) ── */
 .header-menu-btn {
   height: 30px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 0 10px;
+  padding: 0 9px;
   border-radius: 9999px;
-  background: #F9FAFB !important;
-  border: 1px solid #E5E7EB !important;
+  background: transparent !important;
+  border: none !important;
   color: #374151 !important;
-  transition: background 0.12s ease, border-color 0.12s ease;
+  transition: background 0.12s ease, color 0.12s ease;
   box-sizing: border-box;
   white-space: nowrap;
 }
-.header-menu-btn:hover {
+.header-menu-btn:hover,
+.header-menu-btn:active {
   background: #F3F4F6 !important;
-  border-color: #D1D5DB !important;
   color: #111827 !important;
 }
 .header-menu-btn span {
@@ -691,23 +698,52 @@ p, span, li, a, input, textarea, select, button {
   color: #374151;
 }
 
+/* ── Mobile & Tablet Refinements ── */
 @media (max-width: 640px) {
   #site-header {
-    top: 0.5rem !important;
-    padding: 0 0.5rem !important;
+    top: 0.85rem !important;
+    padding: 0 0.75rem !important;
   }
   .floating-nav-island {
-    padding: 3px 3px;
-    gap: 2px;
-  }
-  .header-menu-btn {
-    height: 28px;
-    padding: 0 8px;
-    gap: 4px;
+    padding: 3px 5px !important;
+    gap: 1px !important;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.09),
+      0 1px 3px rgba(0, 0, 0, 0.04) !important;
   }
   .header-lang-btn {
-    height: 28px;
-    padding: 0 7px;
+    height: 30px !important;
+    padding: 0 8px !important;
+    gap: 3px !important;
+  }
+  .header-lang-text {
+    font-size: 11px !important;
+  }
+  .header-menu-btn {
+    height: 30px !important;
+    padding: 0 9px !important;
+    gap: 4px !important;
+  }
+  .header-menu-btn span {
+    font-size: 10px !important;
+  }
+  .nav-control-divider {
+    height: 13px !important;
+    margin: 0 1px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  #site-header {
+    top: 1rem !important;
+  }
+  .floating-nav-island {
+    padding: 4px 6px !important;
+    gap: 2px !important;
+  }
+  .nav-link {
+    padding: 0 0.7rem !important;
+    font-size: 0.8125rem !important;
   }
 }
 
