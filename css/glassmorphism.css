@@ -2126,3 +2126,79 @@ html, body {
 
 
 
+
+/* ==================== PRODUCT DETAIL MODAL CTAS ==================== */
+.product-detail-btn-wa {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 9999px;
+  background-color: #059669;
+  color: #FFFFFF !important;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  border: none !important;
+  text-align: center;
+}
+
+.product-detail-btn-wa:hover {
+  background-color: #047857;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28);
+  transform: translateY(-1px);
+}
+
+.product-detail-btn-wa:active {
+  transform: scale(0.985);
+}
+
+.product-detail-btn-b2b {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  color: #1e293b !important;
+  border: 1.5px solid #cbd5e1 !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+.product-detail-btn-b2b:hover {
+  border-color: #0f172a !important;
+  color: #0f172a !important;
+  background-color: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.product-detail-btn-b2b:active {
+  transform: scale(0.985);
+}
+
+@media (min-width: 640px) {
+  .product-detail-btn-wa,
+  .product-detail-btn-b2b {
+    min-height: 46px;
+    font-size: 13px;
+  }
+}
