@@ -829,11 +829,7 @@ window.openProductDetail = function openProductDetail(productId) {
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </button>
         </div>
-        <!-- Hint -->
-        <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
-          <span>${txtZoomHint}</span>
-          <span class="text-[11px] font-bold text-slate-400">HOWELL</span>
-        </div>
+
       </div>
 
       <!-- Right Column: Product Info & Actions -->
