@@ -580,8 +580,8 @@ window.renderCatalog = function renderCatalog() {
 
       return `
         <div onclick="openProductDetail('${product.id}')" class="bg-white rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer group hover:shadow-lg flex items-center gap-4 p-3 sm:p-4">
-          <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-[#F5F5F7] rounded-xl overflow-hidden flex items-center justify-center p-3">
-            <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-[#F5F5F7] rounded-xl overflow-hidden flex items-end justify-center px-2 pt-2 pb-0">
+            <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'" class="w-full h-full object-contain object-bottom mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-out origin-bottom">
           </div>
           <div class="flex-1 min-w-0">
             <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${getCategoryName(product.category, window.currentLanguage || 'id') || product.categoryName || 'HOWELL'}</span>
@@ -599,9 +599,9 @@ window.renderCatalog = function renderCatalog() {
 
       return `
         <div onclick="openProductDetail('${product.id}')" class="product-card-pro flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer group hover:shadow-lg">
-          <div class="w-full aspect-square bg-[#F5F5F7] flex items-center justify-center overflow-hidden p-6">
+          <div class="card-img-wrap w-full aspect-square bg-[#F5F5F7] flex items-end justify-center overflow-hidden px-5 pt-5 pb-0">
             <img src="${encodedSrc}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.src='assets/howell-logo.png'"
-              class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105">
+              class="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-500 ease-out origin-bottom group-hover:scale-105">
           </div>
           <div class="px-3.5 py-3 flex flex-col gap-0.5">
             <span class="text-[10px] font-medium uppercase tracking-wider text-[#86868B]">${getCategoryName(product.category, window.currentLanguage || 'id') || product.categoryName || 'HOWELL'}</span>
@@ -822,8 +822,8 @@ window.openProductDetail = function openProductDetail(productId) {
 
       <!-- Left Column: Single Large Product Image Only -->
       <div class="lg:col-span-6">
-        <div class="aspect-square w-full bg-transparent rounded-2xl overflow-hidden relative flex items-center justify-center p-6 sm:p-8 group/detailimg border border-slate-100">
-          <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain mix-blend-multiply cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300" title="Klik untuk Zoom">
+        <div class="aspect-square w-full bg-[#F5F5F7] rounded-2xl overflow-hidden relative flex items-end justify-center px-6 pt-6 pb-0 sm:px-8 sm:pt-8 sm:pb-0 group/detailimg border border-slate-100">
+          <img id="detail-main-img" src="${encodedSrc}" alt="${product.name}" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="w-full h-full object-contain object-bottom mix-blend-multiply cursor-zoom-in group-hover/detailimg:scale-105 transition-transform duration-300 origin-bottom" title="Klik untuk Zoom">
           <!-- Zoom button -->
           <button type="button" onclick="openImageZoom('${encodedSrc}', '${safeTitle}')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-[8px] bg-white text-slate-700 hover:text-black flex items-center justify-center shadow-sm transition-all cursor-pointer border border-slate-200" title="${txtZoomBtn}">
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
