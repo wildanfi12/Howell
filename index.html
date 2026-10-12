@@ -313,23 +313,17 @@
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
       font-size: 0.875rem;
       font-weight: 500;
       color: rgba(17, 17, 17, 0.7);
     }
-    .eyebrow::before {
-      content: '';
-      width: 0.375rem;
-      height: 0.375rem;
-      border-radius: 9999px;
-      background: rgba(17, 17, 17, 0.5);
+    .eyebrow::before,
+    .eyebrow.light::before {
+      display: none !important;
+      content: none !important;
     }
     .eyebrow.light {
       color: rgba(255, 255, 255, 0.7);
-    }
-    .eyebrow.light::before {
-      background: rgba(255, 255, 255, 0.6);
     }
 
     /* Howell Pill Button Styling */
@@ -656,7 +650,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <div class="eyebrow mb-2" data-i18n="sec_categories_eyebrow">Jelajahi Kategori</div>
-            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900" data-i18n="sec_categories_title">Temukan Produk yang Tepat.</h2>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900" data-i18n="sec_categories_title">Temukan Produk yang Tepat</h2>
             <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="sec_categories_desc">Pilih kategori untuk langsung ke produk resmi dalam katalog.</p>
           </div>
 
@@ -889,7 +883,7 @@
       <div class="shell">
         
         <div class="eyebrow mb-2" data-i18n="cat_eco_eyebrow">Category Ecosystem</div>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md" data-i18n="cat_eco_title">What we produce best.</h2>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 mb-10 max-w-md" data-i18n="cat_eco_title">What we produce best</h2>
 
         <!-- Interactive Category Accordion List -->
         <ul class="border-t border-[#e6e5e2]" id="category-accordion-list">
@@ -921,12 +915,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_patch_cable">Patch Cable &amp; Networking</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_patch_cable">
                         <span class="font-semibold text-slate-700">9 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -986,12 +980,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_hdmi_video">HDMI 8K &amp; DisplayPort</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_hdmi_video">
                         <span class="font-semibold text-slate-700">49 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -1051,12 +1045,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_power_cable">Heavy Duty Power &amp; PDU</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_power_cable">
                         <span class="font-semibold text-slate-700">3 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -1116,12 +1110,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_usb_charging">USB &amp; High-Speed Data</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_usb_charging">
                         <span class="font-semibold text-slate-700">12 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -1181,12 +1175,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_audio">Audio Solutions &amp; AUX</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_audio">
                         <span class="font-semibold text-slate-700">11 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -1246,12 +1240,12 @@
                     <!-- Left: Identifier & Count -->
                     <div class="md:col-span-3 space-y-1.5 border-b md:border-b-0 md:border-r border-black/[0.06] pb-3 md:pb-0 md:pr-4">
                       <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-slate-800 text-[10px] font-bold tracking-wider uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFC700]"></span> <span data-i18n="cat_badge_label">Kategori</span>
+                        <span data-i18n="cat_badge_label">Kategori</span>
                       </span>
                       <div class="text-sm font-bold text-slate-900 pt-1" data-i18n="cat_title_adapter">Adapters &amp; Converters</div>
                       <div class="text-xs text-slate-500 flex items-center gap-2" data-i18n="cat_meta_adapter">
                         <span class="font-semibold text-slate-700">37 Produk Resmi</span>
-                        <span>•</span>
+                        <span class="text-slate-300">|</span>
                         <span>Garansi 12 Bulan</span>
                       </div>
                     </div>
@@ -1314,7 +1308,7 @@
               </button>
             </div>
 
-            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-8 sm:mb-10" style="background: linear-gradient(135deg, #FFC700, #FFE066 50%, #FFC700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Connected to the Future.</h2>
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-8 sm:mb-10" style="background: linear-gradient(135deg, #FFC700, #FFE066 50%, #FFC700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Connected to the Future</h2>
 
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-0">
@@ -1374,10 +1368,9 @@
               </div>
               <div class="w-full pt-4 sm:pt-5 border-t border-slate-100 flex items-center justify-between text-[11px] sm:text-xs text-slate-500 font-medium">
                 <span class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                   <span data-i18n="about_trust_badge">Mitra Solusi Terpercaya</span>
                 </span>
-                <span class="font-bold text-slate-800 tracking-tight">B2B • B2C • B2G</span>
+                <span class="font-bold text-slate-800 tracking-tight">B2B / B2C / B2G</span>
               </div>
             </div>
           </div>
@@ -1461,7 +1454,7 @@
               </div>
 
               <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span data-i18n="visi_footer_left">● VISI PERUSAHAAN</span>
+                <span data-i18n="visi_footer_left">VISI PERUSAHAAN</span>
                 <span>EST. 2009</span>
               </div>
             </div>
@@ -1547,7 +1540,7 @@
               </div>
 
               <div class="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
-                <span data-i18n="misi_footer_left">● 4 PILAR EKSEKUSI</span>
+                <span data-i18n="misi_footer_left">4 PILAR EKSEKUSI</span>
                 <span data-i18n="misi_footer_right">KUALITAS &amp; INTEGRITAS</span>
               </div>
             </div>
@@ -1779,7 +1772,7 @@
       <!-- CTA Row -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-16">
         <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#FFC700] whitespace-nowrap">
-          Connected to the Future<span class="text-[#FFC700]">.</span>
+          Connected to the Future
         </h2>
 
         
@@ -1883,7 +1876,6 @@
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_home">Home</span>
-                        <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
                       </div>
                       <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed" data-i18n="nav_home_sub">Showroom Resmi &amp; Penawaran Unggulan</p>
                     </div>
@@ -1898,7 +1890,6 @@
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_products">Produk</span>
-                        <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
                       </div>
                       <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed" data-i18n="nav_products_sub">137+ Produk Bersertifikasi &amp; Spesifikasi Lengkap</p>
                     </div>
@@ -1913,7 +1904,6 @@
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_about">Tentang Kami</span>
-                        <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
                       </div>
                       <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed" data-i18n="nav_about_sub">Profil Howell Sejak 2009 &amp; 3 Pilar Layanan</p>
                     </div>
@@ -1928,7 +1918,6 @@
                     <div class="flex flex-col">
                       <div class="flex items-baseline gap-2">
                         <span class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white/85 group-hover:text-white transition-colors duration-200" data-i18n="nav_contact">Kontak &amp; Dukungan</span>
-                        <span class="text-[#FFC700] opacity-0 group-hover:opacity-100 transition-all duration-200 text-2xl font-black">.</span>
                       </div>
                       <p class="text-xs sm:text-sm text-white/50 group-hover:text-white/80 transition-colors duration-200 mt-1 leading-relaxed" data-i18n="nav_contact_sub">Layanan Pengadaan B2B, Tender &amp; Dukungan Teknis</p>
                     </div>
@@ -1980,11 +1969,10 @@
       <!-- Modal Header -->
       <div class="mb-5 pr-8">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white text-[10px] font-bold uppercase tracking-wider mb-2.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
           B2B OEM &amp; ODM CUSTOMIZATION SOLUTION
         </span>
         <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
-          CUSTOM PRODUCT SOLUTION<span class="text-white">.</span>
+          CUSTOM PRODUCT SOLUTION
         </h3>
         <p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-1.5">
           Selain menyediakan berbagai produk elektronik dan aksesoris, Howell juga melayani kebutuhan <strong class="text-white font-semibold">custom product</strong> untuk menyesuaikan kebutuhan bisnis Anda.
@@ -3499,36 +3487,36 @@
     "cat_title_patch_cable": "Patch Cable & Networking",
     "cat_sub_patch_cable": "Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.",
     "cat_badge_label": "Kategori",
-    "cat_meta_patch_cable": "9 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_patch_cable": "9 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_patch_cable": "Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors & Keystone Adapters.",
     "cat_desc_body_patch_cable": "Solusi kabel jaringan berkecepatan tinggi hingga 40Gbps SFTP shielded dengan konduktor tembaga murni untuk instalasi server, data center, dan jaringan enterprise yang membutuhkan transmisi data stabil tanpa packet loss.",
     "cat_title_hdmi_video": "HDMI 8K & DisplayPort",
     "cat_sub_hdmi_video": "Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.",
-    "cat_meta_hdmi_video": "49 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_hdmi_video": "49 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_hdmi_video": "Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber & 16K DisplayPort.",
     "cat_desc_body_hdmi_video": "Transmisi sinyal visual definisi tinggi dengan bandwidth hingga 48Gbps tanpa delay audio-video. Ideal untuk monitor gaming profesional, home theater, videowall, dan broadcast workstation.",
     "cat_title_power_cable": "Heavy Duty Power & PDU",
     "cat_sub_power_cable": "AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.",
-    "cat_meta_power_cable": "3 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_power_cable": "3 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_power_cable": "AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 & CEE 7/7 Schuko.",
     "cat_desc_body_power_cable": "Kabel daya bersertifikasi standar industri dengan tembaga murni tebal dan insulasi tahan panas tinggi untuk workstation, server rack, UPS, dan infrastruktur listrik enterprise.",
     "cat_title_usb_charging": "USB & High-Speed Data",
     "cat_sub_usb_charging": "Active Optic Extension, USB Type-C & High-Amp Charging.",
-    "cat_meta_usb_charging": "12 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_usb_charging": "12 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_usb_charging": "USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension & Hubs.",
     "cat_desc_body_usb_charging": "Solusi transfer data kecepatan tinggi hingga 10Gbps dan pengisian daya pintar Power Delivery (PD) dengan pelindung kabel braided nilon yang tahan lebih dari 50.000 kali tekukan.",
     "cat_title_audio": "Audio Solutions & AUX",
     "cat_sub_audio": "3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.",
-    "cat_meta_audio": "11 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_audio": "11 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_audio": "3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone & Optical Toslink.",
     "cat_desc_body_audio": "Kabel audio fidelitas tinggi (Hi-Fi) bebas distorsi dengan konektor lapis emas 24K dan pelindung interferensi elektromagnetik ganda untuk studio rekaman, panggung, dan sistem home audio audiophile.",
     "cat_title_adapter": "Adapters & Converters",
     "cat_sub_adapter": "Multi-port Display Converters, Audio Splitters & Signal Hubs.",
-    "cat_meta_adapter": "37 Produk Resmi • Garansi 12 Bulan",
+    "cat_meta_adapter": "37 Produk Resmi | Garansi 12 Bulan",
     "cat_desc_title_adapter": "Multi-port Display Converters, Type-C Hubs, Audio Splitters & Video Signal Converters.",
     "cat_desc_body_adapter": "Solusi konversi antarmuka lengkap antara USB-C, HDMI, DisplayPort, VGA, DVI, dan audio digital-analog untuk menghubungkan laptop modern dengan display proyektor dan monitor legacy.",
     "cat_btn_catalog": "Lihat Produk di Katalog",
-    "visi_footer_left": "● VISI PERUSAHAAN",
+    "visi_footer_left": "VISI PERUSAHAAN",
     "visi_panel_eyebrow": "DETAIL ARTI & SASARAN",
     "visi_panel_title": "Arah Strategis VISI Howell",
     "visi_narrative": "Visi ini merupakan kompas jangka panjang PT Howell Niaga Indonesia untuk memantapkan posisi sebagai pemimpin ekosistem distribusi connectivity hardware, kabel audio-video resolusi tinggi, dan peripheral teknologi informasi terpercaya di seluruh pelosok nusantara.",
@@ -3536,7 +3524,7 @@
     "visi_subcard1_desc": "Dibangun sejak 2009 melalui integritas pasokan, jaminan produk asli bergaransi 12 bulan tukar baru, dan kepercayaan dari ribuan mitra ritel, korporasi tender, serta institusi pemerintah.",
     "visi_subcard2_title": "Standar Kualitas Internasional",
     "visi_subcard2_desc": "Seluruh produk Howell mengadopsi spesifikasi ketat sertifikasi internasional (HDMI ATC, DisplayPort VESA, CE, RoHS) dengan bahan tembaga murni untuk daya tahan transmisi optimal.",
-    "misi_footer_left": "● 4 PILAR EKSEKUSI",
+    "misi_footer_left": "4 PILAR EKSEKUSI",
     "misi_footer_right": "KUALITAS & INTEGRITAS",
     "misi_panel_eyebrow": "DETAIL OPERASIONAL",
     "misi_panel_title": "4 Pilar Misi Howell",
@@ -3743,36 +3731,36 @@
     "cat_title_patch_cable": "Patch Cable & Networking",
     "cat_sub_patch_cable": "Cat6, Cat8 40Gbps SFTP, Bulk Rolls & RJ45 Connectors.",
     "cat_badge_label": "Category",
-    "cat_meta_patch_cable": "9 Certified Products • 12-Month Warranty",
+    "cat_meta_patch_cable": "9 Certified Products | 12-Month Warranty",
     "cat_desc_title_patch_cable": "Cat6/Cat8 Patch Cables, Bulk Rolls, RJ45 Connectors & Keystone Adapters.",
     "cat_desc_body_patch_cable": "High-speed network cabling up to 40Gbps SFTP shielded with pure copper conductors for server installations, data centers, and enterprise networks demanding zero packet loss.",
     "cat_title_hdmi_video": "HDMI 8K & DisplayPort",
     "cat_sub_hdmi_video": "Ultra Gold HDMI 2.1, Active Optic Fiber & 16K DisplayPort.",
-    "cat_meta_hdmi_video": "49 Certified Products • 12-Month Warranty",
+    "cat_meta_hdmi_video": "49 Certified Products | 12-Month Warranty",
     "cat_desc_title_hdmi_video": "Ultra Gold HDMI 2.1 8K@60Hz, 4K@120Hz HDR, Active Optic Fiber & 16K DisplayPort.",
     "cat_desc_body_hdmi_video": "High-definition visual signal transmission with up to 48Gbps bandwidth and zero audio-video lag. Ideal for pro gaming displays, home theaters, videowalls, and broadcast workstations.",
     "cat_title_power_cable": "Heavy Duty Power & PDU",
     "cat_sub_power_cable": "AC Power C5, CPU C13, Server PDU C13-C14 & C19-C20.",
-    "cat_meta_power_cable": "3 Certified Products • 12-Month Warranty",
+    "cat_meta_power_cable": "3 Certified Products | 12-Month Warranty",
     "cat_desc_title_power_cable": "AC Power C5, CPU C13, Server PDU C13-C14, Heavy-Duty C19-C20 & CEE 7/7 Schuko.",
     "cat_desc_body_power_cable": "Industry-certified heavy-duty power cables built with thick pure copper conductors and high-heat insulation for workstations, server racks, UPS units, and enterprise electrical infrastructure.",
     "cat_title_usb_charging": "USB & High-Speed Data",
     "cat_sub_usb_charging": "Active Optic Extension, USB Type-C & High-Amp Charging.",
-    "cat_meta_usb_charging": "12 Certified Products • 12-Month Warranty",
+    "cat_meta_usb_charging": "12 Certified Products | 12-Month Warranty",
     "cat_desc_title_usb_charging": "USB 3.2 Gen 2, Type-C 100W PD Fast Charging, Active Optical Extension & Hubs.",
     "cat_desc_body_usb_charging": "High-speed data transfer up to 10Gbps and intelligent Power Delivery (PD) charging with reinforced braided nylon jackets tested for over 50,000 bend cycles.",
     "cat_title_audio": "Audio Solutions & AUX",
     "cat_sub_audio": "3.5mm AUX, Optical Toslink, Dual 6.35mm & XLR Mic Cables.",
-    "cat_meta_audio": "11 Certified Products • 12-Month Warranty",
+    "cat_meta_audio": "11 Certified Products | 12-Month Warranty",
     "cat_desc_title_audio": "3.5mm AUX, 2RCA Gold Plated, Dual 6.35mm Guitar TS, XLR Microphone & Optical Toslink.",
     "cat_desc_body_audio": "Distortion-free Hi-Fi audio cables featuring 24K gold-plated connectors and dual EMI shielding for recording studios, live stages, and audiophile home sound systems.",
     "cat_title_adapter": "Adapters & Converters",
     "cat_sub_adapter": "Multi-port Display Converters, Audio Splitters & Signal Hubs.",
-    "cat_meta_adapter": "37 Certified Products • 12-Month Warranty",
+    "cat_meta_adapter": "37 Certified Products | 12-Month Warranty",
     "cat_desc_title_adapter": "Multi-port Display Converters, Type-C Hubs, Audio Splitters & Video Signal Converters.",
     "cat_desc_body_adapter": "Comprehensive interface conversion between USB-C, HDMI, DisplayPort, VGA, DVI, and digital-analog audio to bridge modern laptops with legacy projectors and displays.",
     "cat_btn_catalog": "View in Catalog",
-    "visi_footer_left": "● CORPORATE VISION",
+    "visi_footer_left": "CORPORATE VISION",
     "visi_panel_eyebrow": "STRATEGIC PURPOSE & OBJECTIVES",
     "visi_panel_title": "Howell Strategic Vision",
     "visi_narrative": "This vision serves as PT Howell Niaga Indonesia's long-term compass to solidify its leadership across the connectivity hardware distribution ecosystem, high-resolution audio-video cabling, and trusted IT peripherals throughout the nation.",
@@ -3780,7 +3768,7 @@
     "visi_subcard1_desc": "Established in 2009 with uncompromising supply integrity, genuine products backed by a 12-month direct replacement warranty, and the trust of thousands of retail partners, corporate tenders, and enterprise clients.",
     "visi_subcard2_title": "International Quality Standards",
     "visi_subcard2_desc": "All Howell products comply with stringent international certification standards (HDMI ATC, DisplayPort VESA, CE, RoHS) utilizing pure copper conductors for optimal signal endurance.",
-    "misi_footer_left": "● 4 EXECUTION PILLARS",
+    "misi_footer_left": "4 EXECUTION PILLARS",
     "misi_footer_right": "QUALITY & INTEGRITY",
     "misi_panel_eyebrow": "OPERATIONAL DETAILS",
     "misi_panel_title": "Howell's 4 Mission Pillars",
@@ -3983,49 +3971,49 @@
     "footer_col_channels": "官方渠道",
     "footer_rights": "© 2026 PT Howell Niaga Indonesia. 版权所有。",
     "cat_eco_eyebrow": "核心产品生态",
-    "cat_eco_title": "精工制造 · 核心产品系列",
+    "cat_eco_title": "精工制造 | 核心产品系列",
     "cat_title_patch_cable": "网络跳线与布线系统",
     "cat_sub_patch_cable": "Cat6/Cat8 40Gbps 双屏蔽网线、工程箱线及 RJ45 水晶头。",
     "cat_badge_label": "产品分类",
-    "cat_meta_patch_cable": "9 款官方认证产品 • 12 个月质保",
+    "cat_meta_patch_cable": "9 款官方认证产品 | 12 个月质保",
     "cat_desc_title_patch_cable": "Cat6/Cat8 工程跳线、大盘箱线、RJ45 连接头及屏蔽模块。",
     "cat_desc_body_patch_cable": "高达 40Gbps 传输速率的 SFTP 双层屏蔽纯铜网线方案，专为服务器机房、数据中心及对稳定性有严苛要求的企业网络而打造。",
     "cat_title_hdmi_video": "HDMI 8K 与 DisplayPort",
     "cat_sub_hdmi_video": "Ultra Gold HDMI 2.1、有源光纤线及 16K DisplayPort。",
-    "cat_meta_hdmi_video": "49 款官方认证产品 • 12 个月质保",
+    "cat_meta_hdmi_video": "49 款官方认证产品 | 12 个月质保",
     "cat_desc_title_hdmi_video": "Ultra Gold HDMI 2.1 8K@60Hz、4K@120Hz HDR、有源光纤线及 16K DisplayPort。",
     "cat_desc_body_hdmi_video": "高达 48Gbps 超高带宽的高清音视频信号传输，零延迟无损画质。适用于专业电竞屏、家庭影院、多屏拼接墙及广电级工作站。",
     "cat_title_power_cable": "重型电源线与 PDU 线缆",
     "cat_sub_power_cable": "AC 电源线 C5、电脑 C13、服务器机柜 PDU C13-C14 及 C19-C20。",
-    "cat_meta_power_cable": "3 款官方认证产品 • 12 个月质保",
+    "cat_meta_power_cable": "3 款官方认证产品 | 12 个月质保",
     "cat_desc_title_power_cable": "AC 电源线 C5、主机 C13、服务器 PDU C13-C14、重型 C19-C20 及欧标 CEE 7/7 插头。",
     "cat_desc_body_power_cable": "工业级高规格电源线，加厚高纯度纯铜导体与耐高温阻燃绝缘外被，专为工程工作站、机柜 PDU、UPS 不间断电源及企业供电系统打造。",
     "cat_title_usb_charging": "USB 与高速数据传输",
     "cat_sub_usb_charging": "有源光纤延长线、USB Type-C 及大电流快充线。",
-    "cat_meta_usb_charging": "12 款官方认证产品 • 12 个月质保",
+    "cat_meta_usb_charging": "12 款官方认证产品 | 12 个月质保",
     "cat_desc_title_usb_charging": "USB 3.2 Gen 2、Type-C 100W PD 快充、有源光纤延长线及集线器。",
     "cat_desc_body_usb_charging": "高达 10Gbps 的极速数据传输与智能 PD 大功率快充方案，坚韧编织线身，耐受 50,000+ 次弯折测试。",
     "cat_title_audio": "音频连接方案与 AUX 线",
     "cat_sub_audio": "3.5mm AUX、光纤音频线、双 6.35mm 及 XLR 麦克风线。",
-    "cat_meta_audio": "11 款官方认证产品 • 12 个月质保",
+    "cat_meta_audio": "11 款官方认证产品 | 12 个月质保",
     "cat_desc_title_audio": "3.5mm AUX、镀金 2RCA、双 6.35mm 乐器音频线、XLR 麦克风线及数字光纤线。",
     "cat_desc_body_audio": "无损高保真 Hi-Fi 音频线，24K 镀金接头与双重电磁抗干扰屏蔽，专为录音室、舞台演出及发烧级家庭音响系统打造。",
     "cat_title_adapter": "转接器与信号转换器",
     "cat_sub_adapter": "多屏显示转接头、音频分线器及信号拓展坞。",
-    "cat_meta_adapter": "37 款官方认证产品 • 12 个月质保",
+    "cat_meta_adapter": "37 款官方认证产品 | 12 个月质保",
     "cat_desc_title_adapter": "多接口显示转接器、Type-C 拓展坞、音频分配器及视频信号转换盒。",
     "cat_desc_body_adapter": "全规格接口转换方案，覆盖 USB-C、HDMI、DisplayPort、VGA、DVI 及数模音频转换，无缝连接现代轻薄本与各类投影仪及显示屏设备。",
     "cat_btn_catalog": "在产品目录中查看",
-    "visi_footer_left": "● 企业愿景",
+    "visi_footer_left": "企业愿景",
     "visi_panel_eyebrow": "战略方向与核心目标",
     "visi_panel_title": "Howell 战略愿景解析",
     "visi_narrative": "此愿景是 PT Howell Niaga Indonesia 确立全国领先互联硬件分销生态、高规格音视频线缆及可信赖 IT 外设首选供应商的长期行动指南。",
-    "visi_subcard1_title": "卓越信誉 · 深受信赖",
+    "visi_subcard1_title": "卓越信誉 | 深受信赖",
     "visi_subcard1_desc": "始于 2009 年，凭借严苛供应链、100% 原装正品保障与官方 12 个月换新质保，赢得了数千家零售伙伴、企业大宗投标及政府机构的深度信赖。",
     "visi_subcard2_title": "国际权威品质标准",
     "visi_subcard2_desc": "所有 Howell 产品均严格遵循国际标准认证（HDMI ATC、DisplayPort VESA、CE、RoHS），采用高纯度无氧铜导体，确保极佳的信号稳定性与耐用度。",
-    "misi_footer_left": "● 四大执行支柱",
-    "misi_footer_right": "精工品质 · 诚信至上",
+    "misi_footer_left": "四大执行支柱",
+    "misi_footer_right": "精工品质 | 诚信至上",
     "misi_panel_eyebrow": "运营标准详情",
     "misi_panel_title": "Howell 四大核心使命支柱",
     "misi_detail_1_title": "1. 卓越品质与具备竞争力的价格",
@@ -4093,7 +4081,7 @@
     "banner_see_catalog": "查看产品目录 →",
     "banner_click_hint": "点击横幅即可直达产品目录",
     "store_badge_title": "HOWELL 官方直营旗舰店",
-    "store_guarantee_badge": "100% 原装正品 · 官方联保",
+    "store_guarantee_badge": "100% 原装正品 | 官方联保",
     "support_wa_desc": "官方咨询与专属客服",
     "zoom_hint": "💡 点击图片即可放大 / 缩小"
   }

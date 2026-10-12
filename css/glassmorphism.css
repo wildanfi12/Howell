@@ -1563,13 +1563,10 @@ p, span, li, a, input, textarea, select, button {
   border-radius: var(--radius-pill);
 }
 
-.eyebrow-pro::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-yellow);
-  flex-shrink: 0;
+.eyebrow-pro::before,
+.eyebrow::before {
+  display: none !important;
+  content: none !important;
 }
 
 /* ── Category Icon Circles ──────────────────────────────────── */
