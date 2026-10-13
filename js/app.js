@@ -383,7 +383,6 @@ window.renderCategoryChips = function renderCategoryChips() {
   const container = document.getElementById('catalog-category-chips');
   if (!container || typeof HOWELL_CATEGORIES === 'undefined') return;
 
-  const allCount = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.length : 137;
   const isAllActive = !state.activeCategory || state.activeCategory === 'all';
 
   const currentLang = window.currentLanguage || 'id';
@@ -391,17 +390,14 @@ window.renderCategoryChips = function renderCategoryChips() {
   let html = `
     <button type="button" onclick="filterByCategory('all')" class="category-chip-btn ${isAllActive ? 'active' : ''}">
       <span>${allChipLabel}</span>
-      <span class="cat-count-pill ml-1">(${allCount})</span>
     </button>
   `;
 
   HOWELL_CATEGORIES.forEach(cat => {
-    const count = (typeof HOWELL_PRODUCTS !== 'undefined') ? HOWELL_PRODUCTS.filter(p => p.category === cat.id).length : 0;
     const isActive = state.activeCategory === cat.id;
     html += `
       <button type="button" onclick="filterByCategory('${cat.id}')" class="category-chip-btn ${isActive ? 'active' : ''}">
         <span>${getCategoryName(cat.id, currentLang)}</span>
-        <span class="cat-count-pill ml-1">(${count})</span>
       </button>
     `;
   });
@@ -528,19 +524,15 @@ window.renderCatalog = function renderCatalog() {
   // Render Sidebar Category Accordion (#acc-body-category)
   const catContainer = document.getElementById('acc-body-category');
   if (catContainer) {
-    const allCount = HOWELL_PRODUCTS.length;
     catContainer.innerHTML = `
       <button type="button" onclick="filterByCategory('all')" class="w-full flex items-center justify-between py-1 text-left text-[13px] transition-colors ${state.activeCategory === 'all' ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'}">
         <span>${(window.currentLanguage === 'zh' ? '全部产品' : (window.currentLanguage === 'en' ? 'All Products' : 'Semua Produk'))}</span>
-        <span class="text-[11px] text-slate-400">(${allCount})</span>
       </button>
       ${HOWELL_CATEGORIES.map(cat => {
-        const count = HOWELL_PRODUCTS.filter(p => p.category === cat.id).length;
         const isActive = state.activeCategory === cat.id;
         return `
           <button type="button" onclick="filterByCategory('${cat.id}')" class="w-full flex items-center justify-between py-1 text-left text-[13px] transition-colors ${isActive ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'}">
             <span class="truncate">${getCategoryName(cat.id, window.currentLanguage || 'id')}</span>
-            <span class="text-[11px] text-slate-400 shrink-0 ml-1">(${count})</span>
           </button>
         `;
       }).join('')}
